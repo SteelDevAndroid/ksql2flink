@@ -1,0 +1,30 @@
+{
+  "message": {
+    "numero": "INTEGER",
+    "DHM": "STRING"
+  },
+  "comptageCoffre": {
+    "idCoffre": "STRING",
+    "type": "STRING",
+    "position": "INTEGER",
+    "dhm": "STRING",
+    "contenu": {
+      "type": "STRING",
+      "capacite": {
+        "valeur": "INTEGER",
+        "unite": "STRING"
+      },
+      "courant": {
+        "valeur": "INTEGER",
+        "unite": "STRING"
+      }
+    },
+    "localisation": {
+      "gare": "STRING",
+      "equipement": {
+        "numero": "STRING",
+        "type": "STRING"
+      }
+    }
+  }
+}

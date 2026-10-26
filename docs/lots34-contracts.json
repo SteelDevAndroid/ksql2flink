@@ -1,0 +1,314 @@
+{
+  "sources": {
+    "flows": {
+      "name": "VA_PEAGE_CLASSIFICATION_FLOWS",
+      "topic": "va.peage.classification.flows",
+      "schema": {
+        "FLOW": {
+          "STATION": "STRING",
+          "LANE": "STRING",
+          "CREATIONDATE": "STRING",
+          "CALLERMODE": "STRING",
+          "CLASS": [
+            {
+              "CLASSTYPE": "STRING",
+              "CLASSORIGIN": "STRING"
+            }
+          ]
+        },
+        "BUSINESSFILTER": {
+          "ID": "INTEGER"
+        },
+        "BUSINESSRULE": {
+          "ID": "INTEGER"
+        },
+        "BUSINESSCYCLOPE": {
+          "CLASS": "INTEGER",
+          "CONFIDENCE": "DOUBLE",
+          "PMR": "STRING",
+          "PRESENCE": "STRING"
+        },
+        "RESPONSE": {
+          "CALCULATEDCLASS": "INTEGER",
+          "RESULTCLASS": "INTEGER",
+          "CLASSORIGIN": "STRING",
+          "DECISION": "STRING",
+          "CLASSUSING": "STRING"
+        },
+        "TECHNICALFILTER": {
+          "ID": "INTEGER"
+        }
+      },
+      "keyed": false
+    },
+    "asf-coffre": {
+      "name": "ASF_PEAGE_SUIVICONSO_COMPTAGE_COFFRE_BASE",
+      "topic": "asf.peage.voie.comptage.coffre",
+      "schema": {
+        "message": {
+          "numero": "INTEGER",
+          "DHM": "STRING"
+        },
+        "comptageCoffre": {
+          "idCoffre": "STRING",
+          "type": "STRING",
+          "position": "INTEGER",
+          "dhm": "STRING",
+          "contenu": {
+            "type": "STRING",
+            "capacite": {
+              "valeur": "INTEGER",
+              "unite": "STRING"
+            },
+            "courant": {
+              "valeur": "INTEGER",
+              "unite": "STRING"
+            }
+          },
+          "localisation": {
+            "gare": "STRING",
+            "equipement": {
+              "numero": "STRING",
+              "type": "STRING"
+            }
+          }
+        }
+      },
+      "keyed": false
+    },
+    "asf-bol": {
+      "name": "ASF_PEAGE_SUIVICONSO_COMPTAGE_BOL_BASE",
+      "topic": "asf.peage.voie.comptage.bol",
+      "schema": {
+        "message": {
+          "numero": "INTEGER",
+          "DHM": "STRING"
+        },
+        "comptageBols": {
+          "dhm": "STRING",
+          "localisation": {
+            "gare": "STRING",
+            "equipement": {
+              "numero": "STRING",
+              "type": "STRING"
+            }
+          }
+        },
+        "etats": [
+          {
+            "sujet": "STRING",
+            "status": [
+              "STRING"
+            ],
+            "contenu": {
+              "devise": "STRING",
+              "valeur": "DOUBLE",
+              "courant": "INTEGER",
+              "maximum": "INTEGER",
+              "type": "STRING"
+            }
+          }
+        ]
+      },
+      "keyed": false
+    },
+    "asf-synoptique": {
+      "name": "ASF_PEAGE_VOIE_SYNOPTIQUE_STREAM",
+      "topic": "asf.peage.voie.synoptique",
+      "schema": {
+        "SYNOPTIQUE": {
+          "DHM": "STRING",
+          "LOCALISATION": {
+            "GARE": "STRING",
+            "EQUIPEMENT": {
+              "NUMERO": "STRING",
+              "TYPE": "STRING"
+            }
+          }
+        },
+        "ETATEQUIPEMENTS": [
+          {
+            "SUJET": "STRING",
+            "ETAT": "STRING"
+          }
+        ]
+      },
+      "keyed": true
+    },
+    "esc-coffre": {
+      "name": "ESC_PEAGE_SUIVICONSO_COMPTAGE_COFFRE_BASE",
+      "topic": "esc.peage.voie.comptage.coffre",
+      "schema": {
+        "message": {
+          "numero": "INTEGER",
+          "DHM": "STRING"
+        },
+        "comptageCoffre": {
+          "idCoffre": "STRING",
+          "type": "STRING",
+          "position": "INTEGER",
+          "dhm": "STRING",
+          "contenu": {
+            "type": "STRING",
+            "capacite": {
+              "valeur": "INTEGER",
+              "unite": "STRING"
+            },
+            "courant": {
+              "valeur": "INTEGER",
+              "unite": "STRING"
+            }
+          },
+          "localisation": {
+            "gare": "STRING",
+            "equipement": {
+              "numero": "STRING",
+              "type": "STRING"
+            }
+          }
+        }
+      },
+      "keyed": false
+    },
+    "esc-bol": {
+      "name": "ESC_PEAGE_SUIVICONSO_COMPTAGE_BOL_BASE",
+      "topic": "esc.peage.voie.comptage.bol",
+      "schema": {
+        "message": {
+          "numero": "INTEGER",
+          "DHM": "STRING"
+        },
+        "comptageBols": {
+          "dhm": "STRING",
+          "localisation": {
+            "gare": "STRING",
+            "equipement": {
+              "numero": "STRING",
+              "type": "STRING"
+            }
+          }
+        },
+        "etats": [
+          {
+            "sujet": "STRING",
+            "status": [
+              "STRING"
+            ],
+            "contenu": {
+              "devise": "STRING",
+              "valeur": "DOUBLE",
+              "courant": "INTEGER",
+              "maximum": "INTEGER",
+              "type": "STRING"
+            }
+          }
+        ]
+      },
+      "keyed": false
+    },
+    "esc-synoptique": {
+      "name": "ESC_PEAGE_VOIE_SYNOPTIQUE_STREAM",
+      "topic": "esc.peage.voie.synoptique",
+      "schema": {
+        "SYNOPTIQUE": {
+          "DHM": "STRING",
+          "LOCALISATION": {
+            "GARE": "STRING",
+            "EQUIPEMENT": {
+              "NUMERO": "STRING",
+              "TYPE": "STRING"
+            }
+          }
+        },
+        "ETATEQUIPEMENTS": [
+          {
+            "SUJET": "STRING",
+            "ETAT": "STRING"
+          }
+        ]
+      },
+      "keyed": true
+    },
+    "compteur-input": {
+      "name": "VA_PEAGE_BACKOFFICE_SOCLEET_FILTER_REF_COMPTEUR",
+      "topic": "VA_PEAGE_BACKOFFICE_SOCLEET_FILTER_REF_COMPTEUR",
+      "schema": {
+        "R_VOIEID": "INTEGER",
+        "R_GAREID": "INTEGER",
+        "R_SOCIETEID": "INTEGER",
+        "R_PARTENAIREID": "INTEGER",
+        "IDT_TRAN_PEA": "STRING",
+        "VALEUR": "DOUBLE",
+        "MONTANT_TRANSACTION": "DOUBLE",
+        "DATE_OPERATION": "DOUBLE",
+        "DATE_COMPTABLE": "DOUBLE",
+        "R_FREQUENCEID": "INTEGER",
+        "C_R_MODE_REGLEMENTID": "INTEGER",
+        "R_COMPTEUR_TYPEID": "INTEGER"
+      },
+      "keyed": true
+    }
+  },
+  "outputs": {
+    "flows-extend": {
+      "name": "VA_PEAGE_CLASSIFICATION_FLOWS_EXTEND",
+      "topic": "VA_PEAGE_CLASSIFICATION_FLOWS_EXTEND",
+      "retention": 604800000,
+      "keyed": false
+    },
+    "compteur": {
+      "name": "VA_PEAGE_BACKOFFICE_SOCLEET_COMPTEUR",
+      "topic": "va.peage.backoffice.socleET.compteur",
+      "retention": 604800000,
+      "keyed": true
+    },
+    "asf-coffre": {
+      "name": "ASF_PEAGE_SUIVICONSO_COMPTAGE_COFFRE",
+      "topic": "asf.peage.suiviconso.comptage.coffre",
+      "retention": 604800000,
+      "keyed": false
+    },
+    "esc-coffre": {
+      "name": "ESC_PEAGE_SUIVICONSO_COMPTAGE_COFFRE",
+      "topic": "esc.peage.suiviconso.comptage.coffre",
+      "retention": 604800000,
+      "keyed": false
+    },
+    "asf-exploded": {
+      "name": "ASF_PEAGE_SUIVICONSO_COMPTAGE_BOL_EXPLODED",
+      "topic": "asf.peage.suiviconso.comptage.bol.exploded",
+      "retention": 604800000,
+      "keyed": false
+    },
+    "esc-exploded": {
+      "name": "ESC_PEAGE_SUIVICONSO_COMPTAGE_BOL_EXPLODED",
+      "topic": "esc.peage.suiviconso.comptage.bol.exploded",
+      "retention": 604800000,
+      "keyed": false
+    },
+    "asf-bol": {
+      "name": "ASF_PEAGE_SUIVICONSO_COMPTAGE_BOL",
+      "topic": "asf.peage.suiviconso.comptage.bol",
+      "retention": 604800000,
+      "keyed": false
+    },
+    "esc-bol": {
+      "name": "ESC_PEAGE_SUIVICONSO_COMPTAGE_BOL",
+      "topic": "esc.peage.suiviconso.comptage.bol",
+      "retention": 604800000,
+      "keyed": false
+    },
+    "asf-fav": {
+      "name": "ASF_PEAGE_TELEOP_SYNOPTIQUE_FAV_STREAM",
+      "topic": "asf.peage.teleop.synoptique.fav",
+      "retention": 604800000,
+      "keyed": true
+    },
+    "esc-fav": {
+      "name": "ESC_PEAGE_TELEOP_SYNOPTIQUE_FAV_STREAM",
+      "topic": "esc.peage.teleop.synoptique.fav",
+      "retention": 864000000,
+      "keyed": true
+    }
+  }
+}

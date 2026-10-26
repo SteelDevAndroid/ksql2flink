@@ -13,8 +13,8 @@ Le lot 1 est choisi parce qu'il est autonome, repetitif et sans etat, contrairem
 | --- | --- | ---: | --- | --- |
 | 1 | Faible | 5 | Lexhistoric ASF, ESC, ARS, ACR, COF | SQL migre ; validation differentielle fournie |
 | 2 | Faible | 9 | Consolidation entrees/sorties conformes | SQL migre ; test differentiel fourni |
-| 3 | Faible | 2 | Extension classification et projection compteur | A migrer ; compteur depend du lot 6 |
-| 4 | Moyenne | 8 | Bols/coffres (6), synoptiques FAV (2) | A migrer |
+| 3 | Faible | 2 | Extension classification et projection compteur | Migre ; contrat amont lot 6 conserve |
+| 4 | Moyenne | 8 | Bols/coffres (6), synoptiques FAV (2) | Migre ; test differentiel fourni |
 | 5 | Elevee | 4 | Histobadge entree/sortie CARDME/CIP | A migrer |
 | 6 | Elevee | 4 | Deux referentiels et deux jointures Socle ET | A migrer |
 | 7 | Elevee | 1 | Indicateurs horaires | A migrer ; depend du lot 6 |
@@ -151,3 +151,7 @@ La replication a 1 et la configuration at-least-once du laboratoire ne sont pas 
 ## Lot 2
 
 Les neuf branches de consolidation sont migrees. Voir [le contrat du lot 2](lot-2-conformite.md) pour les schemas, les regles de serialisation et le test reproductible.
+
+## Lots 3 et 4
+
+Dix traitements supplementaires migres, soit 24 sur 37. Voir [le contrat des lots 3/4](lots-3-4.md). La jointure amont du compteur reste a migrer au lot 6.

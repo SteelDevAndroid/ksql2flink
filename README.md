@@ -77,6 +77,21 @@ les doublons exacts, les tombstones et l'exclusion ARS en entree.
 Les schemas et SQL sont regenerables avec `python scripts/generate_conformite_sql.py` ; la CI verifie leur reproductibilite.
 Le [contrat du lot 2](docs/lot-2-conformite.md) precise les limites et la procedure d'utilisation.
 
+## Lots 3 et 4 : projections, comptages et synoptiques
+
+Les dix traitements sont dans `sql/flink/04-lots34.sql`, avec la reference du journal dans
+`sql/ksqldb/04-lots34.sql`. Le contrat d'entree compteur provient de la sortie existante du lot 6 :
+la jointure amont n'est pas remplacee. Les bols gardent leur topic intermediaire exploded.
+
+```powershell
+python scripts/generate_lots34_sql.py
+docker compose up -d --build --wait
+python scripts/test_lots34.py
+```
+
+Le test compare les dix sorties (intermediaires comprises), leurs valeurs, cles et timestamps.
+Voir [le contrat des lots 3/4](docs/lots-3-4.md) pour les variantes reseau et les limites.
+
 ## Consoles SQL
 
 ```powershell
@@ -118,7 +133,7 @@ laboratoire sont explicites et ne reproduisent pas necessairement la production.
 
 ## Arret et diagnostic
 
-Le workflow GitHub Actions `Migration comparisons` execute les trois tests sur les pull requests,
+Le workflow GitHub Actions `Migration comparisons` execute les quatre tests sur les pull requests,
 sur `main` et sur les branches `feat/**`. Les rapports et logs Docker sont conserves sept jours.
 Les PR provenant d'un fork peuvent necessiter l'approbation d'un mainteneur pour lancer le workflow.
 

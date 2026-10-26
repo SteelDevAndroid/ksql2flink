@@ -22,9 +22,10 @@ jobs:
       - name: Validate Compose and Python
         run: |
           docker compose config --quiet
-          python -m py_compile scripts/smoke.py scripts/test_lexhistoric.py scripts/test_conformite.py scripts/generate_conformite_sql.py
+          python -m py_compile scripts/*.py
           python scripts/generate_conformite_sql.py
-          git diff --exit-code -- sql/ksqldb/03-conformite.sql sql/flink/03-conformite.sql docker/flink/resources/schemas
+          python scripts/generate_lots34_sql.py
+          git diff --exit-code -- sql docker/flink/resources/schemas docs/lots34-contracts.json
       - name: Start migration lab
         run: docker compose up -d --build --wait --wait-timeout 240
       - name: Run smoke comparison
@@ -33,6 +34,8 @@ jobs:
         run: python scripts/test_lexhistoric.py
       - name: Compare all nine conformite branches
         run: python scripts/test_conformite.py
+      - name: Compare lot 3 and lot 4 queries
+        run: python scripts/test_lots34.py
       - name: Capture service logs
         if: always()
         run: |

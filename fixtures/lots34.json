@@ -1,0 +1,6402 @@
+{
+  "flows": [
+    {
+      "name": "complete",
+      "key": "aWdub3JlZA==",
+      "value": {
+        "FLOW": {
+          "STATION": "25004",
+          "LANE": "001",
+          "CREATIONDATE": "date",
+          "CALLERMODE": "M",
+          "CLASS": [
+            {
+              "CLASSTYPE": "TarifiedClass",
+              "CLASSORIGIN": "FC"
+            }
+          ]
+        },
+        "BUSINESSFILTER": {
+          "ID": 1
+        },
+        "BUSINESSRULE": {
+          "ID": 2
+        },
+        "BUSINESSCYCLOPE": {
+          "CLASS": 3,
+          "CONFIDENCE": 0.9,
+          "PMR": "N",
+          "PRESENCE": "Y"
+        },
+        "RESPONSE": {
+          "CALCULATEDCLASS": 1,
+          "RESULTCLASS": 2,
+          "CLASSORIGIN": "FC",
+          "DECISION": "ok",
+          "CLASSUSING": "T"
+        },
+        "TECHNICALFILTER": {
+          "ID": 4
+        }
+      },
+      "expected": {
+        "flows-extend": [
+          {
+            "key": null,
+            "value": {
+              "FLOW": {
+                "STATION": "25004",
+                "LANE": "001",
+                "CREATIONDATE": "date",
+                "CALLERMODE": "M",
+                "CLASS": [
+                  {
+                    "CLASSTYPE": "TarifiedClass",
+                    "CLASSORIGIN": "FC"
+                  }
+                ]
+              },
+              "BUSINESSFILTER": {
+                "ID": 1
+              },
+              "BUSINESSRULE": {
+                "ID": 2
+              },
+              "BUSINESSCYCLOPE": {
+                "CLASS": 3,
+                "CONFIDENCE": 0.9,
+                "PMR": "N",
+                "PRESENCE": "Y"
+              },
+              "RESPONSE": {
+                "CALCULATEDCLASS": 1,
+                "RESULTCLASS": 2,
+                "CLASSORIGIN": "FC",
+                "DECISION": "ok",
+                "CLASSUSING": "T"
+              },
+              "TECHNICALFILTER": {
+                "ID": 4
+              },
+              "STATIONLANE": "25004001"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "collision-a",
+      "key": "aWdub3JlZA==",
+      "value": {
+        "FLOW": {
+          "STATION": "ab",
+          "LANE": "c",
+          "CREATIONDATE": "date",
+          "CALLERMODE": "M",
+          "CLASS": [
+            {
+              "CLASSTYPE": "TarifiedClass",
+              "CLASSORIGIN": "FC"
+            }
+          ]
+        },
+        "BUSINESSFILTER": {
+          "ID": 1
+        },
+        "BUSINESSRULE": {
+          "ID": 2
+        },
+        "BUSINESSCYCLOPE": {
+          "CLASS": 3,
+          "CONFIDENCE": 0.9,
+          "PMR": "N",
+          "PRESENCE": "Y"
+        },
+        "RESPONSE": {
+          "CALCULATEDCLASS": 1,
+          "RESULTCLASS": 2,
+          "CLASSORIGIN": "FC",
+          "DECISION": "ok",
+          "CLASSUSING": "T"
+        },
+        "TECHNICALFILTER": {
+          "ID": 4
+        }
+      },
+      "expected": {
+        "flows-extend": [
+          {
+            "key": null,
+            "value": {
+              "FLOW": {
+                "STATION": "ab",
+                "LANE": "c",
+                "CREATIONDATE": "date",
+                "CALLERMODE": "M",
+                "CLASS": [
+                  {
+                    "CLASSTYPE": "TarifiedClass",
+                    "CLASSORIGIN": "FC"
+                  }
+                ]
+              },
+              "BUSINESSFILTER": {
+                "ID": 1
+              },
+              "BUSINESSRULE": {
+                "ID": 2
+              },
+              "BUSINESSCYCLOPE": {
+                "CLASS": 3,
+                "CONFIDENCE": 0.9,
+                "PMR": "N",
+                "PRESENCE": "Y"
+              },
+              "RESPONSE": {
+                "CALCULATEDCLASS": 1,
+                "RESULTCLASS": 2,
+                "CLASSORIGIN": "FC",
+                "DECISION": "ok",
+                "CLASSUSING": "T"
+              },
+              "TECHNICALFILTER": {
+                "ID": 4
+              },
+              "STATIONLANE": "abc"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "collision-b",
+      "key": "aWdub3JlZA==",
+      "value": {
+        "FLOW": {
+          "STATION": "a",
+          "LANE": "bc",
+          "CREATIONDATE": "date",
+          "CALLERMODE": "M",
+          "CLASS": [
+            {
+              "CLASSTYPE": "TarifiedClass",
+              "CLASSORIGIN": "FC"
+            }
+          ]
+        },
+        "BUSINESSFILTER": {
+          "ID": 1
+        },
+        "BUSINESSRULE": {
+          "ID": 2
+        },
+        "BUSINESSCYCLOPE": {
+          "CLASS": 3,
+          "CONFIDENCE": 0.9,
+          "PMR": "N",
+          "PRESENCE": "Y"
+        },
+        "RESPONSE": {
+          "CALCULATEDCLASS": 1,
+          "RESULTCLASS": 2,
+          "CLASSORIGIN": "FC",
+          "DECISION": "ok",
+          "CLASSUSING": "T"
+        },
+        "TECHNICALFILTER": {
+          "ID": 4
+        }
+      },
+      "expected": {
+        "flows-extend": [
+          {
+            "key": null,
+            "value": {
+              "FLOW": {
+                "STATION": "a",
+                "LANE": "bc",
+                "CREATIONDATE": "date",
+                "CALLERMODE": "M",
+                "CLASS": [
+                  {
+                    "CLASSTYPE": "TarifiedClass",
+                    "CLASSORIGIN": "FC"
+                  }
+                ]
+              },
+              "BUSINESSFILTER": {
+                "ID": 1
+              },
+              "BUSINESSRULE": {
+                "ID": 2
+              },
+              "BUSINESSCYCLOPE": {
+                "CLASS": 3,
+                "CONFIDENCE": 0.9,
+                "PMR": "N",
+                "PRESENCE": "Y"
+              },
+              "RESPONSE": {
+                "CALCULATEDCLASS": 1,
+                "RESULTCLASS": 2,
+                "CLASSORIGIN": "FC",
+                "DECISION": "ok",
+                "CLASSUSING": "T"
+              },
+              "TECHNICALFILTER": {
+                "ID": 4
+              },
+              "STATIONLANE": "abc"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "empty",
+      "key": "aWdub3JlZA==",
+      "value": {
+        "FLOW": {
+          "STATION": "",
+          "LANE": "",
+          "CREATIONDATE": "date",
+          "CALLERMODE": "M",
+          "CLASS": [
+            {
+              "CLASSTYPE": "TarifiedClass",
+              "CLASSORIGIN": "FC"
+            }
+          ]
+        },
+        "BUSINESSFILTER": {
+          "ID": 1
+        },
+        "BUSINESSRULE": {
+          "ID": 2
+        },
+        "BUSINESSCYCLOPE": {
+          "CLASS": 3,
+          "CONFIDENCE": 0.9,
+          "PMR": "N",
+          "PRESENCE": "Y"
+        },
+        "RESPONSE": {
+          "CALCULATEDCLASS": 1,
+          "RESULTCLASS": 2,
+          "CLASSORIGIN": "FC",
+          "DECISION": "ok",
+          "CLASSUSING": "T"
+        },
+        "TECHNICALFILTER": {
+          "ID": 4
+        }
+      },
+      "expected": {
+        "flows-extend": [
+          {
+            "key": null,
+            "value": {
+              "FLOW": {
+                "STATION": "",
+                "LANE": "",
+                "CREATIONDATE": "date",
+                "CALLERMODE": "M",
+                "CLASS": [
+                  {
+                    "CLASSTYPE": "TarifiedClass",
+                    "CLASSORIGIN": "FC"
+                  }
+                ]
+              },
+              "BUSINESSFILTER": {
+                "ID": 1
+              },
+              "BUSINESSRULE": {
+                "ID": 2
+              },
+              "BUSINESSCYCLOPE": {
+                "CLASS": 3,
+                "CONFIDENCE": 0.9,
+                "PMR": "N",
+                "PRESENCE": "Y"
+              },
+              "RESPONSE": {
+                "CALCULATEDCLASS": 1,
+                "RESULTCLASS": 2,
+                "CLASSORIGIN": "FC",
+                "DECISION": "ok",
+                "CLASSUSING": "T"
+              },
+              "TECHNICALFILTER": {
+                "ID": 4
+              },
+              "STATIONLANE": ""
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "null-station",
+      "key": "aWdub3JlZA==",
+      "value": {
+        "FLOW": {
+          "STATION": null,
+          "LANE": "1",
+          "CREATIONDATE": "date",
+          "CALLERMODE": "M",
+          "CLASS": [
+            {
+              "CLASSTYPE": "TarifiedClass",
+              "CLASSORIGIN": "FC"
+            }
+          ]
+        },
+        "BUSINESSFILTER": {
+          "ID": 1
+        },
+        "BUSINESSRULE": {
+          "ID": 2
+        },
+        "BUSINESSCYCLOPE": {
+          "CLASS": 3,
+          "CONFIDENCE": 0.9,
+          "PMR": "N",
+          "PRESENCE": "Y"
+        },
+        "RESPONSE": {
+          "CALCULATEDCLASS": 1,
+          "RESULTCLASS": 2,
+          "CLASSORIGIN": "FC",
+          "DECISION": "ok",
+          "CLASSUSING": "T"
+        },
+        "TECHNICALFILTER": {
+          "ID": 4
+        }
+      },
+      "expected": {
+        "flows-extend": [
+          {
+            "key": null,
+            "value": {
+              "FLOW": {
+                "STATION": null,
+                "LANE": "1",
+                "CREATIONDATE": "date",
+                "CALLERMODE": "M",
+                "CLASS": [
+                  {
+                    "CLASSTYPE": "TarifiedClass",
+                    "CLASSORIGIN": "FC"
+                  }
+                ]
+              },
+              "BUSINESSFILTER": {
+                "ID": 1
+              },
+              "BUSINESSRULE": {
+                "ID": 2
+              },
+              "BUSINESSCYCLOPE": {
+                "CLASS": 3,
+                "CONFIDENCE": 0.9,
+                "PMR": "N",
+                "PRESENCE": "Y"
+              },
+              "RESPONSE": {
+                "CALCULATEDCLASS": 1,
+                "RESULTCLASS": 2,
+                "CLASSORIGIN": "FC",
+                "DECISION": "ok",
+                "CLASSUSING": "T"
+              },
+              "TECHNICALFILTER": {
+                "ID": 4
+              },
+              "STATIONLANE": "1"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "null-lane",
+      "key": "aWdub3JlZA==",
+      "value": {
+        "FLOW": {
+          "STATION": "1",
+          "LANE": null,
+          "CREATIONDATE": "date",
+          "CALLERMODE": "M",
+          "CLASS": [
+            {
+              "CLASSTYPE": "TarifiedClass",
+              "CLASSORIGIN": "FC"
+            }
+          ]
+        },
+        "BUSINESSFILTER": {
+          "ID": 1
+        },
+        "BUSINESSRULE": {
+          "ID": 2
+        },
+        "BUSINESSCYCLOPE": {
+          "CLASS": 3,
+          "CONFIDENCE": 0.9,
+          "PMR": "N",
+          "PRESENCE": "Y"
+        },
+        "RESPONSE": {
+          "CALCULATEDCLASS": 1,
+          "RESULTCLASS": 2,
+          "CLASSORIGIN": "FC",
+          "DECISION": "ok",
+          "CLASSUSING": "T"
+        },
+        "TECHNICALFILTER": {
+          "ID": 4
+        }
+      },
+      "expected": {
+        "flows-extend": [
+          {
+            "key": null,
+            "value": {
+              "FLOW": {
+                "STATION": "1",
+                "LANE": null,
+                "CREATIONDATE": "date",
+                "CALLERMODE": "M",
+                "CLASS": [
+                  {
+                    "CLASSTYPE": "TarifiedClass",
+                    "CLASSORIGIN": "FC"
+                  }
+                ]
+              },
+              "BUSINESSFILTER": {
+                "ID": 1
+              },
+              "BUSINESSRULE": {
+                "ID": 2
+              },
+              "BUSINESSCYCLOPE": {
+                "CLASS": 3,
+                "CONFIDENCE": 0.9,
+                "PMR": "N",
+                "PRESENCE": "Y"
+              },
+              "RESPONSE": {
+                "CALCULATEDCLASS": 1,
+                "RESULTCLASS": 2,
+                "CLASSORIGIN": "FC",
+                "DECISION": "ok",
+                "CLASSUSING": "T"
+              },
+              "TECHNICALFILTER": {
+                "ID": 4
+              },
+              "STATIONLANE": "1"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "missing",
+      "key": null,
+      "value": {},
+      "expected": {
+        "flows-extend": [
+          {
+            "key": null,
+            "value": {
+              "FLOW": null,
+              "BUSINESSFILTER": null,
+              "BUSINESSRULE": null,
+              "BUSINESSCYCLOPE": null,
+              "RESPONSE": null,
+              "TECHNICALFILTER": null,
+              "STATIONLANE": ""
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "tombstone",
+      "key": null,
+      "value": null,
+      "expected": {
+        "flows-extend": [
+          {
+            "key": null,
+            "value": null
+          }
+        ]
+      }
+    }
+  ],
+  "compteur-input": [
+    {
+      "name": "key-42",
+      "key": "AAAAKg==",
+      "value": {
+        "R_COMPTEURID": 999,
+        "R_VOIEID": 1,
+        "R_GAREID": 2,
+        "R_SOCIETEID": 3,
+        "R_PARTENAIREID": 4,
+        "DATE_OPERATION": 1.25,
+        "R_FREQUENCEID": 5,
+        "DATE_COMPTABLE": 2.5,
+        "VALEUR": 3.75
+      },
+      "expected": {
+        "compteur": [
+          {
+            "key": "AAAAKg==",
+            "value": {
+              "R_COMPTEURID": 42,
+              "R_VOIEID": 1,
+              "R_GAREID": 2,
+              "R_SOCIETEID": 3,
+              "R_PARTENAIREID": 4,
+              "DATE_DEBUT": 1.25,
+              "DATE_FIN": 5,
+              "DATE_COMPTABLE": 2.5,
+              "VALEUR": 3.75
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "key--7",
+      "key": "////+Q==",
+      "value": {
+        "R_COMPTEURID": 999,
+        "R_VOIEID": 1,
+        "R_GAREID": 2,
+        "R_SOCIETEID": 3,
+        "R_PARTENAIREID": 4,
+        "DATE_OPERATION": 1.25,
+        "R_FREQUENCEID": 5,
+        "DATE_COMPTABLE": 2.5,
+        "VALEUR": 3.75
+      },
+      "expected": {
+        "compteur": [
+          {
+            "key": "////+Q==",
+            "value": {
+              "R_COMPTEURID": -7,
+              "R_VOIEID": 1,
+              "R_GAREID": 2,
+              "R_SOCIETEID": 3,
+              "R_PARTENAIREID": 4,
+              "DATE_DEBUT": 1.25,
+              "DATE_FIN": 5,
+              "DATE_COMPTABLE": 2.5,
+              "VALEUR": 3.75
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "key-0",
+      "key": "AAAAAA==",
+      "value": {
+        "R_COMPTEURID": 999,
+        "R_VOIEID": 1,
+        "R_GAREID": 2,
+        "R_SOCIETEID": 3,
+        "R_PARTENAIREID": 4,
+        "DATE_OPERATION": 1.25,
+        "R_FREQUENCEID": 5,
+        "DATE_COMPTABLE": 2.5,
+        "VALEUR": 3.75
+      },
+      "expected": {
+        "compteur": [
+          {
+            "key": "AAAAAA==",
+            "value": {
+              "R_COMPTEURID": 0,
+              "R_VOIEID": 1,
+              "R_GAREID": 2,
+              "R_SOCIETEID": 3,
+              "R_PARTENAIREID": 4,
+              "DATE_DEBUT": 1.25,
+              "DATE_FIN": 5,
+              "DATE_COMPTABLE": 2.5,
+              "VALEUR": 3.75
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "key-None",
+      "key": null,
+      "value": {
+        "R_COMPTEURID": 999,
+        "R_VOIEID": 1,
+        "R_GAREID": 2,
+        "R_SOCIETEID": 3,
+        "R_PARTENAIREID": 4,
+        "DATE_OPERATION": 1.25,
+        "R_FREQUENCEID": 5,
+        "DATE_COMPTABLE": 2.5,
+        "VALEUR": 3.75
+      },
+      "expected": {
+        "compteur": [
+          {
+            "key": null,
+            "value": {
+              "R_COMPTEURID": null,
+              "R_VOIEID": 1,
+              "R_GAREID": 2,
+              "R_SOCIETEID": 3,
+              "R_PARTENAIREID": 4,
+              "DATE_DEBUT": 1.25,
+              "DATE_FIN": 5,
+              "DATE_COMPTABLE": 2.5,
+              "VALEUR": 3.75
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "sparse",
+      "key": "AAAACA==",
+      "value": {},
+      "expected": {
+        "compteur": [
+          {
+            "key": "AAAACA==",
+            "value": {
+              "R_COMPTEURID": 8,
+              "R_VOIEID": null,
+              "R_GAREID": null,
+              "R_SOCIETEID": null,
+              "R_PARTENAIREID": null,
+              "DATE_DEBUT": null,
+              "DATE_FIN": null,
+              "DATE_COMPTABLE": null,
+              "VALEUR": null
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "tombstone",
+      "key": "AAAACA==",
+      "value": null,
+      "expected": {
+        "compteur": [
+          {
+            "key": "AAAACA==",
+            "value": null
+          }
+        ]
+      }
+    }
+  ],
+  "asf-coffre": [
+    {
+      "name": "position-0-piece",
+      "key": null,
+      "value": {
+        "message": {
+          "numero": 1,
+          "DHM": "msg"
+        },
+        "comptageCoffre": {
+          "idCoffre": "id",
+          "type": "sac",
+          "position": 0,
+          "dhm": "compt",
+          "contenu": {
+            "type": "piece",
+            "capacite": {
+              "valeur": 100,
+              "unite": "EUR"
+            },
+            "courant": {
+              "valeur": 5,
+              "unite": "EUR"
+            }
+          },
+          "localisation": {
+            "gare": "25004123",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          }
+        }
+      },
+      "expected": {
+        "asf-coffre": [
+          {
+            "key": null,
+            "value": {
+              "DateMessage": "msg",
+              "IdGare": "25004123",
+              "Voie": "007",
+              "DateComptage": "compt",
+              "Position": 15,
+              "Type": "sac",
+              "TypeEspece": "piece",
+              "ValeurCapacite": 100,
+              "UniteCapacite": "EUR",
+              "ValeurCourant": 5,
+              "UniteCourant": "EUR"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "position-1-piece",
+      "key": null,
+      "value": {
+        "message": {
+          "numero": 1,
+          "DHM": "msg"
+        },
+        "comptageCoffre": {
+          "idCoffre": "id",
+          "type": "sac",
+          "position": 1,
+          "dhm": "compt",
+          "contenu": {
+            "type": "piece",
+            "capacite": {
+              "valeur": 100,
+              "unite": "EUR"
+            },
+            "courant": {
+              "valeur": 5,
+              "unite": "EUR"
+            }
+          },
+          "localisation": {
+            "gare": "25004123",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          }
+        }
+      },
+      "expected": {
+        "asf-coffre": [
+          {
+            "key": null,
+            "value": {
+              "DateMessage": "msg",
+              "IdGare": "25004123",
+              "Voie": "007",
+              "DateComptage": "compt",
+              "Position": 7,
+              "Type": "sac",
+              "TypeEspece": "piece",
+              "ValeurCapacite": 100,
+              "UniteCapacite": "EUR",
+              "ValeurCourant": 5,
+              "UniteCourant": "EUR"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "position-1-billet",
+      "key": null,
+      "value": {
+        "message": {
+          "numero": 1,
+          "DHM": "msg"
+        },
+        "comptageCoffre": {
+          "idCoffre": "id",
+          "type": "sac",
+          "position": 1,
+          "dhm": "compt",
+          "contenu": {
+            "type": "billet",
+            "capacite": {
+              "valeur": 100,
+              "unite": "EUR"
+            },
+            "courant": {
+              "valeur": 5,
+              "unite": "EUR"
+            }
+          },
+          "localisation": {
+            "gare": "25004123",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          }
+        }
+      },
+      "expected": {
+        "asf-coffre": [
+          {
+            "key": null,
+            "value": {
+              "DateMessage": "msg",
+              "IdGare": "25004123",
+              "Voie": "007",
+              "DateComptage": "compt",
+              "Position": 16,
+              "Type": "sac",
+              "TypeEspece": "billet",
+              "ValeurCapacite": 100,
+              "UniteCapacite": "EUR",
+              "ValeurCourant": 5,
+              "UniteCourant": "EUR"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "position-1-other",
+      "key": null,
+      "value": {
+        "message": {
+          "numero": 1,
+          "DHM": "msg"
+        },
+        "comptageCoffre": {
+          "idCoffre": "id",
+          "type": "sac",
+          "position": 1,
+          "dhm": "compt",
+          "contenu": {
+            "type": "other",
+            "capacite": {
+              "valeur": 100,
+              "unite": "EUR"
+            },
+            "courant": {
+              "valeur": 5,
+              "unite": "EUR"
+            }
+          },
+          "localisation": {
+            "gare": "25004123",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          }
+        }
+      },
+      "expected": {
+        "asf-coffre": [
+          {
+            "key": null,
+            "value": {
+              "DateMessage": "msg",
+              "IdGare": "25004123",
+              "Voie": "007",
+              "DateComptage": "compt",
+              "Position": 1,
+              "Type": "sac",
+              "TypeEspece": "other",
+              "ValeurCapacite": 100,
+              "UniteCapacite": "EUR",
+              "ValeurCourant": 5,
+              "UniteCourant": "EUR"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "position-2-piece",
+      "key": null,
+      "value": {
+        "message": {
+          "numero": 1,
+          "DHM": "msg"
+        },
+        "comptageCoffre": {
+          "idCoffre": "id",
+          "type": "sac",
+          "position": 2,
+          "dhm": "compt",
+          "contenu": {
+            "type": "piece",
+            "capacite": {
+              "valeur": 100,
+              "unite": "EUR"
+            },
+            "courant": {
+              "valeur": 5,
+              "unite": "EUR"
+            }
+          },
+          "localisation": {
+            "gare": "25004123",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          }
+        }
+      },
+      "expected": {
+        "asf-coffre": [
+          {
+            "key": null,
+            "value": {
+              "DateMessage": "msg",
+              "IdGare": "25004123",
+              "Voie": "007",
+              "DateComptage": "compt",
+              "Position": 8,
+              "Type": "sac",
+              "TypeEspece": "piece",
+              "ValeurCapacite": 100,
+              "UniteCapacite": "EUR",
+              "ValeurCourant": 5,
+              "UniteCourant": "EUR"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "position-5-piece",
+      "key": null,
+      "value": {
+        "message": {
+          "numero": 1,
+          "DHM": "msg"
+        },
+        "comptageCoffre": {
+          "idCoffre": "id",
+          "type": "sac",
+          "position": 5,
+          "dhm": "compt",
+          "contenu": {
+            "type": "piece",
+            "capacite": {
+              "valeur": 100,
+              "unite": "EUR"
+            },
+            "courant": {
+              "valeur": 5,
+              "unite": "EUR"
+            }
+          },
+          "localisation": {
+            "gare": "25004123",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          }
+        }
+      },
+      "expected": {
+        "asf-coffre": [
+          {
+            "key": null,
+            "value": {
+              "DateMessage": "msg",
+              "IdGare": "25004123",
+              "Voie": "007",
+              "DateComptage": "compt",
+              "Position": 14,
+              "Type": "sac",
+              "TypeEspece": "piece",
+              "ValeurCapacite": 100,
+              "UniteCapacite": "EUR",
+              "ValeurCourant": 5,
+              "UniteCourant": "EUR"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "position-3-piece",
+      "key": null,
+      "value": {
+        "message": {
+          "numero": 1,
+          "DHM": "msg"
+        },
+        "comptageCoffre": {
+          "idCoffre": "id",
+          "type": "sac",
+          "position": 3,
+          "dhm": "compt",
+          "contenu": {
+            "type": "piece",
+            "capacite": {
+              "valeur": 100,
+              "unite": "EUR"
+            },
+            "courant": {
+              "valeur": 5,
+              "unite": "EUR"
+            }
+          },
+          "localisation": {
+            "gare": "25004123",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          }
+        }
+      },
+      "expected": {
+        "asf-coffre": [
+          {
+            "key": null,
+            "value": {
+              "DateMessage": "msg",
+              "IdGare": "25004123",
+              "Voie": "007",
+              "DateComptage": "compt",
+              "Position": 3,
+              "Type": "sac",
+              "TypeEspece": "piece",
+              "ValeurCapacite": 100,
+              "UniteCapacite": "EUR",
+              "ValeurCourant": 5,
+              "UniteCourant": "EUR"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "position--1-piece",
+      "key": null,
+      "value": {
+        "message": {
+          "numero": 1,
+          "DHM": "msg"
+        },
+        "comptageCoffre": {
+          "idCoffre": "id",
+          "type": "sac",
+          "position": -1,
+          "dhm": "compt",
+          "contenu": {
+            "type": "piece",
+            "capacite": {
+              "valeur": 100,
+              "unite": "EUR"
+            },
+            "courant": {
+              "valeur": 5,
+              "unite": "EUR"
+            }
+          },
+          "localisation": {
+            "gare": "25004123",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          }
+        }
+      },
+      "expected": {
+        "asf-coffre": [
+          {
+            "key": null,
+            "value": {
+              "DateMessage": "msg",
+              "IdGare": "25004123",
+              "Voie": "007",
+              "DateComptage": "compt",
+              "Position": -1,
+              "Type": "sac",
+              "TypeEspece": "piece",
+              "ValeurCapacite": 100,
+              "UniteCapacite": "EUR",
+              "ValeurCourant": 5,
+              "UniteCourant": "EUR"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "position-None-piece",
+      "key": null,
+      "value": {
+        "message": {
+          "numero": 1,
+          "DHM": "msg"
+        },
+        "comptageCoffre": {
+          "idCoffre": "id",
+          "type": "sac",
+          "position": null,
+          "dhm": "compt",
+          "contenu": {
+            "type": "piece",
+            "capacite": {
+              "valeur": 100,
+              "unite": "EUR"
+            },
+            "courant": {
+              "valeur": 5,
+              "unite": "EUR"
+            }
+          },
+          "localisation": {
+            "gare": "25004123",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          }
+        }
+      },
+      "expected": {
+        "asf-coffre": [
+          {
+            "key": null,
+            "value": {
+              "DateMessage": "msg",
+              "IdGare": "25004123",
+              "Voie": "007",
+              "DateComptage": "compt",
+              "Position": null,
+              "Type": "sac",
+              "TypeEspece": "piece",
+              "ValeurCapacite": 100,
+              "UniteCapacite": "EUR",
+              "ValeurCourant": 5,
+              "UniteCourant": "EUR"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "wrong-gare",
+      "key": null,
+      "value": {
+        "message": {
+          "numero": 1,
+          "DHM": "msg"
+        },
+        "comptageCoffre": {
+          "idCoffre": "id",
+          "type": "sac",
+          "position": 0,
+          "dhm": "compt",
+          "contenu": {
+            "type": "piece",
+            "capacite": {
+              "valeur": 100,
+              "unite": "EUR"
+            },
+            "courant": {
+              "valeur": 5,
+              "unite": "EUR"
+            }
+          },
+          "localisation": {
+            "gare": "99999",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          }
+        }
+      },
+      "expected": {}
+    },
+    {
+      "name": "null-gare",
+      "key": null,
+      "value": {
+        "message": {
+          "numero": 1,
+          "DHM": "msg"
+        },
+        "comptageCoffre": {
+          "idCoffre": "id",
+          "type": "sac",
+          "position": 0,
+          "dhm": "compt",
+          "contenu": {
+            "type": "piece",
+            "capacite": {
+              "valeur": 100,
+              "unite": "EUR"
+            },
+            "courant": {
+              "valeur": 5,
+              "unite": "EUR"
+            }
+          },
+          "localisation": {
+            "gare": null,
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          }
+        }
+      },
+      "expected": {}
+    },
+    {
+      "name": "wrong-type",
+      "key": null,
+      "value": {
+        "message": {
+          "numero": 1,
+          "DHM": "msg"
+        },
+        "comptageCoffre": {
+          "idCoffre": "id",
+          "type": "other",
+          "position": 0,
+          "dhm": "compt",
+          "contenu": {
+            "type": "piece",
+            "capacite": {
+              "valeur": 100,
+              "unite": "EUR"
+            },
+            "courant": {
+              "valeur": 5,
+              "unite": "EUR"
+            }
+          },
+          "localisation": {
+            "gare": "25004123",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          }
+        }
+      },
+      "expected": {}
+    },
+    {
+      "name": "coffre",
+      "key": null,
+      "value": {
+        "message": {
+          "numero": 1,
+          "DHM": "msg"
+        },
+        "comptageCoffre": {
+          "idCoffre": "id",
+          "type": "coffre",
+          "position": 0,
+          "dhm": "compt",
+          "contenu": {
+            "type": "piece",
+            "capacite": {
+              "valeur": 100,
+              "unite": "EUR"
+            },
+            "courant": {
+              "valeur": 5,
+              "unite": "EUR"
+            }
+          },
+          "localisation": {
+            "gare": "25004123",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          }
+        }
+      },
+      "expected": {
+        "asf-coffre": [
+          {
+            "key": null,
+            "value": {
+              "DateMessage": "msg",
+              "IdGare": "25004123",
+              "Voie": "007",
+              "DateComptage": "compt",
+              "Position": 15,
+              "Type": "coffre",
+              "TypeEspece": "piece",
+              "ValeurCapacite": 100,
+              "UniteCapacite": "EUR",
+              "ValeurCourant": 5,
+              "UniteCourant": "EUR"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "missing",
+      "key": null,
+      "value": {},
+      "expected": {}
+    },
+    {
+      "name": "tombstone",
+      "key": null,
+      "value": null,
+      "expected": {}
+    }
+  ],
+  "asf-bol": [
+    {
+      "name": "all-positions",
+      "key": null,
+      "value": {
+        "message": {
+          "numero": 1,
+          "DHM": "msg"
+        },
+        "comptageBols": {
+          "dhm": "compt",
+          "localisation": {
+            "gare": "25004123",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          }
+        },
+        "etats": [
+          {
+            "sujet": "bol.07.fill",
+            "status": [
+              "ok"
+            ],
+            "contenu": {
+              "devise": "EUR",
+              "valeur": 0.1,
+              "courant": 3,
+              "maximum": 10,
+              "type": "piece"
+            }
+          },
+          {
+            "sujet": "bol.07.fill",
+            "status": [
+              "ok"
+            ],
+            "contenu": {
+              "devise": "EUR",
+              "valeur": 0.2,
+              "courant": 3,
+              "maximum": 10,
+              "type": "piece"
+            }
+          },
+          {
+            "sujet": "bol.07.fill",
+            "status": [
+              "ok"
+            ],
+            "contenu": {
+              "devise": "EUR",
+              "valeur": 0.5,
+              "courant": 3,
+              "maximum": 10,
+              "type": "piece"
+            }
+          },
+          {
+            "sujet": "bol.07.fill",
+            "status": [
+              "ok"
+            ],
+            "contenu": {
+              "devise": "EUR",
+              "valeur": 1.0,
+              "courant": 3,
+              "maximum": 10,
+              "type": "piece"
+            }
+          },
+          {
+            "sujet": "bol.07.fill",
+            "status": [
+              "ok"
+            ],
+            "contenu": {
+              "devise": "EUR",
+              "valeur": 2.0,
+              "courant": 3,
+              "maximum": 10,
+              "type": "piece"
+            }
+          },
+          {
+            "sujet": "bol.07.fill",
+            "status": [
+              "ok"
+            ],
+            "contenu": {
+              "devise": "EUR",
+              "valeur": 3.9,
+              "courant": 3,
+              "maximum": 10,
+              "type": "piece"
+            }
+          },
+          {
+            "sujet": "bol.07.fill",
+            "status": [
+              "ok"
+            ],
+            "contenu": {
+              "devise": "EUR",
+              "valeur": -3.9,
+              "courant": 3,
+              "maximum": 10,
+              "type": "piece"
+            }
+          },
+          {
+            "sujet": "bol.07.fill",
+            "status": [
+              "ok"
+            ],
+            "contenu": {
+              "devise": "EUR",
+              "valeur": null,
+              "courant": 3,
+              "maximum": 10,
+              "type": "piece"
+            }
+          },
+          null,
+          {
+            "sujet": "bol.07.fill",
+            "status": [
+              "ok"
+            ],
+            "contenu": {
+              "devise": "EUR",
+              "valeur": 1.0,
+              "courant": 3,
+              "maximum": 10,
+              "type": "billet"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "asf-exploded": [
+          {
+            "key": null,
+            "value": {
+              "message": {
+                "numero": 1,
+                "DHM": "msg"
+              },
+              "comptageBols": {
+                "dhm": "compt",
+                "localisation": {
+                  "gare": "25004123",
+                  "equipement": {
+                    "numero": "007",
+                    "type": "VS"
+                  }
+                }
+              },
+              "Etat": {
+                "sujet": "bol.07.fill",
+                "status": [
+                  "ok"
+                ],
+                "contenu": {
+                  "devise": "EUR",
+                  "valeur": 0.1,
+                  "courant": 3,
+                  "maximum": 10,
+                  "type": "piece"
+                }
+              }
+            }
+          },
+          {
+            "key": null,
+            "value": {
+              "message": {
+                "numero": 1,
+                "DHM": "msg"
+              },
+              "comptageBols": {
+                "dhm": "compt",
+                "localisation": {
+                  "gare": "25004123",
+                  "equipement": {
+                    "numero": "007",
+                    "type": "VS"
+                  }
+                }
+              },
+              "Etat": {
+                "sujet": "bol.07.fill",
+                "status": [
+                  "ok"
+                ],
+                "contenu": {
+                  "devise": "EUR",
+                  "valeur": 0.2,
+                  "courant": 3,
+                  "maximum": 10,
+                  "type": "piece"
+                }
+              }
+            }
+          },
+          {
+            "key": null,
+            "value": {
+              "message": {
+                "numero": 1,
+                "DHM": "msg"
+              },
+              "comptageBols": {
+                "dhm": "compt",
+                "localisation": {
+                  "gare": "25004123",
+                  "equipement": {
+                    "numero": "007",
+                    "type": "VS"
+                  }
+                }
+              },
+              "Etat": {
+                "sujet": "bol.07.fill",
+                "status": [
+                  "ok"
+                ],
+                "contenu": {
+                  "devise": "EUR",
+                  "valeur": 0.5,
+                  "courant": 3,
+                  "maximum": 10,
+                  "type": "piece"
+                }
+              }
+            }
+          },
+          {
+            "key": null,
+            "value": {
+              "message": {
+                "numero": 1,
+                "DHM": "msg"
+              },
+              "comptageBols": {
+                "dhm": "compt",
+                "localisation": {
+                  "gare": "25004123",
+                  "equipement": {
+                    "numero": "007",
+                    "type": "VS"
+                  }
+                }
+              },
+              "Etat": {
+                "sujet": "bol.07.fill",
+                "status": [
+                  "ok"
+                ],
+                "contenu": {
+                  "devise": "EUR",
+                  "valeur": 1.0,
+                  "courant": 3,
+                  "maximum": 10,
+                  "type": "piece"
+                }
+              }
+            }
+          },
+          {
+            "key": null,
+            "value": {
+              "message": {
+                "numero": 1,
+                "DHM": "msg"
+              },
+              "comptageBols": {
+                "dhm": "compt",
+                "localisation": {
+                  "gare": "25004123",
+                  "equipement": {
+                    "numero": "007",
+                    "type": "VS"
+                  }
+                }
+              },
+              "Etat": {
+                "sujet": "bol.07.fill",
+                "status": [
+                  "ok"
+                ],
+                "contenu": {
+                  "devise": "EUR",
+                  "valeur": 2.0,
+                  "courant": 3,
+                  "maximum": 10,
+                  "type": "piece"
+                }
+              }
+            }
+          },
+          {
+            "key": null,
+            "value": {
+              "message": {
+                "numero": 1,
+                "DHM": "msg"
+              },
+              "comptageBols": {
+                "dhm": "compt",
+                "localisation": {
+                  "gare": "25004123",
+                  "equipement": {
+                    "numero": "007",
+                    "type": "VS"
+                  }
+                }
+              },
+              "Etat": {
+                "sujet": "bol.07.fill",
+                "status": [
+                  "ok"
+                ],
+                "contenu": {
+                  "devise": "EUR",
+                  "valeur": 3.9,
+                  "courant": 3,
+                  "maximum": 10,
+                  "type": "piece"
+                }
+              }
+            }
+          },
+          {
+            "key": null,
+            "value": {
+              "message": {
+                "numero": 1,
+                "DHM": "msg"
+              },
+              "comptageBols": {
+                "dhm": "compt",
+                "localisation": {
+                  "gare": "25004123",
+                  "equipement": {
+                    "numero": "007",
+                    "type": "VS"
+                  }
+                }
+              },
+              "Etat": {
+                "sujet": "bol.07.fill",
+                "status": [
+                  "ok"
+                ],
+                "contenu": {
+                  "devise": "EUR",
+                  "valeur": -3.9,
+                  "courant": 3,
+                  "maximum": 10,
+                  "type": "piece"
+                }
+              }
+            }
+          },
+          {
+            "key": null,
+            "value": {
+              "message": {
+                "numero": 1,
+                "DHM": "msg"
+              },
+              "comptageBols": {
+                "dhm": "compt",
+                "localisation": {
+                  "gare": "25004123",
+                  "equipement": {
+                    "numero": "007",
+                    "type": "VS"
+                  }
+                }
+              },
+              "Etat": {
+                "sujet": "bol.07.fill",
+                "status": [
+                  "ok"
+                ],
+                "contenu": {
+                  "devise": "EUR",
+                  "valeur": null,
+                  "courant": 3,
+                  "maximum": 10,
+                  "type": "piece"
+                }
+              }
+            }
+          },
+          {
+            "key": null,
+            "value": {
+              "message": {
+                "numero": 1,
+                "DHM": "msg"
+              },
+              "comptageBols": {
+                "dhm": "compt",
+                "localisation": {
+                  "gare": "25004123",
+                  "equipement": {
+                    "numero": "007",
+                    "type": "VS"
+                  }
+                }
+              },
+              "Etat": null
+            }
+          },
+          {
+            "key": null,
+            "value": {
+              "message": {
+                "numero": 1,
+                "DHM": "msg"
+              },
+              "comptageBols": {
+                "dhm": "compt",
+                "localisation": {
+                  "gare": "25004123",
+                  "equipement": {
+                    "numero": "007",
+                    "type": "VS"
+                  }
+                }
+              },
+              "Etat": {
+                "sujet": "bol.07.fill",
+                "status": [
+                  "ok"
+                ],
+                "contenu": {
+                  "devise": "EUR",
+                  "valeur": 1.0,
+                  "courant": 3,
+                  "maximum": 10,
+                  "type": "billet"
+                }
+              }
+            }
+          }
+        ],
+        "asf-bol": [
+          {
+            "key": null,
+            "value": {
+              "DateMessage": "msg",
+              "IdGare": "25004123",
+              "Voie": "007",
+              "DateComptage": "compt",
+              "Position": 9,
+              "Numero": "07",
+              "Type": "piece",
+              "Devise": "EUR",
+              "Valeur": 3,
+              "Capacite": 10
+            }
+          },
+          {
+            "key": null,
+            "value": {
+              "DateMessage": "msg",
+              "IdGare": "25004123",
+              "Voie": "007",
+              "DateComptage": "compt",
+              "Position": 10,
+              "Numero": "07",
+              "Type": "piece",
+              "Devise": "EUR",
+              "Valeur": 3,
+              "Capacite": 10
+            }
+          },
+          {
+            "key": null,
+            "value": {
+              "DateMessage": "msg",
+              "IdGare": "25004123",
+              "Voie": "007",
+              "DateComptage": "compt",
+              "Position": 11,
+              "Numero": "07",
+              "Type": "piece",
+              "Devise": "EUR",
+              "Valeur": 3,
+              "Capacite": 10
+            }
+          },
+          {
+            "key": null,
+            "value": {
+              "DateMessage": "msg",
+              "IdGare": "25004123",
+              "Voie": "007",
+              "DateComptage": "compt",
+              "Position": 12,
+              "Numero": "07",
+              "Type": "piece",
+              "Devise": "EUR",
+              "Valeur": 3,
+              "Capacite": 10
+            }
+          },
+          {
+            "key": null,
+            "value": {
+              "DateMessage": "msg",
+              "IdGare": "25004123",
+              "Voie": "007",
+              "DateComptage": "compt",
+              "Position": 13,
+              "Numero": "07",
+              "Type": "piece",
+              "Devise": "EUR",
+              "Valeur": 3,
+              "Capacite": 10
+            }
+          },
+          {
+            "key": null,
+            "value": {
+              "DateMessage": "msg",
+              "IdGare": "25004123",
+              "Voie": "007",
+              "DateComptage": "compt",
+              "Position": 3,
+              "Numero": "07",
+              "Type": "piece",
+              "Devise": "EUR",
+              "Valeur": 3,
+              "Capacite": 10
+            }
+          },
+          {
+            "key": null,
+            "value": {
+              "DateMessage": "msg",
+              "IdGare": "25004123",
+              "Voie": "007",
+              "DateComptage": "compt",
+              "Position": -3,
+              "Numero": "07",
+              "Type": "piece",
+              "Devise": "EUR",
+              "Valeur": 3,
+              "Capacite": 10
+            }
+          },
+          {
+            "key": null,
+            "value": {
+              "DateMessage": "msg",
+              "IdGare": "25004123",
+              "Voie": "007",
+              "DateComptage": "compt",
+              "Position": null,
+              "Numero": "07",
+              "Type": "piece",
+              "Devise": "EUR",
+              "Valeur": 3,
+              "Capacite": 10
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "duplicates",
+      "key": null,
+      "value": {
+        "message": {
+          "numero": 1,
+          "DHM": "msg"
+        },
+        "comptageBols": {
+          "dhm": "compt",
+          "localisation": {
+            "gare": "25004123",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          }
+        },
+        "etats": [
+          {
+            "sujet": "bol.07.fill",
+            "status": [
+              "ok"
+            ],
+            "contenu": {
+              "devise": "EUR",
+              "valeur": 0.1,
+              "courant": 3,
+              "maximum": 10,
+              "type": "piece"
+            }
+          },
+          {
+            "sujet": "bol.07.fill",
+            "status": [
+              "ok"
+            ],
+            "contenu": {
+              "devise": "EUR",
+              "valeur": 0.1,
+              "courant": 3,
+              "maximum": 10,
+              "type": "piece"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "asf-exploded": [
+          {
+            "key": null,
+            "value": {
+              "message": {
+                "numero": 1,
+                "DHM": "msg"
+              },
+              "comptageBols": {
+                "dhm": "compt",
+                "localisation": {
+                  "gare": "25004123",
+                  "equipement": {
+                    "numero": "007",
+                    "type": "VS"
+                  }
+                }
+              },
+              "Etat": {
+                "sujet": "bol.07.fill",
+                "status": [
+                  "ok"
+                ],
+                "contenu": {
+                  "devise": "EUR",
+                  "valeur": 0.1,
+                  "courant": 3,
+                  "maximum": 10,
+                  "type": "piece"
+                }
+              }
+            }
+          },
+          {
+            "key": null,
+            "value": {
+              "message": {
+                "numero": 1,
+                "DHM": "msg"
+              },
+              "comptageBols": {
+                "dhm": "compt",
+                "localisation": {
+                  "gare": "25004123",
+                  "equipement": {
+                    "numero": "007",
+                    "type": "VS"
+                  }
+                }
+              },
+              "Etat": {
+                "sujet": "bol.07.fill",
+                "status": [
+                  "ok"
+                ],
+                "contenu": {
+                  "devise": "EUR",
+                  "valeur": 0.1,
+                  "courant": 3,
+                  "maximum": 10,
+                  "type": "piece"
+                }
+              }
+            }
+          }
+        ],
+        "asf-bol": [
+          {
+            "key": null,
+            "value": {
+              "DateMessage": "msg",
+              "IdGare": "25004123",
+              "Voie": "007",
+              "DateComptage": "compt",
+              "Position": 9,
+              "Numero": "07",
+              "Type": "piece",
+              "Devise": "EUR",
+              "Valeur": 3,
+              "Capacite": 10
+            }
+          },
+          {
+            "key": null,
+            "value": {
+              "DateMessage": "msg",
+              "IdGare": "25004123",
+              "Voie": "007",
+              "DateComptage": "compt",
+              "Position": 9,
+              "Numero": "07",
+              "Type": "piece",
+              "Devise": "EUR",
+              "Valeur": 3,
+              "Capacite": 10
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "no-dot",
+      "key": null,
+      "value": {
+        "message": {
+          "numero": 1,
+          "DHM": "msg"
+        },
+        "comptageBols": {
+          "dhm": "compt",
+          "localisation": {
+            "gare": "25004123",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          }
+        },
+        "etats": [
+          {
+            "sujet": "bol",
+            "status": [
+              "ok"
+            ],
+            "contenu": {
+              "devise": "EUR",
+              "valeur": 1.0,
+              "courant": 3,
+              "maximum": 10,
+              "type": "piece"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "asf-exploded": [
+          {
+            "key": null,
+            "value": {
+              "message": {
+                "numero": 1,
+                "DHM": "msg"
+              },
+              "comptageBols": {
+                "dhm": "compt",
+                "localisation": {
+                  "gare": "25004123",
+                  "equipement": {
+                    "numero": "007",
+                    "type": "VS"
+                  }
+                }
+              },
+              "Etat": {
+                "sujet": "bol",
+                "status": [
+                  "ok"
+                ],
+                "contenu": {
+                  "devise": "EUR",
+                  "valeur": 1.0,
+                  "courant": 3,
+                  "maximum": 10,
+                  "type": "piece"
+                }
+              }
+            }
+          }
+        ],
+        "asf-bol": [
+          {
+            "key": null,
+            "value": {
+              "DateMessage": "msg",
+              "IdGare": "25004123",
+              "Voie": "007",
+              "DateComptage": "compt",
+              "Position": 12,
+              "Numero": null,
+              "Type": "piece",
+              "Devise": "EUR",
+              "Valeur": 3,
+              "Capacite": 10
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "trailing-dot",
+      "key": null,
+      "value": {
+        "message": {
+          "numero": 1,
+          "DHM": "msg"
+        },
+        "comptageBols": {
+          "dhm": "compt",
+          "localisation": {
+            "gare": "25004123",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          }
+        },
+        "etats": [
+          {
+            "sujet": "bol.",
+            "status": [
+              "ok"
+            ],
+            "contenu": {
+              "devise": "EUR",
+              "valeur": 1.0,
+              "courant": 3,
+              "maximum": 10,
+              "type": "piece"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "asf-exploded": [
+          {
+            "key": null,
+            "value": {
+              "message": {
+                "numero": 1,
+                "DHM": "msg"
+              },
+              "comptageBols": {
+                "dhm": "compt",
+                "localisation": {
+                  "gare": "25004123",
+                  "equipement": {
+                    "numero": "007",
+                    "type": "VS"
+                  }
+                }
+              },
+              "Etat": {
+                "sujet": "bol.",
+                "status": [
+                  "ok"
+                ],
+                "contenu": {
+                  "devise": "EUR",
+                  "valeur": 1.0,
+                  "courant": 3,
+                  "maximum": 10,
+                  "type": "piece"
+                }
+              }
+            }
+          }
+        ],
+        "asf-bol": [
+          {
+            "key": null,
+            "value": {
+              "DateMessage": "msg",
+              "IdGare": "25004123",
+              "Voie": "007",
+              "DateComptage": "compt",
+              "Position": 12,
+              "Numero": "",
+              "Type": "piece",
+              "Devise": "EUR",
+              "Valeur": 3,
+              "Capacite": 10
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "equipment-MRB",
+      "key": null,
+      "value": {
+        "message": {
+          "numero": 1,
+          "DHM": "msg"
+        },
+        "comptageBols": {
+          "dhm": "compt",
+          "localisation": {
+            "gare": "25004123",
+            "equipement": {
+              "numero": "007",
+              "type": "MRB"
+            }
+          }
+        },
+        "etats": [
+          {
+            "sujet": "bol.07.fill",
+            "status": [
+              "ok"
+            ],
+            "contenu": {
+              "devise": "EUR",
+              "valeur": 1.0,
+              "courant": 3,
+              "maximum": 10,
+              "type": "piece"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "asf-exploded": [
+          {
+            "key": null,
+            "value": {
+              "message": {
+                "numero": 1,
+                "DHM": "msg"
+              },
+              "comptageBols": {
+                "dhm": "compt",
+                "localisation": {
+                  "gare": "25004123",
+                  "equipement": {
+                    "numero": "007",
+                    "type": "MRB"
+                  }
+                }
+              },
+              "Etat": {
+                "sujet": "bol.07.fill",
+                "status": [
+                  "ok"
+                ],
+                "contenu": {
+                  "devise": "EUR",
+                  "valeur": 1.0,
+                  "courant": 3,
+                  "maximum": 10,
+                  "type": "piece"
+                }
+              }
+            }
+          }
+        ],
+        "asf-bol": [
+          {
+            "key": null,
+            "value": {
+              "DateMessage": "msg",
+              "IdGare": "25004123",
+              "Voie": "007",
+              "DateComptage": "compt",
+              "Position": 12,
+              "Numero": "07",
+              "Type": "piece",
+              "Devise": "EUR",
+              "Valeur": 3,
+              "Capacite": 10
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "equipment-None",
+      "key": null,
+      "value": {
+        "message": {
+          "numero": 1,
+          "DHM": "msg"
+        },
+        "comptageBols": {
+          "dhm": "compt",
+          "localisation": {
+            "gare": "25004123",
+            "equipement": {
+              "numero": "007",
+              "type": null
+            }
+          }
+        },
+        "etats": [
+          {
+            "sujet": "bol.07.fill",
+            "status": [
+              "ok"
+            ],
+            "contenu": {
+              "devise": "EUR",
+              "valeur": 1.0,
+              "courant": 3,
+              "maximum": 10,
+              "type": "piece"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "asf-exploded": [
+          {
+            "key": null,
+            "value": {
+              "message": {
+                "numero": 1,
+                "DHM": "msg"
+              },
+              "comptageBols": {
+                "dhm": "compt",
+                "localisation": {
+                  "gare": "25004123",
+                  "equipement": {
+                    "numero": "007",
+                    "type": null
+                  }
+                }
+              },
+              "Etat": {
+                "sujet": "bol.07.fill",
+                "status": [
+                  "ok"
+                ],
+                "contenu": {
+                  "devise": "EUR",
+                  "valeur": 1.0,
+                  "courant": 3,
+                  "maximum": 10,
+                  "type": "piece"
+                }
+              }
+            }
+          }
+        ],
+        "asf-bol": [
+          {
+            "key": null,
+            "value": {
+              "DateMessage": "msg",
+              "IdGare": "25004123",
+              "Voie": "007",
+              "DateComptage": "compt",
+              "Position": 12,
+              "Numero": "07",
+              "Type": "piece",
+              "Devise": "EUR",
+              "Valeur": 3,
+              "Capacite": 10
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "wrong-gare",
+      "key": null,
+      "value": {
+        "message": {
+          "numero": 1,
+          "DHM": "msg"
+        },
+        "comptageBols": {
+          "dhm": "compt",
+          "localisation": {
+            "gare": "99999",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          }
+        },
+        "etats": [
+          {
+            "sujet": "bol.07.fill",
+            "status": [
+              "ok"
+            ],
+            "contenu": {
+              "devise": "EUR",
+              "valeur": 1.0,
+              "courant": 3,
+              "maximum": 10,
+              "type": "piece"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "asf-exploded": [
+          {
+            "key": null,
+            "value": {
+              "message": {
+                "numero": 1,
+                "DHM": "msg"
+              },
+              "comptageBols": {
+                "dhm": "compt",
+                "localisation": {
+                  "gare": "99999",
+                  "equipement": {
+                    "numero": "007",
+                    "type": "VS"
+                  }
+                }
+              },
+              "Etat": {
+                "sujet": "bol.07.fill",
+                "status": [
+                  "ok"
+                ],
+                "contenu": {
+                  "devise": "EUR",
+                  "valeur": 1.0,
+                  "courant": 3,
+                  "maximum": 10,
+                  "type": "piece"
+                }
+              }
+            }
+          }
+        ],
+        "asf-bol": []
+      }
+    },
+    {
+      "name": "empty",
+      "key": null,
+      "value": {
+        "message": {
+          "numero": 1,
+          "DHM": "msg"
+        },
+        "comptageBols": {
+          "dhm": "compt",
+          "localisation": {
+            "gare": "25004123",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          }
+        },
+        "etats": []
+      },
+      "expected": {
+        "asf-exploded": [],
+        "asf-bol": []
+      }
+    },
+    {
+      "name": "null-array",
+      "key": null,
+      "value": {
+        "message": {
+          "numero": 1,
+          "DHM": "msg"
+        },
+        "comptageBols": {
+          "dhm": "compt",
+          "localisation": {
+            "gare": "25004123",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          }
+        },
+        "etats": null
+      },
+      "expected": {
+        "asf-exploded": [],
+        "asf-bol": []
+      }
+    },
+    {
+      "name": "tombstone",
+      "key": null,
+      "value": null,
+      "expected": {}
+    }
+  ],
+  "asf-synoptique": [
+    {
+      "name": "all-positive",
+      "key": "c3luLWFzZg==",
+      "value": {
+        "SYNOPTIQUE": {
+          "DHM": "msg",
+          "LOCALISATION": {
+            "GARE": "25006001",
+            "EQUIPEMENT": {
+              "NUMERO": "019",
+              "TYPE": "BE"
+            }
+          }
+        },
+        "ETATEQUIPEMENTS": [
+          {
+            "SUJET": "comLS",
+            "ETAT": "comKO"
+          },
+          {
+            "SUJET": "contreSens",
+            "ETAT": "actif"
+          },
+          {
+            "SUJET": "feu.affectation.flecheVerte",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "feu.affectation.TIS",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "feu.affectation.carte",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "paiement.espece",
+            "ETAT": "accepte"
+          }
+        ]
+      },
+      "expected": {
+        "asf-fav": [
+          {
+            "key": "c3luLWFzZg==",
+            "value": {
+              "DHM": "msg",
+              "GARE": "25006001",
+              "VOIE": "019",
+              "GAREGROUP": 1,
+              "ENTREESORTIE": "E",
+              "COMLSKO": 1,
+              "CONTRESENS": 1,
+              "FAVFLECHEVERTE": 1,
+              "FAVTIS": 1,
+              "FAVCB": 1,
+              "PAIEMENTESPECE": 1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "all-negative",
+      "key": "c3luLWFzZg==",
+      "value": {
+        "SYNOPTIQUE": {
+          "DHM": "msg",
+          "LOCALISATION": {
+            "GARE": "25006001",
+            "EQUIPEMENT": {
+              "NUMERO": "019",
+              "TYPE": "BE"
+            }
+          }
+        },
+        "ETATEQUIPEMENTS": [
+          {
+            "SUJET": "comLS",
+            "ETAT": "comOKNTR"
+          },
+          {
+            "SUJET": "contreSens",
+            "ETAT": "nonActif"
+          },
+          {
+            "SUJET": "feu.affectation.flecheVerte",
+            "ETAT": "eteint"
+          },
+          {
+            "SUJET": "feu.affectation.TIS",
+            "ETAT": "eteint"
+          },
+          {
+            "SUJET": "feu.affectation.carte",
+            "ETAT": "eteint"
+          },
+          {
+            "SUJET": "paiement.espece",
+            "ETAT": "nonAccepte"
+          }
+        ]
+      },
+      "expected": {
+        "asf-fav": [
+          {
+            "key": "c3luLWFzZg==",
+            "value": {
+              "DHM": "msg",
+              "GARE": "25006001",
+              "VOIE": "019",
+              "GAREGROUP": 1,
+              "ENTREESORTIE": "E",
+              "COMLSKO": 0,
+              "CONTRESENS": 0,
+              "FAVFLECHEVERTE": 0,
+              "FAVTIS": 0,
+              "FAVCB": 0,
+              "PAIEMENTESPECE": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "precedence",
+      "key": "c3luLWFzZg==",
+      "value": {
+        "SYNOPTIQUE": {
+          "DHM": "msg",
+          "LOCALISATION": {
+            "GARE": "25006001",
+            "EQUIPEMENT": {
+              "NUMERO": "019",
+              "TYPE": "BE"
+            }
+          }
+        },
+        "ETATEQUIPEMENTS": [
+          {
+            "SUJET": "comLS",
+            "ETAT": "comOKNTR"
+          },
+          {
+            "SUJET": "contreSens",
+            "ETAT": "nonActif"
+          },
+          {
+            "SUJET": "feu.affectation.flecheVerte",
+            "ETAT": "eteint"
+          },
+          {
+            "SUJET": "feu.affectation.TIS",
+            "ETAT": "eteint"
+          },
+          {
+            "SUJET": "feu.affectation.carte",
+            "ETAT": "eteint"
+          },
+          {
+            "SUJET": "paiement.espece",
+            "ETAT": "nonAccepte"
+          },
+          {
+            "SUJET": "comLS",
+            "ETAT": "comKO"
+          },
+          {
+            "SUJET": "contreSens",
+            "ETAT": "actif"
+          },
+          {
+            "SUJET": "feu.affectation.flecheVerte",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "feu.affectation.TIS",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "feu.affectation.carte",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "paiement.espece",
+            "ETAT": "accepte"
+          }
+        ]
+      },
+      "expected": {
+        "asf-fav": [
+          {
+            "key": "c3luLWFzZg==",
+            "value": {
+              "DHM": "msg",
+              "GARE": "25006001",
+              "VOIE": "019",
+              "GAREGROUP": 1,
+              "ENTREESORTIE": "E",
+              "COMLSKO": 1,
+              "CONTRESENS": 1,
+              "FAVFLECHEVERTE": 1,
+              "FAVTIS": 1,
+              "FAVCB": 1,
+              "PAIEMENTESPECE": 1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "null-key",
+      "key": null,
+      "value": {
+        "SYNOPTIQUE": {
+          "DHM": "msg",
+          "LOCALISATION": {
+            "GARE": "25006001",
+            "EQUIPEMENT": {
+              "NUMERO": "019",
+              "TYPE": "BE"
+            }
+          }
+        },
+        "ETATEQUIPEMENTS": [
+          {
+            "SUJET": "comLS",
+            "ETAT": "comKO"
+          },
+          {
+            "SUJET": "contreSens",
+            "ETAT": "actif"
+          },
+          {
+            "SUJET": "feu.affectation.flecheVerte",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "feu.affectation.TIS",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "feu.affectation.carte",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "paiement.espece",
+            "ETAT": "accepte"
+          }
+        ]
+      },
+      "expected": {
+        "asf-fav": [
+          {
+            "key": null,
+            "value": {
+              "DHM": "msg",
+              "GARE": "25006001",
+              "VOIE": "019",
+              "GAREGROUP": 1,
+              "ENTREESORTIE": "E",
+              "COMLSKO": 1,
+              "CONTRESENS": 1,
+              "FAVFLECHEVERTE": 1,
+              "FAVTIS": 1,
+              "FAVCB": 1,
+              "PAIEMENTESPECE": 1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "excluded-BECM",
+      "key": "c3luLWFzZg==",
+      "value": {
+        "SYNOPTIQUE": {
+          "DHM": "msg",
+          "LOCALISATION": {
+            "GARE": "25006001",
+            "EQUIPEMENT": {
+              "NUMERO": "019",
+              "TYPE": "BECM"
+            }
+          }
+        },
+        "ETATEQUIPEMENTS": [
+          {
+            "SUJET": "comLS",
+            "ETAT": "comKO"
+          },
+          {
+            "SUJET": "contreSens",
+            "ETAT": "actif"
+          },
+          {
+            "SUJET": "feu.affectation.flecheVerte",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "feu.affectation.TIS",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "feu.affectation.carte",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "paiement.espece",
+            "ETAT": "accepte"
+          }
+        ]
+      },
+      "expected": {}
+    },
+    {
+      "name": "excluded-VSP",
+      "key": "c3luLWFzZg==",
+      "value": {
+        "SYNOPTIQUE": {
+          "DHM": "msg",
+          "LOCALISATION": {
+            "GARE": "25006001",
+            "EQUIPEMENT": {
+              "NUMERO": "019",
+              "TYPE": "VSP"
+            }
+          }
+        },
+        "ETATEQUIPEMENTS": [
+          {
+            "SUJET": "comLS",
+            "ETAT": "comKO"
+          },
+          {
+            "SUJET": "contreSens",
+            "ETAT": "actif"
+          },
+          {
+            "SUJET": "feu.affectation.flecheVerte",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "feu.affectation.TIS",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "feu.affectation.carte",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "paiement.espece",
+            "ETAT": "accepte"
+          }
+        ]
+      },
+      "expected": {}
+    },
+    {
+      "name": "escota",
+      "key": "c3luLWFzZg==",
+      "value": {
+        "SYNOPTIQUE": {
+          "DHM": "msg",
+          "LOCALISATION": {
+            "GARE": "25006001",
+            "EQUIPEMENT": {
+              "NUMERO": "019",
+              "TYPE": "BE ESCOTA"
+            }
+          }
+        },
+        "ETATEQUIPEMENTS": [
+          {
+            "SUJET": "comLS",
+            "ETAT": "comKO"
+          },
+          {
+            "SUJET": "contreSens",
+            "ETAT": "actif"
+          },
+          {
+            "SUJET": "feu.affectation.flecheVerte",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "feu.affectation.TIS",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "feu.affectation.carte",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "paiement.espece",
+            "ETAT": "accepte"
+          }
+        ]
+      },
+      "expected": {
+        "asf-fav": [
+          {
+            "key": "c3luLWFzZg==",
+            "value": {
+              "DHM": "msg",
+              "GARE": "25006001",
+              "VOIE": "019",
+              "GAREGROUP": 1,
+              "ENTREESORTIE": "S",
+              "COMLSKO": 1,
+              "CONTRESENS": 1,
+              "FAVFLECHEVERTE": 1,
+              "FAVTIS": 1,
+              "FAVCB": 1,
+              "PAIEMENTESPECE": 1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "group-20",
+      "key": "c3luLWFzZg==",
+      "value": {
+        "SYNOPTIQUE": {
+          "DHM": "msg",
+          "LOCALISATION": {
+            "GARE": "25006001",
+            "EQUIPEMENT": {
+              "NUMERO": "020",
+              "TYPE": "BE"
+            }
+          }
+        },
+        "ETATEQUIPEMENTS": [
+          {
+            "SUJET": "comLS",
+            "ETAT": "comKO"
+          },
+          {
+            "SUJET": "contreSens",
+            "ETAT": "actif"
+          },
+          {
+            "SUJET": "feu.affectation.flecheVerte",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "feu.affectation.TIS",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "feu.affectation.carte",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "paiement.espece",
+            "ETAT": "accepte"
+          }
+        ]
+      },
+      "expected": {
+        "asf-fav": [
+          {
+            "key": "c3luLWFzZg==",
+            "value": {
+              "DHM": "msg",
+              "GARE": "25006001",
+              "VOIE": "020",
+              "GAREGROUP": 1,
+              "ENTREESORTIE": "E",
+              "COMLSKO": 1,
+              "CONTRESENS": 1,
+              "FAVFLECHEVERTE": 1,
+              "FAVTIS": 1,
+              "FAVCB": 1,
+              "PAIEMENTESPECE": 1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "outside-list",
+      "key": "c3luLWFzZg==",
+      "value": {
+        "SYNOPTIQUE": {
+          "DHM": "msg",
+          "LOCALISATION": {
+            "GARE": "other",
+            "EQUIPEMENT": {
+              "NUMERO": "020",
+              "TYPE": "BE"
+            }
+          }
+        },
+        "ETATEQUIPEMENTS": [
+          {
+            "SUJET": "comLS",
+            "ETAT": "comKO"
+          },
+          {
+            "SUJET": "contreSens",
+            "ETAT": "actif"
+          },
+          {
+            "SUJET": "feu.affectation.flecheVerte",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "feu.affectation.TIS",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "feu.affectation.carte",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "paiement.espece",
+            "ETAT": "accepte"
+          }
+        ]
+      },
+      "expected": {
+        "asf-fav": [
+          {
+            "key": "c3luLWFzZg==",
+            "value": {
+              "DHM": "msg",
+              "GARE": "other",
+              "VOIE": "020",
+              "GAREGROUP": 1,
+              "ENTREESORTIE": "E",
+              "COMLSKO": 1,
+              "CONTRESENS": 1,
+              "FAVFLECHEVERTE": 1,
+              "FAVTIS": 1,
+              "FAVCB": 1,
+              "PAIEMENTESPECE": 1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "missing-number",
+      "key": "c3luLWFzZg==",
+      "value": {
+        "SYNOPTIQUE": {
+          "DHM": "msg",
+          "LOCALISATION": {
+            "GARE": "25006001",
+            "EQUIPEMENT": {
+              "NUMERO": null,
+              "TYPE": "BE"
+            }
+          }
+        },
+        "ETATEQUIPEMENTS": [
+          {
+            "SUJET": "comLS",
+            "ETAT": "comKO"
+          },
+          {
+            "SUJET": "contreSens",
+            "ETAT": "actif"
+          },
+          {
+            "SUJET": "feu.affectation.flecheVerte",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "feu.affectation.TIS",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "feu.affectation.carte",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "paiement.espece",
+            "ETAT": "accepte"
+          }
+        ]
+      },
+      "expected": {
+        "asf-fav": [
+          {
+            "key": "c3luLWFzZg==",
+            "value": {
+              "DHM": "msg",
+              "GARE": "25006001",
+              "VOIE": null,
+              "GAREGROUP": 1,
+              "ENTREESORTIE": "E",
+              "COMLSKO": 1,
+              "CONTRESENS": 1,
+              "FAVFLECHEVERTE": 1,
+              "FAVTIS": 1,
+              "FAVCB": 1,
+              "PAIEMENTESPECE": 1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "null-type",
+      "key": "c3luLWFzZg==",
+      "value": {
+        "SYNOPTIQUE": {
+          "DHM": "msg",
+          "LOCALISATION": {
+            "GARE": "25006001",
+            "EQUIPEMENT": {
+              "NUMERO": "019",
+              "TYPE": null
+            }
+          }
+        },
+        "ETATEQUIPEMENTS": [
+          {
+            "SUJET": "comLS",
+            "ETAT": "comKO"
+          },
+          {
+            "SUJET": "contreSens",
+            "ETAT": "actif"
+          },
+          {
+            "SUJET": "feu.affectation.flecheVerte",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "feu.affectation.TIS",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "feu.affectation.carte",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "paiement.espece",
+            "ETAT": "accepte"
+          }
+        ]
+      },
+      "expected": {
+        "asf-fav": [
+          {
+            "key": "c3luLWFzZg==",
+            "value": {
+              "DHM": "msg",
+              "GARE": "25006001",
+              "VOIE": "019",
+              "GAREGROUP": 1,
+              "ENTREESORTIE": "S",
+              "COMLSKO": 1,
+              "CONTRESENS": 1,
+              "FAVFLECHEVERTE": 1,
+              "FAVTIS": 1,
+              "FAVCB": 1,
+              "PAIEMENTESPECE": 1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "one-flag",
+      "key": "c3luLWFzZg==",
+      "value": {
+        "SYNOPTIQUE": {
+          "DHM": "msg",
+          "LOCALISATION": {
+            "GARE": "25006001",
+            "EQUIPEMENT": {
+              "NUMERO": "019",
+              "TYPE": "BE"
+            }
+          }
+        },
+        "ETATEQUIPEMENTS": [
+          {
+            "SUJET": "comLS",
+            "ETAT": "comKO"
+          }
+        ]
+      },
+      "expected": {
+        "asf-fav": [
+          {
+            "key": "c3luLWFzZg==",
+            "value": {
+              "DHM": "msg",
+              "GARE": "25006001",
+              "VOIE": "019",
+              "GAREGROUP": 1,
+              "ENTREESORTIE": "E",
+              "COMLSKO": 1,
+              "CONTRESENS": null,
+              "FAVFLECHEVERTE": null,
+              "FAVTIS": null,
+              "FAVCB": null,
+              "PAIEMENTESPECE": null
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "empty",
+      "key": "c3luLWFzZg==",
+      "value": {
+        "SYNOPTIQUE": {
+          "DHM": "msg",
+          "LOCALISATION": {
+            "GARE": "25006001",
+            "EQUIPEMENT": {
+              "NUMERO": "019",
+              "TYPE": "BE"
+            }
+          }
+        },
+        "ETATEQUIPEMENTS": []
+      },
+      "expected": {}
+    },
+    {
+      "name": "missing-synoptique",
+      "key": "c3luLWFzZg==",
+      "value": {
+        "SYNOPTIQUE": null,
+        "ETATEQUIPEMENTS": [
+          {
+            "SUJET": "comLS",
+            "ETAT": "comKO"
+          }
+        ]
+      },
+      "expected": {
+        "asf-fav": [
+          {
+            "key": "c3luLWFzZg==",
+            "value": {
+              "DHM": null,
+              "GARE": null,
+              "VOIE": null,
+              "GAREGROUP": 1,
+              "ENTREESORTIE": "S",
+              "COMLSKO": 1,
+              "CONTRESENS": null,
+              "FAVFLECHEVERTE": null,
+              "FAVTIS": null,
+              "FAVCB": null,
+              "PAIEMENTESPECE": null
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "null-array",
+      "key": "c3luLWFzZg==",
+      "value": {
+        "SYNOPTIQUE": {
+          "DHM": "msg",
+          "LOCALISATION": {
+            "GARE": "25006001",
+            "EQUIPEMENT": {
+              "NUMERO": "019",
+              "TYPE": "BE"
+            }
+          }
+        },
+        "ETATEQUIPEMENTS": null
+      },
+      "expected": {}
+    },
+    {
+      "name": "tombstone",
+      "key": "c3luLWFzZg==",
+      "value": null,
+      "expected": {}
+    },
+    {
+      "name": "comOKTR",
+      "key": "c3luLWFzZg==",
+      "value": {
+        "SYNOPTIQUE": {
+          "DHM": "msg",
+          "LOCALISATION": {
+            "GARE": "25006001",
+            "EQUIPEMENT": {
+              "NUMERO": "019",
+              "TYPE": "BE"
+            }
+          }
+        },
+        "ETATEQUIPEMENTS": [
+          {
+            "SUJET": "comLS",
+            "ETAT": "comOKTR"
+          }
+        ]
+      },
+      "expected": {
+        "asf-fav": [
+          {
+            "key": "c3luLWFzZg==",
+            "value": {
+              "DHM": "msg",
+              "GARE": "25006001",
+              "VOIE": "019",
+              "GAREGROUP": 1,
+              "ENTREESORTIE": "E",
+              "COMLSKO": 0,
+              "CONTRESENS": null,
+              "FAVFLECHEVERTE": null,
+              "FAVTIS": null,
+              "FAVCB": null,
+              "PAIEMENTESPECE": null
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "unknown-struct-field",
+      "key": "c3luLWFzZg==",
+      "value": {
+        "SYNOPTIQUE": {
+          "DHM": "msg",
+          "LOCALISATION": {
+            "GARE": "25006001",
+            "EQUIPEMENT": {
+              "NUMERO": "019",
+              "TYPE": "BE"
+            }
+          }
+        },
+        "ETATEQUIPEMENTS": [
+          {
+            "SUJET": "comLS",
+            "ETAT": "comKO",
+            "unexpected": "ignored"
+          },
+          {
+            "SUJET": "contreSens",
+            "ETAT": "actif"
+          },
+          {
+            "SUJET": "feu.affectation.flecheVerte",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "feu.affectation.TIS",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "feu.affectation.carte",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "paiement.espece",
+            "ETAT": "accepte"
+          }
+        ]
+      },
+      "expected": {
+        "asf-fav": [
+          {
+            "key": "c3luLWFzZg==",
+            "value": {
+              "DHM": "msg",
+              "GARE": "25006001",
+              "VOIE": "019",
+              "GAREGROUP": 1,
+              "ENTREESORTIE": "E",
+              "COMLSKO": 1,
+              "CONTRESENS": 1,
+              "FAVFLECHEVERTE": 1,
+              "FAVTIS": 1,
+              "FAVCB": 1,
+              "PAIEMENTESPECE": 1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "null-array-members",
+      "key": "c3luLWFzZg==",
+      "value": {
+        "SYNOPTIQUE": {
+          "DHM": "msg",
+          "LOCALISATION": {
+            "GARE": "25006001",
+            "EQUIPEMENT": {
+              "NUMERO": "019",
+              "TYPE": "BE"
+            }
+          }
+        },
+        "ETATEQUIPEMENTS": [
+          null,
+          {
+            "SUJET": "comLS",
+            "ETAT": "comKO"
+          },
+          {
+            "SUJET": "contreSens",
+            "ETAT": "actif"
+          },
+          {
+            "SUJET": "feu.affectation.flecheVerte",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "feu.affectation.TIS",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "feu.affectation.carte",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "paiement.espece",
+            "ETAT": "accepte"
+          },
+          null
+        ]
+      },
+      "expected": {
+        "asf-fav": [
+          {
+            "key": "c3luLWFzZg==",
+            "value": {
+              "DHM": "msg",
+              "GARE": "25006001",
+              "VOIE": "019",
+              "GAREGROUP": 1,
+              "ENTREESORTIE": "E",
+              "COMLSKO": 1,
+              "CONTRESENS": 1,
+              "FAVFLECHEVERTE": 1,
+              "FAVTIS": 1,
+              "FAVCB": 1,
+              "PAIEMENTESPECE": 1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "unknown-state",
+      "key": "c3luLWFzZg==",
+      "value": {
+        "SYNOPTIQUE": {
+          "DHM": "msg",
+          "LOCALISATION": {
+            "GARE": "25006001",
+            "EQUIPEMENT": {
+              "NUMERO": "019",
+              "TYPE": "BE"
+            }
+          }
+        },
+        "ETATEQUIPEMENTS": [
+          {
+            "SUJET": "comLS",
+            "ETAT": "ComKO"
+          }
+        ]
+      },
+      "expected": {}
+    }
+  ],
+  "esc-coffre": [
+    {
+      "name": "position-0-piece",
+      "key": null,
+      "value": {
+        "message": {
+          "numero": 1,
+          "DHM": "msg"
+        },
+        "comptageCoffre": {
+          "idCoffre": "id",
+          "type": "sac",
+          "position": 0,
+          "dhm": "compt",
+          "contenu": {
+            "type": "piece",
+            "capacite": {
+              "valeur": 100,
+              "unite": "EUR"
+            },
+            "courant": {
+              "valeur": 5,
+              "unite": "EUR"
+            }
+          },
+          "localisation": {
+            "gare": "25006123",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          }
+        }
+      },
+      "expected": {
+        "esc-coffre": [
+          {
+            "key": null,
+            "value": {
+              "DateMessage": "msg",
+              "IdGare": "25006123",
+              "Voie": "007",
+              "DateComptage": "compt",
+              "Position": 15,
+              "Type": "sac",
+              "TypeEspece": "piece",
+              "ValeurCapacite": 100,
+              "UniteCapacite": "EUR",
+              "ValeurCourant": 5,
+              "UniteCourant": "EUR"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "position-1-piece",
+      "key": null,
+      "value": {
+        "message": {
+          "numero": 1,
+          "DHM": "msg"
+        },
+        "comptageCoffre": {
+          "idCoffre": "id",
+          "type": "sac",
+          "position": 1,
+          "dhm": "compt",
+          "contenu": {
+            "type": "piece",
+            "capacite": {
+              "valeur": 100,
+              "unite": "EUR"
+            },
+            "courant": {
+              "valeur": 5,
+              "unite": "EUR"
+            }
+          },
+          "localisation": {
+            "gare": "25006123",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          }
+        }
+      },
+      "expected": {
+        "esc-coffre": [
+          {
+            "key": null,
+            "value": {
+              "DateMessage": "msg",
+              "IdGare": "25006123",
+              "Voie": "007",
+              "DateComptage": "compt",
+              "Position": 7,
+              "Type": "sac",
+              "TypeEspece": "piece",
+              "ValeurCapacite": 100,
+              "UniteCapacite": "EUR",
+              "ValeurCourant": 5,
+              "UniteCourant": "EUR"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "position-1-billet",
+      "key": null,
+      "value": {
+        "message": {
+          "numero": 1,
+          "DHM": "msg"
+        },
+        "comptageCoffre": {
+          "idCoffre": "id",
+          "type": "sac",
+          "position": 1,
+          "dhm": "compt",
+          "contenu": {
+            "type": "billet",
+            "capacite": {
+              "valeur": 100,
+              "unite": "EUR"
+            },
+            "courant": {
+              "valeur": 5,
+              "unite": "EUR"
+            }
+          },
+          "localisation": {
+            "gare": "25006123",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          }
+        }
+      },
+      "expected": {
+        "esc-coffre": [
+          {
+            "key": null,
+            "value": {
+              "DateMessage": "msg",
+              "IdGare": "25006123",
+              "Voie": "007",
+              "DateComptage": "compt",
+              "Position": 16,
+              "Type": "sac",
+              "TypeEspece": "billet",
+              "ValeurCapacite": 100,
+              "UniteCapacite": "EUR",
+              "ValeurCourant": 5,
+              "UniteCourant": "EUR"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "position-1-other",
+      "key": null,
+      "value": {
+        "message": {
+          "numero": 1,
+          "DHM": "msg"
+        },
+        "comptageCoffre": {
+          "idCoffre": "id",
+          "type": "sac",
+          "position": 1,
+          "dhm": "compt",
+          "contenu": {
+            "type": "other",
+            "capacite": {
+              "valeur": 100,
+              "unite": "EUR"
+            },
+            "courant": {
+              "valeur": 5,
+              "unite": "EUR"
+            }
+          },
+          "localisation": {
+            "gare": "25006123",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          }
+        }
+      },
+      "expected": {
+        "esc-coffre": [
+          {
+            "key": null,
+            "value": {
+              "DateMessage": "msg",
+              "IdGare": "25006123",
+              "Voie": "007",
+              "DateComptage": "compt",
+              "Position": 1,
+              "Type": "sac",
+              "TypeEspece": "other",
+              "ValeurCapacite": 100,
+              "UniteCapacite": "EUR",
+              "ValeurCourant": 5,
+              "UniteCourant": "EUR"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "position-2-piece",
+      "key": null,
+      "value": {
+        "message": {
+          "numero": 1,
+          "DHM": "msg"
+        },
+        "comptageCoffre": {
+          "idCoffre": "id",
+          "type": "sac",
+          "position": 2,
+          "dhm": "compt",
+          "contenu": {
+            "type": "piece",
+            "capacite": {
+              "valeur": 100,
+              "unite": "EUR"
+            },
+            "courant": {
+              "valeur": 5,
+              "unite": "EUR"
+            }
+          },
+          "localisation": {
+            "gare": "25006123",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          }
+        }
+      },
+      "expected": {
+        "esc-coffre": [
+          {
+            "key": null,
+            "value": {
+              "DateMessage": "msg",
+              "IdGare": "25006123",
+              "Voie": "007",
+              "DateComptage": "compt",
+              "Position": 8,
+              "Type": "sac",
+              "TypeEspece": "piece",
+              "ValeurCapacite": 100,
+              "UniteCapacite": "EUR",
+              "ValeurCourant": 5,
+              "UniteCourant": "EUR"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "position-5-piece",
+      "key": null,
+      "value": {
+        "message": {
+          "numero": 1,
+          "DHM": "msg"
+        },
+        "comptageCoffre": {
+          "idCoffre": "id",
+          "type": "sac",
+          "position": 5,
+          "dhm": "compt",
+          "contenu": {
+            "type": "piece",
+            "capacite": {
+              "valeur": 100,
+              "unite": "EUR"
+            },
+            "courant": {
+              "valeur": 5,
+              "unite": "EUR"
+            }
+          },
+          "localisation": {
+            "gare": "25006123",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          }
+        }
+      },
+      "expected": {
+        "esc-coffre": [
+          {
+            "key": null,
+            "value": {
+              "DateMessage": "msg",
+              "IdGare": "25006123",
+              "Voie": "007",
+              "DateComptage": "compt",
+              "Position": 14,
+              "Type": "sac",
+              "TypeEspece": "piece",
+              "ValeurCapacite": 100,
+              "UniteCapacite": "EUR",
+              "ValeurCourant": 5,
+              "UniteCourant": "EUR"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "position-3-piece",
+      "key": null,
+      "value": {
+        "message": {
+          "numero": 1,
+          "DHM": "msg"
+        },
+        "comptageCoffre": {
+          "idCoffre": "id",
+          "type": "sac",
+          "position": 3,
+          "dhm": "compt",
+          "contenu": {
+            "type": "piece",
+            "capacite": {
+              "valeur": 100,
+              "unite": "EUR"
+            },
+            "courant": {
+              "valeur": 5,
+              "unite": "EUR"
+            }
+          },
+          "localisation": {
+            "gare": "25006123",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          }
+        }
+      },
+      "expected": {
+        "esc-coffre": [
+          {
+            "key": null,
+            "value": {
+              "DateMessage": "msg",
+              "IdGare": "25006123",
+              "Voie": "007",
+              "DateComptage": "compt",
+              "Position": 3,
+              "Type": "sac",
+              "TypeEspece": "piece",
+              "ValeurCapacite": 100,
+              "UniteCapacite": "EUR",
+              "ValeurCourant": 5,
+              "UniteCourant": "EUR"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "position--1-piece",
+      "key": null,
+      "value": {
+        "message": {
+          "numero": 1,
+          "DHM": "msg"
+        },
+        "comptageCoffre": {
+          "idCoffre": "id",
+          "type": "sac",
+          "position": -1,
+          "dhm": "compt",
+          "contenu": {
+            "type": "piece",
+            "capacite": {
+              "valeur": 100,
+              "unite": "EUR"
+            },
+            "courant": {
+              "valeur": 5,
+              "unite": "EUR"
+            }
+          },
+          "localisation": {
+            "gare": "25006123",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          }
+        }
+      },
+      "expected": {
+        "esc-coffre": [
+          {
+            "key": null,
+            "value": {
+              "DateMessage": "msg",
+              "IdGare": "25006123",
+              "Voie": "007",
+              "DateComptage": "compt",
+              "Position": -1,
+              "Type": "sac",
+              "TypeEspece": "piece",
+              "ValeurCapacite": 100,
+              "UniteCapacite": "EUR",
+              "ValeurCourant": 5,
+              "UniteCourant": "EUR"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "position-None-piece",
+      "key": null,
+      "value": {
+        "message": {
+          "numero": 1,
+          "DHM": "msg"
+        },
+        "comptageCoffre": {
+          "idCoffre": "id",
+          "type": "sac",
+          "position": null,
+          "dhm": "compt",
+          "contenu": {
+            "type": "piece",
+            "capacite": {
+              "valeur": 100,
+              "unite": "EUR"
+            },
+            "courant": {
+              "valeur": 5,
+              "unite": "EUR"
+            }
+          },
+          "localisation": {
+            "gare": "25006123",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          }
+        }
+      },
+      "expected": {
+        "esc-coffre": [
+          {
+            "key": null,
+            "value": {
+              "DateMessage": "msg",
+              "IdGare": "25006123",
+              "Voie": "007",
+              "DateComptage": "compt",
+              "Position": null,
+              "Type": "sac",
+              "TypeEspece": "piece",
+              "ValeurCapacite": 100,
+              "UniteCapacite": "EUR",
+              "ValeurCourant": 5,
+              "UniteCourant": "EUR"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "wrong-gare",
+      "key": null,
+      "value": {
+        "message": {
+          "numero": 1,
+          "DHM": "msg"
+        },
+        "comptageCoffre": {
+          "idCoffre": "id",
+          "type": "sac",
+          "position": 0,
+          "dhm": "compt",
+          "contenu": {
+            "type": "piece",
+            "capacite": {
+              "valeur": 100,
+              "unite": "EUR"
+            },
+            "courant": {
+              "valeur": 5,
+              "unite": "EUR"
+            }
+          },
+          "localisation": {
+            "gare": "99999",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          }
+        }
+      },
+      "expected": {}
+    },
+    {
+      "name": "null-gare",
+      "key": null,
+      "value": {
+        "message": {
+          "numero": 1,
+          "DHM": "msg"
+        },
+        "comptageCoffre": {
+          "idCoffre": "id",
+          "type": "sac",
+          "position": 0,
+          "dhm": "compt",
+          "contenu": {
+            "type": "piece",
+            "capacite": {
+              "valeur": 100,
+              "unite": "EUR"
+            },
+            "courant": {
+              "valeur": 5,
+              "unite": "EUR"
+            }
+          },
+          "localisation": {
+            "gare": null,
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          }
+        }
+      },
+      "expected": {}
+    },
+    {
+      "name": "wrong-type",
+      "key": null,
+      "value": {
+        "message": {
+          "numero": 1,
+          "DHM": "msg"
+        },
+        "comptageCoffre": {
+          "idCoffre": "id",
+          "type": "other",
+          "position": 0,
+          "dhm": "compt",
+          "contenu": {
+            "type": "piece",
+            "capacite": {
+              "valeur": 100,
+              "unite": "EUR"
+            },
+            "courant": {
+              "valeur": 5,
+              "unite": "EUR"
+            }
+          },
+          "localisation": {
+            "gare": "25006123",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          }
+        }
+      },
+      "expected": {}
+    },
+    {
+      "name": "coffre",
+      "key": null,
+      "value": {
+        "message": {
+          "numero": 1,
+          "DHM": "msg"
+        },
+        "comptageCoffre": {
+          "idCoffre": "id",
+          "type": "coffre",
+          "position": 0,
+          "dhm": "compt",
+          "contenu": {
+            "type": "piece",
+            "capacite": {
+              "valeur": 100,
+              "unite": "EUR"
+            },
+            "courant": {
+              "valeur": 5,
+              "unite": "EUR"
+            }
+          },
+          "localisation": {
+            "gare": "25006123",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          }
+        }
+      },
+      "expected": {
+        "esc-coffre": [
+          {
+            "key": null,
+            "value": {
+              "DateMessage": "msg",
+              "IdGare": "25006123",
+              "Voie": "007",
+              "DateComptage": "compt",
+              "Position": 15,
+              "Type": "coffre",
+              "TypeEspece": "piece",
+              "ValeurCapacite": 100,
+              "UniteCapacite": "EUR",
+              "ValeurCourant": 5,
+              "UniteCourant": "EUR"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "missing",
+      "key": null,
+      "value": {},
+      "expected": {}
+    },
+    {
+      "name": "tombstone",
+      "key": null,
+      "value": null,
+      "expected": {}
+    }
+  ],
+  "esc-bol": [
+    {
+      "name": "all-positions",
+      "key": null,
+      "value": {
+        "message": {
+          "numero": 1,
+          "DHM": "msg"
+        },
+        "comptageBols": {
+          "dhm": "compt",
+          "localisation": {
+            "gare": "25006123",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          }
+        },
+        "etats": [
+          {
+            "sujet": "bol.07.fill",
+            "status": [
+              "ok"
+            ],
+            "contenu": {
+              "devise": "EUR",
+              "valeur": 0.1,
+              "courant": 3,
+              "maximum": 10,
+              "type": "piece"
+            }
+          },
+          {
+            "sujet": "bol.07.fill",
+            "status": [
+              "ok"
+            ],
+            "contenu": {
+              "devise": "EUR",
+              "valeur": 0.2,
+              "courant": 3,
+              "maximum": 10,
+              "type": "piece"
+            }
+          },
+          {
+            "sujet": "bol.07.fill",
+            "status": [
+              "ok"
+            ],
+            "contenu": {
+              "devise": "EUR",
+              "valeur": 0.5,
+              "courant": 3,
+              "maximum": 10,
+              "type": "piece"
+            }
+          },
+          {
+            "sujet": "bol.07.fill",
+            "status": [
+              "ok"
+            ],
+            "contenu": {
+              "devise": "EUR",
+              "valeur": 1.0,
+              "courant": 3,
+              "maximum": 10,
+              "type": "piece"
+            }
+          },
+          {
+            "sujet": "bol.07.fill",
+            "status": [
+              "ok"
+            ],
+            "contenu": {
+              "devise": "EUR",
+              "valeur": 2.0,
+              "courant": 3,
+              "maximum": 10,
+              "type": "piece"
+            }
+          },
+          {
+            "sujet": "bol.07.fill",
+            "status": [
+              "ok"
+            ],
+            "contenu": {
+              "devise": "EUR",
+              "valeur": 3.9,
+              "courant": 3,
+              "maximum": 10,
+              "type": "piece"
+            }
+          },
+          {
+            "sujet": "bol.07.fill",
+            "status": [
+              "ok"
+            ],
+            "contenu": {
+              "devise": "EUR",
+              "valeur": -3.9,
+              "courant": 3,
+              "maximum": 10,
+              "type": "piece"
+            }
+          },
+          {
+            "sujet": "bol.07.fill",
+            "status": [
+              "ok"
+            ],
+            "contenu": {
+              "devise": "EUR",
+              "valeur": null,
+              "courant": 3,
+              "maximum": 10,
+              "type": "piece"
+            }
+          },
+          null,
+          {
+            "sujet": "bol.07.fill",
+            "status": [
+              "ok"
+            ],
+            "contenu": {
+              "devise": "EUR",
+              "valeur": 1.0,
+              "courant": 3,
+              "maximum": 10,
+              "type": "billet"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "esc-exploded": [
+          {
+            "key": null,
+            "value": {
+              "message": {
+                "numero": 1,
+                "DHM": "msg"
+              },
+              "comptageBols": {
+                "dhm": "compt",
+                "localisation": {
+                  "gare": "25006123",
+                  "equipement": {
+                    "numero": "007",
+                    "type": "VS"
+                  }
+                }
+              },
+              "Etat": {
+                "sujet": "bol.07.fill",
+                "status": [
+                  "ok"
+                ],
+                "contenu": {
+                  "devise": "EUR",
+                  "valeur": 0.1,
+                  "courant": 3,
+                  "maximum": 10,
+                  "type": "piece"
+                }
+              }
+            }
+          },
+          {
+            "key": null,
+            "value": {
+              "message": {
+                "numero": 1,
+                "DHM": "msg"
+              },
+              "comptageBols": {
+                "dhm": "compt",
+                "localisation": {
+                  "gare": "25006123",
+                  "equipement": {
+                    "numero": "007",
+                    "type": "VS"
+                  }
+                }
+              },
+              "Etat": {
+                "sujet": "bol.07.fill",
+                "status": [
+                  "ok"
+                ],
+                "contenu": {
+                  "devise": "EUR",
+                  "valeur": 0.2,
+                  "courant": 3,
+                  "maximum": 10,
+                  "type": "piece"
+                }
+              }
+            }
+          },
+          {
+            "key": null,
+            "value": {
+              "message": {
+                "numero": 1,
+                "DHM": "msg"
+              },
+              "comptageBols": {
+                "dhm": "compt",
+                "localisation": {
+                  "gare": "25006123",
+                  "equipement": {
+                    "numero": "007",
+                    "type": "VS"
+                  }
+                }
+              },
+              "Etat": {
+                "sujet": "bol.07.fill",
+                "status": [
+                  "ok"
+                ],
+                "contenu": {
+                  "devise": "EUR",
+                  "valeur": 0.5,
+                  "courant": 3,
+                  "maximum": 10,
+                  "type": "piece"
+                }
+              }
+            }
+          },
+          {
+            "key": null,
+            "value": {
+              "message": {
+                "numero": 1,
+                "DHM": "msg"
+              },
+              "comptageBols": {
+                "dhm": "compt",
+                "localisation": {
+                  "gare": "25006123",
+                  "equipement": {
+                    "numero": "007",
+                    "type": "VS"
+                  }
+                }
+              },
+              "Etat": {
+                "sujet": "bol.07.fill",
+                "status": [
+                  "ok"
+                ],
+                "contenu": {
+                  "devise": "EUR",
+                  "valeur": 1.0,
+                  "courant": 3,
+                  "maximum": 10,
+                  "type": "piece"
+                }
+              }
+            }
+          },
+          {
+            "key": null,
+            "value": {
+              "message": {
+                "numero": 1,
+                "DHM": "msg"
+              },
+              "comptageBols": {
+                "dhm": "compt",
+                "localisation": {
+                  "gare": "25006123",
+                  "equipement": {
+                    "numero": "007",
+                    "type": "VS"
+                  }
+                }
+              },
+              "Etat": {
+                "sujet": "bol.07.fill",
+                "status": [
+                  "ok"
+                ],
+                "contenu": {
+                  "devise": "EUR",
+                  "valeur": 2.0,
+                  "courant": 3,
+                  "maximum": 10,
+                  "type": "piece"
+                }
+              }
+            }
+          },
+          {
+            "key": null,
+            "value": {
+              "message": {
+                "numero": 1,
+                "DHM": "msg"
+              },
+              "comptageBols": {
+                "dhm": "compt",
+                "localisation": {
+                  "gare": "25006123",
+                  "equipement": {
+                    "numero": "007",
+                    "type": "VS"
+                  }
+                }
+              },
+              "Etat": {
+                "sujet": "bol.07.fill",
+                "status": [
+                  "ok"
+                ],
+                "contenu": {
+                  "devise": "EUR",
+                  "valeur": 3.9,
+                  "courant": 3,
+                  "maximum": 10,
+                  "type": "piece"
+                }
+              }
+            }
+          },
+          {
+            "key": null,
+            "value": {
+              "message": {
+                "numero": 1,
+                "DHM": "msg"
+              },
+              "comptageBols": {
+                "dhm": "compt",
+                "localisation": {
+                  "gare": "25006123",
+                  "equipement": {
+                    "numero": "007",
+                    "type": "VS"
+                  }
+                }
+              },
+              "Etat": {
+                "sujet": "bol.07.fill",
+                "status": [
+                  "ok"
+                ],
+                "contenu": {
+                  "devise": "EUR",
+                  "valeur": -3.9,
+                  "courant": 3,
+                  "maximum": 10,
+                  "type": "piece"
+                }
+              }
+            }
+          },
+          {
+            "key": null,
+            "value": {
+              "message": {
+                "numero": 1,
+                "DHM": "msg"
+              },
+              "comptageBols": {
+                "dhm": "compt",
+                "localisation": {
+                  "gare": "25006123",
+                  "equipement": {
+                    "numero": "007",
+                    "type": "VS"
+                  }
+                }
+              },
+              "Etat": {
+                "sujet": "bol.07.fill",
+                "status": [
+                  "ok"
+                ],
+                "contenu": {
+                  "devise": "EUR",
+                  "valeur": null,
+                  "courant": 3,
+                  "maximum": 10,
+                  "type": "piece"
+                }
+              }
+            }
+          },
+          {
+            "key": null,
+            "value": {
+              "message": {
+                "numero": 1,
+                "DHM": "msg"
+              },
+              "comptageBols": {
+                "dhm": "compt",
+                "localisation": {
+                  "gare": "25006123",
+                  "equipement": {
+                    "numero": "007",
+                    "type": "VS"
+                  }
+                }
+              },
+              "Etat": null
+            }
+          },
+          {
+            "key": null,
+            "value": {
+              "message": {
+                "numero": 1,
+                "DHM": "msg"
+              },
+              "comptageBols": {
+                "dhm": "compt",
+                "localisation": {
+                  "gare": "25006123",
+                  "equipement": {
+                    "numero": "007",
+                    "type": "VS"
+                  }
+                }
+              },
+              "Etat": {
+                "sujet": "bol.07.fill",
+                "status": [
+                  "ok"
+                ],
+                "contenu": {
+                  "devise": "EUR",
+                  "valeur": 1.0,
+                  "courant": 3,
+                  "maximum": 10,
+                  "type": "billet"
+                }
+              }
+            }
+          }
+        ],
+        "esc-bol": [
+          {
+            "key": null,
+            "value": {
+              "DateMessage": "msg",
+              "IdGare": "25006123",
+              "Voie": "007",
+              "DateComptage": "compt",
+              "Position": 9,
+              "Numero": "07",
+              "Type": "piece",
+              "Devise": "EUR",
+              "Valeur": 3,
+              "Capacite": 10
+            }
+          },
+          {
+            "key": null,
+            "value": {
+              "DateMessage": "msg",
+              "IdGare": "25006123",
+              "Voie": "007",
+              "DateComptage": "compt",
+              "Position": 10,
+              "Numero": "07",
+              "Type": "piece",
+              "Devise": "EUR",
+              "Valeur": 3,
+              "Capacite": 10
+            }
+          },
+          {
+            "key": null,
+            "value": {
+              "DateMessage": "msg",
+              "IdGare": "25006123",
+              "Voie": "007",
+              "DateComptage": "compt",
+              "Position": 11,
+              "Numero": "07",
+              "Type": "piece",
+              "Devise": "EUR",
+              "Valeur": 3,
+              "Capacite": 10
+            }
+          },
+          {
+            "key": null,
+            "value": {
+              "DateMessage": "msg",
+              "IdGare": "25006123",
+              "Voie": "007",
+              "DateComptage": "compt",
+              "Position": 12,
+              "Numero": "07",
+              "Type": "piece",
+              "Devise": "EUR",
+              "Valeur": 3,
+              "Capacite": 10
+            }
+          },
+          {
+            "key": null,
+            "value": {
+              "DateMessage": "msg",
+              "IdGare": "25006123",
+              "Voie": "007",
+              "DateComptage": "compt",
+              "Position": 13,
+              "Numero": "07",
+              "Type": "piece",
+              "Devise": "EUR",
+              "Valeur": 3,
+              "Capacite": 10
+            }
+          },
+          {
+            "key": null,
+            "value": {
+              "DateMessage": "msg",
+              "IdGare": "25006123",
+              "Voie": "007",
+              "DateComptage": "compt",
+              "Position": 3,
+              "Numero": "07",
+              "Type": "piece",
+              "Devise": "EUR",
+              "Valeur": 3,
+              "Capacite": 10
+            }
+          },
+          {
+            "key": null,
+            "value": {
+              "DateMessage": "msg",
+              "IdGare": "25006123",
+              "Voie": "007",
+              "DateComptage": "compt",
+              "Position": -3,
+              "Numero": "07",
+              "Type": "piece",
+              "Devise": "EUR",
+              "Valeur": 3,
+              "Capacite": 10
+            }
+          },
+          {
+            "key": null,
+            "value": {
+              "DateMessage": "msg",
+              "IdGare": "25006123",
+              "Voie": "007",
+              "DateComptage": "compt",
+              "Position": null,
+              "Numero": "07",
+              "Type": "piece",
+              "Devise": "EUR",
+              "Valeur": 3,
+              "Capacite": 10
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "duplicates",
+      "key": null,
+      "value": {
+        "message": {
+          "numero": 1,
+          "DHM": "msg"
+        },
+        "comptageBols": {
+          "dhm": "compt",
+          "localisation": {
+            "gare": "25006123",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          }
+        },
+        "etats": [
+          {
+            "sujet": "bol.07.fill",
+            "status": [
+              "ok"
+            ],
+            "contenu": {
+              "devise": "EUR",
+              "valeur": 0.1,
+              "courant": 3,
+              "maximum": 10,
+              "type": "piece"
+            }
+          },
+          {
+            "sujet": "bol.07.fill",
+            "status": [
+              "ok"
+            ],
+            "contenu": {
+              "devise": "EUR",
+              "valeur": 0.1,
+              "courant": 3,
+              "maximum": 10,
+              "type": "piece"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "esc-exploded": [
+          {
+            "key": null,
+            "value": {
+              "message": {
+                "numero": 1,
+                "DHM": "msg"
+              },
+              "comptageBols": {
+                "dhm": "compt",
+                "localisation": {
+                  "gare": "25006123",
+                  "equipement": {
+                    "numero": "007",
+                    "type": "VS"
+                  }
+                }
+              },
+              "Etat": {
+                "sujet": "bol.07.fill",
+                "status": [
+                  "ok"
+                ],
+                "contenu": {
+                  "devise": "EUR",
+                  "valeur": 0.1,
+                  "courant": 3,
+                  "maximum": 10,
+                  "type": "piece"
+                }
+              }
+            }
+          },
+          {
+            "key": null,
+            "value": {
+              "message": {
+                "numero": 1,
+                "DHM": "msg"
+              },
+              "comptageBols": {
+                "dhm": "compt",
+                "localisation": {
+                  "gare": "25006123",
+                  "equipement": {
+                    "numero": "007",
+                    "type": "VS"
+                  }
+                }
+              },
+              "Etat": {
+                "sujet": "bol.07.fill",
+                "status": [
+                  "ok"
+                ],
+                "contenu": {
+                  "devise": "EUR",
+                  "valeur": 0.1,
+                  "courant": 3,
+                  "maximum": 10,
+                  "type": "piece"
+                }
+              }
+            }
+          }
+        ],
+        "esc-bol": [
+          {
+            "key": null,
+            "value": {
+              "DateMessage": "msg",
+              "IdGare": "25006123",
+              "Voie": "007",
+              "DateComptage": "compt",
+              "Position": 9,
+              "Numero": "07",
+              "Type": "piece",
+              "Devise": "EUR",
+              "Valeur": 3,
+              "Capacite": 10
+            }
+          },
+          {
+            "key": null,
+            "value": {
+              "DateMessage": "msg",
+              "IdGare": "25006123",
+              "Voie": "007",
+              "DateComptage": "compt",
+              "Position": 9,
+              "Numero": "07",
+              "Type": "piece",
+              "Devise": "EUR",
+              "Valeur": 3,
+              "Capacite": 10
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "no-dot",
+      "key": null,
+      "value": {
+        "message": {
+          "numero": 1,
+          "DHM": "msg"
+        },
+        "comptageBols": {
+          "dhm": "compt",
+          "localisation": {
+            "gare": "25006123",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          }
+        },
+        "etats": [
+          {
+            "sujet": "bol",
+            "status": [
+              "ok"
+            ],
+            "contenu": {
+              "devise": "EUR",
+              "valeur": 1.0,
+              "courant": 3,
+              "maximum": 10,
+              "type": "piece"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "esc-exploded": [
+          {
+            "key": null,
+            "value": {
+              "message": {
+                "numero": 1,
+                "DHM": "msg"
+              },
+              "comptageBols": {
+                "dhm": "compt",
+                "localisation": {
+                  "gare": "25006123",
+                  "equipement": {
+                    "numero": "007",
+                    "type": "VS"
+                  }
+                }
+              },
+              "Etat": {
+                "sujet": "bol",
+                "status": [
+                  "ok"
+                ],
+                "contenu": {
+                  "devise": "EUR",
+                  "valeur": 1.0,
+                  "courant": 3,
+                  "maximum": 10,
+                  "type": "piece"
+                }
+              }
+            }
+          }
+        ],
+        "esc-bol": [
+          {
+            "key": null,
+            "value": {
+              "DateMessage": "msg",
+              "IdGare": "25006123",
+              "Voie": "007",
+              "DateComptage": "compt",
+              "Position": 12,
+              "Numero": null,
+              "Type": "piece",
+              "Devise": "EUR",
+              "Valeur": 3,
+              "Capacite": 10
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "trailing-dot",
+      "key": null,
+      "value": {
+        "message": {
+          "numero": 1,
+          "DHM": "msg"
+        },
+        "comptageBols": {
+          "dhm": "compt",
+          "localisation": {
+            "gare": "25006123",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          }
+        },
+        "etats": [
+          {
+            "sujet": "bol.",
+            "status": [
+              "ok"
+            ],
+            "contenu": {
+              "devise": "EUR",
+              "valeur": 1.0,
+              "courant": 3,
+              "maximum": 10,
+              "type": "piece"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "esc-exploded": [
+          {
+            "key": null,
+            "value": {
+              "message": {
+                "numero": 1,
+                "DHM": "msg"
+              },
+              "comptageBols": {
+                "dhm": "compt",
+                "localisation": {
+                  "gare": "25006123",
+                  "equipement": {
+                    "numero": "007",
+                    "type": "VS"
+                  }
+                }
+              },
+              "Etat": {
+                "sujet": "bol.",
+                "status": [
+                  "ok"
+                ],
+                "contenu": {
+                  "devise": "EUR",
+                  "valeur": 1.0,
+                  "courant": 3,
+                  "maximum": 10,
+                  "type": "piece"
+                }
+              }
+            }
+          }
+        ],
+        "esc-bol": [
+          {
+            "key": null,
+            "value": {
+              "DateMessage": "msg",
+              "IdGare": "25006123",
+              "Voie": "007",
+              "DateComptage": "compt",
+              "Position": 12,
+              "Numero": "",
+              "Type": "piece",
+              "Devise": "EUR",
+              "Valeur": 3,
+              "Capacite": 10
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "equipment-MRB",
+      "key": null,
+      "value": {
+        "message": {
+          "numero": 1,
+          "DHM": "msg"
+        },
+        "comptageBols": {
+          "dhm": "compt",
+          "localisation": {
+            "gare": "25006123",
+            "equipement": {
+              "numero": "007",
+              "type": "MRB"
+            }
+          }
+        },
+        "etats": [
+          {
+            "sujet": "bol.07.fill",
+            "status": [
+              "ok"
+            ],
+            "contenu": {
+              "devise": "EUR",
+              "valeur": 1.0,
+              "courant": 3,
+              "maximum": 10,
+              "type": "piece"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "esc-exploded": [
+          {
+            "key": null,
+            "value": {
+              "message": {
+                "numero": 1,
+                "DHM": "msg"
+              },
+              "comptageBols": {
+                "dhm": "compt",
+                "localisation": {
+                  "gare": "25006123",
+                  "equipement": {
+                    "numero": "007",
+                    "type": "MRB"
+                  }
+                }
+              },
+              "Etat": {
+                "sujet": "bol.07.fill",
+                "status": [
+                  "ok"
+                ],
+                "contenu": {
+                  "devise": "EUR",
+                  "valeur": 1.0,
+                  "courant": 3,
+                  "maximum": 10,
+                  "type": "piece"
+                }
+              }
+            }
+          }
+        ],
+        "esc-bol": []
+      }
+    },
+    {
+      "name": "equipment-None",
+      "key": null,
+      "value": {
+        "message": {
+          "numero": 1,
+          "DHM": "msg"
+        },
+        "comptageBols": {
+          "dhm": "compt",
+          "localisation": {
+            "gare": "25006123",
+            "equipement": {
+              "numero": "007",
+              "type": null
+            }
+          }
+        },
+        "etats": [
+          {
+            "sujet": "bol.07.fill",
+            "status": [
+              "ok"
+            ],
+            "contenu": {
+              "devise": "EUR",
+              "valeur": 1.0,
+              "courant": 3,
+              "maximum": 10,
+              "type": "piece"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "esc-exploded": [
+          {
+            "key": null,
+            "value": {
+              "message": {
+                "numero": 1,
+                "DHM": "msg"
+              },
+              "comptageBols": {
+                "dhm": "compt",
+                "localisation": {
+                  "gare": "25006123",
+                  "equipement": {
+                    "numero": "007",
+                    "type": null
+                  }
+                }
+              },
+              "Etat": {
+                "sujet": "bol.07.fill",
+                "status": [
+                  "ok"
+                ],
+                "contenu": {
+                  "devise": "EUR",
+                  "valeur": 1.0,
+                  "courant": 3,
+                  "maximum": 10,
+                  "type": "piece"
+                }
+              }
+            }
+          }
+        ],
+        "esc-bol": []
+      }
+    },
+    {
+      "name": "wrong-gare",
+      "key": null,
+      "value": {
+        "message": {
+          "numero": 1,
+          "DHM": "msg"
+        },
+        "comptageBols": {
+          "dhm": "compt",
+          "localisation": {
+            "gare": "99999",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          }
+        },
+        "etats": [
+          {
+            "sujet": "bol.07.fill",
+            "status": [
+              "ok"
+            ],
+            "contenu": {
+              "devise": "EUR",
+              "valeur": 1.0,
+              "courant": 3,
+              "maximum": 10,
+              "type": "piece"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "esc-exploded": [
+          {
+            "key": null,
+            "value": {
+              "message": {
+                "numero": 1,
+                "DHM": "msg"
+              },
+              "comptageBols": {
+                "dhm": "compt",
+                "localisation": {
+                  "gare": "99999",
+                  "equipement": {
+                    "numero": "007",
+                    "type": "VS"
+                  }
+                }
+              },
+              "Etat": {
+                "sujet": "bol.07.fill",
+                "status": [
+                  "ok"
+                ],
+                "contenu": {
+                  "devise": "EUR",
+                  "valeur": 1.0,
+                  "courant": 3,
+                  "maximum": 10,
+                  "type": "piece"
+                }
+              }
+            }
+          }
+        ],
+        "esc-bol": []
+      }
+    },
+    {
+      "name": "empty",
+      "key": null,
+      "value": {
+        "message": {
+          "numero": 1,
+          "DHM": "msg"
+        },
+        "comptageBols": {
+          "dhm": "compt",
+          "localisation": {
+            "gare": "25006123",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          }
+        },
+        "etats": []
+      },
+      "expected": {
+        "esc-exploded": [],
+        "esc-bol": []
+      }
+    },
+    {
+      "name": "null-array",
+      "key": null,
+      "value": {
+        "message": {
+          "numero": 1,
+          "DHM": "msg"
+        },
+        "comptageBols": {
+          "dhm": "compt",
+          "localisation": {
+            "gare": "25006123",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          }
+        },
+        "etats": null
+      },
+      "expected": {
+        "esc-exploded": [],
+        "esc-bol": []
+      }
+    },
+    {
+      "name": "tombstone",
+      "key": null,
+      "value": null,
+      "expected": {}
+    }
+  ],
+  "esc-synoptique": [
+    {
+      "name": "all-positive",
+      "key": "c3luLWVzYw==",
+      "value": {
+        "SYNOPTIQUE": {
+          "DHM": "msg",
+          "LOCALISATION": {
+            "GARE": "25006001",
+            "EQUIPEMENT": {
+              "NUMERO": "019",
+              "TYPE": "BE"
+            }
+          }
+        },
+        "ETATEQUIPEMENTS": [
+          {
+            "SUJET": "comLS",
+            "ETAT": "comKO"
+          },
+          {
+            "SUJET": "contreSens",
+            "ETAT": "actif"
+          },
+          {
+            "SUJET": "feu.affectation.flecheVerte",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "feu.affectation.TIS",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "feu.affectation.carte",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "paiement.espece",
+            "ETAT": "accepte"
+          }
+        ]
+      },
+      "expected": {
+        "esc-fav": [
+          {
+            "key": "c3luLWVzYw==",
+            "value": {
+              "DHM": "msg",
+              "GARE": "25006001",
+              "VOIE": "019",
+              "GAREGROUP": 1,
+              "ENTREESORTIE": "E",
+              "COMLSKO": 1,
+              "CONTRESENS": 1,
+              "FAVFLECHEVERTE": 1,
+              "FAVTIS": 1,
+              "FAVCB": 1,
+              "PAIEMENTESPECE": 1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "all-negative",
+      "key": "c3luLWVzYw==",
+      "value": {
+        "SYNOPTIQUE": {
+          "DHM": "msg",
+          "LOCALISATION": {
+            "GARE": "25006001",
+            "EQUIPEMENT": {
+              "NUMERO": "019",
+              "TYPE": "BE"
+            }
+          }
+        },
+        "ETATEQUIPEMENTS": [
+          {
+            "SUJET": "comLS",
+            "ETAT": "comOKNTR"
+          },
+          {
+            "SUJET": "contreSens",
+            "ETAT": "nonActif"
+          },
+          {
+            "SUJET": "feu.affectation.flecheVerte",
+            "ETAT": "eteint"
+          },
+          {
+            "SUJET": "feu.affectation.TIS",
+            "ETAT": "eteint"
+          },
+          {
+            "SUJET": "feu.affectation.carte",
+            "ETAT": "eteint"
+          },
+          {
+            "SUJET": "paiement.espece",
+            "ETAT": "nonAccepte"
+          }
+        ]
+      },
+      "expected": {
+        "esc-fav": [
+          {
+            "key": "c3luLWVzYw==",
+            "value": {
+              "DHM": "msg",
+              "GARE": "25006001",
+              "VOIE": "019",
+              "GAREGROUP": 1,
+              "ENTREESORTIE": "E",
+              "COMLSKO": 0,
+              "CONTRESENS": 0,
+              "FAVFLECHEVERTE": 0,
+              "FAVTIS": 0,
+              "FAVCB": 0,
+              "PAIEMENTESPECE": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "precedence",
+      "key": "c3luLWVzYw==",
+      "value": {
+        "SYNOPTIQUE": {
+          "DHM": "msg",
+          "LOCALISATION": {
+            "GARE": "25006001",
+            "EQUIPEMENT": {
+              "NUMERO": "019",
+              "TYPE": "BE"
+            }
+          }
+        },
+        "ETATEQUIPEMENTS": [
+          {
+            "SUJET": "comLS",
+            "ETAT": "comOKNTR"
+          },
+          {
+            "SUJET": "contreSens",
+            "ETAT": "nonActif"
+          },
+          {
+            "SUJET": "feu.affectation.flecheVerte",
+            "ETAT": "eteint"
+          },
+          {
+            "SUJET": "feu.affectation.TIS",
+            "ETAT": "eteint"
+          },
+          {
+            "SUJET": "feu.affectation.carte",
+            "ETAT": "eteint"
+          },
+          {
+            "SUJET": "paiement.espece",
+            "ETAT": "nonAccepte"
+          },
+          {
+            "SUJET": "comLS",
+            "ETAT": "comKO"
+          },
+          {
+            "SUJET": "contreSens",
+            "ETAT": "actif"
+          },
+          {
+            "SUJET": "feu.affectation.flecheVerte",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "feu.affectation.TIS",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "feu.affectation.carte",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "paiement.espece",
+            "ETAT": "accepte"
+          }
+        ]
+      },
+      "expected": {
+        "esc-fav": [
+          {
+            "key": "c3luLWVzYw==",
+            "value": {
+              "DHM": "msg",
+              "GARE": "25006001",
+              "VOIE": "019",
+              "GAREGROUP": 1,
+              "ENTREESORTIE": "E",
+              "COMLSKO": 1,
+              "CONTRESENS": 1,
+              "FAVFLECHEVERTE": 1,
+              "FAVTIS": 1,
+              "FAVCB": 1,
+              "PAIEMENTESPECE": 1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "null-key",
+      "key": null,
+      "value": {
+        "SYNOPTIQUE": {
+          "DHM": "msg",
+          "LOCALISATION": {
+            "GARE": "25006001",
+            "EQUIPEMENT": {
+              "NUMERO": "019",
+              "TYPE": "BE"
+            }
+          }
+        },
+        "ETATEQUIPEMENTS": [
+          {
+            "SUJET": "comLS",
+            "ETAT": "comKO"
+          },
+          {
+            "SUJET": "contreSens",
+            "ETAT": "actif"
+          },
+          {
+            "SUJET": "feu.affectation.flecheVerte",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "feu.affectation.TIS",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "feu.affectation.carte",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "paiement.espece",
+            "ETAT": "accepte"
+          }
+        ]
+      },
+      "expected": {
+        "esc-fav": [
+          {
+            "key": null,
+            "value": {
+              "DHM": "msg",
+              "GARE": "25006001",
+              "VOIE": "019",
+              "GAREGROUP": 1,
+              "ENTREESORTIE": "E",
+              "COMLSKO": 1,
+              "CONTRESENS": 1,
+              "FAVFLECHEVERTE": 1,
+              "FAVTIS": 1,
+              "FAVCB": 1,
+              "PAIEMENTESPECE": 1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "excluded-BECM",
+      "key": "c3luLWVzYw==",
+      "value": {
+        "SYNOPTIQUE": {
+          "DHM": "msg",
+          "LOCALISATION": {
+            "GARE": "25006001",
+            "EQUIPEMENT": {
+              "NUMERO": "019",
+              "TYPE": "BECM"
+            }
+          }
+        },
+        "ETATEQUIPEMENTS": [
+          {
+            "SUJET": "comLS",
+            "ETAT": "comKO"
+          },
+          {
+            "SUJET": "contreSens",
+            "ETAT": "actif"
+          },
+          {
+            "SUJET": "feu.affectation.flecheVerte",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "feu.affectation.TIS",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "feu.affectation.carte",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "paiement.espece",
+            "ETAT": "accepte"
+          }
+        ]
+      },
+      "expected": {
+        "esc-fav": [
+          {
+            "key": "c3luLWVzYw==",
+            "value": {
+              "DHM": "msg",
+              "GARE": "25006001",
+              "VOIE": "019",
+              "GAREGROUP": 1,
+              "ENTREESORTIE": "S",
+              "COMLSKO": 1,
+              "CONTRESENS": 1,
+              "FAVFLECHEVERTE": 1,
+              "FAVTIS": 1,
+              "FAVCB": 1,
+              "PAIEMENTESPECE": 1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "excluded-VSP",
+      "key": "c3luLWVzYw==",
+      "value": {
+        "SYNOPTIQUE": {
+          "DHM": "msg",
+          "LOCALISATION": {
+            "GARE": "25006001",
+            "EQUIPEMENT": {
+              "NUMERO": "019",
+              "TYPE": "VSP"
+            }
+          }
+        },
+        "ETATEQUIPEMENTS": [
+          {
+            "SUJET": "comLS",
+            "ETAT": "comKO"
+          },
+          {
+            "SUJET": "contreSens",
+            "ETAT": "actif"
+          },
+          {
+            "SUJET": "feu.affectation.flecheVerte",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "feu.affectation.TIS",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "feu.affectation.carte",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "paiement.espece",
+            "ETAT": "accepte"
+          }
+        ]
+      },
+      "expected": {
+        "esc-fav": [
+          {
+            "key": "c3luLWVzYw==",
+            "value": {
+              "DHM": "msg",
+              "GARE": "25006001",
+              "VOIE": "019",
+              "GAREGROUP": 1,
+              "ENTREESORTIE": "S",
+              "COMLSKO": 1,
+              "CONTRESENS": 1,
+              "FAVFLECHEVERTE": 1,
+              "FAVTIS": 1,
+              "FAVCB": 1,
+              "PAIEMENTESPECE": 1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "escota",
+      "key": "c3luLWVzYw==",
+      "value": {
+        "SYNOPTIQUE": {
+          "DHM": "msg",
+          "LOCALISATION": {
+            "GARE": "25006001",
+            "EQUIPEMENT": {
+              "NUMERO": "019",
+              "TYPE": "BE ESCOTA"
+            }
+          }
+        },
+        "ETATEQUIPEMENTS": [
+          {
+            "SUJET": "comLS",
+            "ETAT": "comKO"
+          },
+          {
+            "SUJET": "contreSens",
+            "ETAT": "actif"
+          },
+          {
+            "SUJET": "feu.affectation.flecheVerte",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "feu.affectation.TIS",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "feu.affectation.carte",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "paiement.espece",
+            "ETAT": "accepte"
+          }
+        ]
+      },
+      "expected": {
+        "esc-fav": [
+          {
+            "key": "c3luLWVzYw==",
+            "value": {
+              "DHM": "msg",
+              "GARE": "25006001",
+              "VOIE": "019",
+              "GAREGROUP": 1,
+              "ENTREESORTIE": "E",
+              "COMLSKO": 1,
+              "CONTRESENS": 1,
+              "FAVFLECHEVERTE": 1,
+              "FAVTIS": 1,
+              "FAVCB": 1,
+              "PAIEMENTESPECE": 1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "group-20",
+      "key": "c3luLWVzYw==",
+      "value": {
+        "SYNOPTIQUE": {
+          "DHM": "msg",
+          "LOCALISATION": {
+            "GARE": "25006001",
+            "EQUIPEMENT": {
+              "NUMERO": "020",
+              "TYPE": "BE"
+            }
+          }
+        },
+        "ETATEQUIPEMENTS": [
+          {
+            "SUJET": "comLS",
+            "ETAT": "comKO"
+          },
+          {
+            "SUJET": "contreSens",
+            "ETAT": "actif"
+          },
+          {
+            "SUJET": "feu.affectation.flecheVerte",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "feu.affectation.TIS",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "feu.affectation.carte",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "paiement.espece",
+            "ETAT": "accepte"
+          }
+        ]
+      },
+      "expected": {
+        "esc-fav": [
+          {
+            "key": "c3luLWVzYw==",
+            "value": {
+              "DHM": "msg",
+              "GARE": "25006001",
+              "VOIE": "020",
+              "GAREGROUP": 2,
+              "ENTREESORTIE": "E",
+              "COMLSKO": 1,
+              "CONTRESENS": 1,
+              "FAVFLECHEVERTE": 1,
+              "FAVTIS": 1,
+              "FAVCB": 1,
+              "PAIEMENTESPECE": 1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "outside-list",
+      "key": "c3luLWVzYw==",
+      "value": {
+        "SYNOPTIQUE": {
+          "DHM": "msg",
+          "LOCALISATION": {
+            "GARE": "other",
+            "EQUIPEMENT": {
+              "NUMERO": "020",
+              "TYPE": "BE"
+            }
+          }
+        },
+        "ETATEQUIPEMENTS": [
+          {
+            "SUJET": "comLS",
+            "ETAT": "comKO"
+          },
+          {
+            "SUJET": "contreSens",
+            "ETAT": "actif"
+          },
+          {
+            "SUJET": "feu.affectation.flecheVerte",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "feu.affectation.TIS",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "feu.affectation.carte",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "paiement.espece",
+            "ETAT": "accepte"
+          }
+        ]
+      },
+      "expected": {
+        "esc-fav": [
+          {
+            "key": "c3luLWVzYw==",
+            "value": {
+              "DHM": "msg",
+              "GARE": "other",
+              "VOIE": "020",
+              "GAREGROUP": 1,
+              "ENTREESORTIE": "E",
+              "COMLSKO": 1,
+              "CONTRESENS": 1,
+              "FAVFLECHEVERTE": 1,
+              "FAVTIS": 1,
+              "FAVCB": 1,
+              "PAIEMENTESPECE": 1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "missing-number",
+      "key": "c3luLWVzYw==",
+      "value": {
+        "SYNOPTIQUE": {
+          "DHM": "msg",
+          "LOCALISATION": {
+            "GARE": "25006001",
+            "EQUIPEMENT": {
+              "NUMERO": null,
+              "TYPE": "BE"
+            }
+          }
+        },
+        "ETATEQUIPEMENTS": [
+          {
+            "SUJET": "comLS",
+            "ETAT": "comKO"
+          },
+          {
+            "SUJET": "contreSens",
+            "ETAT": "actif"
+          },
+          {
+            "SUJET": "feu.affectation.flecheVerte",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "feu.affectation.TIS",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "feu.affectation.carte",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "paiement.espece",
+            "ETAT": "accepte"
+          }
+        ]
+      },
+      "expected": {
+        "esc-fav": [
+          {
+            "key": "c3luLWVzYw==",
+            "value": {
+              "DHM": "msg",
+              "GARE": "25006001",
+              "VOIE": null,
+              "GAREGROUP": 2,
+              "ENTREESORTIE": "E",
+              "COMLSKO": 1,
+              "CONTRESENS": 1,
+              "FAVFLECHEVERTE": 1,
+              "FAVTIS": 1,
+              "FAVCB": 1,
+              "PAIEMENTESPECE": 1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "null-type",
+      "key": "c3luLWVzYw==",
+      "value": {
+        "SYNOPTIQUE": {
+          "DHM": "msg",
+          "LOCALISATION": {
+            "GARE": "25006001",
+            "EQUIPEMENT": {
+              "NUMERO": "019",
+              "TYPE": null
+            }
+          }
+        },
+        "ETATEQUIPEMENTS": [
+          {
+            "SUJET": "comLS",
+            "ETAT": "comKO"
+          },
+          {
+            "SUJET": "contreSens",
+            "ETAT": "actif"
+          },
+          {
+            "SUJET": "feu.affectation.flecheVerte",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "feu.affectation.TIS",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "feu.affectation.carte",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "paiement.espece",
+            "ETAT": "accepte"
+          }
+        ]
+      },
+      "expected": {
+        "esc-fav": [
+          {
+            "key": "c3luLWVzYw==",
+            "value": {
+              "DHM": "msg",
+              "GARE": "25006001",
+              "VOIE": "019",
+              "GAREGROUP": 1,
+              "ENTREESORTIE": "S",
+              "COMLSKO": 1,
+              "CONTRESENS": 1,
+              "FAVFLECHEVERTE": 1,
+              "FAVTIS": 1,
+              "FAVCB": 1,
+              "PAIEMENTESPECE": 1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "one-flag",
+      "key": "c3luLWVzYw==",
+      "value": {
+        "SYNOPTIQUE": {
+          "DHM": "msg",
+          "LOCALISATION": {
+            "GARE": "25006001",
+            "EQUIPEMENT": {
+              "NUMERO": "019",
+              "TYPE": "BE"
+            }
+          }
+        },
+        "ETATEQUIPEMENTS": [
+          {
+            "SUJET": "comLS",
+            "ETAT": "comKO"
+          }
+        ]
+      },
+      "expected": {
+        "esc-fav": [
+          {
+            "key": "c3luLWVzYw==",
+            "value": {
+              "DHM": "msg",
+              "GARE": "25006001",
+              "VOIE": "019",
+              "GAREGROUP": 1,
+              "ENTREESORTIE": "E",
+              "COMLSKO": 1,
+              "CONTRESENS": null,
+              "FAVFLECHEVERTE": null,
+              "FAVTIS": null,
+              "FAVCB": null,
+              "PAIEMENTESPECE": null
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "empty",
+      "key": "c3luLWVzYw==",
+      "value": {
+        "SYNOPTIQUE": {
+          "DHM": "msg",
+          "LOCALISATION": {
+            "GARE": "25006001",
+            "EQUIPEMENT": {
+              "NUMERO": "019",
+              "TYPE": "BE"
+            }
+          }
+        },
+        "ETATEQUIPEMENTS": []
+      },
+      "expected": {}
+    },
+    {
+      "name": "missing-synoptique",
+      "key": "c3luLWVzYw==",
+      "value": {
+        "SYNOPTIQUE": null,
+        "ETATEQUIPEMENTS": [
+          {
+            "SUJET": "comLS",
+            "ETAT": "comKO"
+          }
+        ]
+      },
+      "expected": {
+        "esc-fav": [
+          {
+            "key": "c3luLWVzYw==",
+            "value": {
+              "DHM": null,
+              "GARE": null,
+              "VOIE": null,
+              "GAREGROUP": 1,
+              "ENTREESORTIE": "S",
+              "COMLSKO": 1,
+              "CONTRESENS": null,
+              "FAVFLECHEVERTE": null,
+              "FAVTIS": null,
+              "FAVCB": null,
+              "PAIEMENTESPECE": null
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "null-array",
+      "key": "c3luLWVzYw==",
+      "value": {
+        "SYNOPTIQUE": {
+          "DHM": "msg",
+          "LOCALISATION": {
+            "GARE": "25006001",
+            "EQUIPEMENT": {
+              "NUMERO": "019",
+              "TYPE": "BE"
+            }
+          }
+        },
+        "ETATEQUIPEMENTS": null
+      },
+      "expected": {}
+    },
+    {
+      "name": "tombstone",
+      "key": "c3luLWVzYw==",
+      "value": null,
+      "expected": {}
+    },
+    {
+      "name": "comOKTR",
+      "key": "c3luLWVzYw==",
+      "value": {
+        "SYNOPTIQUE": {
+          "DHM": "msg",
+          "LOCALISATION": {
+            "GARE": "25006001",
+            "EQUIPEMENT": {
+              "NUMERO": "019",
+              "TYPE": "BE"
+            }
+          }
+        },
+        "ETATEQUIPEMENTS": [
+          {
+            "SUJET": "comLS",
+            "ETAT": "comOKTR"
+          }
+        ]
+      },
+      "expected": {
+        "esc-fav": [
+          {
+            "key": "c3luLWVzYw==",
+            "value": {
+              "DHM": "msg",
+              "GARE": "25006001",
+              "VOIE": "019",
+              "GAREGROUP": 1,
+              "ENTREESORTIE": "E",
+              "COMLSKO": 0,
+              "CONTRESENS": null,
+              "FAVFLECHEVERTE": null,
+              "FAVTIS": null,
+              "FAVCB": null,
+              "PAIEMENTESPECE": null
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "unknown-struct-field",
+      "key": "c3luLWVzYw==",
+      "value": {
+        "SYNOPTIQUE": {
+          "DHM": "msg",
+          "LOCALISATION": {
+            "GARE": "25006001",
+            "EQUIPEMENT": {
+              "NUMERO": "019",
+              "TYPE": "BE"
+            }
+          }
+        },
+        "ETATEQUIPEMENTS": [
+          {
+            "SUJET": "comLS",
+            "ETAT": "comKO",
+            "unexpected": "ignored"
+          },
+          {
+            "SUJET": "contreSens",
+            "ETAT": "actif"
+          },
+          {
+            "SUJET": "feu.affectation.flecheVerte",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "feu.affectation.TIS",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "feu.affectation.carte",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "paiement.espece",
+            "ETAT": "accepte"
+          }
+        ]
+      },
+      "expected": {
+        "esc-fav": [
+          {
+            "key": "c3luLWVzYw==",
+            "value": {
+              "DHM": "msg",
+              "GARE": "25006001",
+              "VOIE": "019",
+              "GAREGROUP": 1,
+              "ENTREESORTIE": "E",
+              "COMLSKO": 1,
+              "CONTRESENS": 1,
+              "FAVFLECHEVERTE": 1,
+              "FAVTIS": 1,
+              "FAVCB": 1,
+              "PAIEMENTESPECE": 1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "null-array-members",
+      "key": "c3luLWVzYw==",
+      "value": {
+        "SYNOPTIQUE": {
+          "DHM": "msg",
+          "LOCALISATION": {
+            "GARE": "25006001",
+            "EQUIPEMENT": {
+              "NUMERO": "019",
+              "TYPE": "BE"
+            }
+          }
+        },
+        "ETATEQUIPEMENTS": [
+          null,
+          {
+            "SUJET": "comLS",
+            "ETAT": "comKO"
+          },
+          {
+            "SUJET": "contreSens",
+            "ETAT": "actif"
+          },
+          {
+            "SUJET": "feu.affectation.flecheVerte",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "feu.affectation.TIS",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "feu.affectation.carte",
+            "ETAT": "allume"
+          },
+          {
+            "SUJET": "paiement.espece",
+            "ETAT": "accepte"
+          },
+          null
+        ]
+      },
+      "expected": {
+        "esc-fav": [
+          {
+            "key": "c3luLWVzYw==",
+            "value": {
+              "DHM": "msg",
+              "GARE": "25006001",
+              "VOIE": "019",
+              "GAREGROUP": 1,
+              "ENTREESORTIE": "E",
+              "COMLSKO": 1,
+              "CONTRESENS": 1,
+              "FAVFLECHEVERTE": 1,
+              "FAVTIS": 1,
+              "FAVCB": 1,
+              "PAIEMENTESPECE": 1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "unknown-state",
+      "key": "c3luLWVzYw==",
+      "value": {
+        "SYNOPTIQUE": {
+          "DHM": "msg",
+          "LOCALISATION": {
+            "GARE": "25006001",
+            "EQUIPEMENT": {
+              "NUMERO": "019",
+              "TYPE": "BE"
+            }
+          }
+        },
+        "ETATEQUIPEMENTS": [
+          {
+            "SUJET": "comLS",
+            "ETAT": "ComKO"
+          }
+        ]
+      },
+      "expected": {}
+    }
+  ]
+}
