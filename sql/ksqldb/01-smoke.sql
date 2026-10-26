@@ -1,0 +1,14 @@
+SET 'auto.offset.reset' = 'earliest';
+CREATE STREAM LAB_INPUT (ID STRING, PAYMENT_TYPE STRING, AMOUNT DOUBLE)
+WITH (KAFKA_TOPIC='lab.input', VALUE_FORMAT='JSON');
+CREATE STREAM LAB_KSQL WITH (KAFKA_TOPIC='lab.output.ksql', VALUE_FORMAT='JSON', PARTITIONS=6, REPLICAS=1)
+AS SELECT ID, AMOUNT,
+  CASE
+    WHEN LCASE(PAYMENT_TYPE) = 'telepeagelibert' THEN 256
+    WHEN LCASE(PAYMENT_TYPE) = 'telepeagecardme' THEN 512
+    WHEN LCASE(PAYMENT_TYPE) = 'carteaccreditive' THEN 1024
+    WHEN LCASE(PAYMENT_TYPE) = 'cartemagnetique' THEN 2048
+    ELSE 0 END AS MODEREGLEMENT
+FROM LAB_INPUT
+WHERE LCASE(PAYMENT_TYPE) IN ('telepeagelibert', 'telepeagecardme', 'carteaccreditive', 'cartemagnetique')
+EMIT CHANGES;
