@@ -1,0 +1,298 @@
+[
+  {
+    "name": "ACR_PEAGE_LEXVA_PASSAGESORTIEVA_LEXHISTORIC_STREAM",
+    "lot": 1,
+    "difficulty": "Faible",
+    "reason": "Filtre/projection identique sur cinq sources, sans etat",
+    "line": 1936,
+    "status": "migre"
+  },
+  {
+    "name": "ARS_PEAGE_LEXVA_PASSAGESORTIEVA_LEXHISTORIC_STREAM",
+    "lot": 1,
+    "difficulty": "Faible",
+    "reason": "Filtre/projection identique sur cinq sources, sans etat",
+    "line": 413,
+    "status": "migre"
+  },
+  {
+    "name": "ASF_PEAGE_LEXVA_PASSAGESORTIEVA_LEXHISTORIC_STREAM",
+    "lot": 1,
+    "difficulty": "Faible",
+    "reason": "Filtre/projection identique sur cinq sources, sans etat",
+    "line": 1238,
+    "status": "migre"
+  },
+  {
+    "name": "COF_PEAGE_LEXVA_PASSAGESORTIEVA_LEXHISTORIC_STREAM",
+    "lot": 1,
+    "difficulty": "Faible",
+    "reason": "Filtre/projection identique sur cinq sources, sans etat",
+    "line": 471,
+    "status": "migre"
+  },
+  {
+    "name": "ESC_PEAGE_LEXVA_PASSAGESORTIEVA_LEXHISTORIC_STREAM",
+    "lot": 1,
+    "difficulty": "Faible",
+    "reason": "Filtre/projection identique sur cinq sources, sans etat",
+    "line": 115,
+    "status": "migre"
+  },
+  {
+    "name": "IQ_PASSAGEENTREE_CONFORME_VA_FROM_ACR",
+    "lot": 2,
+    "difficulty": "Faible",
+    "reason": "Consolidation SELECT * ; schemas imbriques, cles et multiplicite",
+    "line": 1218,
+    "status": "a migrer"
+  },
+  {
+    "name": "IQ_PASSAGEENTREE_CONFORME_VA_FROM_COF",
+    "lot": 2,
+    "difficulty": "Faible",
+    "reason": "Consolidation SELECT * ; schemas imbriques, cles et multiplicite",
+    "line": 1385,
+    "status": "a migrer"
+  },
+  {
+    "name": "IQ_PASSAGEENTREE_CONFORME_VA_FROM_ESC",
+    "lot": 2,
+    "difficulty": "Faible",
+    "reason": "Consolidation SELECT * ; schemas imbriques, cles et multiplicite",
+    "line": 1768,
+    "status": "a migrer"
+  },
+  {
+    "name": "IQ_PASSAGESORTIE_CONFORME_VA_FROM_ACR",
+    "lot": 2,
+    "difficulty": "Faible",
+    "reason": "Consolidation SELECT * ; schemas imbriques, cles et multiplicite",
+    "line": 585,
+    "status": "a migrer"
+  },
+  {
+    "name": "IQ_PASSAGESORTIE_CONFORME_VA_FROM_ARS",
+    "lot": 2,
+    "difficulty": "Faible",
+    "reason": "Consolidation SELECT * ; schemas imbriques, cles et multiplicite",
+    "line": 583,
+    "status": "a migrer"
+  },
+  {
+    "name": "IQ_PASSAGESORTIE_CONFORME_VA_FROM_COF",
+    "lot": 2,
+    "difficulty": "Faible",
+    "reason": "Consolidation SELECT * ; schemas imbriques, cles et multiplicite",
+    "line": 586,
+    "status": "a migrer"
+  },
+  {
+    "name": "IQ_PASSAGESORTIE_CONFORME_VA_FROM_ESC",
+    "lot": 2,
+    "difficulty": "Faible",
+    "reason": "Consolidation SELECT * ; schemas imbriques, cles et multiplicite",
+    "line": 463,
+    "status": "a migrer"
+  },
+  {
+    "name": "VA_PEAGE_VOIE_PASSAGEENTREE_CONFORME_VA",
+    "lot": 2,
+    "difficulty": "Faible",
+    "reason": "Consolidation SELECT * ; schemas imbriques, cles et multiplicite",
+    "line": 1823,
+    "status": "a migrer"
+  },
+  {
+    "name": "VA_PEAGE_VOIE_PASSAGESORTIE_CONFORME_VA",
+    "lot": 2,
+    "difficulty": "Faible",
+    "reason": "Consolidation SELECT * ; schemas imbriques, cles et multiplicite",
+    "line": 557,
+    "status": "a migrer"
+  },
+  {
+    "name": "VA_PEAGE_BACKOFFICE_SOCLEET_COMPTEUR",
+    "lot": 3,
+    "difficulty": "Faible",
+    "reason": "Projection simple ; dependances amont pour compteur",
+    "line": 515,
+    "status": "a migrer"
+  },
+  {
+    "name": "VA_PEAGE_CLASSIFICATION_FLOWS_EXTEND",
+    "lot": 3,
+    "difficulty": "Faible",
+    "reason": "Projection simple ; dependances amont pour compteur",
+    "line": 372,
+    "status": "a migrer"
+  },
+  {
+    "name": "ASF_PEAGE_SUIVICONSO_COMPTAGE_BOL",
+    "lot": 4,
+    "difficulty": "Moyenne",
+    "reason": "EXPLODE, tableaux de structures, nulls et variantes reseau",
+    "line": 614,
+    "status": "a migrer"
+  },
+  {
+    "name": "ASF_PEAGE_SUIVICONSO_COMPTAGE_BOL_EXPLODED",
+    "lot": 4,
+    "difficulty": "Moyenne",
+    "reason": "EXPLODE, tableaux de structures, nulls et variantes reseau",
+    "line": 1016,
+    "status": "a migrer"
+  },
+  {
+    "name": "ASF_PEAGE_SUIVICONSO_COMPTAGE_COFFRE",
+    "lot": 4,
+    "difficulty": "Moyenne",
+    "reason": "EXPLODE, tableaux de structures, nulls et variantes reseau",
+    "line": 326,
+    "status": "a migrer"
+  },
+  {
+    "name": "ASF_PEAGE_TELEOP_SYNOPTIQUE_FAV_STREAM",
+    "lot": 4,
+    "difficulty": "Moyenne",
+    "reason": "EXPLODE, tableaux de structures, nulls et variantes reseau",
+    "line": 2135,
+    "status": "a migrer"
+  },
+  {
+    "name": "ESC_PEAGE_SUIVICONSO_COMPTAGE_BOL",
+    "lot": 4,
+    "difficulty": "Moyenne",
+    "reason": "EXPLODE, tableaux de structures, nulls et variantes reseau",
+    "line": 193,
+    "status": "a migrer"
+  },
+  {
+    "name": "ESC_PEAGE_SUIVICONSO_COMPTAGE_BOL_EXPLODED",
+    "lot": 4,
+    "difficulty": "Moyenne",
+    "reason": "EXPLODE, tableaux de structures, nulls et variantes reseau",
+    "line": 713,
+    "status": "a migrer"
+  },
+  {
+    "name": "ESC_PEAGE_SUIVICONSO_COMPTAGE_COFFRE",
+    "lot": 4,
+    "difficulty": "Moyenne",
+    "reason": "EXPLODE, tableaux de structures, nulls et variantes reseau",
+    "line": 148,
+    "status": "a migrer"
+  },
+  {
+    "name": "ESC_PEAGE_TELEOP_SYNOPTIQUE_FAV_STREAM",
+    "lot": 4,
+    "difficulty": "Moyenne",
+    "reason": "EXPLODE, tableaux de structures, nulls et variantes reseau",
+    "line": 2234,
+    "status": "a migrer"
+  },
+  {
+    "name": "IQ_HISTOBADGEVA_BE_CARDME",
+    "lot": 5,
+    "difficulty": "Elevee",
+    "reason": "EXPLODE correles, FILTER/TRANSFORM et historiques imbriques",
+    "line": 1508,
+    "status": "a migrer"
+  },
+  {
+    "name": "IQ_HISTOBADGEVA_BE_CIP",
+    "lot": 5,
+    "difficulty": "Elevee",
+    "reason": "EXPLODE correles, FILTER/TRANSFORM et historiques imbriques",
+    "line": 1509,
+    "status": "a migrer"
+  },
+  {
+    "name": "IQ_HISTOBADGEVA_VS_CARDME",
+    "lot": 5,
+    "difficulty": "Elevee",
+    "reason": "EXPLODE correles, FILTER/TRANSFORM et historiques imbriques",
+    "line": 576,
+    "status": "a migrer"
+  },
+  {
+    "name": "IQ_HISTOBADGEVA_VS_CIP",
+    "lot": 5,
+    "difficulty": "Elevee",
+    "reason": "EXPLODE correles, FILTER/TRANSFORM et historiques imbriques",
+    "line": 577,
+    "status": "a migrer"
+  },
+  {
+    "name": "TABLE_VA_PEAGE_BACKOFFICE_SOCLEET_REF_COMPTEURS",
+    "lot": 6,
+    "difficulty": "Elevee",
+    "reason": "LATEST_BY_OFFSET et jointures stream-table sensibles a l ordre",
+    "line": 2811,
+    "status": "a migrer"
+  },
+  {
+    "name": "TABLE_VA_PEAGE_BACKOFFICE_SOCLEET_REF_INDICATEURS",
+    "lot": 6,
+    "difficulty": "Elevee",
+    "reason": "LATEST_BY_OFFSET et jointures stream-table sensibles a l ordre",
+    "line": 2521,
+    "status": "a migrer"
+  },
+  {
+    "name": "VA_PEAGE_BACKOFFICE_SOCLEET_FILTER_REF_COMPTEUR",
+    "lot": 6,
+    "difficulty": "Elevee",
+    "reason": "LATEST_BY_OFFSET et jointures stream-table sensibles a l ordre",
+    "line": 752,
+    "status": "a migrer"
+  },
+  {
+    "name": "VA_PEAGE_BACKOFFICE_SOCLEET_FILTER_REF_INDICATEUR",
+    "lot": 6,
+    "difficulty": "Elevee",
+    "reason": "LATEST_BY_OFFSET et jointures stream-table sensibles a l ordre",
+    "line": 1405,
+    "status": "a migrer"
+  },
+  {
+    "name": "TABLE_VA_PEAGE_BACKOFFICE_SOCLEET_INDICATEUR",
+    "lot": 7,
+    "difficulty": "Elevee",
+    "reason": "Sommes horaires, grace, mises a jour et cles fenetrees",
+    "line": 2899,
+    "status": "a migrer"
+  },
+  {
+    "name": "VA_PEAGE_CLASSIFICATIONINFOQUALITE",
+    "lot": 8,
+    "difficulty": "Tres elevee",
+    "reason": "Sessions, HLL, mises a jour intermediaires et jointures temporelles",
+    "line": 2572,
+    "status": "a migrer"
+  },
+  {
+    "name": "VA_PEAGE_CLASSIFICATIONINFOQUALITECOUNT",
+    "lot": 8,
+    "difficulty": "Tres elevee",
+    "reason": "Sessions, HLL, mises a jour intermediaires et jointures temporelles",
+    "line": 2958,
+    "status": "a migrer"
+  },
+  {
+    "name": "VA_PEAGE_CLASSIFICATION_ALARMEGLOBALE",
+    "lot": 8,
+    "difficulty": "Tres elevee",
+    "reason": "Sessions, HLL, mises a jour intermediaires et jointures temporelles",
+    "line": 2378,
+    "status": "a migrer"
+  },
+  {
+    "name": "VA_PEAGE_CLASSIFICATION_ALARMEUNITAIRE",
+    "lot": 8,
+    "difficulty": "Tres elevee",
+    "reason": "Sessions, HLL, mises a jour intermediaires et jointures temporelles",
+    "line": 2664,
+    "status": "a migrer"
+  }
+]

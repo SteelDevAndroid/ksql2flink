@@ -1,0 +1,6 @@
+{"ID":"a","PAYMENT_TYPE":"TelepeageLibert","AMOUNT":1.5}
+{"ID":"b","PAYMENT_TYPE":"telepeagecardme","AMOUNT":2.0}
+{"ID":"c","PAYMENT_TYPE":"carteaccreditive","AMOUNT":3.0}
+{"ID":"d","PAYMENT_TYPE":"cartemagnetique","AMOUNT":4.0}
+{"ID":"excluded","PAYMENT_TYPE":"especes","AMOUNT":5.0}
+{"ID":"null","PAYMENT_TYPE":null,"AMOUNT":6.0}

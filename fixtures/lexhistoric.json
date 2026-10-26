@@ -1,0 +1,20 @@
+[
+  {"name":"libert","value":{"IDPASSAGE":"a","PASSAGESORTIE":{"DHM":"2026-10-25T10:00:00Z","LOCALISATION":{"GARE":"25004123"},"PAIEMENT":{"RETENUS":[{"TYPE":"TelePeageLibert","PAN":"TEST-A"}]}}},"expected":{"IDTRAN":"a","DATETRANSACTION":"2026-10-25T10:00:00Z","CONTENUISO":"TEST-A","MODEREGLEMENT":256,"SCA":"25004"}},
+  {"name":"cardme-camel","value":{"idPassage":"b","passageSortie":{"dhm":"2026-10-25T10:01:00Z","localisation":{"gare":"25006123"},"paiement":{"retenus":[{"type":"telepeagecardme","pan":"TEST-B"}]}}},"expected":{"IDTRAN":"b","DATETRANSACTION":"2026-10-25T10:01:00Z","CONTENUISO":"TEST-B","MODEREGLEMENT":512,"SCA":"25006"}},
+  {"name":"accreditive-short-gare","value":{"IDPASSAGE":"c","PASSAGESORTIE":{"DHM":"text-preserved","LOCALISATION":{"GARE":"25"},"PAIEMENT":{"RETENUS":[{"TYPE":"carteaccreditive","PAN":"TEST-C"}]}}},"expected":{"IDTRAN":"c","DATETRANSACTION":"text-preserved","CONTENUISO":"TEST-C","MODEREGLEMENT":1024,"SCA":"25"}},
+  {"name":"magnetique-unicode","value":{"IdPassage":"d","PassageSortie":{"Dhm":"été","Localisation":{"Gare":"25021212"},"Paiement":{"Retenus":[{"Type":"CARTEMAGNETIQUE","Pan":"TEST-É"}]}}},"expected":{"IDTRAN":"d","DATETRANSACTION":"été","CONTENUISO":"TEST-É","MODEREGLEMENT":2048,"SCA":"25021"}},
+  {"name":"first-only","value":{"IDPASSAGE":"e","PASSAGESORTIE":{"DHM":"first","LOCALISATION":{"GARE":""},"PAIEMENT":{"RETENUS":[{"TYPE":"telepeagelibert","PAN":"FIRST"},{"TYPE":"telepeagecardme","PAN":"SECOND"}]}}},"expected":{"IDTRAN":"e","DATETRANSACTION":"first","CONTENUISO":"FIRST","MODEREGLEMENT":256,"SCA":""}},
+  {"name":"nulls","null_key":true,"value":{"IDPASSAGE":null,"PASSAGESORTIE":{"DHM":null,"LOCALISATION":{"GARE":null},"PAIEMENT":{"RETENUS":[{"TYPE":"telepeagelibert","PAN":null}]}}},"expected":{"IDTRAN":null,"DATETRANSACTION":null,"CONTENUISO":null,"MODEREGLEMENT":256,"SCA":null}},
+  {"name":"missing-fields","value":{"PASSAGESORTIE":{"PAIEMENT":{"RETENUS":[{"TYPE":"telepeagecardme"}]}}},"expected":{"IDTRAN":null,"DATETRANSACTION":null,"CONTENUISO":null,"MODEREGLEMENT":512,"SCA":null}},
+  {"name":"unsupported","value":{"PASSAGESORTIE":{"PAIEMENT":{"RETENUS":[{"TYPE":"especes"}]}}},"expected":null},
+  {"name":"second-must-not-match","value":{"PASSAGESORTIE":{"PAIEMENT":{"RETENUS":[{"TYPE":"especes"},{"TYPE":"telepeagelibert"}]}}},"expected":null},
+  {"name":"empty-array","value":{"PASSAGESORTIE":{"PAIEMENT":{"RETENUS":[]}}},"expected":null},
+  {"name":"null-array","value":{"PASSAGESORTIE":{"PAIEMENT":{"RETENUS":null}}},"expected":null},
+  {"name":"null-first","value":{"PASSAGESORTIE":{"PAIEMENT":{"RETENUS":[null,{"TYPE":"telepeagelibert"}]}}},"expected":null},
+  {"name":"null-type","value":{"PASSAGESORTIE":{"PAIEMENT":{"RETENUS":[{"TYPE":null}]}}},"expected":null},
+  {"name":"missing-payment","value":{"PASSAGESORTIE":{}},"expected":null},
+  {"name":"missing-passage","value":{"IDPASSAGE":"missing"},"expected":null},
+  {"name":"spaces-not-trimmed","value":{"PASSAGESORTIE":{"PAIEMENT":{"RETENUS":[{"TYPE":" telepeagelibert "}]}}},"expected":null},
+  {"name":"tombstone","value":null,"expected":null},
+  {"name":"duplicate-a","value":{"IDPASSAGE":"a","PASSAGESORTIE":{"DHM":"2026-10-25T10:00:00Z","LOCALISATION":{"GARE":"25004123"},"PAIEMENT":{"RETENUS":[{"TYPE":"TelePeageLibert","PAN":"TEST-A"}]}}},"expected":{"IDTRAN":"a","DATETRANSACTION":"2026-10-25T10:00:00Z","CONTENUISO":"TEST-A","MODEREGLEMENT":256,"SCA":"25004"}}
+]
