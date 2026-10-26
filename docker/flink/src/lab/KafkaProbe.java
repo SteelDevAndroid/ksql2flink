@@ -33,19 +33,20 @@ public class KafkaProbe {
                         row.get("timestamp").asLong(), key, value)).get();
                 }
             }
-        } else if (args[0].equals("consume")) {
+        } else if (args[0].equals("consume") || args[0].equals("consume-many")) {
             config.put("key.deserializer", "org.apache.flink.kafka.shaded.org.apache.kafka.common.serialization.ByteArrayDeserializer");
             config.put("value.deserializer", "org.apache.flink.kafka.shaded.org.apache.kafka.common.serialization.ByteArrayDeserializer");
             config.put("group.id", "probe-" + java.util.UUID.randomUUID());
             config.put("auto.offset.reset", "earliest");
             config.put("enable.auto.commit", "false");
             try (KafkaConsumer<byte[], byte[]> consumer = new KafkaConsumer<>(config)) {
-                consumer.subscribe(Collections.singleton(args[1]));
+                consumer.subscribe(java.util.Arrays.asList(args[1].split(",")));
                 long deadline = System.currentTimeMillis() + 45000;
                 long lastRecord = 0;
                 while (System.currentTimeMillis() < deadline) {
                     for (ConsumerRecord<byte[], byte[]> record : consumer.poll(Duration.ofMillis(500))) {
                         ObjectNode row = mapper.createObjectNode();
+                        if (args[0].equals("consume-many")) row.put("topic", record.topic());
                         if (record.key() == null) row.putNull("key");
                         else row.put("key", Base64.getEncoder().encodeToString(record.key()));
                         row.put("timestamp", record.timestamp());

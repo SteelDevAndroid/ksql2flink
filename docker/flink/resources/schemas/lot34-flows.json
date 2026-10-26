@@ -1,0 +1,36 @@
+{
+  "FLOW": {
+    "STATION": "STRING",
+    "LANE": "STRING",
+    "CREATIONDATE": "STRING",
+    "CALLERMODE": "STRING",
+    "CLASS": [
+      {
+        "CLASSTYPE": "STRING",
+        "CLASSORIGIN": "STRING"
+      }
+    ]
+  },
+  "BUSINESSFILTER": {
+    "ID": "INTEGER"
+  },
+  "BUSINESSRULE": {
+    "ID": "INTEGER"
+  },
+  "BUSINESSCYCLOPE": {
+    "CLASS": "INTEGER",
+    "CONFIDENCE": "DOUBLE",
+    "PMR": "STRING",
+    "PRESENCE": "STRING"
+  },
+  "RESPONSE": {
+    "CALCULATEDCLASS": "INTEGER",
+    "RESULTCLASS": "INTEGER",
+    "CLASSORIGIN": "STRING",
+    "DECISION": "STRING",
+    "CLASSUSING": "STRING"
+  },
+  "TECHNICALFILTER": {
+    "ID": "INTEGER"
+  }
+}

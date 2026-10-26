@@ -1,0 +1,31 @@
+{
+  "message": {
+    "numero": "INTEGER",
+    "DHM": "STRING"
+  },
+  "comptageBols": {
+    "dhm": "STRING",
+    "localisation": {
+      "gare": "STRING",
+      "equipement": {
+        "numero": "STRING",
+        "type": "STRING"
+      }
+    }
+  },
+  "etats": [
+    {
+      "sujet": "STRING",
+      "status": [
+        "STRING"
+      ],
+      "contenu": {
+        "devise": "STRING",
+        "valeur": "DOUBLE",
+        "courant": "INTEGER",
+        "maximum": "INTEGER",
+        "type": "STRING"
+      }
+    }
+  ]
+}

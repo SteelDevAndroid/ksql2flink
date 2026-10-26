@@ -4,6 +4,7 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import org.apache.flink.table.functions.ScalarFunction;
 import org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.JsonNode;
 import org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.ObjectMapper;
@@ -13,23 +14,21 @@ import org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.node.Obje
 /** Schema serialization for the valid STRING/INTEGER/DOUBLE/STRUCT/ARRAY input domain. */
 public class ProjectKsqlJson extends ScalarFunction {
     private static final ObjectMapper MAPPER = new ObjectMapper();
-    private static final Map<String, JsonNode> SCHEMAS = new HashMap<>();
-    static {
-        for (String direction : new String[]{"entree", "sortie"}) {
-            try (InputStream input = ProjectKsqlJson.class.getResourceAsStream(
-                    "/schemas/conformite-" + direction + ".json")) {
-                if (input == null) throw new IllegalStateException("Missing schema: " + direction);
-                SCHEMAS.put(direction, MAPPER.readTree(input));
-            } catch (Exception error) {
-                throw new ExceptionInInitializerError(error);
-            }
-        }
-    }
+    private static final Map<String, JsonNode> SCHEMAS = new ConcurrentHashMap<>();
 
     public String eval(String json, String direction) throws Exception {
         if (json == null) return null;
-        JsonNode schema = SCHEMAS.get(direction);
-        if (schema == null) throw new IllegalArgumentException("Unknown direction: " + direction);
+        String name = direction.equals("entree") || direction.equals("sortie")
+            ? "conformite-" + direction : direction;
+        if (!name.matches("[a-z0-9-]+")) throw new IllegalArgumentException("Invalid schema name");
+        JsonNode schema = SCHEMAS.get(name);
+        if (schema == null) {
+            try (InputStream input = ProjectKsqlJson.class.getResourceAsStream("/schemas/" + name + ".json")) {
+                if (input == null) throw new IllegalArgumentException("Missing schema: " + name);
+                schema = MAPPER.readTree(input);
+                SCHEMAS.put(name, schema);
+            }
+        }
         return MAPPER.writeValueAsString(project(MAPPER.readTree(json), schema));
     }
 

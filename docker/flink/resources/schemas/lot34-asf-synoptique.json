@@ -1,0 +1,18 @@
+{
+  "SYNOPTIQUE": {
+    "DHM": "STRING",
+    "LOCALISATION": {
+      "GARE": "STRING",
+      "EQUIPEMENT": {
+        "NUMERO": "STRING",
+        "TYPE": "STRING"
+      }
+    }
+  },
+  "ETATEQUIPEMENTS": [
+    {
+      "SUJET": "STRING",
+      "ETAT": "STRING"
+    }
+  ]
+}

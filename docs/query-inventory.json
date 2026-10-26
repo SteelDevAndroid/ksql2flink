@@ -117,7 +117,7 @@
     "difficulty": "Faible",
     "reason": "Projection simple ; dependances amont pour compteur",
     "line": 515,
-    "status": "a migrer"
+    "status": "migre"
   },
   {
     "name": "VA_PEAGE_CLASSIFICATION_FLOWS_EXTEND",
@@ -125,7 +125,7 @@
     "difficulty": "Faible",
     "reason": "Projection simple ; dependances amont pour compteur",
     "line": 372,
-    "status": "a migrer"
+    "status": "migre"
   },
   {
     "name": "ASF_PEAGE_SUIVICONSO_COMPTAGE_BOL",
@@ -133,7 +133,7 @@
     "difficulty": "Moyenne",
     "reason": "EXPLODE, tableaux de structures, nulls et variantes reseau",
     "line": 614,
-    "status": "a migrer"
+    "status": "migre"
   },
   {
     "name": "ASF_PEAGE_SUIVICONSO_COMPTAGE_BOL_EXPLODED",
@@ -141,7 +141,7 @@
     "difficulty": "Moyenne",
     "reason": "EXPLODE, tableaux de structures, nulls et variantes reseau",
     "line": 1016,
-    "status": "a migrer"
+    "status": "migre"
   },
   {
     "name": "ASF_PEAGE_SUIVICONSO_COMPTAGE_COFFRE",
@@ -149,7 +149,7 @@
     "difficulty": "Moyenne",
     "reason": "EXPLODE, tableaux de structures, nulls et variantes reseau",
     "line": 326,
-    "status": "a migrer"
+    "status": "migre"
   },
   {
     "name": "ASF_PEAGE_TELEOP_SYNOPTIQUE_FAV_STREAM",
@@ -157,7 +157,7 @@
     "difficulty": "Moyenne",
     "reason": "EXPLODE, tableaux de structures, nulls et variantes reseau",
     "line": 2135,
-    "status": "a migrer"
+    "status": "migre"
   },
   {
     "name": "ESC_PEAGE_SUIVICONSO_COMPTAGE_BOL",
@@ -165,7 +165,7 @@
     "difficulty": "Moyenne",
     "reason": "EXPLODE, tableaux de structures, nulls et variantes reseau",
     "line": 193,
-    "status": "a migrer"
+    "status": "migre"
   },
   {
     "name": "ESC_PEAGE_SUIVICONSO_COMPTAGE_BOL_EXPLODED",
@@ -173,7 +173,7 @@
     "difficulty": "Moyenne",
     "reason": "EXPLODE, tableaux de structures, nulls et variantes reseau",
     "line": 713,
-    "status": "a migrer"
+    "status": "migre"
   },
   {
     "name": "ESC_PEAGE_SUIVICONSO_COMPTAGE_COFFRE",
@@ -181,7 +181,7 @@
     "difficulty": "Moyenne",
     "reason": "EXPLODE, tableaux de structures, nulls et variantes reseau",
     "line": 148,
-    "status": "a migrer"
+    "status": "migre"
   },
   {
     "name": "ESC_PEAGE_TELEOP_SYNOPTIQUE_FAV_STREAM",
@@ -189,7 +189,7 @@
     "difficulty": "Moyenne",
     "reason": "EXPLODE, tableaux de structures, nulls et variantes reseau",
     "line": 2234,
-    "status": "a migrer"
+    "status": "migre"
   },
   {
     "name": "IQ_HISTOBADGEVA_BE_CARDME",
