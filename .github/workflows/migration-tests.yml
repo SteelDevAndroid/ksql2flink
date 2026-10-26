@@ -3,7 +3,7 @@ name: Migration comparisons
 on:
   pull_request:
   push:
-    branches: [main, feat/lexhistoric-migration-lab]
+    branches: [main, 'feat/**']
   workflow_dispatch:
 
 permissions:
@@ -22,13 +22,17 @@ jobs:
       - name: Validate Compose and Python
         run: |
           docker compose config --quiet
-          python -m py_compile scripts/smoke.py scripts/test_lexhistoric.py
+          python -m py_compile scripts/smoke.py scripts/test_lexhistoric.py scripts/test_conformite.py scripts/generate_conformite_sql.py
+          python scripts/generate_conformite_sql.py
+          git diff --exit-code -- sql/ksqldb/03-conformite.sql sql/flink/03-conformite.sql docker/flink/resources/schemas
       - name: Start migration lab
         run: docker compose up -d --build --wait --wait-timeout 240
       - name: Run smoke comparison
         run: python scripts/smoke.py
       - name: Compare all five Lexhistoric queries
         run: python scripts/test_lexhistoric.py
+      - name: Compare all nine conformite branches
+        run: python scripts/test_conformite.py
       - name: Capture service logs
         if: always()
         run: |

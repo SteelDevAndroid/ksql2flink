@@ -1,0 +1,1649 @@
+{
+  "entree": {
+    "full_record": {
+      "idPassage": "entree-complete",
+      "modeFonctionnement": "synthetic-é",
+      "message": {
+        "numero": 42,
+        "DHM": "synthetic-é",
+        "type": "synthetic-é",
+        "typeEmission": "synthetic-é",
+        "producteur": {
+          "type": "synthetic-é",
+          "id": "synthetic-é"
+        }
+      },
+      "passageEntree": {
+        "moyensAcces": {
+          "retenus": [
+            {
+              "type": "synthetic-é",
+              "PAN": "synthetic-é",
+              "referencesEvenement": [
+                "synthetic-é",
+                null,
+                "synthetic-é-second"
+              ],
+              "ISO3": "synthetic-é"
+            },
+            null,
+            {
+              "type": "synthetic-é-second",
+              "PAN": "synthetic-é-second",
+              "referencesEvenement": [
+                "synthetic-é-second",
+                null,
+                "synthetic-é-second-second"
+              ],
+              "ISO3": "synthetic-é-second"
+            }
+          ],
+          "acceptables": [
+            {
+              "type": "synthetic-é",
+              "PAN": "synthetic-é",
+              "referencesEvenement": [
+                "synthetic-é",
+                null,
+                "synthetic-é-second"
+              ],
+              "ISO3": "synthetic-é"
+            },
+            null,
+            {
+              "type": "synthetic-é-second",
+              "PAN": "synthetic-é-second",
+              "referencesEvenement": [
+                "synthetic-é-second",
+                null,
+                "synthetic-é-second-second"
+              ],
+              "ISO3": "synthetic-é-second"
+            }
+          ],
+          "refuses": [
+            {
+              "type": "synthetic-é",
+              "PAN": "synthetic-é",
+              "referencesEvenement": [
+                "synthetic-é",
+                null,
+                "synthetic-é-second"
+              ],
+              "ISO3": "synthetic-é"
+            },
+            null,
+            {
+              "type": "synthetic-é-second",
+              "PAN": "synthetic-é-second",
+              "referencesEvenement": [
+                "synthetic-é-second",
+                null,
+                "synthetic-é-second-second"
+              ],
+              "ISO3": "synthetic-é-second"
+            }
+          ]
+        },
+        "systeme": "synthetic-é",
+        "DHM": "synthetic-é",
+        "etat": "synthetic-é",
+        "localisation": {
+          "gare": "synthetic-é",
+          "equipement": {
+            "numero": "synthetic-é",
+            "type": "synthetic-é"
+          }
+        },
+        "classes": [
+          {
+            "acquisition": "synthetic-é",
+            "classe": "synthetic-é",
+            "essieux": 42,
+            "referencesEvenement": [
+              "synthetic-é",
+              null,
+              "synthetic-é-second"
+            ]
+          },
+          null,
+          {
+            "acquisition": "synthetic-é-second",
+            "classe": "synthetic-é-second",
+            "essieux": 43,
+            "referencesEvenement": [
+              "synthetic-é-second",
+              null,
+              "synthetic-é-second-second"
+            ]
+          }
+        ],
+        "immatriculations": [
+          {
+            "acquisition": "synthetic-é",
+            "valeur": "synthetic-é",
+            "referencesEvenement": [
+              "synthetic-é",
+              null,
+              "synthetic-é-second"
+            ]
+          },
+          null,
+          {
+            "acquisition": "synthetic-é-second",
+            "valeur": "synthetic-é-second",
+            "referencesEvenement": [
+              "synthetic-é-second",
+              null,
+              "synthetic-é-second-second"
+            ]
+          }
+        ]
+      },
+      "configurationsVoie": [
+        {
+          "sujet": "synthetic-é",
+          "etat": "synthetic-é"
+        },
+        null,
+        {
+          "sujet": "synthetic-é-second",
+          "etat": "synthetic-é-second"
+        }
+      ],
+      "etatEquipements": [
+        {
+          "SUJET": "synthetic-é",
+          "etat": "synthetic-é"
+        },
+        null,
+        {
+          "SUJET": "synthetic-é-second",
+          "etat": "synthetic-é-second"
+        }
+      ],
+      "niveauDeServices": [
+        {
+          "service": "synthetic-é",
+          "niveau": "synthetic-é"
+        },
+        null,
+        {
+          "service": "synthetic-é-second",
+          "niveau": "synthetic-é-second"
+        }
+      ],
+      "evenements": [
+        {
+          "reference": "synthetic-é",
+          "idEvenement": "synthetic-é",
+          "DHM": "synthetic-é",
+          "document": {
+            "id": "synthetic-é",
+            "type": "synthetic-é",
+            "duplicata": "synthetic-é"
+          },
+          "piste": "synthetic-é",
+          "CIP": {
+            "PAN": "synthetic-é",
+            "D_PRO": {
+              "numeroProduit": "synthetic-é",
+              "listeGare": "synthetic-é",
+              "listeCalendrier": "synthetic-é",
+              "dateExpiration": "synthetic-é"
+            }
+          },
+          "VST": {
+            "filler": "synthetic-é",
+            "profile": "synthetic-é",
+            "application": [
+              {
+                "applicationIdentifier": "synthetic-é",
+                "elementIdentifier": "synthetic-é",
+                "EFC-ContextMark": {
+                  "contractProvider": {
+                    "countryCode": "synthetic-é",
+                    "issuerIdentifier": "synthetic-é"
+                  },
+                  "typeOfContract": "synthetic-é",
+                  "contextVersion": "synthetic-é",
+                  "accessCredentialReference": "synthetic-é",
+                  "encryptionKey": "synthetic-é"
+                }
+              },
+              null,
+              {
+                "applicationIdentifier": "synthetic-é-second",
+                "elementIdentifier": "synthetic-é-second",
+                "EFC-ContextMark": {
+                  "contractProvider": {
+                    "countryCode": "synthetic-é-second",
+                    "issuerIdentifier": "synthetic-é-second"
+                  },
+                  "typeOfContract": "synthetic-é-second",
+                  "contextVersion": "synthetic-é-second",
+                  "accessCredentialReference": "synthetic-é-second",
+                  "encryptionKey": "synthetic-é-second"
+                }
+              }
+            ],
+            "obeConfiguration": {
+              "classeEquipement": "synthetic-é",
+              "manufacturerID": "synthetic-é",
+              "status": "synthetic-é"
+            }
+          },
+          "elementIdentifier": "synthetic-é",
+          "D_EVE": {
+            "serialNumber": "synthetic-é",
+            "manufacturedDate": "synthetic-é"
+          },
+          "equipementOBUID": "synthetic-é",
+          "F_IDU": "synthetic-é",
+          "D_VET": {
+            "typePassage": "synthetic-é",
+            "gare": "synthetic-é",
+            "numeroEquipement": "synthetic-é",
+            "sens": "synthetic-é",
+            "classe": "synthetic-é",
+            "DHM": "synthetic-é",
+            "periodeTarif": "synthetic-é",
+            "typeTarif": "synthetic-é",
+            "montant": 42,
+            "observation": "synthetic-é",
+            "pointeurHistorique": 42
+          },
+          "D_HIS": [
+            {
+              "typePassage": "synthetic-é",
+              "gare": "synthetic-é",
+              "numeroEquipement": "synthetic-é",
+              "sens": "synthetic-é",
+              "classe": "synthetic-é",
+              "DHM": "synthetic-é",
+              "periodeTarif": "synthetic-é",
+              "typeTarif": "synthetic-é",
+              "montant": 42,
+              "observation": "synthetic-é",
+              "pointeurHistorique": 42
+            },
+            null,
+            {
+              "typePassage": "synthetic-é-second",
+              "gare": "synthetic-é-second",
+              "numeroEquipement": "synthetic-é-second",
+              "sens": "synthetic-é-second",
+              "classe": "synthetic-é-second",
+              "DHM": "synthetic-é-second",
+              "periodeTarif": "synthetic-é-second",
+              "typeTarif": "synthetic-é-second",
+              "montant": 43,
+              "observation": "synthetic-é-second",
+              "pointeurHistorique": 43
+            }
+          ],
+          "D_OBS": {
+            "compteurAnomalie": 42,
+            "bitsAnomalie": "synthetic-é"
+          },
+          "D_PRO": {
+            "numeroProduit": "synthetic-é",
+            "listeGare": "synthetic-é",
+            "listeCalendrier": "synthetic-é",
+            "dateExpiration": "synthetic-é"
+          },
+          "paymentMeans": {
+            "PAN": "synthetic-é",
+            "dateExpiration": "synthetic-é",
+            "listeGare": "synthetic-é",
+            "listeCalendrier": "synthetic-é"
+          },
+          "receiptData": [
+            {
+              "time": "synthetic-é",
+              "serviceProvider": {
+                "pays": "synthetic-é",
+                "identifiant": "synthetic-é"
+              },
+              "locationOfStation": "synthetic-é",
+              "location": {
+                "sens": "synthetic-é",
+                "numeroVoie": "synthetic-é"
+              },
+              "type": "synthetic-é",
+              "result": "synthetic-é",
+              "tariffClass": "synthetic-é",
+              "claimedClass": "synthetic-é",
+              "fee": {
+                "montant": 42,
+                "unite": "synthetic-é",
+                "monnaie": "synthetic-é"
+              },
+              "emetteur": {
+                "pays": "synthetic-é",
+                "identifiant": "synthetic-é"
+              },
+              "typeContrat": "synthetic-é",
+              "versionContext": "synthetic-é",
+              "authenticator": "synthetic-é"
+            },
+            null,
+            {
+              "time": "synthetic-é-second",
+              "serviceProvider": {
+                "pays": "synthetic-é-second",
+                "identifiant": "synthetic-é-second"
+              },
+              "locationOfStation": "synthetic-é-second",
+              "location": {
+                "sens": "synthetic-é-second",
+                "numeroVoie": "synthetic-é-second"
+              },
+              "type": "synthetic-é-second",
+              "result": "synthetic-é-second",
+              "tariffClass": "synthetic-é-second",
+              "claimedClass": "synthetic-é-second",
+              "fee": {
+                "montant": 43,
+                "unite": "synthetic-é-second",
+                "monnaie": "synthetic-é-second"
+              },
+              "emetteur": {
+                "pays": "synthetic-é-second",
+                "identifiant": "synthetic-é-second"
+              },
+              "typeContrat": "synthetic-é-second",
+              "versionContext": "synthetic-é-second",
+              "authenticator": "synthetic-é-second"
+            }
+          ],
+          "equipmentStatus": {
+            "compteurTransaction": "synthetic-é",
+            "invalidationPAN": "synthetic-é"
+          },
+          "contractAuthenticator": "synthetic-é",
+          "vehicleLicensePlate": {
+            "contryCode": "synthetic-é",
+            "alphabetIndicator": "synthetic-é",
+            "licensePlateNumber": {
+              "numberOfByte": 42,
+              "value": "synthetic-é"
+            }
+          },
+          "vehicleDimensions": {
+            "length": 42,
+            "height": 42,
+            "width": 42
+          },
+          "vehicleAxles": {
+            "firstAxleHeight": 42,
+            "tyreType": "synthetic-é",
+            "axlesNumber": 42
+          },
+          "vehicleWeightLimits": {
+            "maxLaden": 42,
+            "trainMaximum": 42,
+            "unladen": 42
+          },
+          "vehicleSpecificCharacteristics": {
+            "EUROEmissionClass": "synthetic-é",
+            "COPEmissionCode": "synthetic-é",
+            "engineCharacteristics": "synthetic-é",
+            "descriptiveCharacteristics": "synthetic-é",
+            "futureCharacteristics": "synthetic-é"
+          },
+          "vehicleAuthenticator": "synthetic-é"
+        },
+        null,
+        {
+          "reference": "synthetic-é-second",
+          "idEvenement": "synthetic-é-second",
+          "DHM": "synthetic-é-second",
+          "document": {
+            "id": "synthetic-é-second",
+            "type": "synthetic-é-second",
+            "duplicata": "synthetic-é-second"
+          },
+          "piste": "synthetic-é-second",
+          "CIP": {
+            "PAN": "synthetic-é-second",
+            "D_PRO": {
+              "numeroProduit": "synthetic-é-second",
+              "listeGare": "synthetic-é-second",
+              "listeCalendrier": "synthetic-é-second",
+              "dateExpiration": "synthetic-é-second"
+            }
+          },
+          "VST": {
+            "filler": "synthetic-é-second",
+            "profile": "synthetic-é-second",
+            "application": [
+              {
+                "applicationIdentifier": "synthetic-é-second",
+                "elementIdentifier": "synthetic-é-second",
+                "EFC-ContextMark": {
+                  "contractProvider": {
+                    "countryCode": "synthetic-é-second",
+                    "issuerIdentifier": "synthetic-é-second"
+                  },
+                  "typeOfContract": "synthetic-é-second",
+                  "contextVersion": "synthetic-é-second",
+                  "accessCredentialReference": "synthetic-é-second",
+                  "encryptionKey": "synthetic-é-second"
+                }
+              },
+              null,
+              {
+                "applicationIdentifier": "synthetic-é-second-second",
+                "elementIdentifier": "synthetic-é-second-second",
+                "EFC-ContextMark": {
+                  "contractProvider": {
+                    "countryCode": "synthetic-é-second-second",
+                    "issuerIdentifier": "synthetic-é-second-second"
+                  },
+                  "typeOfContract": "synthetic-é-second-second",
+                  "contextVersion": "synthetic-é-second-second",
+                  "accessCredentialReference": "synthetic-é-second-second",
+                  "encryptionKey": "synthetic-é-second-second"
+                }
+              }
+            ],
+            "obeConfiguration": {
+              "classeEquipement": "synthetic-é-second",
+              "manufacturerID": "synthetic-é-second",
+              "status": "synthetic-é-second"
+            }
+          },
+          "elementIdentifier": "synthetic-é-second",
+          "D_EVE": {
+            "serialNumber": "synthetic-é-second",
+            "manufacturedDate": "synthetic-é-second"
+          },
+          "equipementOBUID": "synthetic-é-second",
+          "F_IDU": "synthetic-é-second",
+          "D_VET": {
+            "typePassage": "synthetic-é-second",
+            "gare": "synthetic-é-second",
+            "numeroEquipement": "synthetic-é-second",
+            "sens": "synthetic-é-second",
+            "classe": "synthetic-é-second",
+            "DHM": "synthetic-é-second",
+            "periodeTarif": "synthetic-é-second",
+            "typeTarif": "synthetic-é-second",
+            "montant": 43,
+            "observation": "synthetic-é-second",
+            "pointeurHistorique": 43
+          },
+          "D_HIS": [
+            {
+              "typePassage": "synthetic-é-second",
+              "gare": "synthetic-é-second",
+              "numeroEquipement": "synthetic-é-second",
+              "sens": "synthetic-é-second",
+              "classe": "synthetic-é-second",
+              "DHM": "synthetic-é-second",
+              "periodeTarif": "synthetic-é-second",
+              "typeTarif": "synthetic-é-second",
+              "montant": 43,
+              "observation": "synthetic-é-second",
+              "pointeurHistorique": 43
+            },
+            null,
+            {
+              "typePassage": "synthetic-é-second-second",
+              "gare": "synthetic-é-second-second",
+              "numeroEquipement": "synthetic-é-second-second",
+              "sens": "synthetic-é-second-second",
+              "classe": "synthetic-é-second-second",
+              "DHM": "synthetic-é-second-second",
+              "periodeTarif": "synthetic-é-second-second",
+              "typeTarif": "synthetic-é-second-second",
+              "montant": 44,
+              "observation": "synthetic-é-second-second",
+              "pointeurHistorique": 44
+            }
+          ],
+          "D_OBS": {
+            "compteurAnomalie": 43,
+            "bitsAnomalie": "synthetic-é-second"
+          },
+          "D_PRO": {
+            "numeroProduit": "synthetic-é-second",
+            "listeGare": "synthetic-é-second",
+            "listeCalendrier": "synthetic-é-second",
+            "dateExpiration": "synthetic-é-second"
+          },
+          "paymentMeans": {
+            "PAN": "synthetic-é-second",
+            "dateExpiration": "synthetic-é-second",
+            "listeGare": "synthetic-é-second",
+            "listeCalendrier": "synthetic-é-second"
+          },
+          "receiptData": [
+            {
+              "time": "synthetic-é-second",
+              "serviceProvider": {
+                "pays": "synthetic-é-second",
+                "identifiant": "synthetic-é-second"
+              },
+              "locationOfStation": "synthetic-é-second",
+              "location": {
+                "sens": "synthetic-é-second",
+                "numeroVoie": "synthetic-é-second"
+              },
+              "type": "synthetic-é-second",
+              "result": "synthetic-é-second",
+              "tariffClass": "synthetic-é-second",
+              "claimedClass": "synthetic-é-second",
+              "fee": {
+                "montant": 43,
+                "unite": "synthetic-é-second",
+                "monnaie": "synthetic-é-second"
+              },
+              "emetteur": {
+                "pays": "synthetic-é-second",
+                "identifiant": "synthetic-é-second"
+              },
+              "typeContrat": "synthetic-é-second",
+              "versionContext": "synthetic-é-second",
+              "authenticator": "synthetic-é-second"
+            },
+            null,
+            {
+              "time": "synthetic-é-second-second",
+              "serviceProvider": {
+                "pays": "synthetic-é-second-second",
+                "identifiant": "synthetic-é-second-second"
+              },
+              "locationOfStation": "synthetic-é-second-second",
+              "location": {
+                "sens": "synthetic-é-second-second",
+                "numeroVoie": "synthetic-é-second-second"
+              },
+              "type": "synthetic-é-second-second",
+              "result": "synthetic-é-second-second",
+              "tariffClass": "synthetic-é-second-second",
+              "claimedClass": "synthetic-é-second-second",
+              "fee": {
+                "montant": 44,
+                "unite": "synthetic-é-second-second",
+                "monnaie": "synthetic-é-second-second"
+              },
+              "emetteur": {
+                "pays": "synthetic-é-second-second",
+                "identifiant": "synthetic-é-second-second"
+              },
+              "typeContrat": "synthetic-é-second-second",
+              "versionContext": "synthetic-é-second-second",
+              "authenticator": "synthetic-é-second-second"
+            }
+          ],
+          "equipmentStatus": {
+            "compteurTransaction": "synthetic-é-second",
+            "invalidationPAN": "synthetic-é-second"
+          },
+          "contractAuthenticator": "synthetic-é-second",
+          "vehicleLicensePlate": {
+            "contryCode": "synthetic-é-second",
+            "alphabetIndicator": "synthetic-é-second",
+            "licensePlateNumber": {
+              "numberOfByte": 43,
+              "value": "synthetic-é-second"
+            }
+          },
+          "vehicleDimensions": {
+            "length": 43,
+            "height": 43,
+            "width": 43
+          },
+          "vehicleAxles": {
+            "firstAxleHeight": 43,
+            "tyreType": "synthetic-é-second",
+            "axlesNumber": 43
+          },
+          "vehicleWeightLimits": {
+            "maxLaden": 43,
+            "trainMaximum": 43,
+            "unladen": 43
+          },
+          "vehicleSpecificCharacteristics": {
+            "EUROEmissionClass": "synthetic-é-second",
+            "COPEmissionCode": "synthetic-é-second",
+            "engineCharacteristics": "synthetic-é-second",
+            "descriptiveCharacteristics": "synthetic-é-second",
+            "futureCharacteristics": "synthetic-é-second"
+          },
+          "vehicleAuthenticator": "synthetic-é-second"
+        }
+      ],
+      "erreurs": [
+        {
+          "regle": {
+            "id": 42,
+            "champ": "synthetic-é",
+            "famille": "synthetic-é",
+            "codeRejet": "synthetic-é"
+          },
+          "message": "synthetic-é",
+          "valeur": "synthetic-é",
+          "correction": {
+            "DHM": "synthetic-é",
+            "type": "synthetic-é",
+            "valeur": "synthetic-é",
+            "commentaire": "synthetic-é"
+          }
+        },
+        null,
+        {
+          "regle": {
+            "id": 43,
+            "champ": "synthetic-é-second",
+            "famille": "synthetic-é-second",
+            "codeRejet": "synthetic-é-second"
+          },
+          "message": "synthetic-é-second",
+          "valeur": "synthetic-é-second",
+          "correction": {
+            "DHM": "synthetic-é-second",
+            "type": "synthetic-é-second",
+            "valeur": "synthetic-é-second",
+            "commentaire": "synthetic-é-second"
+          }
+        }
+      ]
+    },
+    "cases": [
+      {
+        "name": "all-fields",
+        "input_variant": "all-fields",
+        "expected_full": true
+      },
+      {
+        "name": "mixed-case",
+        "expected": {
+          "idPassage": null,
+          "modeFonctionnement": null,
+          "message": null,
+          "passageEntree": null,
+          "configurationsVoie": null,
+          "etatEquipements": null,
+          "niveauDeServices": null,
+          "evenements": null,
+          "erreurs": null
+        },
+        "input_variant": "mixed-case"
+      },
+      {
+        "name": "unknown-fields",
+        "input_variant": "unknown-fields",
+        "expected_full": true
+      },
+      {
+        "name": "sparse",
+        "value": {
+          "idPassage": "sparse"
+        },
+        "expected": {
+          "idPassage": "sparse",
+          "modeFonctionnement": null,
+          "message": null,
+          "passageEntree": null,
+          "configurationsVoie": null,
+          "etatEquipements": null,
+          "niveauDeServices": null,
+          "evenements": null,
+          "erreurs": null
+        }
+      },
+      {
+        "name": "empty-object",
+        "value": {},
+        "expected": {
+          "idPassage": null,
+          "modeFonctionnement": null,
+          "message": null,
+          "passageEntree": null,
+          "configurationsVoie": null,
+          "etatEquipements": null,
+          "niveauDeServices": null,
+          "evenements": null,
+          "erreurs": null
+        }
+      },
+      {
+        "name": "null-structures",
+        "value": {
+          "idPassage": null,
+          "modeFonctionnement": null,
+          "message": null,
+          "passageEntree": null,
+          "configurationsVoie": null,
+          "etatEquipements": null,
+          "niveauDeServices": null,
+          "evenements": null,
+          "erreurs": null
+        },
+        "expected": {
+          "idPassage": null,
+          "modeFonctionnement": null,
+          "message": null,
+          "passageEntree": null,
+          "configurationsVoie": null,
+          "etatEquipements": null,
+          "niveauDeServices": null,
+          "evenements": null,
+          "erreurs": null
+        }
+      },
+      {
+        "name": "empty-arrays",
+        "value": {
+          "configurationsVoie": [],
+          "etatEquipements": [],
+          "niveauDeServices": [],
+          "evenements": [],
+          "erreurs": []
+        },
+        "expected": {
+          "idPassage": null,
+          "modeFonctionnement": null,
+          "message": null,
+          "passageEntree": null,
+          "configurationsVoie": [],
+          "etatEquipements": [],
+          "niveauDeServices": [],
+          "evenements": [],
+          "erreurs": []
+        }
+      },
+      {
+        "name": "duplicate-all-fields",
+        "duplicate_of": 0,
+        "input_variant": "duplicate-all-fields",
+        "expected_full": true
+      },
+      {
+        "name": "tombstone",
+        "value": null,
+        "expected": null
+      },
+      {
+        "name": "unquoted-field-casing",
+        "input_variant": "unquoted-field-casing",
+        "expected_full": true
+      }
+    ]
+  },
+  "sortie": {
+    "full_record": {
+      "idPassage": "sortie-complete",
+      "modeFonctionnement": "synthetic-é",
+      "message": {
+        "numero": 42,
+        "DHM": "synthetic-é",
+        "type": "synthetic-é",
+        "typeEmission": "synthetic-é",
+        "producteur": {
+          "type": "synthetic-é",
+          "id": "synthetic-é"
+        }
+      },
+      "passageSortie": {
+        "paiement": {
+          "retenus": [
+            {
+              "montant": 42,
+              "devise": "synthetic-é",
+              "type": "synthetic-é",
+              "PAN": "synthetic-é",
+              "natureCommerciale": "synthetic-é",
+              "emetteur": "synthetic-é",
+              "referencesEvenement": [
+                "synthetic-é",
+                null,
+                "synthetic-é-second"
+              ],
+              "acquisition": "synthetic-é"
+            },
+            null,
+            {
+              "montant": 43,
+              "devise": "synthetic-é-second",
+              "type": "synthetic-é-second",
+              "PAN": "synthetic-é-second",
+              "natureCommerciale": "synthetic-é-second",
+              "emetteur": "synthetic-é-second",
+              "referencesEvenement": [
+                "synthetic-é-second",
+                null,
+                "synthetic-é-second-second"
+              ],
+              "acquisition": "synthetic-é-second"
+            }
+          ],
+          "acceptables": [
+            {
+              "type": "synthetic-é",
+              "PAN": "synthetic-é",
+              "natureCommerciale": "synthetic-é",
+              "emetteur": "synthetic-é",
+              "ISO3": "synthetic-é",
+              "referencesEvenement": [
+                "synthetic-é",
+                null,
+                "synthetic-é-second"
+              ],
+              "acquisition": "synthetic-é"
+            },
+            null,
+            {
+              "type": "synthetic-é-second",
+              "PAN": "synthetic-é-second",
+              "natureCommerciale": "synthetic-é-second",
+              "emetteur": "synthetic-é-second",
+              "ISO3": "synthetic-é-second",
+              "referencesEvenement": [
+                "synthetic-é-second",
+                null,
+                "synthetic-é-second-second"
+              ],
+              "acquisition": "synthetic-é-second"
+            }
+          ],
+          "refuses": [
+            {
+              "type": "synthetic-é",
+              "PAN": "synthetic-é",
+              "natureCommerciale": "synthetic-é",
+              "emetteur": "synthetic-é",
+              "ISO3": "synthetic-é",
+              "referencesEvenement": [
+                "synthetic-é",
+                null,
+                "synthetic-é-second"
+              ],
+              "acquisition": "synthetic-é"
+            },
+            null,
+            {
+              "type": "synthetic-é-second",
+              "PAN": "synthetic-é-second",
+              "natureCommerciale": "synthetic-é-second",
+              "emetteur": "synthetic-é-second",
+              "ISO3": "synthetic-é-second",
+              "referencesEvenement": [
+                "synthetic-é-second",
+                null,
+                "synthetic-é-second-second"
+              ],
+              "acquisition": "synthetic-é-second"
+            }
+          ]
+        },
+        "systeme": "synthetic-é",
+        "DHM": "synthetic-é",
+        "etat": "synthetic-é",
+        "tarification": {
+          "trajet": {
+            "type": "synthetic-é",
+            "referencesEvenement": [
+              "synthetic-é",
+              null,
+              "synthetic-é-second"
+            ],
+            "entree": {
+              "acquisition": "synthetic-é",
+              "gare": "synthetic-é",
+              "voie": "synthetic-é",
+              "DHM": "synthetic-é",
+              "referencesEvenement": [
+                "synthetic-é",
+                null,
+                "synthetic-é-second"
+              ]
+            },
+            "sortie": {
+              "gare": "synthetic-é",
+              "voie": "synthetic-é",
+              "DHM": "synthetic-é"
+            }
+          },
+          "classeTarifaire": {
+            "acquisition": "synthetic-é",
+            "classe": "synthetic-é",
+            "referencesEvenement": [
+              "synthetic-é",
+              null,
+              "synthetic-é-second"
+            ]
+          },
+          "prix": {
+            "montantHT": 12.5,
+            "montantTVA": 12.5,
+            "montantTTC": 12.5,
+            "tauxTVA": 12.5,
+            "devise": "synthetic-é"
+          }
+        },
+        "couleurTarifaire": {
+          "valeur": "synthetic-é"
+        },
+        "classeEuro": {
+          "valeur": "synthetic-é"
+        },
+        "modulationHoraire": {
+          "code": "synthetic-é",
+          "type": "synthetic-é"
+        },
+        "entrees": [
+          {
+            "acquisition": "synthetic-é",
+            "gare": "synthetic-é",
+            "voie": "synthetic-é",
+            "DHM": "synthetic-é",
+            "referencesEvenement": [
+              "synthetic-é",
+              null,
+              "synthetic-é-second"
+            ]
+          },
+          null,
+          {
+            "acquisition": "synthetic-é-second",
+            "gare": "synthetic-é-second",
+            "voie": "synthetic-é-second",
+            "DHM": "synthetic-é-second",
+            "referencesEvenement": [
+              "synthetic-é-second",
+              null,
+              "synthetic-é-second-second"
+            ]
+          }
+        ],
+        "localisation": {
+          "gare": "synthetic-é",
+          "equipement": {
+            "numero": "synthetic-é",
+            "type": "synthetic-é"
+          }
+        },
+        "classes": [
+          {
+            "acquisition": "synthetic-é",
+            "classe": "synthetic-é",
+            "essieux": 42,
+            "referencesEvenement": [
+              "synthetic-é",
+              null,
+              "synthetic-é-second"
+            ]
+          },
+          null,
+          {
+            "acquisition": "synthetic-é-second",
+            "classe": "synthetic-é-second",
+            "essieux": 43,
+            "referencesEvenement": [
+              "synthetic-é-second",
+              null,
+              "synthetic-é-second-second"
+            ]
+          }
+        ],
+        "immatriculations": [
+          {
+            "acquisition": "synthetic-é",
+            "valeur": "synthetic-é",
+            "referencesEvenement": [
+              "synthetic-é",
+              null,
+              "synthetic-é-second"
+            ]
+          },
+          null,
+          {
+            "acquisition": "synthetic-é-second",
+            "valeur": "synthetic-é-second",
+            "referencesEvenement": [
+              "synthetic-é-second",
+              null,
+              "synthetic-é-second-second"
+            ]
+          }
+        ]
+      },
+      "configurationsVoie": [
+        {
+          "sujet": "synthetic-é",
+          "etat": "synthetic-é"
+        },
+        null,
+        {
+          "sujet": "synthetic-é-second",
+          "etat": "synthetic-é-second"
+        }
+      ],
+      "etatEquipements": [
+        {
+          "sujet": "synthetic-é",
+          "etat": "synthetic-é"
+        },
+        null,
+        {
+          "sujet": "synthetic-é-second",
+          "etat": "synthetic-é-second"
+        }
+      ],
+      "niveauDeServices": [
+        {
+          "service": "synthetic-é",
+          "niveau": "synthetic-é"
+        },
+        null,
+        {
+          "service": "synthetic-é-second",
+          "niveau": "synthetic-é-second"
+        }
+      ],
+      "evenements": [
+        {
+          "reference": "synthetic-é",
+          "idEvenement": "synthetic-é",
+          "DHM": "synthetic-é",
+          "document": {
+            "id": "synthetic-é",
+            "type": "synthetic-é",
+            "duplicata": "synthetic-é"
+          },
+          "piste": "synthetic-é",
+          "CIP": {
+            "PAN": "synthetic-é",
+            "D_PRO": {
+              "numeroProduit": "synthetic-é",
+              "listeGare": "synthetic-é",
+              "listeCalendrier": "synthetic-é",
+              "dateExpiration": "synthetic-é"
+            }
+          },
+          "VST": {
+            "filler": "synthetic-é",
+            "profile": "synthetic-é",
+            "application": [
+              {
+                "applicationIdentifier": "synthetic-é",
+                "elementIdentifier": "synthetic-é",
+                "EFC-ContextMark": {
+                  "contractProvider": {
+                    "countryCode": "synthetic-é",
+                    "issuerIdentifier": "synthetic-é"
+                  },
+                  "typeOfContract": "synthetic-é",
+                  "contextVersion": "synthetic-é",
+                  "accessCredentialReference": "synthetic-é",
+                  "encryptionKey": "synthetic-é"
+                }
+              },
+              null,
+              {
+                "applicationIdentifier": "synthetic-é-second",
+                "elementIdentifier": "synthetic-é-second",
+                "EFC-ContextMark": {
+                  "contractProvider": {
+                    "countryCode": "synthetic-é-second",
+                    "issuerIdentifier": "synthetic-é-second"
+                  },
+                  "typeOfContract": "synthetic-é-second",
+                  "contextVersion": "synthetic-é-second",
+                  "accessCredentialReference": "synthetic-é-second",
+                  "encryptionKey": "synthetic-é-second"
+                }
+              }
+            ],
+            "obeConfiguration": {
+              "classeEquipement": "synthetic-é",
+              "manufacturerID": "synthetic-é",
+              "status": "synthetic-é"
+            }
+          },
+          "elementIdentifier": "synthetic-é",
+          "D_EVE": {
+            "serialNumber": "synthetic-é",
+            "manufacturedDate": "synthetic-é"
+          },
+          "equipementOBUID": "synthetic-é",
+          "F_IDU": "synthetic-é",
+          "D_VET": {
+            "typePassage": "synthetic-é",
+            "gare": "synthetic-é",
+            "numeroEquipement": "synthetic-é",
+            "sens": "synthetic-é",
+            "classe": "synthetic-é",
+            "DHM": "synthetic-é",
+            "periodeTarif": "synthetic-é",
+            "typeTarif": "synthetic-é",
+            "montant": 42,
+            "observation": "synthetic-é",
+            "pointeurHistorique": 42
+          },
+          "D_HIS": [
+            {
+              "typePassage": "synthetic-é",
+              "gare": "synthetic-é",
+              "numeroEquipement": "synthetic-é",
+              "sens": "synthetic-é",
+              "classe": "synthetic-é",
+              "DHM": "synthetic-é",
+              "periodeTarif": "synthetic-é",
+              "typeTarif": "synthetic-é",
+              "montant": 42,
+              "observation": "synthetic-é",
+              "pointeurHistorique": 42
+            },
+            null,
+            {
+              "typePassage": "synthetic-é-second",
+              "gare": "synthetic-é-second",
+              "numeroEquipement": "synthetic-é-second",
+              "sens": "synthetic-é-second",
+              "classe": "synthetic-é-second",
+              "DHM": "synthetic-é-second",
+              "periodeTarif": "synthetic-é-second",
+              "typeTarif": "synthetic-é-second",
+              "montant": 43,
+              "observation": "synthetic-é-second",
+              "pointeurHistorique": 43
+            }
+          ],
+          "D_OBS": {
+            "compteurAnomalie": 42,
+            "bitsAnomalie": "synthetic-é"
+          },
+          "D_PRO": {
+            "numeroProduit": "synthetic-é",
+            "listeGare": "synthetic-é",
+            "listeCalendrier": "synthetic-é",
+            "dateExpiration": "synthetic-é"
+          },
+          "paymentMeans": {
+            "PAN": "synthetic-é",
+            "dateExpiration": "synthetic-é",
+            "listeGare": "synthetic-é",
+            "listeCalendrier": "synthetic-é"
+          },
+          "receiptData": [
+            {
+              "time": "synthetic-é",
+              "serviceProvider": {
+                "pays": "synthetic-é",
+                "identifiant": "synthetic-é"
+              },
+              "locationOfStation": "synthetic-é",
+              "location": {
+                "sens": "synthetic-é",
+                "numeroVoie": "synthetic-é"
+              },
+              "type": "synthetic-é",
+              "result": "synthetic-é",
+              "tariffClass": "synthetic-é",
+              "claimedClass": "synthetic-é",
+              "fee": {
+                "montant": 42,
+                "unite": "synthetic-é",
+                "monnaie": "synthetic-é"
+              },
+              "emetteur": {
+                "pays": "synthetic-é",
+                "identifiant": "synthetic-é"
+              },
+              "typeContrat": "synthetic-é",
+              "versionContext": "synthetic-é",
+              "authenticator": "synthetic-é"
+            },
+            null,
+            {
+              "time": "synthetic-é-second",
+              "serviceProvider": {
+                "pays": "synthetic-é-second",
+                "identifiant": "synthetic-é-second"
+              },
+              "locationOfStation": "synthetic-é-second",
+              "location": {
+                "sens": "synthetic-é-second",
+                "numeroVoie": "synthetic-é-second"
+              },
+              "type": "synthetic-é-second",
+              "result": "synthetic-é-second",
+              "tariffClass": "synthetic-é-second",
+              "claimedClass": "synthetic-é-second",
+              "fee": {
+                "montant": 43,
+                "unite": "synthetic-é-second",
+                "monnaie": "synthetic-é-second"
+              },
+              "emetteur": {
+                "pays": "synthetic-é-second",
+                "identifiant": "synthetic-é-second"
+              },
+              "typeContrat": "synthetic-é-second",
+              "versionContext": "synthetic-é-second",
+              "authenticator": "synthetic-é-second"
+            }
+          ],
+          "equipmentStatus": {
+            "compteurTransaction": "synthetic-é",
+            "invalidationPAN": "synthetic-é"
+          },
+          "contractAuthenticator": "synthetic-é",
+          "vehicleLicensePlate": {
+            "contryCode": "synthetic-é",
+            "alphabetIndicator": "synthetic-é",
+            "licensePlateNumber": {
+              "numberOfByte": 42,
+              "value": "synthetic-é"
+            }
+          },
+          "vehicleDimensions": {
+            "length": 42,
+            "height": 42,
+            "width": 42
+          },
+          "vehicleAxles": {
+            "firstAxleHeight": 42,
+            "tyreType": "synthetic-é",
+            "axlesNumber": 42
+          },
+          "vehicleWeightLimits": {
+            "maxLaden": 42,
+            "trainMaximum": 42,
+            "unladen": 42
+          },
+          "vehicleSpecificCharacteristics": {
+            "EUROEmissionClass": "synthetic-é",
+            "COPEmissionCode": "synthetic-é",
+            "engineCharacteristics": "synthetic-é",
+            "descriptiveCharacteristics": "synthetic-é",
+            "futureCharacteristics": "synthetic-é"
+          },
+          "vehicleAuthenticator": "synthetic-é"
+        },
+        null,
+        {
+          "reference": "synthetic-é-second",
+          "idEvenement": "synthetic-é-second",
+          "DHM": "synthetic-é-second",
+          "document": {
+            "id": "synthetic-é-second",
+            "type": "synthetic-é-second",
+            "duplicata": "synthetic-é-second"
+          },
+          "piste": "synthetic-é-second",
+          "CIP": {
+            "PAN": "synthetic-é-second",
+            "D_PRO": {
+              "numeroProduit": "synthetic-é-second",
+              "listeGare": "synthetic-é-second",
+              "listeCalendrier": "synthetic-é-second",
+              "dateExpiration": "synthetic-é-second"
+            }
+          },
+          "VST": {
+            "filler": "synthetic-é-second",
+            "profile": "synthetic-é-second",
+            "application": [
+              {
+                "applicationIdentifier": "synthetic-é-second",
+                "elementIdentifier": "synthetic-é-second",
+                "EFC-ContextMark": {
+                  "contractProvider": {
+                    "countryCode": "synthetic-é-second",
+                    "issuerIdentifier": "synthetic-é-second"
+                  },
+                  "typeOfContract": "synthetic-é-second",
+                  "contextVersion": "synthetic-é-second",
+                  "accessCredentialReference": "synthetic-é-second",
+                  "encryptionKey": "synthetic-é-second"
+                }
+              },
+              null,
+              {
+                "applicationIdentifier": "synthetic-é-second-second",
+                "elementIdentifier": "synthetic-é-second-second",
+                "EFC-ContextMark": {
+                  "contractProvider": {
+                    "countryCode": "synthetic-é-second-second",
+                    "issuerIdentifier": "synthetic-é-second-second"
+                  },
+                  "typeOfContract": "synthetic-é-second-second",
+                  "contextVersion": "synthetic-é-second-second",
+                  "accessCredentialReference": "synthetic-é-second-second",
+                  "encryptionKey": "synthetic-é-second-second"
+                }
+              }
+            ],
+            "obeConfiguration": {
+              "classeEquipement": "synthetic-é-second",
+              "manufacturerID": "synthetic-é-second",
+              "status": "synthetic-é-second"
+            }
+          },
+          "elementIdentifier": "synthetic-é-second",
+          "D_EVE": {
+            "serialNumber": "synthetic-é-second",
+            "manufacturedDate": "synthetic-é-second"
+          },
+          "equipementOBUID": "synthetic-é-second",
+          "F_IDU": "synthetic-é-second",
+          "D_VET": {
+            "typePassage": "synthetic-é-second",
+            "gare": "synthetic-é-second",
+            "numeroEquipement": "synthetic-é-second",
+            "sens": "synthetic-é-second",
+            "classe": "synthetic-é-second",
+            "DHM": "synthetic-é-second",
+            "periodeTarif": "synthetic-é-second",
+            "typeTarif": "synthetic-é-second",
+            "montant": 43,
+            "observation": "synthetic-é-second",
+            "pointeurHistorique": 43
+          },
+          "D_HIS": [
+            {
+              "typePassage": "synthetic-é-second",
+              "gare": "synthetic-é-second",
+              "numeroEquipement": "synthetic-é-second",
+              "sens": "synthetic-é-second",
+              "classe": "synthetic-é-second",
+              "DHM": "synthetic-é-second",
+              "periodeTarif": "synthetic-é-second",
+              "typeTarif": "synthetic-é-second",
+              "montant": 43,
+              "observation": "synthetic-é-second",
+              "pointeurHistorique": 43
+            },
+            null,
+            {
+              "typePassage": "synthetic-é-second-second",
+              "gare": "synthetic-é-second-second",
+              "numeroEquipement": "synthetic-é-second-second",
+              "sens": "synthetic-é-second-second",
+              "classe": "synthetic-é-second-second",
+              "DHM": "synthetic-é-second-second",
+              "periodeTarif": "synthetic-é-second-second",
+              "typeTarif": "synthetic-é-second-second",
+              "montant": 44,
+              "observation": "synthetic-é-second-second",
+              "pointeurHistorique": 44
+            }
+          ],
+          "D_OBS": {
+            "compteurAnomalie": 43,
+            "bitsAnomalie": "synthetic-é-second"
+          },
+          "D_PRO": {
+            "numeroProduit": "synthetic-é-second",
+            "listeGare": "synthetic-é-second",
+            "listeCalendrier": "synthetic-é-second",
+            "dateExpiration": "synthetic-é-second"
+          },
+          "paymentMeans": {
+            "PAN": "synthetic-é-second",
+            "dateExpiration": "synthetic-é-second",
+            "listeGare": "synthetic-é-second",
+            "listeCalendrier": "synthetic-é-second"
+          },
+          "receiptData": [
+            {
+              "time": "synthetic-é-second",
+              "serviceProvider": {
+                "pays": "synthetic-é-second",
+                "identifiant": "synthetic-é-second"
+              },
+              "locationOfStation": "synthetic-é-second",
+              "location": {
+                "sens": "synthetic-é-second",
+                "numeroVoie": "synthetic-é-second"
+              },
+              "type": "synthetic-é-second",
+              "result": "synthetic-é-second",
+              "tariffClass": "synthetic-é-second",
+              "claimedClass": "synthetic-é-second",
+              "fee": {
+                "montant": 43,
+                "unite": "synthetic-é-second",
+                "monnaie": "synthetic-é-second"
+              },
+              "emetteur": {
+                "pays": "synthetic-é-second",
+                "identifiant": "synthetic-é-second"
+              },
+              "typeContrat": "synthetic-é-second",
+              "versionContext": "synthetic-é-second",
+              "authenticator": "synthetic-é-second"
+            },
+            null,
+            {
+              "time": "synthetic-é-second-second",
+              "serviceProvider": {
+                "pays": "synthetic-é-second-second",
+                "identifiant": "synthetic-é-second-second"
+              },
+              "locationOfStation": "synthetic-é-second-second",
+              "location": {
+                "sens": "synthetic-é-second-second",
+                "numeroVoie": "synthetic-é-second-second"
+              },
+              "type": "synthetic-é-second-second",
+              "result": "synthetic-é-second-second",
+              "tariffClass": "synthetic-é-second-second",
+              "claimedClass": "synthetic-é-second-second",
+              "fee": {
+                "montant": 44,
+                "unite": "synthetic-é-second-second",
+                "monnaie": "synthetic-é-second-second"
+              },
+              "emetteur": {
+                "pays": "synthetic-é-second-second",
+                "identifiant": "synthetic-é-second-second"
+              },
+              "typeContrat": "synthetic-é-second-second",
+              "versionContext": "synthetic-é-second-second",
+              "authenticator": "synthetic-é-second-second"
+            }
+          ],
+          "equipmentStatus": {
+            "compteurTransaction": "synthetic-é-second",
+            "invalidationPAN": "synthetic-é-second"
+          },
+          "contractAuthenticator": "synthetic-é-second",
+          "vehicleLicensePlate": {
+            "contryCode": "synthetic-é-second",
+            "alphabetIndicator": "synthetic-é-second",
+            "licensePlateNumber": {
+              "numberOfByte": 43,
+              "value": "synthetic-é-second"
+            }
+          },
+          "vehicleDimensions": {
+            "length": 43,
+            "height": 43,
+            "width": 43
+          },
+          "vehicleAxles": {
+            "firstAxleHeight": 43,
+            "tyreType": "synthetic-é-second",
+            "axlesNumber": 43
+          },
+          "vehicleWeightLimits": {
+            "maxLaden": 43,
+            "trainMaximum": 43,
+            "unladen": 43
+          },
+          "vehicleSpecificCharacteristics": {
+            "EUROEmissionClass": "synthetic-é-second",
+            "COPEmissionCode": "synthetic-é-second",
+            "engineCharacteristics": "synthetic-é-second",
+            "descriptiveCharacteristics": "synthetic-é-second",
+            "futureCharacteristics": "synthetic-é-second"
+          },
+          "vehicleAuthenticator": "synthetic-é-second"
+        }
+      ],
+      "erreurs": [
+        {
+          "regle": {
+            "id": 42,
+            "champ": "synthetic-é",
+            "famille": "synthetic-é",
+            "codeRejet": "synthetic-é"
+          },
+          "message": "synthetic-é",
+          "valeur": "synthetic-é",
+          "correction": {
+            "DHM": "synthetic-é",
+            "type": "synthetic-é",
+            "valeur": "synthetic-é",
+            "commentaire": "synthetic-é"
+          }
+        },
+        null,
+        {
+          "regle": {
+            "id": 43,
+            "champ": "synthetic-é-second",
+            "famille": "synthetic-é-second",
+            "codeRejet": "synthetic-é-second"
+          },
+          "message": "synthetic-é-second",
+          "valeur": "synthetic-é-second",
+          "correction": {
+            "DHM": "synthetic-é-second",
+            "type": "synthetic-é-second",
+            "valeur": "synthetic-é-second",
+            "commentaire": "synthetic-é-second"
+          }
+        }
+      ]
+    },
+    "cases": [
+      {
+        "name": "all-fields",
+        "input_variant": "all-fields",
+        "expected_full": true
+      },
+      {
+        "name": "mixed-case",
+        "expected": {
+          "idPassage": null,
+          "modeFonctionnement": null,
+          "message": null,
+          "passageSortie": null,
+          "configurationsVoie": null,
+          "etatEquipements": null,
+          "niveauDeServices": null,
+          "evenements": null,
+          "erreurs": null
+        },
+        "input_variant": "mixed-case"
+      },
+      {
+        "name": "unknown-fields",
+        "input_variant": "unknown-fields",
+        "expected_full": true
+      },
+      {
+        "name": "sparse",
+        "value": {
+          "idPassage": "sparse"
+        },
+        "expected": {
+          "idPassage": "sparse",
+          "modeFonctionnement": null,
+          "message": null,
+          "passageSortie": null,
+          "configurationsVoie": null,
+          "etatEquipements": null,
+          "niveauDeServices": null,
+          "evenements": null,
+          "erreurs": null
+        }
+      },
+      {
+        "name": "empty-object",
+        "value": {},
+        "expected": {
+          "idPassage": null,
+          "modeFonctionnement": null,
+          "message": null,
+          "passageSortie": null,
+          "configurationsVoie": null,
+          "etatEquipements": null,
+          "niveauDeServices": null,
+          "evenements": null,
+          "erreurs": null
+        }
+      },
+      {
+        "name": "null-structures",
+        "value": {
+          "idPassage": null,
+          "modeFonctionnement": null,
+          "message": null,
+          "passageSortie": null,
+          "configurationsVoie": null,
+          "etatEquipements": null,
+          "niveauDeServices": null,
+          "evenements": null,
+          "erreurs": null
+        },
+        "expected": {
+          "idPassage": null,
+          "modeFonctionnement": null,
+          "message": null,
+          "passageSortie": null,
+          "configurationsVoie": null,
+          "etatEquipements": null,
+          "niveauDeServices": null,
+          "evenements": null,
+          "erreurs": null
+        }
+      },
+      {
+        "name": "empty-arrays",
+        "value": {
+          "configurationsVoie": [],
+          "etatEquipements": [],
+          "niveauDeServices": [],
+          "evenements": [],
+          "erreurs": []
+        },
+        "expected": {
+          "idPassage": null,
+          "modeFonctionnement": null,
+          "message": null,
+          "passageSortie": null,
+          "configurationsVoie": [],
+          "etatEquipements": [],
+          "niveauDeServices": [],
+          "evenements": [],
+          "erreurs": []
+        }
+      },
+      {
+        "name": "duplicate-all-fields",
+        "duplicate_of": 0,
+        "input_variant": "duplicate-all-fields",
+        "expected_full": true
+      },
+      {
+        "name": "tombstone",
+        "value": null,
+        "expected": null
+      },
+      {
+        "name": "unquoted-field-casing",
+        "input_variant": "unquoted-field-casing",
+        "expected_full": true
+      }
+    ]
+  }
+}

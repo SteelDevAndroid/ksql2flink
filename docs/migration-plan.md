@@ -12,7 +12,7 @@ Le lot 1 est choisi parce qu'il est autonome, repetitif et sans etat, contrairem
 | Lot | Difficulte | Nombre | Famille | Statut |
 | --- | --- | ---: | --- | --- |
 | 1 | Faible | 5 | Lexhistoric ASF, ESC, ARS, ACR, COF | SQL migre ; validation differentielle fournie |
-| 2 | Faible | 9 | Consolidation entrees/sorties conformes | A migrer |
+| 2 | Faible | 9 | Consolidation entrees/sorties conformes | SQL migre ; test differentiel fourni |
 | 3 | Faible | 2 | Extension classification et projection compteur | A migrer ; compteur depend du lot 6 |
 | 4 | Moyenne | 8 | Bols/coffres (6), synoptiques FAV (2) | A migrer |
 | 5 | Elevee | 4 | Histobadge entree/sortie CARDME/CIP | A migrer |
@@ -147,3 +147,7 @@ executer Flink sur une sortie miroir et verifier les consommateurs. Arreter les 
 frontiere documentee, positionner Flink aux offsets suivants et activer sa sortie historique avec un seul moteur
 producteur. Garder le plan de retour aux offsets appropries ; ne pas relancer depuis earliest sur le topic historique.
 La replication a 1 et la configuration at-least-once du laboratoire ne sont pas des reglages de production approuves.
+
+## Lot 2
+
+Les neuf branches de consolidation sont migrees. Voir [le contrat du lot 2](lot-2-conformite.md) pour les schemas, les regles de serialisation et le test reproductible.

@@ -45,7 +45,7 @@
     "difficulty": "Faible",
     "reason": "Consolidation SELECT * ; schemas imbriques, cles et multiplicite",
     "line": 1218,
-    "status": "a migrer"
+    "status": "migre"
   },
   {
     "name": "IQ_PASSAGEENTREE_CONFORME_VA_FROM_COF",
@@ -53,7 +53,7 @@
     "difficulty": "Faible",
     "reason": "Consolidation SELECT * ; schemas imbriques, cles et multiplicite",
     "line": 1385,
-    "status": "a migrer"
+    "status": "migre"
   },
   {
     "name": "IQ_PASSAGEENTREE_CONFORME_VA_FROM_ESC",
@@ -61,7 +61,7 @@
     "difficulty": "Faible",
     "reason": "Consolidation SELECT * ; schemas imbriques, cles et multiplicite",
     "line": 1768,
-    "status": "a migrer"
+    "status": "migre"
   },
   {
     "name": "IQ_PASSAGESORTIE_CONFORME_VA_FROM_ACR",
@@ -69,7 +69,7 @@
     "difficulty": "Faible",
     "reason": "Consolidation SELECT * ; schemas imbriques, cles et multiplicite",
     "line": 585,
-    "status": "a migrer"
+    "status": "migre"
   },
   {
     "name": "IQ_PASSAGESORTIE_CONFORME_VA_FROM_ARS",
@@ -77,7 +77,7 @@
     "difficulty": "Faible",
     "reason": "Consolidation SELECT * ; schemas imbriques, cles et multiplicite",
     "line": 583,
-    "status": "a migrer"
+    "status": "migre"
   },
   {
     "name": "IQ_PASSAGESORTIE_CONFORME_VA_FROM_COF",
@@ -85,7 +85,7 @@
     "difficulty": "Faible",
     "reason": "Consolidation SELECT * ; schemas imbriques, cles et multiplicite",
     "line": 586,
-    "status": "a migrer"
+    "status": "migre"
   },
   {
     "name": "IQ_PASSAGESORTIE_CONFORME_VA_FROM_ESC",
@@ -93,7 +93,7 @@
     "difficulty": "Faible",
     "reason": "Consolidation SELECT * ; schemas imbriques, cles et multiplicite",
     "line": 463,
-    "status": "a migrer"
+    "status": "migre"
   },
   {
     "name": "VA_PEAGE_VOIE_PASSAGEENTREE_CONFORME_VA",
@@ -101,7 +101,7 @@
     "difficulty": "Faible",
     "reason": "Consolidation SELECT * ; schemas imbriques, cles et multiplicite",
     "line": 1823,
-    "status": "a migrer"
+    "status": "migre"
   },
   {
     "name": "VA_PEAGE_VOIE_PASSAGESORTIE_CONFORME_VA",
@@ -109,7 +109,7 @@
     "difficulty": "Faible",
     "reason": "Consolidation SELECT * ; schemas imbriques, cles et multiplicite",
     "line": 557,
-    "status": "a migrer"
+    "status": "migre"
   },
   {
     "name": "VA_PEAGE_BACKOFFICE_SOCLEET_COMPTEUR",

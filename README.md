@@ -57,6 +57,26 @@ L'image contient une UDF Java pour la recherche de champs JSON sans tenir compte
 Les cles de sortie sont nulles, conformement aux sources ksqlDB sans colonne KEY.
 Les limites de validation et la procedure de bascule sont detaillees dans le plan.
 
+## Migration du lot 2 : passages conformes
+
+Le lot 2 reprend les neuf branches de consolidation (quatre entrees, cinq sorties).
+L'entree ARS est declaree dans le journal mais aucune requete ne l'insere dans le flux VA ; elle reste exclue.
+Les schemas imbriques complets sont extraits du journal, avec leur casse originale.
+Une fonction de serialisation applique ces schemas et distingue les noms quotes des noms non quotes : champs inconnus retires, champs absents materialises a null,
+ordre des tableaux conserve. Les messages ne sont pas dedupliques.
+
+```powershell
+docker compose up -d --build --wait
+python scripts/test_conformite.py
+```
+
+SQL : `sql/ksqldb/03-conformite.sql` (reference), `sql/flink/03-conformite.sql` (migration).
+Le test injecte 100 messages dans dix entrees et attend 40 sorties entree et 50 sorties sortie par moteur (tombstones compris).
+Les donnees couvrent tous les champs declares, les champs inconnus, la casse, les nulls, les tableaux vides,
+les doublons exacts, les tombstones et l'exclusion ARS en entree.
+Les schemas et SQL sont regenerables avec `python scripts/generate_conformite_sql.py` ; la CI verifie leur reproductibilite.
+Le [contrat du lot 2](docs/lot-2-conformite.md) precise les limites et la procedure d'utilisation.
+
 ## Consoles SQL
 
 ```powershell
@@ -98,8 +118,8 @@ laboratoire sont explicites et ne reproduisent pas necessairement la production.
 
 ## Arret et diagnostic
 
-Le workflow GitHub Actions `Migration comparisons` execute les deux tests sur les pull requests,
-sur `main` et sur la branche de migration. Les rapports et logs Docker sont conserves sept jours.
+Le workflow GitHub Actions `Migration comparisons` execute les trois tests sur les pull requests,
+sur `main` et sur les branches `feat/**`. Les rapports et logs Docker sont conserves sept jours.
 Les PR provenant d'un fork peuvent necessiter l'approbation d'un mainteneur pour lancer le workflow.
 
 ```powershell
