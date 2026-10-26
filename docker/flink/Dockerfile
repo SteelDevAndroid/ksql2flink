@@ -11,8 +11,9 @@ USER flink
 FROM eclipse-temurin:17-jdk AS compiler
 COPY --from=runtime /opt/flink/lib /deps
 COPY src /src
+COPY resources /resources
 RUN mkdir /classes && javac -cp '/deps/*' -d /classes /src/lab/*.java \
-    && jar --create --file /migration-lab.jar -C /classes .
+    && jar --create --file /migration-lab.jar -C /classes . -C /resources .
 
 FROM runtime
 COPY --from=compiler /migration-lab.jar /opt/flink/lib/migration-lab.jar

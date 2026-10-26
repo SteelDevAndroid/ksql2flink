@@ -1,0 +1,344 @@
+{
+  "idPassage": "STRING",
+  "modeFonctionnement": "STRING",
+  "message": {
+    "numero": "INTEGER",
+    "DHM": "STRING",
+    "type": "STRING",
+    "typeEmission": "STRING",
+    "producteur": {
+      "type": "STRING",
+      "id": "STRING"
+    }
+  },
+  "passageSortie": {
+    "paiement": {
+      "retenus": [
+        {
+          "montant": "INTEGER",
+          "devise": "STRING",
+          "type": "STRING",
+          "PAN": "STRING",
+          "natureCommerciale": "STRING",
+          "emetteur": "STRING",
+          "referencesEvenement": [
+            "STRING"
+          ],
+          "acquisition": "STRING"
+        }
+      ],
+      "acceptables": [
+        {
+          "type": "STRING",
+          "PAN": "STRING",
+          "natureCommerciale": "STRING",
+          "emetteur": "STRING",
+          "ISO3": "STRING",
+          "referencesEvenement": [
+            "STRING"
+          ],
+          "acquisition": "STRING"
+        }
+      ],
+      "refuses": [
+        {
+          "type": "STRING",
+          "PAN": "STRING",
+          "natureCommerciale": "STRING",
+          "emetteur": "STRING",
+          "ISO3": "STRING",
+          "referencesEvenement": [
+            "STRING"
+          ],
+          "acquisition": "STRING"
+        }
+      ]
+    },
+    "systeme": "STRING",
+    "DHM": "STRING",
+    "etat": "STRING",
+    "tarification": {
+      "trajet": {
+        "type": "STRING",
+        "referencesEvenement": [
+          "STRING"
+        ],
+        "entree": {
+          "acquisition": "STRING",
+          "gare": "STRING",
+          "voie": "STRING",
+          "DHM": "STRING",
+          "referencesEvenement": [
+            "STRING"
+          ]
+        },
+        "sortie": {
+          "gare": "STRING",
+          "voie": "STRING",
+          "DHM": "STRING"
+        }
+      },
+      "classeTarifaire": {
+        "acquisition": "STRING",
+        "classe": "STRING",
+        "referencesEvenement": [
+          "STRING"
+        ]
+      },
+      "prix": {
+        "montantHT": "DOUBLE",
+        "montantTVA": "DOUBLE",
+        "montantTTC": "DOUBLE",
+        "tauxTVA": "DOUBLE",
+        "devise": "STRING"
+      }
+    },
+    "couleurTarifaire": {
+      "valeur": "STRING"
+    },
+    "classeEuro": {
+      "valeur": "STRING"
+    },
+    "modulationHoraire": {
+      "code": "STRING",
+      "type": "STRING"
+    },
+    "entrees": [
+      {
+        "acquisition": "STRING",
+        "gare": "STRING",
+        "voie": "STRING",
+        "DHM": "STRING",
+        "referencesEvenement": [
+          "STRING"
+        ]
+      }
+    ],
+    "localisation": {
+      "gare": "STRING",
+      "equipement": {
+        "numero": "STRING",
+        "type": "STRING"
+      }
+    },
+    "classes": [
+      {
+        "acquisition": "STRING",
+        "classe": "STRING",
+        "essieux": "INTEGER",
+        "referencesEvenement": [
+          "STRING"
+        ]
+      }
+    ],
+    "immatriculations": [
+      {
+        "acquisition": "STRING",
+        "valeur": "STRING",
+        "referencesEvenement": [
+          "STRING"
+        ]
+      }
+    ]
+  },
+  "configurationsVoie": [
+    {
+      "sujet": "STRING",
+      "etat": "STRING"
+    }
+  ],
+  "etatEquipements": [
+    {
+      "sujet": "STRING",
+      "etat": "STRING"
+    }
+  ],
+  "niveauDeServices": [
+    {
+      "service": "STRING",
+      "niveau": "STRING"
+    }
+  ],
+  "evenements": [
+    {
+      "reference": "STRING",
+      "idEvenement": "STRING",
+      "DHM": "STRING",
+      "document": {
+        "id": "STRING",
+        "type": "STRING",
+        "duplicata": "STRING"
+      },
+      "piste": "STRING",
+      "CIP": {
+        "PAN": "STRING",
+        "D_PRO": {
+          "numeroProduit": "STRING",
+          "listeGare": "STRING",
+          "listeCalendrier": "STRING",
+          "dateExpiration": "STRING"
+        }
+      },
+      "VST": {
+        "filler": "STRING",
+        "profile": "STRING",
+        "application": [
+          {
+            "applicationIdentifier": "STRING",
+            "elementIdentifier": "STRING",
+            "EFC-ContextMark": {
+              "contractProvider": {
+                "countryCode": "STRING",
+                "issuerIdentifier": "STRING"
+              },
+              "typeOfContract": "STRING",
+              "contextVersion": "STRING",
+              "accessCredentialReference": "STRING",
+              "encryptionKey": "STRING"
+            }
+          }
+        ],
+        "obeConfiguration": {
+          "classeEquipement": "STRING",
+          "manufacturerID": "STRING",
+          "status": "STRING"
+        }
+      },
+      "elementIdentifier": "STRING",
+      "D_EVE": {
+        "serialNumber": "STRING",
+        "manufacturedDate": "STRING"
+      },
+      "equipementOBUID": "STRING",
+      "F_IDU": "STRING",
+      "D_VET": {
+        "typePassage": "STRING",
+        "gare": "STRING",
+        "numeroEquipement": "STRING",
+        "sens": "STRING",
+        "classe": "STRING",
+        "DHM": "STRING",
+        "periodeTarif": "STRING",
+        "typeTarif": "STRING",
+        "montant": "INTEGER",
+        "observation": "STRING",
+        "pointeurHistorique": "INTEGER"
+      },
+      "D_HIS": [
+        {
+          "typePassage": "STRING",
+          "gare": "STRING",
+          "numeroEquipement": "STRING",
+          "sens": "STRING",
+          "classe": "STRING",
+          "DHM": "STRING",
+          "periodeTarif": "STRING",
+          "typeTarif": "STRING",
+          "montant": "INTEGER",
+          "observation": "STRING",
+          "pointeurHistorique": "INTEGER"
+        }
+      ],
+      "D_OBS": {
+        "compteurAnomalie": "INTEGER",
+        "bitsAnomalie": "STRING"
+      },
+      "D_PRO": {
+        "numeroProduit": "STRING",
+        "listeGare": "STRING",
+        "listeCalendrier": "STRING",
+        "dateExpiration": "STRING"
+      },
+      "paymentMeans": {
+        "PAN": "STRING",
+        "dateExpiration": "STRING",
+        "listeGare": "STRING",
+        "listeCalendrier": "STRING"
+      },
+      "receiptData": [
+        {
+          "time": "STRING",
+          "serviceProvider": {
+            "pays": "STRING",
+            "identifiant": "STRING"
+          },
+          "locationOfStation": "STRING",
+          "location": {
+            "sens": "STRING",
+            "numeroVoie": "STRING"
+          },
+          "type": "STRING",
+          "result": "STRING",
+          "tariffClass": "STRING",
+          "claimedClass": "STRING",
+          "fee": {
+            "montant": "INTEGER",
+            "unite": "STRING",
+            "monnaie": "STRING"
+          },
+          "emetteur": {
+            "pays": "STRING",
+            "identifiant": "STRING"
+          },
+          "typeContrat": "STRING",
+          "versionContext": "STRING",
+          "authenticator": "STRING"
+        }
+      ],
+      "equipmentStatus": {
+        "compteurTransaction": "STRING",
+        "invalidationPAN": "STRING"
+      },
+      "contractAuthenticator": "STRING",
+      "vehicleLicensePlate": {
+        "contryCode": "STRING",
+        "alphabetIndicator": "STRING",
+        "licensePlateNumber": {
+          "numberOfByte": "INTEGER",
+          "value": "STRING"
+        }
+      },
+      "vehicleDimensions": {
+        "length": "INTEGER",
+        "height": "INTEGER",
+        "width": "INTEGER"
+      },
+      "vehicleAxles": {
+        "firstAxleHeight": "INTEGER",
+        "tyreType": "STRING",
+        "axlesNumber": "INTEGER"
+      },
+      "vehicleWeightLimits": {
+        "maxLaden": "INTEGER",
+        "trainMaximum": "INTEGER",
+        "unladen": "INTEGER"
+      },
+      "vehicleSpecificCharacteristics": {
+        "EUROEmissionClass": "STRING",
+        "COPEmissionCode": "STRING",
+        "engineCharacteristics": "STRING",
+        "descriptiveCharacteristics": "STRING",
+        "futureCharacteristics": "STRING"
+      },
+      "vehicleAuthenticator": "STRING"
+    }
+  ],
+  "erreurs": [
+    {
+      "regle": {
+        "id": "INTEGER",
+        "champ": "STRING",
+        "famille": "STRING",
+        "codeRejet": "STRING"
+      },
+      "message": "STRING",
+      "valeur": "STRING",
+      "correction": {
+        "DHM": "STRING",
+        "type": "STRING",
+        "valeur": "STRING",
+        "commentaire": "STRING"
+      }
+    }
+  ]
+}
