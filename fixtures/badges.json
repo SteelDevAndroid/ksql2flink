@@ -1,0 +1,4440 @@
+{
+  "entree": [
+    {
+      "name": "mixed-correlated",
+      "value": {
+        "passageEntree": {
+          "DHM": "parent",
+          "localisation": {
+            "gare": "25005601",
+            "equipement": {
+              "numero": "007",
+              "type": "BE"
+            }
+          }
+        },
+        "evenements": [
+          {
+            "idEvenement": "DSRC.lecture.CARDME",
+            "D_VET": {
+              "typePassage": "d",
+              "gare": "g",
+              "numeroEquipement": "8",
+              "sens": "0",
+              "classe": "2",
+              "DHM": "20260101000000",
+              "periodeTarif": null,
+              "typeTarif": null,
+              "montant": null,
+              "observation": null,
+              "pointeurHistorique": null
+            },
+            "paymentMeans": {
+              "PAN": "CARD-A"
+            },
+            "receiptData": [
+              {
+                "time": "20260102030405",
+                "serviceProvider": {
+                  "pays": "250",
+                  "identifiant": "abc04"
+                },
+                "locationOfStation": "xx123",
+                "location": {
+                  "sens": "0",
+                  "numeroVoie": "001"
+                },
+                "type": "1",
+                "fee": {
+                  "montant": 1234
+                },
+                "tariffClass": "2"
+              },
+              {
+                "time": "20260203040506",
+                "serviceProvider": {
+                  "pays": "250",
+                  "identifiant": "abc06"
+                },
+                "locationOfStation": "xx456",
+                "location": {
+                  "sens": "1",
+                  "numeroVoie": "099"
+                },
+                "type": "123",
+                "fee": {
+                  "montant": -250
+                },
+                "tariffClass": "03"
+              }
+            ]
+          },
+          {
+            "idEvenement": "DSRC.lecture.CIP",
+            "D_VET": {
+              "typePassage": "d",
+              "gare": "g",
+              "numeroEquipement": "8",
+              "sens": "0",
+              "classe": "2",
+              "DHM": "20260101000000",
+              "periodeTarif": null,
+              "typeTarif": null,
+              "montant": null,
+              "observation": null,
+              "pointeurHistorique": null
+            },
+            "F_IDU": "CIP-A",
+            "D_HIS": [
+              {
+                "typePassage": "a",
+                "gare": "entry",
+                "numeroEquipement": "7",
+                "sens": "0",
+                "classe": "2",
+                "DHM": "20250102030405",
+                "montant": 501
+              },
+              {
+                "typePassage": "b",
+                "gare": "exit",
+                "numeroEquipement": "1234",
+                "sens": "1",
+                "classe": "1234",
+                "DHM": "20250203040506",
+                "montant": 0
+              }
+            ]
+          },
+          {
+            "idEvenement": "DSRC.lecture.CARDME",
+            "D_VET": {
+              "typePassage": "d",
+              "gare": "gare-B",
+              "numeroEquipement": "8",
+              "sens": "0",
+              "classe": "2",
+              "DHM": "20260101000000",
+              "periodeTarif": null,
+              "typeTarif": null,
+              "montant": null,
+              "observation": null,
+              "pointeurHistorique": null
+            },
+            "paymentMeans": {
+              "PAN": "CARD-B"
+            },
+            "receiptData": [
+              {
+                "time": "20261231235959",
+                "serviceProvider": {
+                  "pays": "250",
+                  "identifiant": "abc04"
+                },
+                "locationOfStation": "xx123",
+                "location": {
+                  "sens": "0",
+                  "numeroVoie": "001"
+                },
+                "type": "1",
+                "fee": {
+                  "montant": 1234
+                },
+                "tariffClass": "2"
+              },
+              {
+                "time": "20260203040506",
+                "serviceProvider": {
+                  "pays": "250",
+                  "identifiant": "abc06"
+                },
+                "locationOfStation": "xx456",
+                "location": {
+                  "sens": "1",
+                  "numeroVoie": "099"
+                },
+                "type": "123",
+                "fee": {
+                  "montant": -250
+                },
+                "tariffClass": "03"
+              }
+            ]
+          },
+          {
+            "idEvenement": "DSRC.lecture.CIP",
+            "D_VET": {
+              "typePassage": "d",
+              "gare": "gare-B",
+              "numeroEquipement": "8",
+              "sens": "0",
+              "classe": "2",
+              "DHM": "20260101000000",
+              "periodeTarif": null,
+              "typeTarif": null,
+              "montant": null,
+              "observation": null,
+              "pointeurHistorique": null
+            },
+            "F_IDU": "CIP-B",
+            "D_HIS": [
+              {
+                "typePassage": "a",
+                "gare": "entry",
+                "numeroEquipement": "7",
+                "sens": "0",
+                "classe": "2",
+                "DHM": "20250102030405",
+                "montant": 999
+              },
+              {
+                "typePassage": "b",
+                "gare": "exit",
+                "numeroEquipement": "1234",
+                "sens": "1",
+                "classe": "1234",
+                "DHM": "20250203040506",
+                "montant": 0
+              }
+            ]
+          }
+        ]
+      },
+      "expected": [
+        {
+          "DHM": "parent",
+          "sens": "E",
+          "localisation": {
+            "gare": "25005601",
+            "equipement": {
+              "numero": "007",
+              "type": "BE"
+            }
+          },
+          "PAN": "CARD-A",
+          "histo": [
+            {
+              "localisation": {
+                "gare": "25004123",
+                "equipement": {
+                  "numero": "001",
+                  "type": ""
+                }
+              },
+              "DHM": "2026-01-02T03:04:05",
+              "sens": "E",
+              "typePassage": "01",
+              "tarif": 12.34,
+              "classe": "2"
+            },
+            {
+              "localisation": {
+                "gare": "25006456",
+                "equipement": {
+                  "numero": "099",
+                  "type": ""
+                }
+              },
+              "DHM": "2026-02-03T04:05:06",
+              "sens": "S",
+              "typePassage": "12",
+              "tarif": -2.5,
+              "classe": "03"
+            }
+          ],
+          "D_VET": {
+            "typePassage": "d",
+            "gare": "g",
+            "numeroEquipement": "8",
+            "sens": "0",
+            "classe": "2",
+            "DHM": "20260101000000",
+            "periodeTarif": null,
+            "typeTarif": null,
+            "montant": null,
+            "observation": null,
+            "pointeurHistorique": null
+          }
+        },
+        {
+          "DHM": "parent",
+          "sens": "E",
+          "localisation": {
+            "gare": "25005601",
+            "equipement": {
+              "numero": "007",
+              "type": "BE"
+            }
+          },
+          "PAN": "CIP-A",
+          "histo": [
+            {
+              "localisation": {
+                "gare": "entry",
+                "equipement": {
+                  "numero": "007",
+                  "type": ""
+                }
+              },
+              "DHM": "2025-01-02T03:04:05",
+              "sens": "E",
+              "typePassage": "a",
+              "tarif": 5.01,
+              "classe": "002"
+            },
+            {
+              "localisation": {
+                "gare": "exit",
+                "equipement": {
+                  "numero": "123",
+                  "type": ""
+                }
+              },
+              "DHM": "2025-02-03T04:05:06",
+              "sens": "S",
+              "typePassage": "b",
+              "tarif": 0.0,
+              "classe": "123"
+            }
+          ],
+          "D_VET": {
+            "typePassage": "d",
+            "gare": "g",
+            "numeroEquipement": "8",
+            "sens": "0",
+            "classe": "2",
+            "DHM": "20260101000000",
+            "periodeTarif": null,
+            "typeTarif": null,
+            "montant": null,
+            "observation": null,
+            "pointeurHistorique": null
+          }
+        },
+        {
+          "DHM": "parent",
+          "sens": "E",
+          "localisation": {
+            "gare": "25005601",
+            "equipement": {
+              "numero": "007",
+              "type": "BE"
+            }
+          },
+          "PAN": "CARD-B",
+          "histo": [
+            {
+              "localisation": {
+                "gare": "25004123",
+                "equipement": {
+                  "numero": "001",
+                  "type": ""
+                }
+              },
+              "DHM": "2026-12-31T23:59:59",
+              "sens": "E",
+              "typePassage": "01",
+              "tarif": 12.34,
+              "classe": "2"
+            },
+            {
+              "localisation": {
+                "gare": "25006456",
+                "equipement": {
+                  "numero": "099",
+                  "type": ""
+                }
+              },
+              "DHM": "2026-02-03T04:05:06",
+              "sens": "S",
+              "typePassage": "12",
+              "tarif": -2.5,
+              "classe": "03"
+            }
+          ],
+          "D_VET": {
+            "typePassage": "d",
+            "gare": "gare-B",
+            "numeroEquipement": "8",
+            "sens": "0",
+            "classe": "2",
+            "DHM": "20260101000000",
+            "periodeTarif": null,
+            "typeTarif": null,
+            "montant": null,
+            "observation": null,
+            "pointeurHistorique": null
+          }
+        },
+        {
+          "DHM": "parent",
+          "sens": "E",
+          "localisation": {
+            "gare": "25005601",
+            "equipement": {
+              "numero": "007",
+              "type": "BE"
+            }
+          },
+          "PAN": "CIP-B",
+          "histo": [
+            {
+              "localisation": {
+                "gare": "entry",
+                "equipement": {
+                  "numero": "007",
+                  "type": ""
+                }
+              },
+              "DHM": "2025-01-02T03:04:05",
+              "sens": "E",
+              "typePassage": "a",
+              "tarif": 9.99,
+              "classe": "002"
+            },
+            {
+              "localisation": {
+                "gare": "exit",
+                "equipement": {
+                  "numero": "123",
+                  "type": ""
+                }
+              },
+              "DHM": "2025-02-03T04:05:06",
+              "sens": "S",
+              "typePassage": "b",
+              "tarif": 0.0,
+              "classe": "123"
+            }
+          ],
+          "D_VET": {
+            "typePassage": "d",
+            "gare": "gare-B",
+            "numeroEquipement": "8",
+            "sens": "0",
+            "classe": "2",
+            "DHM": "20260101000000",
+            "periodeTarif": null,
+            "typeTarif": null,
+            "montant": null,
+            "observation": null,
+            "pointeurHistorique": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "duplicates",
+      "value": {
+        "passageEntree": {
+          "DHM": "parent",
+          "localisation": {
+            "gare": "25005601",
+            "equipement": {
+              "numero": "007",
+              "type": "BE"
+            }
+          }
+        },
+        "evenements": [
+          {
+            "idEvenement": "DSRC.lecture.CARDME",
+            "D_VET": {
+              "typePassage": "d",
+              "gare": "g",
+              "numeroEquipement": "8",
+              "sens": "0",
+              "classe": "2",
+              "DHM": "20260101000000",
+              "periodeTarif": null,
+              "typeTarif": null,
+              "montant": null,
+              "observation": null,
+              "pointeurHistorique": null
+            },
+            "paymentMeans": {
+              "PAN": "DUP"
+            },
+            "receiptData": [
+              {
+                "time": "20260102030405",
+                "serviceProvider": {
+                  "pays": "250",
+                  "identifiant": "abc04"
+                },
+                "locationOfStation": "xx123",
+                "location": {
+                  "sens": "0",
+                  "numeroVoie": "001"
+                },
+                "type": "1",
+                "fee": {
+                  "montant": 1234
+                },
+                "tariffClass": "2"
+              },
+              {
+                "time": "20260203040506",
+                "serviceProvider": {
+                  "pays": "250",
+                  "identifiant": "abc06"
+                },
+                "locationOfStation": "xx456",
+                "location": {
+                  "sens": "1",
+                  "numeroVoie": "099"
+                },
+                "type": "123",
+                "fee": {
+                  "montant": -250
+                },
+                "tariffClass": "03"
+              }
+            ]
+          },
+          {
+            "idEvenement": "DSRC.lecture.CARDME",
+            "D_VET": {
+              "typePassage": "d",
+              "gare": "g",
+              "numeroEquipement": "8",
+              "sens": "0",
+              "classe": "2",
+              "DHM": "20260101000000",
+              "periodeTarif": null,
+              "typeTarif": null,
+              "montant": null,
+              "observation": null,
+              "pointeurHistorique": null
+            },
+            "paymentMeans": {
+              "PAN": "DUP"
+            },
+            "receiptData": [
+              {
+                "time": "20260102030405",
+                "serviceProvider": {
+                  "pays": "250",
+                  "identifiant": "abc04"
+                },
+                "locationOfStation": "xx123",
+                "location": {
+                  "sens": "0",
+                  "numeroVoie": "001"
+                },
+                "type": "1",
+                "fee": {
+                  "montant": 1234
+                },
+                "tariffClass": "2"
+              },
+              {
+                "time": "20260203040506",
+                "serviceProvider": {
+                  "pays": "250",
+                  "identifiant": "abc06"
+                },
+                "locationOfStation": "xx456",
+                "location": {
+                  "sens": "1",
+                  "numeroVoie": "099"
+                },
+                "type": "123",
+                "fee": {
+                  "montant": -250
+                },
+                "tariffClass": "03"
+              }
+            ]
+          }
+        ]
+      },
+      "expected": [
+        {
+          "DHM": "parent",
+          "sens": "E",
+          "localisation": {
+            "gare": "25005601",
+            "equipement": {
+              "numero": "007",
+              "type": "BE"
+            }
+          },
+          "PAN": "DUP",
+          "histo": [
+            {
+              "localisation": {
+                "gare": "25004123",
+                "equipement": {
+                  "numero": "001",
+                  "type": ""
+                }
+              },
+              "DHM": "2026-01-02T03:04:05",
+              "sens": "E",
+              "typePassage": "01",
+              "tarif": 12.34,
+              "classe": "2"
+            },
+            {
+              "localisation": {
+                "gare": "25006456",
+                "equipement": {
+                  "numero": "099",
+                  "type": ""
+                }
+              },
+              "DHM": "2026-02-03T04:05:06",
+              "sens": "S",
+              "typePassage": "12",
+              "tarif": -2.5,
+              "classe": "03"
+            }
+          ],
+          "D_VET": {
+            "typePassage": "d",
+            "gare": "g",
+            "numeroEquipement": "8",
+            "sens": "0",
+            "classe": "2",
+            "DHM": "20260101000000",
+            "periodeTarif": null,
+            "typeTarif": null,
+            "montant": null,
+            "observation": null,
+            "pointeurHistorique": null
+          }
+        },
+        {
+          "DHM": "parent",
+          "sens": "E",
+          "localisation": {
+            "gare": "25005601",
+            "equipement": {
+              "numero": "007",
+              "type": "BE"
+            }
+          },
+          "PAN": "DUP",
+          "histo": [
+            {
+              "localisation": {
+                "gare": "25004123",
+                "equipement": {
+                  "numero": "001",
+                  "type": ""
+                }
+              },
+              "DHM": "2026-01-02T03:04:05",
+              "sens": "E",
+              "typePassage": "01",
+              "tarif": 12.34,
+              "classe": "2"
+            },
+            {
+              "localisation": {
+                "gare": "25006456",
+                "equipement": {
+                  "numero": "099",
+                  "type": ""
+                }
+              },
+              "DHM": "2026-02-03T04:05:06",
+              "sens": "S",
+              "typePassage": "12",
+              "tarif": -2.5,
+              "classe": "03"
+            }
+          ],
+          "D_VET": {
+            "typePassage": "d",
+            "gare": "g",
+            "numeroEquipement": "8",
+            "sens": "0",
+            "classe": "2",
+            "DHM": "20260101000000",
+            "periodeTarif": null,
+            "typeTarif": null,
+            "montant": null,
+            "observation": null,
+            "pointeurHistorique": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "invalid-pan",
+      "value": {
+        "passageEntree": {
+          "DHM": "parent",
+          "localisation": {
+            "gare": "25005601",
+            "equipement": {
+              "numero": "007",
+              "type": "BE"
+            }
+          }
+        },
+        "evenements": [
+          {
+            "idEvenement": "DSRC.lecture.CARDME",
+            "D_VET": {
+              "typePassage": "d",
+              "gare": "g",
+              "numeroEquipement": "8",
+              "sens": "0",
+              "classe": "2",
+              "DHM": "20260101000000",
+              "periodeTarif": null,
+              "typeTarif": null,
+              "montant": null,
+              "observation": null,
+              "pointeurHistorique": null
+            },
+            "paymentMeans": {
+              "PAN": null
+            },
+            "receiptData": [
+              {
+                "time": "20260102030405",
+                "serviceProvider": {
+                  "pays": "250",
+                  "identifiant": "abc04"
+                },
+                "locationOfStation": "xx123",
+                "location": {
+                  "sens": "0",
+                  "numeroVoie": "001"
+                },
+                "type": "1",
+                "fee": {
+                  "montant": 1234
+                },
+                "tariffClass": "2"
+              },
+              {
+                "time": "20260203040506",
+                "serviceProvider": {
+                  "pays": "250",
+                  "identifiant": "abc06"
+                },
+                "locationOfStation": "xx456",
+                "location": {
+                  "sens": "1",
+                  "numeroVoie": "099"
+                },
+                "type": "123",
+                "fee": {
+                  "montant": -250
+                },
+                "tariffClass": "03"
+              }
+            ]
+          },
+          {
+            "idEvenement": "DSRC.lecture.CARDME",
+            "D_VET": {
+              "typePassage": "d",
+              "gare": "g",
+              "numeroEquipement": "8",
+              "sens": "0",
+              "classe": "2",
+              "DHM": "20260101000000",
+              "periodeTarif": null,
+              "typeTarif": null,
+              "montant": null,
+              "observation": null,
+              "pointeurHistorique": null
+            },
+            "paymentMeans": {
+              "PAN": ""
+            },
+            "receiptData": [
+              {
+                "time": "20260102030405",
+                "serviceProvider": {
+                  "pays": "250",
+                  "identifiant": "abc04"
+                },
+                "locationOfStation": "xx123",
+                "location": {
+                  "sens": "0",
+                  "numeroVoie": "001"
+                },
+                "type": "1",
+                "fee": {
+                  "montant": 1234
+                },
+                "tariffClass": "2"
+              },
+              {
+                "time": "20260203040506",
+                "serviceProvider": {
+                  "pays": "250",
+                  "identifiant": "abc06"
+                },
+                "locationOfStation": "xx456",
+                "location": {
+                  "sens": "1",
+                  "numeroVoie": "099"
+                },
+                "type": "123",
+                "fee": {
+                  "montant": -250
+                },
+                "tariffClass": "03"
+              }
+            ]
+          },
+          {
+            "idEvenement": "DSRC.lecture.CARDME",
+            "D_VET": {
+              "typePassage": "d",
+              "gare": "g",
+              "numeroEquipement": "8",
+              "sens": "0",
+              "classe": "2",
+              "DHM": "20260101000000",
+              "periodeTarif": null,
+              "typeTarif": null,
+              "montant": null,
+              "observation": null,
+              "pointeurHistorique": null
+            },
+            "paymentMeans": {
+              "PAN": "0000000000000000000"
+            },
+            "receiptData": [
+              {
+                "time": "20260102030405",
+                "serviceProvider": {
+                  "pays": "250",
+                  "identifiant": "abc04"
+                },
+                "locationOfStation": "xx123",
+                "location": {
+                  "sens": "0",
+                  "numeroVoie": "001"
+                },
+                "type": "1",
+                "fee": {
+                  "montant": 1234
+                },
+                "tariffClass": "2"
+              },
+              {
+                "time": "20260203040506",
+                "serviceProvider": {
+                  "pays": "250",
+                  "identifiant": "abc06"
+                },
+                "locationOfStation": "xx456",
+                "location": {
+                  "sens": "1",
+                  "numeroVoie": "099"
+                },
+                "type": "123",
+                "fee": {
+                  "montant": -250
+                },
+                "tariffClass": "03"
+              }
+            ]
+          },
+          {
+            "idEvenement": "DSRC.lecture.CARDME",
+            "D_VET": {
+              "typePassage": "d",
+              "gare": "g",
+              "numeroEquipement": "8",
+              "sens": "0",
+              "classe": "2",
+              "DHM": "20260101000000",
+              "periodeTarif": null,
+              "typeTarif": null,
+              "montant": null,
+              "observation": null,
+              "pointeurHistorique": null
+            },
+            "paymentMeans": {
+              "PAN": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+            },
+            "receiptData": [
+              {
+                "time": "20260102030405",
+                "serviceProvider": {
+                  "pays": "250",
+                  "identifiant": "abc04"
+                },
+                "locationOfStation": "xx123",
+                "location": {
+                  "sens": "0",
+                  "numeroVoie": "001"
+                },
+                "type": "1",
+                "fee": {
+                  "montant": 1234
+                },
+                "tariffClass": "2"
+              },
+              {
+                "time": "20260203040506",
+                "serviceProvider": {
+                  "pays": "250",
+                  "identifiant": "abc06"
+                },
+                "locationOfStation": "xx456",
+                "location": {
+                  "sens": "1",
+                  "numeroVoie": "099"
+                },
+                "type": "123",
+                "fee": {
+                  "montant": -250
+                },
+                "tariffClass": "03"
+              }
+            ]
+          },
+          {
+            "idEvenement": "DSRC.lecture.CIP",
+            "D_VET": {
+              "typePassage": "d",
+              "gare": "g",
+              "numeroEquipement": "8",
+              "sens": "0",
+              "classe": "2",
+              "DHM": "20260101000000",
+              "periodeTarif": null,
+              "typeTarif": null,
+              "montant": null,
+              "observation": null,
+              "pointeurHistorique": null
+            },
+            "F_IDU": "00000000000000000",
+            "D_HIS": [
+              {
+                "typePassage": "a",
+                "gare": "entry",
+                "numeroEquipement": "7",
+                "sens": "0",
+                "classe": "2",
+                "DHM": "20250102030405",
+                "montant": 501
+              },
+              {
+                "typePassage": "b",
+                "gare": "exit",
+                "numeroEquipement": "1234",
+                "sens": "1",
+                "classe": "1234",
+                "DHM": "20250203040506",
+                "montant": 0
+              }
+            ]
+          },
+          null
+        ]
+      },
+      "expected": []
+    },
+    {
+      "name": "other-zero-length",
+      "value": {
+        "passageEntree": {
+          "DHM": "parent",
+          "localisation": {
+            "gare": "25005601",
+            "equipement": {
+              "numero": "007",
+              "type": "BE"
+            }
+          }
+        },
+        "evenements": [
+          {
+            "idEvenement": "DSRC.lecture.CARDME",
+            "D_VET": {
+              "typePassage": "d",
+              "gare": "g",
+              "numeroEquipement": "8",
+              "sens": "0",
+              "classe": "2",
+              "DHM": "20260101000000",
+              "periodeTarif": null,
+              "typeTarif": null,
+              "montant": null,
+              "observation": null,
+              "pointeurHistorique": null
+            },
+            "paymentMeans": {
+              "PAN": "000000000000000000"
+            },
+            "receiptData": [
+              {
+                "time": "20260102030405",
+                "serviceProvider": {
+                  "pays": "250",
+                  "identifiant": "abc04"
+                },
+                "locationOfStation": "xx123",
+                "location": {
+                  "sens": "0",
+                  "numeroVoie": "001"
+                },
+                "type": "1",
+                "fee": {
+                  "montant": 1234
+                },
+                "tariffClass": "2"
+              },
+              {
+                "time": "20260203040506",
+                "serviceProvider": {
+                  "pays": "250",
+                  "identifiant": "abc06"
+                },
+                "locationOfStation": "xx456",
+                "location": {
+                  "sens": "1",
+                  "numeroVoie": "099"
+                },
+                "type": "123",
+                "fee": {
+                  "montant": -250
+                },
+                "tariffClass": "03"
+              }
+            ]
+          },
+          {
+            "idEvenement": "DSRC.lecture.CIP",
+            "D_VET": {
+              "typePassage": "d",
+              "gare": "g",
+              "numeroEquipement": "8",
+              "sens": "0",
+              "classe": "2",
+              "DHM": "20260101000000",
+              "periodeTarif": null,
+              "typeTarif": null,
+              "montant": null,
+              "observation": null,
+              "pointeurHistorique": null
+            },
+            "F_IDU": "000000000000000000",
+            "D_HIS": [
+              {
+                "typePassage": "a",
+                "gare": "entry",
+                "numeroEquipement": "7",
+                "sens": "0",
+                "classe": "2",
+                "DHM": "20250102030405",
+                "montant": 501
+              },
+              {
+                "typePassage": "b",
+                "gare": "exit",
+                "numeroEquipement": "1234",
+                "sens": "1",
+                "classe": "1234",
+                "DHM": "20250203040506",
+                "montant": 0
+              }
+            ]
+          }
+        ]
+      },
+      "expected": [
+        {
+          "DHM": "parent",
+          "sens": "E",
+          "localisation": {
+            "gare": "25005601",
+            "equipement": {
+              "numero": "007",
+              "type": "BE"
+            }
+          },
+          "PAN": "000000000000000000",
+          "histo": [
+            {
+              "localisation": {
+                "gare": "25004123",
+                "equipement": {
+                  "numero": "001",
+                  "type": ""
+                }
+              },
+              "DHM": "2026-01-02T03:04:05",
+              "sens": "E",
+              "typePassage": "01",
+              "tarif": 12.34,
+              "classe": "2"
+            },
+            {
+              "localisation": {
+                "gare": "25006456",
+                "equipement": {
+                  "numero": "099",
+                  "type": ""
+                }
+              },
+              "DHM": "2026-02-03T04:05:06",
+              "sens": "S",
+              "typePassage": "12",
+              "tarif": -2.5,
+              "classe": "03"
+            }
+          ],
+          "D_VET": {
+            "typePassage": "d",
+            "gare": "g",
+            "numeroEquipement": "8",
+            "sens": "0",
+            "classe": "2",
+            "DHM": "20260101000000",
+            "periodeTarif": null,
+            "typeTarif": null,
+            "montant": null,
+            "observation": null,
+            "pointeurHistorique": null
+          }
+        },
+        {
+          "DHM": "parent",
+          "sens": "E",
+          "localisation": {
+            "gare": "25005601",
+            "equipement": {
+              "numero": "007",
+              "type": "BE"
+            }
+          },
+          "PAN": "000000000000000000",
+          "histo": [
+            {
+              "localisation": {
+                "gare": "entry",
+                "equipement": {
+                  "numero": "007",
+                  "type": ""
+                }
+              },
+              "DHM": "2025-01-02T03:04:05",
+              "sens": "E",
+              "typePassage": "a",
+              "tarif": 5.01,
+              "classe": "002"
+            },
+            {
+              "localisation": {
+                "gare": "exit",
+                "equipement": {
+                  "numero": "123",
+                  "type": ""
+                }
+              },
+              "DHM": "2025-02-03T04:05:06",
+              "sens": "S",
+              "typePassage": "b",
+              "tarif": 0.0,
+              "classe": "123"
+            }
+          ],
+          "D_VET": {
+            "typePassage": "d",
+            "gare": "g",
+            "numeroEquipement": "8",
+            "sens": "0",
+            "classe": "2",
+            "DHM": "20260101000000",
+            "periodeTarif": null,
+            "typeTarif": null,
+            "montant": null,
+            "observation": null,
+            "pointeurHistorique": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "empty-history",
+      "value": {
+        "passageEntree": {
+          "DHM": "parent",
+          "localisation": {
+            "gare": "25005601",
+            "equipement": {
+              "numero": "007",
+              "type": "BE"
+            }
+          }
+        },
+        "evenements": [
+          {
+            "idEvenement": "DSRC.lecture.CARDME",
+            "D_VET": {
+              "typePassage": "d",
+              "gare": "g",
+              "numeroEquipement": "8",
+              "sens": "0",
+              "classe": "2",
+              "DHM": "20260101000000",
+              "periodeTarif": null,
+              "typeTarif": null,
+              "montant": null,
+              "observation": null,
+              "pointeurHistorique": null
+            },
+            "paymentMeans": {
+              "PAN": "EMPTY"
+            },
+            "receiptData": []
+          },
+          {
+            "idEvenement": "DSRC.lecture.CIP",
+            "D_VET": {
+              "typePassage": "d",
+              "gare": "g",
+              "numeroEquipement": "8",
+              "sens": "0",
+              "classe": "2",
+              "DHM": "20260101000000",
+              "periodeTarif": null,
+              "typeTarif": null,
+              "montant": null,
+              "observation": null,
+              "pointeurHistorique": null
+            },
+            "F_IDU": "EMPTY",
+            "D_HIS": []
+          }
+        ]
+      },
+      "expected": [
+        {
+          "DHM": "parent",
+          "sens": "E",
+          "localisation": {
+            "gare": "25005601",
+            "equipement": {
+              "numero": "007",
+              "type": "BE"
+            }
+          },
+          "PAN": "EMPTY",
+          "histo": [],
+          "D_VET": {
+            "typePassage": "d",
+            "gare": "g",
+            "numeroEquipement": "8",
+            "sens": "0",
+            "classe": "2",
+            "DHM": "20260101000000",
+            "periodeTarif": null,
+            "typeTarif": null,
+            "montant": null,
+            "observation": null,
+            "pointeurHistorique": null
+          }
+        },
+        {
+          "DHM": "parent",
+          "sens": "E",
+          "localisation": {
+            "gare": "25005601",
+            "equipement": {
+              "numero": "007",
+              "type": "BE"
+            }
+          },
+          "PAN": "EMPTY",
+          "histo": [],
+          "D_VET": {
+            "typePassage": "d",
+            "gare": "g",
+            "numeroEquipement": "8",
+            "sens": "0",
+            "classe": "2",
+            "DHM": "20260101000000",
+            "periodeTarif": null,
+            "typeTarif": null,
+            "montant": null,
+            "observation": null,
+            "pointeurHistorique": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "null-history",
+      "value": {
+        "passageEntree": {
+          "DHM": "parent",
+          "localisation": {
+            "gare": "25005601",
+            "equipement": {
+              "numero": "007",
+              "type": "BE"
+            }
+          }
+        },
+        "evenements": [
+          {
+            "idEvenement": "DSRC.lecture.CARDME",
+            "D_VET": {
+              "typePassage": "d",
+              "gare": "g",
+              "numeroEquipement": "8",
+              "sens": "0",
+              "classe": "2",
+              "DHM": "20260101000000",
+              "periodeTarif": null,
+              "typeTarif": null,
+              "montant": null,
+              "observation": null,
+              "pointeurHistorique": null
+            },
+            "paymentMeans": {
+              "PAN": "NULL"
+            },
+            "receiptData": null
+          },
+          {
+            "idEvenement": "DSRC.lecture.CIP",
+            "D_VET": {
+              "typePassage": "d",
+              "gare": "g",
+              "numeroEquipement": "8",
+              "sens": "0",
+              "classe": "2",
+              "DHM": "20260101000000",
+              "periodeTarif": null,
+              "typeTarif": null,
+              "montant": null,
+              "observation": null,
+              "pointeurHistorique": null
+            },
+            "F_IDU": "NULL",
+            "D_HIS": null
+          }
+        ]
+      },
+      "expected": [
+        {
+          "DHM": "parent",
+          "sens": "E",
+          "localisation": {
+            "gare": "25005601",
+            "equipement": {
+              "numero": "007",
+              "type": "BE"
+            }
+          },
+          "PAN": "NULL",
+          "histo": null,
+          "D_VET": {
+            "typePassage": "d",
+            "gare": "g",
+            "numeroEquipement": "8",
+            "sens": "0",
+            "classe": "2",
+            "DHM": "20260101000000",
+            "periodeTarif": null,
+            "typeTarif": null,
+            "montant": null,
+            "observation": null,
+            "pointeurHistorique": null
+          }
+        },
+        {
+          "DHM": "parent",
+          "sens": "E",
+          "localisation": {
+            "gare": "25005601",
+            "equipement": {
+              "numero": "007",
+              "type": "BE"
+            }
+          },
+          "PAN": "NULL",
+          "histo": null,
+          "D_VET": {
+            "typePassage": "d",
+            "gare": "g",
+            "numeroEquipement": "8",
+            "sens": "0",
+            "classe": "2",
+            "DHM": "20260101000000",
+            "periodeTarif": null,
+            "typeTarif": null,
+            "montant": null,
+            "observation": null,
+            "pointeurHistorique": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "null-members",
+      "value": {
+        "passageEntree": {
+          "DHM": "parent",
+          "localisation": {
+            "gare": "25005601",
+            "equipement": {
+              "numero": "007",
+              "type": "BE"
+            }
+          }
+        },
+        "evenements": [
+          null,
+          {
+            "idEvenement": "DSRC.lecture.CARDME",
+            "D_VET": {
+              "typePassage": "d",
+              "gare": "g",
+              "numeroEquipement": "8",
+              "sens": "0",
+              "classe": "2",
+              "DHM": "20260101000000",
+              "periodeTarif": null,
+              "typeTarif": null,
+              "montant": null,
+              "observation": null,
+              "pointeurHistorique": null
+            },
+            "paymentMeans": {
+              "PAN": "VALID"
+            },
+            "receiptData": [
+              {
+                "time": "20260102030405",
+                "serviceProvider": {
+                  "pays": "250",
+                  "identifiant": "abc04"
+                },
+                "locationOfStation": "xx123",
+                "location": {
+                  "sens": "0",
+                  "numeroVoie": "001"
+                },
+                "type": "1",
+                "fee": {
+                  "montant": 1234
+                },
+                "tariffClass": "2"
+              },
+              {
+                "time": "20260203040506",
+                "serviceProvider": {
+                  "pays": "250",
+                  "identifiant": "abc06"
+                },
+                "locationOfStation": "xx456",
+                "location": {
+                  "sens": "1",
+                  "numeroVoie": "099"
+                },
+                "type": "123",
+                "fee": {
+                  "montant": -250
+                },
+                "tariffClass": "03"
+              }
+            ]
+          },
+          null
+        ]
+      },
+      "expected": [
+        {
+          "DHM": "parent",
+          "sens": "E",
+          "localisation": {
+            "gare": "25005601",
+            "equipement": {
+              "numero": "007",
+              "type": "BE"
+            }
+          },
+          "PAN": "VALID",
+          "histo": [
+            {
+              "localisation": {
+                "gare": "25004123",
+                "equipement": {
+                  "numero": "001",
+                  "type": ""
+                }
+              },
+              "DHM": "2026-01-02T03:04:05",
+              "sens": "E",
+              "typePassage": "01",
+              "tarif": 12.34,
+              "classe": "2"
+            },
+            {
+              "localisation": {
+                "gare": "25006456",
+                "equipement": {
+                  "numero": "099",
+                  "type": ""
+                }
+              },
+              "DHM": "2026-02-03T04:05:06",
+              "sens": "S",
+              "typePassage": "12",
+              "tarif": -2.5,
+              "classe": "03"
+            }
+          ],
+          "D_VET": {
+            "typePassage": "d",
+            "gare": "g",
+            "numeroEquipement": "8",
+            "sens": "0",
+            "classe": "2",
+            "DHM": "20260101000000",
+            "periodeTarif": null,
+            "typeTarif": null,
+            "montant": null,
+            "observation": null,
+            "pointeurHistorique": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "event-case-sensitive",
+      "value": {
+        "passageEntree": {
+          "DHM": "parent",
+          "localisation": {
+            "gare": "25005601",
+            "equipement": {
+              "numero": "007",
+              "type": "BE"
+            }
+          }
+        },
+        "evenements": [
+          {
+            "idEvenement": "dsrc.lecture.CARDME",
+            "D_VET": {
+              "typePassage": "d",
+              "gare": "g",
+              "numeroEquipement": "8",
+              "sens": "0",
+              "classe": "2",
+              "DHM": "20260101000000",
+              "periodeTarif": null,
+              "typeTarif": null,
+              "montant": null,
+              "observation": null,
+              "pointeurHistorique": null
+            },
+            "paymentMeans": {
+              "PAN": "LOWER"
+            },
+            "receiptData": [
+              {
+                "time": "20260102030405",
+                "serviceProvider": {
+                  "pays": "250",
+                  "identifiant": "abc04"
+                },
+                "locationOfStation": "xx123",
+                "location": {
+                  "sens": "0",
+                  "numeroVoie": "001"
+                },
+                "type": "1",
+                "fee": {
+                  "montant": 1234
+                },
+                "tariffClass": "2"
+              },
+              {
+                "time": "20260203040506",
+                "serviceProvider": {
+                  "pays": "250",
+                  "identifiant": "abc06"
+                },
+                "locationOfStation": "xx456",
+                "location": {
+                  "sens": "1",
+                  "numeroVoie": "099"
+                },
+                "type": "123",
+                "fee": {
+                  "montant": -250
+                },
+                "tariffClass": "03"
+              }
+            ]
+          }
+        ]
+      },
+      "expected": []
+    },
+    {
+      "name": "empty-events",
+      "value": {
+        "passageEntree": {
+          "DHM": "parent",
+          "localisation": {
+            "gare": "25005601",
+            "equipement": {
+              "numero": "007",
+              "type": "BE"
+            }
+          }
+        },
+        "evenements": []
+      },
+      "expected": []
+    },
+    {
+      "name": "null-events",
+      "value": {
+        "passageEntree": {
+          "DHM": "parent",
+          "localisation": {
+            "gare": "25005601",
+            "equipement": {
+              "numero": "007",
+              "type": "BE"
+            }
+          }
+        },
+        "evenements": null
+      },
+      "expected": []
+    },
+    {
+      "name": "outside-station",
+      "value": {
+        "passageEntree": {
+          "DHM": "parent",
+          "localisation": {
+            "gare": "99999",
+            "equipement": {
+              "numero": "007",
+              "type": "BE"
+            }
+          }
+        },
+        "evenements": [
+          {
+            "idEvenement": "DSRC.lecture.CIP",
+            "D_VET": {
+              "typePassage": "d",
+              "gare": "g",
+              "numeroEquipement": "8",
+              "sens": "0",
+              "classe": "2",
+              "DHM": "20260101000000",
+              "periodeTarif": null,
+              "typeTarif": null,
+              "montant": null,
+              "observation": null,
+              "pointeurHistorique": null
+            },
+            "F_IDU": "OUT",
+            "D_HIS": [
+              {
+                "typePassage": "a",
+                "gare": "entry",
+                "numeroEquipement": "7",
+                "sens": "0",
+                "classe": "2",
+                "DHM": "20250102030405",
+                "montant": 501
+              },
+              {
+                "typePassage": "b",
+                "gare": "exit",
+                "numeroEquipement": "1234",
+                "sens": "1",
+                "classe": "1234",
+                "DHM": "20250203040506",
+                "montant": 0
+              }
+            ]
+          }
+        ]
+      },
+      "expected": []
+    },
+    {
+      "name": "station-prefix-insufficient",
+      "value": {
+        "passageEntree": {
+          "DHM": "parent",
+          "localisation": {
+            "gare": "2500560",
+            "equipement": {
+              "numero": "007",
+              "type": "BE"
+            }
+          }
+        },
+        "evenements": [
+          {
+            "idEvenement": "DSRC.lecture.CIP",
+            "D_VET": {
+              "typePassage": "d",
+              "gare": "g",
+              "numeroEquipement": "8",
+              "sens": "0",
+              "classe": "2",
+              "DHM": "20260101000000",
+              "periodeTarif": null,
+              "typeTarif": null,
+              "montant": null,
+              "observation": null,
+              "pointeurHistorique": null
+            },
+            "F_IDU": "OUT",
+            "D_HIS": [
+              {
+                "typePassage": "a",
+                "gare": "entry",
+                "numeroEquipement": "7",
+                "sens": "0",
+                "classe": "2",
+                "DHM": "20250102030405",
+                "montant": 501
+              },
+              {
+                "typePassage": "b",
+                "gare": "exit",
+                "numeroEquipement": "1234",
+                "sens": "1",
+                "classe": "1234",
+                "DHM": "20250203040506",
+                "montant": 0
+              }
+            ]
+          }
+        ]
+      },
+      "expected": []
+    },
+    {
+      "name": "tombstone",
+      "value": null,
+      "expected": []
+    },
+    {
+      "name": "single-zero-valid",
+      "value": {
+        "passageEntree": {
+          "DHM": "parent",
+          "localisation": {
+            "gare": "25005601",
+            "equipement": {
+              "numero": "007",
+              "type": "BE"
+            }
+          }
+        },
+        "evenements": [
+          {
+            "idEvenement": "DSRC.lecture.CARDME",
+            "D_VET": {
+              "typePassage": "d",
+              "gare": "g",
+              "numeroEquipement": "8",
+              "sens": "0",
+              "classe": "2",
+              "DHM": "20260101000000",
+              "periodeTarif": null,
+              "typeTarif": null,
+              "montant": null,
+              "observation": null,
+              "pointeurHistorique": null
+            },
+            "paymentMeans": {
+              "PAN": "0"
+            },
+            "receiptData": [
+              {
+                "time": "20260102030405",
+                "serviceProvider": {
+                  "pays": "250",
+                  "identifiant": "abc04"
+                },
+                "locationOfStation": "xx123",
+                "location": {
+                  "sens": "0",
+                  "numeroVoie": "001"
+                },
+                "type": "1",
+                "fee": {
+                  "montant": 1234
+                },
+                "tariffClass": "2"
+              },
+              {
+                "time": "20260203040506",
+                "serviceProvider": {
+                  "pays": "250",
+                  "identifiant": "abc06"
+                },
+                "locationOfStation": "xx456",
+                "location": {
+                  "sens": "1",
+                  "numeroVoie": "099"
+                },
+                "type": "123",
+                "fee": {
+                  "montant": -250
+                },
+                "tariffClass": "03"
+              }
+            ]
+          },
+          {
+            "idEvenement": "DSRC.lecture.CIP",
+            "D_VET": {
+              "typePassage": "d",
+              "gare": "g",
+              "numeroEquipement": "8",
+              "sens": "0",
+              "classe": "2",
+              "DHM": "20260101000000",
+              "periodeTarif": null,
+              "typeTarif": null,
+              "montant": null,
+              "observation": null,
+              "pointeurHistorique": null
+            },
+            "F_IDU": "0",
+            "D_HIS": [
+              {
+                "typePassage": "a",
+                "gare": "entry",
+                "numeroEquipement": "7",
+                "sens": "0",
+                "classe": "2",
+                "DHM": "20250102030405",
+                "montant": 501
+              },
+              {
+                "typePassage": "b",
+                "gare": "exit",
+                "numeroEquipement": "1234",
+                "sens": "1",
+                "classe": "1234",
+                "DHM": "20250203040506",
+                "montant": 0
+              }
+            ]
+          }
+        ]
+      },
+      "expected": [
+        {
+          "DHM": "parent",
+          "sens": "E",
+          "localisation": {
+            "gare": "25005601",
+            "equipement": {
+              "numero": "007",
+              "type": "BE"
+            }
+          },
+          "PAN": "0",
+          "histo": [
+            {
+              "localisation": {
+                "gare": "25004123",
+                "equipement": {
+                  "numero": "001",
+                  "type": ""
+                }
+              },
+              "DHM": "2026-01-02T03:04:05",
+              "sens": "E",
+              "typePassage": "01",
+              "tarif": 12.34,
+              "classe": "2"
+            },
+            {
+              "localisation": {
+                "gare": "25006456",
+                "equipement": {
+                  "numero": "099",
+                  "type": ""
+                }
+              },
+              "DHM": "2026-02-03T04:05:06",
+              "sens": "S",
+              "typePassage": "12",
+              "tarif": -2.5,
+              "classe": "03"
+            }
+          ],
+          "D_VET": {
+            "typePassage": "d",
+            "gare": "g",
+            "numeroEquipement": "8",
+            "sens": "0",
+            "classe": "2",
+            "DHM": "20260101000000",
+            "periodeTarif": null,
+            "typeTarif": null,
+            "montant": null,
+            "observation": null,
+            "pointeurHistorique": null
+          }
+        },
+        {
+          "DHM": "parent",
+          "sens": "E",
+          "localisation": {
+            "gare": "25005601",
+            "equipement": {
+              "numero": "007",
+              "type": "BE"
+            }
+          },
+          "PAN": "0",
+          "histo": [
+            {
+              "localisation": {
+                "gare": "entry",
+                "equipement": {
+                  "numero": "007",
+                  "type": ""
+                }
+              },
+              "DHM": "2025-01-02T03:04:05",
+              "sens": "E",
+              "typePassage": "a",
+              "tarif": 5.01,
+              "classe": "002"
+            },
+            {
+              "localisation": {
+                "gare": "exit",
+                "equipement": {
+                  "numero": "123",
+                  "type": ""
+                }
+              },
+              "DHM": "2025-02-03T04:05:06",
+              "sens": "S",
+              "typePassage": "b",
+              "tarif": 0.0,
+              "classe": "123"
+            }
+          ],
+          "D_VET": {
+            "typePassage": "d",
+            "gare": "g",
+            "numeroEquipement": "8",
+            "sens": "0",
+            "classe": "2",
+            "DHM": "20260101000000",
+            "periodeTarif": null,
+            "typeTarif": null,
+            "montant": null,
+            "observation": null,
+            "pointeurHistorique": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "null-history-member",
+      "value": {
+        "passageEntree": {
+          "DHM": "parent",
+          "localisation": {
+            "gare": "25005601",
+            "equipement": {
+              "numero": "007",
+              "type": "BE"
+            }
+          }
+        },
+        "evenements": [
+          {
+            "idEvenement": "DSRC.lecture.CARDME",
+            "D_VET": null,
+            "paymentMeans": {
+              "PAN": "NULL-CARD"
+            },
+            "receiptData": [
+              null
+            ]
+          },
+          {
+            "idEvenement": "DSRC.lecture.CIP",
+            "D_VET": null,
+            "F_IDU": "NULL-CIP",
+            "D_HIS": [
+              null
+            ]
+          }
+        ]
+      },
+      "expected": [
+        {
+          "DHM": "parent",
+          "sens": "E",
+          "localisation": {
+            "gare": "25005601",
+            "equipement": {
+              "numero": "007",
+              "type": "BE"
+            }
+          },
+          "PAN": "NULL-CARD",
+          "histo": [
+            {
+              "localisation": {
+                "gare": "",
+                "equipement": {
+                  "numero": null,
+                  "type": ""
+                }
+              },
+              "DHM": "--T::",
+              "sens": "S",
+              "typePassage": null,
+              "tarif": null,
+              "classe": null
+            }
+          ],
+          "D_VET": null
+        },
+        {
+          "DHM": "parent",
+          "sens": "E",
+          "localisation": {
+            "gare": "25005601",
+            "equipement": {
+              "numero": "007",
+              "type": "BE"
+            }
+          },
+          "PAN": "NULL-CIP",
+          "histo": [
+            {
+              "localisation": {
+                "gare": null,
+                "equipement": {
+                  "numero": null,
+                  "type": ""
+                }
+              },
+              "DHM": "--T::",
+              "sens": "S",
+              "typePassage": null,
+              "tarif": null,
+              "classe": null
+            }
+          ],
+          "D_VET": null
+        }
+      ]
+    }
+  ],
+  "sortie": [
+    {
+      "name": "mixed-correlated",
+      "value": {
+        "passageSortie": {
+          "DHM": "parent",
+          "localisation": {
+            "gare": "25005198",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          },
+          "tarification": {
+            "classeTarifaire": {
+              "classe": "2"
+            },
+            "prix": {
+              "montantTTC": 7.5
+            },
+            "trajet": {
+              "entree": {
+                "gare": "outside"
+              }
+            }
+          }
+        },
+        "evenements": [
+          {
+            "idEvenement": "DSRC.lecture.CARDME",
+            "D_VET": {
+              "typePassage": "d",
+              "gare": "g",
+              "numeroEquipement": "8",
+              "sens": "0",
+              "classe": "2",
+              "DHM": "20260101000000",
+              "periodeTarif": null,
+              "typeTarif": null,
+              "montant": null,
+              "observation": null,
+              "pointeurHistorique": null
+            },
+            "paymentMeans": {
+              "PAN": "CARD-A"
+            },
+            "receiptData": [
+              {
+                "time": "20260102030405",
+                "serviceProvider": {
+                  "pays": "250",
+                  "identifiant": "abc04"
+                },
+                "locationOfStation": "xx123",
+                "location": {
+                  "sens": "0",
+                  "numeroVoie": "001"
+                },
+                "type": "1",
+                "fee": {
+                  "montant": 1234
+                },
+                "tariffClass": "2"
+              },
+              {
+                "time": "20260203040506",
+                "serviceProvider": {
+                  "pays": "250",
+                  "identifiant": "abc06"
+                },
+                "locationOfStation": "xx456",
+                "location": {
+                  "sens": "1",
+                  "numeroVoie": "099"
+                },
+                "type": "123",
+                "fee": {
+                  "montant": -250
+                },
+                "tariffClass": "03"
+              }
+            ]
+          },
+          {
+            "idEvenement": "DSRC.lecture.CIP",
+            "D_VET": {
+              "typePassage": "d",
+              "gare": "g",
+              "numeroEquipement": "8",
+              "sens": "0",
+              "classe": "2",
+              "DHM": "20260101000000",
+              "periodeTarif": null,
+              "typeTarif": null,
+              "montant": null,
+              "observation": null,
+              "pointeurHistorique": null
+            },
+            "F_IDU": "CIP-A",
+            "D_HIS": [
+              {
+                "typePassage": "a",
+                "gare": "entry",
+                "numeroEquipement": "7",
+                "sens": "0",
+                "classe": "2",
+                "DHM": "20250102030405",
+                "montant": 501
+              },
+              {
+                "typePassage": "b",
+                "gare": "exit",
+                "numeroEquipement": "1234",
+                "sens": "1",
+                "classe": "1234",
+                "DHM": "20250203040506",
+                "montant": 0
+              }
+            ]
+          },
+          {
+            "idEvenement": "DSRC.lecture.CARDME",
+            "D_VET": {
+              "typePassage": "d",
+              "gare": "gare-B",
+              "numeroEquipement": "8",
+              "sens": "0",
+              "classe": "2",
+              "DHM": "20260101000000",
+              "periodeTarif": null,
+              "typeTarif": null,
+              "montant": null,
+              "observation": null,
+              "pointeurHistorique": null
+            },
+            "paymentMeans": {
+              "PAN": "CARD-B"
+            },
+            "receiptData": [
+              {
+                "time": "20261231235959",
+                "serviceProvider": {
+                  "pays": "250",
+                  "identifiant": "abc04"
+                },
+                "locationOfStation": "xx123",
+                "location": {
+                  "sens": "0",
+                  "numeroVoie": "001"
+                },
+                "type": "1",
+                "fee": {
+                  "montant": 1234
+                },
+                "tariffClass": "2"
+              },
+              {
+                "time": "20260203040506",
+                "serviceProvider": {
+                  "pays": "250",
+                  "identifiant": "abc06"
+                },
+                "locationOfStation": "xx456",
+                "location": {
+                  "sens": "1",
+                  "numeroVoie": "099"
+                },
+                "type": "123",
+                "fee": {
+                  "montant": -250
+                },
+                "tariffClass": "03"
+              }
+            ]
+          },
+          {
+            "idEvenement": "DSRC.lecture.CIP",
+            "D_VET": {
+              "typePassage": "d",
+              "gare": "gare-B",
+              "numeroEquipement": "8",
+              "sens": "0",
+              "classe": "2",
+              "DHM": "20260101000000",
+              "periodeTarif": null,
+              "typeTarif": null,
+              "montant": null,
+              "observation": null,
+              "pointeurHistorique": null
+            },
+            "F_IDU": "CIP-B",
+            "D_HIS": [
+              {
+                "typePassage": "a",
+                "gare": "entry",
+                "numeroEquipement": "7",
+                "sens": "0",
+                "classe": "2",
+                "DHM": "20250102030405",
+                "montant": 999
+              },
+              {
+                "typePassage": "b",
+                "gare": "exit",
+                "numeroEquipement": "1234",
+                "sens": "1",
+                "classe": "1234",
+                "DHM": "20250203040506",
+                "montant": 0
+              }
+            ]
+          }
+        ]
+      },
+      "expected": [
+        {
+          "DHM": "parent",
+          "sens": "S",
+          "localisation": {
+            "gare": "25005198",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          },
+          "PAN": "CARD-A",
+          "histo": [
+            {
+              "localisation": {
+                "gare": "25004123",
+                "equipement": {
+                  "numero": "001",
+                  "type": ""
+                }
+              },
+              "DHM": "2026-01-02T03:04:05",
+              "sens": "E",
+              "typePassage": "01",
+              "tarif": 12.34,
+              "classe": "2"
+            },
+            {
+              "localisation": {
+                "gare": "25006456",
+                "equipement": {
+                  "numero": "099",
+                  "type": ""
+                }
+              },
+              "DHM": "2026-02-03T04:05:06",
+              "sens": "S",
+              "typePassage": "12",
+              "tarif": -2.5,
+              "classe": "03"
+            }
+          ],
+          "D_VET": {
+            "typePassage": "d",
+            "gare": "g",
+            "numeroEquipement": "8",
+            "sens": "0",
+            "classe": "2",
+            "DHM": "20260101000000",
+            "periodeTarif": null,
+            "typeTarif": null,
+            "montant": null,
+            "observation": null,
+            "pointeurHistorique": null
+          },
+          "classe": "2",
+          "tarif": 7.5
+        },
+        {
+          "DHM": "parent",
+          "sens": "S",
+          "localisation": {
+            "gare": "25005198",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          },
+          "PAN": "CIP-A",
+          "histo": [
+            {
+              "localisation": {
+                "gare": "entry",
+                "equipement": {
+                  "numero": "007",
+                  "type": ""
+                }
+              },
+              "DHM": "2025-01-02T03:04:05",
+              "sens": "E",
+              "typePassage": "a",
+              "tarif": 5.01,
+              "classe": "002"
+            },
+            {
+              "localisation": {
+                "gare": "exit",
+                "equipement": {
+                  "numero": "123",
+                  "type": ""
+                }
+              },
+              "DHM": "2025-02-03T04:05:06",
+              "sens": "S",
+              "typePassage": "b",
+              "tarif": 0.0,
+              "classe": "123"
+            }
+          ],
+          "D_VET": {
+            "typePassage": "d",
+            "gare": "g",
+            "numeroEquipement": "8",
+            "sens": "0",
+            "classe": "2",
+            "DHM": "20260101000000",
+            "periodeTarif": null,
+            "typeTarif": null,
+            "montant": null,
+            "observation": null,
+            "pointeurHistorique": null
+          },
+          "classe": "2",
+          "tarif": 7.5
+        },
+        {
+          "DHM": "parent",
+          "sens": "S",
+          "localisation": {
+            "gare": "25005198",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          },
+          "PAN": "CARD-B",
+          "histo": [
+            {
+              "localisation": {
+                "gare": "25004123",
+                "equipement": {
+                  "numero": "001",
+                  "type": ""
+                }
+              },
+              "DHM": "2026-12-31T23:59:59",
+              "sens": "E",
+              "typePassage": "01",
+              "tarif": 12.34,
+              "classe": "2"
+            },
+            {
+              "localisation": {
+                "gare": "25006456",
+                "equipement": {
+                  "numero": "099",
+                  "type": ""
+                }
+              },
+              "DHM": "2026-02-03T04:05:06",
+              "sens": "S",
+              "typePassage": "12",
+              "tarif": -2.5,
+              "classe": "03"
+            }
+          ],
+          "D_VET": {
+            "typePassage": "d",
+            "gare": "gare-B",
+            "numeroEquipement": "8",
+            "sens": "0",
+            "classe": "2",
+            "DHM": "20260101000000",
+            "periodeTarif": null,
+            "typeTarif": null,
+            "montant": null,
+            "observation": null,
+            "pointeurHistorique": null
+          },
+          "classe": "2",
+          "tarif": 7.5
+        },
+        {
+          "DHM": "parent",
+          "sens": "S",
+          "localisation": {
+            "gare": "25005198",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          },
+          "PAN": "CIP-B",
+          "histo": [
+            {
+              "localisation": {
+                "gare": "entry",
+                "equipement": {
+                  "numero": "007",
+                  "type": ""
+                }
+              },
+              "DHM": "2025-01-02T03:04:05",
+              "sens": "E",
+              "typePassage": "a",
+              "tarif": 9.99,
+              "classe": "002"
+            },
+            {
+              "localisation": {
+                "gare": "exit",
+                "equipement": {
+                  "numero": "123",
+                  "type": ""
+                }
+              },
+              "DHM": "2025-02-03T04:05:06",
+              "sens": "S",
+              "typePassage": "b",
+              "tarif": 0.0,
+              "classe": "123"
+            }
+          ],
+          "D_VET": {
+            "typePassage": "d",
+            "gare": "gare-B",
+            "numeroEquipement": "8",
+            "sens": "0",
+            "classe": "2",
+            "DHM": "20260101000000",
+            "periodeTarif": null,
+            "typeTarif": null,
+            "montant": null,
+            "observation": null,
+            "pointeurHistorique": null
+          },
+          "classe": "2",
+          "tarif": 7.5
+        }
+      ]
+    },
+    {
+      "name": "duplicates",
+      "value": {
+        "passageSortie": {
+          "DHM": "parent",
+          "localisation": {
+            "gare": "25005198",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          },
+          "tarification": {
+            "classeTarifaire": {
+              "classe": "2"
+            },
+            "prix": {
+              "montantTTC": 7.5
+            },
+            "trajet": {
+              "entree": {
+                "gare": "outside"
+              }
+            }
+          }
+        },
+        "evenements": [
+          {
+            "idEvenement": "DSRC.lecture.CARDME",
+            "D_VET": {
+              "typePassage": "d",
+              "gare": "g",
+              "numeroEquipement": "8",
+              "sens": "0",
+              "classe": "2",
+              "DHM": "20260101000000",
+              "periodeTarif": null,
+              "typeTarif": null,
+              "montant": null,
+              "observation": null,
+              "pointeurHistorique": null
+            },
+            "paymentMeans": {
+              "PAN": "DUP"
+            },
+            "receiptData": [
+              {
+                "time": "20260102030405",
+                "serviceProvider": {
+                  "pays": "250",
+                  "identifiant": "abc04"
+                },
+                "locationOfStation": "xx123",
+                "location": {
+                  "sens": "0",
+                  "numeroVoie": "001"
+                },
+                "type": "1",
+                "fee": {
+                  "montant": 1234
+                },
+                "tariffClass": "2"
+              },
+              {
+                "time": "20260203040506",
+                "serviceProvider": {
+                  "pays": "250",
+                  "identifiant": "abc06"
+                },
+                "locationOfStation": "xx456",
+                "location": {
+                  "sens": "1",
+                  "numeroVoie": "099"
+                },
+                "type": "123",
+                "fee": {
+                  "montant": -250
+                },
+                "tariffClass": "03"
+              }
+            ]
+          },
+          {
+            "idEvenement": "DSRC.lecture.CARDME",
+            "D_VET": {
+              "typePassage": "d",
+              "gare": "g",
+              "numeroEquipement": "8",
+              "sens": "0",
+              "classe": "2",
+              "DHM": "20260101000000",
+              "periodeTarif": null,
+              "typeTarif": null,
+              "montant": null,
+              "observation": null,
+              "pointeurHistorique": null
+            },
+            "paymentMeans": {
+              "PAN": "DUP"
+            },
+            "receiptData": [
+              {
+                "time": "20260102030405",
+                "serviceProvider": {
+                  "pays": "250",
+                  "identifiant": "abc04"
+                },
+                "locationOfStation": "xx123",
+                "location": {
+                  "sens": "0",
+                  "numeroVoie": "001"
+                },
+                "type": "1",
+                "fee": {
+                  "montant": 1234
+                },
+                "tariffClass": "2"
+              },
+              {
+                "time": "20260203040506",
+                "serviceProvider": {
+                  "pays": "250",
+                  "identifiant": "abc06"
+                },
+                "locationOfStation": "xx456",
+                "location": {
+                  "sens": "1",
+                  "numeroVoie": "099"
+                },
+                "type": "123",
+                "fee": {
+                  "montant": -250
+                },
+                "tariffClass": "03"
+              }
+            ]
+          }
+        ]
+      },
+      "expected": [
+        {
+          "DHM": "parent",
+          "sens": "S",
+          "localisation": {
+            "gare": "25005198",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          },
+          "PAN": "DUP",
+          "histo": [
+            {
+              "localisation": {
+                "gare": "25004123",
+                "equipement": {
+                  "numero": "001",
+                  "type": ""
+                }
+              },
+              "DHM": "2026-01-02T03:04:05",
+              "sens": "E",
+              "typePassage": "01",
+              "tarif": 12.34,
+              "classe": "2"
+            },
+            {
+              "localisation": {
+                "gare": "25006456",
+                "equipement": {
+                  "numero": "099",
+                  "type": ""
+                }
+              },
+              "DHM": "2026-02-03T04:05:06",
+              "sens": "S",
+              "typePassage": "12",
+              "tarif": -2.5,
+              "classe": "03"
+            }
+          ],
+          "D_VET": {
+            "typePassage": "d",
+            "gare": "g",
+            "numeroEquipement": "8",
+            "sens": "0",
+            "classe": "2",
+            "DHM": "20260101000000",
+            "periodeTarif": null,
+            "typeTarif": null,
+            "montant": null,
+            "observation": null,
+            "pointeurHistorique": null
+          },
+          "classe": "2",
+          "tarif": 7.5
+        },
+        {
+          "DHM": "parent",
+          "sens": "S",
+          "localisation": {
+            "gare": "25005198",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          },
+          "PAN": "DUP",
+          "histo": [
+            {
+              "localisation": {
+                "gare": "25004123",
+                "equipement": {
+                  "numero": "001",
+                  "type": ""
+                }
+              },
+              "DHM": "2026-01-02T03:04:05",
+              "sens": "E",
+              "typePassage": "01",
+              "tarif": 12.34,
+              "classe": "2"
+            },
+            {
+              "localisation": {
+                "gare": "25006456",
+                "equipement": {
+                  "numero": "099",
+                  "type": ""
+                }
+              },
+              "DHM": "2026-02-03T04:05:06",
+              "sens": "S",
+              "typePassage": "12",
+              "tarif": -2.5,
+              "classe": "03"
+            }
+          ],
+          "D_VET": {
+            "typePassage": "d",
+            "gare": "g",
+            "numeroEquipement": "8",
+            "sens": "0",
+            "classe": "2",
+            "DHM": "20260101000000",
+            "periodeTarif": null,
+            "typeTarif": null,
+            "montant": null,
+            "observation": null,
+            "pointeurHistorique": null
+          },
+          "classe": "2",
+          "tarif": 7.5
+        }
+      ]
+    },
+    {
+      "name": "invalid-pan",
+      "value": {
+        "passageSortie": {
+          "DHM": "parent",
+          "localisation": {
+            "gare": "25005198",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          },
+          "tarification": {
+            "classeTarifaire": {
+              "classe": "2"
+            },
+            "prix": {
+              "montantTTC": 7.5
+            },
+            "trajet": {
+              "entree": {
+                "gare": "outside"
+              }
+            }
+          }
+        },
+        "evenements": [
+          {
+            "idEvenement": "DSRC.lecture.CARDME",
+            "D_VET": {
+              "typePassage": "d",
+              "gare": "g",
+              "numeroEquipement": "8",
+              "sens": "0",
+              "classe": "2",
+              "DHM": "20260101000000",
+              "periodeTarif": null,
+              "typeTarif": null,
+              "montant": null,
+              "observation": null,
+              "pointeurHistorique": null
+            },
+            "paymentMeans": {
+              "PAN": null
+            },
+            "receiptData": [
+              {
+                "time": "20260102030405",
+                "serviceProvider": {
+                  "pays": "250",
+                  "identifiant": "abc04"
+                },
+                "locationOfStation": "xx123",
+                "location": {
+                  "sens": "0",
+                  "numeroVoie": "001"
+                },
+                "type": "1",
+                "fee": {
+                  "montant": 1234
+                },
+                "tariffClass": "2"
+              },
+              {
+                "time": "20260203040506",
+                "serviceProvider": {
+                  "pays": "250",
+                  "identifiant": "abc06"
+                },
+                "locationOfStation": "xx456",
+                "location": {
+                  "sens": "1",
+                  "numeroVoie": "099"
+                },
+                "type": "123",
+                "fee": {
+                  "montant": -250
+                },
+                "tariffClass": "03"
+              }
+            ]
+          },
+          {
+            "idEvenement": "DSRC.lecture.CARDME",
+            "D_VET": {
+              "typePassage": "d",
+              "gare": "g",
+              "numeroEquipement": "8",
+              "sens": "0",
+              "classe": "2",
+              "DHM": "20260101000000",
+              "periodeTarif": null,
+              "typeTarif": null,
+              "montant": null,
+              "observation": null,
+              "pointeurHistorique": null
+            },
+            "paymentMeans": {
+              "PAN": ""
+            },
+            "receiptData": [
+              {
+                "time": "20260102030405",
+                "serviceProvider": {
+                  "pays": "250",
+                  "identifiant": "abc04"
+                },
+                "locationOfStation": "xx123",
+                "location": {
+                  "sens": "0",
+                  "numeroVoie": "001"
+                },
+                "type": "1",
+                "fee": {
+                  "montant": 1234
+                },
+                "tariffClass": "2"
+              },
+              {
+                "time": "20260203040506",
+                "serviceProvider": {
+                  "pays": "250",
+                  "identifiant": "abc06"
+                },
+                "locationOfStation": "xx456",
+                "location": {
+                  "sens": "1",
+                  "numeroVoie": "099"
+                },
+                "type": "123",
+                "fee": {
+                  "montant": -250
+                },
+                "tariffClass": "03"
+              }
+            ]
+          },
+          {
+            "idEvenement": "DSRC.lecture.CARDME",
+            "D_VET": {
+              "typePassage": "d",
+              "gare": "g",
+              "numeroEquipement": "8",
+              "sens": "0",
+              "classe": "2",
+              "DHM": "20260101000000",
+              "periodeTarif": null,
+              "typeTarif": null,
+              "montant": null,
+              "observation": null,
+              "pointeurHistorique": null
+            },
+            "paymentMeans": {
+              "PAN": "0000000000000000000"
+            },
+            "receiptData": [
+              {
+                "time": "20260102030405",
+                "serviceProvider": {
+                  "pays": "250",
+                  "identifiant": "abc04"
+                },
+                "locationOfStation": "xx123",
+                "location": {
+                  "sens": "0",
+                  "numeroVoie": "001"
+                },
+                "type": "1",
+                "fee": {
+                  "montant": 1234
+                },
+                "tariffClass": "2"
+              },
+              {
+                "time": "20260203040506",
+                "serviceProvider": {
+                  "pays": "250",
+                  "identifiant": "abc06"
+                },
+                "locationOfStation": "xx456",
+                "location": {
+                  "sens": "1",
+                  "numeroVoie": "099"
+                },
+                "type": "123",
+                "fee": {
+                  "montant": -250
+                },
+                "tariffClass": "03"
+              }
+            ]
+          },
+          {
+            "idEvenement": "DSRC.lecture.CARDME",
+            "D_VET": {
+              "typePassage": "d",
+              "gare": "g",
+              "numeroEquipement": "8",
+              "sens": "0",
+              "classe": "2",
+              "DHM": "20260101000000",
+              "periodeTarif": null,
+              "typeTarif": null,
+              "montant": null,
+              "observation": null,
+              "pointeurHistorique": null
+            },
+            "paymentMeans": {
+              "PAN": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+            },
+            "receiptData": [
+              {
+                "time": "20260102030405",
+                "serviceProvider": {
+                  "pays": "250",
+                  "identifiant": "abc04"
+                },
+                "locationOfStation": "xx123",
+                "location": {
+                  "sens": "0",
+                  "numeroVoie": "001"
+                },
+                "type": "1",
+                "fee": {
+                  "montant": 1234
+                },
+                "tariffClass": "2"
+              },
+              {
+                "time": "20260203040506",
+                "serviceProvider": {
+                  "pays": "250",
+                  "identifiant": "abc06"
+                },
+                "locationOfStation": "xx456",
+                "location": {
+                  "sens": "1",
+                  "numeroVoie": "099"
+                },
+                "type": "123",
+                "fee": {
+                  "montant": -250
+                },
+                "tariffClass": "03"
+              }
+            ]
+          },
+          {
+            "idEvenement": "DSRC.lecture.CIP",
+            "D_VET": {
+              "typePassage": "d",
+              "gare": "g",
+              "numeroEquipement": "8",
+              "sens": "0",
+              "classe": "2",
+              "DHM": "20260101000000",
+              "periodeTarif": null,
+              "typeTarif": null,
+              "montant": null,
+              "observation": null,
+              "pointeurHistorique": null
+            },
+            "F_IDU": "00000000000000000",
+            "D_HIS": [
+              {
+                "typePassage": "a",
+                "gare": "entry",
+                "numeroEquipement": "7",
+                "sens": "0",
+                "classe": "2",
+                "DHM": "20250102030405",
+                "montant": 501
+              },
+              {
+                "typePassage": "b",
+                "gare": "exit",
+                "numeroEquipement": "1234",
+                "sens": "1",
+                "classe": "1234",
+                "DHM": "20250203040506",
+                "montant": 0
+              }
+            ]
+          },
+          null
+        ]
+      },
+      "expected": []
+    },
+    {
+      "name": "other-zero-length",
+      "value": {
+        "passageSortie": {
+          "DHM": "parent",
+          "localisation": {
+            "gare": "25005198",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          },
+          "tarification": {
+            "classeTarifaire": {
+              "classe": "2"
+            },
+            "prix": {
+              "montantTTC": 7.5
+            },
+            "trajet": {
+              "entree": {
+                "gare": "outside"
+              }
+            }
+          }
+        },
+        "evenements": [
+          {
+            "idEvenement": "DSRC.lecture.CARDME",
+            "D_VET": {
+              "typePassage": "d",
+              "gare": "g",
+              "numeroEquipement": "8",
+              "sens": "0",
+              "classe": "2",
+              "DHM": "20260101000000",
+              "periodeTarif": null,
+              "typeTarif": null,
+              "montant": null,
+              "observation": null,
+              "pointeurHistorique": null
+            },
+            "paymentMeans": {
+              "PAN": "000000000000000000"
+            },
+            "receiptData": [
+              {
+                "time": "20260102030405",
+                "serviceProvider": {
+                  "pays": "250",
+                  "identifiant": "abc04"
+                },
+                "locationOfStation": "xx123",
+                "location": {
+                  "sens": "0",
+                  "numeroVoie": "001"
+                },
+                "type": "1",
+                "fee": {
+                  "montant": 1234
+                },
+                "tariffClass": "2"
+              },
+              {
+                "time": "20260203040506",
+                "serviceProvider": {
+                  "pays": "250",
+                  "identifiant": "abc06"
+                },
+                "locationOfStation": "xx456",
+                "location": {
+                  "sens": "1",
+                  "numeroVoie": "099"
+                },
+                "type": "123",
+                "fee": {
+                  "montant": -250
+                },
+                "tariffClass": "03"
+              }
+            ]
+          },
+          {
+            "idEvenement": "DSRC.lecture.CIP",
+            "D_VET": {
+              "typePassage": "d",
+              "gare": "g",
+              "numeroEquipement": "8",
+              "sens": "0",
+              "classe": "2",
+              "DHM": "20260101000000",
+              "periodeTarif": null,
+              "typeTarif": null,
+              "montant": null,
+              "observation": null,
+              "pointeurHistorique": null
+            },
+            "F_IDU": "000000000000000000",
+            "D_HIS": [
+              {
+                "typePassage": "a",
+                "gare": "entry",
+                "numeroEquipement": "7",
+                "sens": "0",
+                "classe": "2",
+                "DHM": "20250102030405",
+                "montant": 501
+              },
+              {
+                "typePassage": "b",
+                "gare": "exit",
+                "numeroEquipement": "1234",
+                "sens": "1",
+                "classe": "1234",
+                "DHM": "20250203040506",
+                "montant": 0
+              }
+            ]
+          }
+        ]
+      },
+      "expected": [
+        {
+          "DHM": "parent",
+          "sens": "S",
+          "localisation": {
+            "gare": "25005198",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          },
+          "PAN": "000000000000000000",
+          "histo": [
+            {
+              "localisation": {
+                "gare": "25004123",
+                "equipement": {
+                  "numero": "001",
+                  "type": ""
+                }
+              },
+              "DHM": "2026-01-02T03:04:05",
+              "sens": "E",
+              "typePassage": "01",
+              "tarif": 12.34,
+              "classe": "2"
+            },
+            {
+              "localisation": {
+                "gare": "25006456",
+                "equipement": {
+                  "numero": "099",
+                  "type": ""
+                }
+              },
+              "DHM": "2026-02-03T04:05:06",
+              "sens": "S",
+              "typePassage": "12",
+              "tarif": -2.5,
+              "classe": "03"
+            }
+          ],
+          "D_VET": {
+            "typePassage": "d",
+            "gare": "g",
+            "numeroEquipement": "8",
+            "sens": "0",
+            "classe": "2",
+            "DHM": "20260101000000",
+            "periodeTarif": null,
+            "typeTarif": null,
+            "montant": null,
+            "observation": null,
+            "pointeurHistorique": null
+          },
+          "classe": "2",
+          "tarif": 7.5
+        },
+        {
+          "DHM": "parent",
+          "sens": "S",
+          "localisation": {
+            "gare": "25005198",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          },
+          "PAN": "000000000000000000",
+          "histo": [
+            {
+              "localisation": {
+                "gare": "entry",
+                "equipement": {
+                  "numero": "007",
+                  "type": ""
+                }
+              },
+              "DHM": "2025-01-02T03:04:05",
+              "sens": "E",
+              "typePassage": "a",
+              "tarif": 5.01,
+              "classe": "002"
+            },
+            {
+              "localisation": {
+                "gare": "exit",
+                "equipement": {
+                  "numero": "123",
+                  "type": ""
+                }
+              },
+              "DHM": "2025-02-03T04:05:06",
+              "sens": "S",
+              "typePassage": "b",
+              "tarif": 0.0,
+              "classe": "123"
+            }
+          ],
+          "D_VET": {
+            "typePassage": "d",
+            "gare": "g",
+            "numeroEquipement": "8",
+            "sens": "0",
+            "classe": "2",
+            "DHM": "20260101000000",
+            "periodeTarif": null,
+            "typeTarif": null,
+            "montant": null,
+            "observation": null,
+            "pointeurHistorique": null
+          },
+          "classe": "2",
+          "tarif": 7.5
+        }
+      ]
+    },
+    {
+      "name": "empty-history",
+      "value": {
+        "passageSortie": {
+          "DHM": "parent",
+          "localisation": {
+            "gare": "25005198",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          },
+          "tarification": {
+            "classeTarifaire": {
+              "classe": "2"
+            },
+            "prix": {
+              "montantTTC": 7.5
+            },
+            "trajet": {
+              "entree": {
+                "gare": "outside"
+              }
+            }
+          }
+        },
+        "evenements": [
+          {
+            "idEvenement": "DSRC.lecture.CARDME",
+            "D_VET": {
+              "typePassage": "d",
+              "gare": "g",
+              "numeroEquipement": "8",
+              "sens": "0",
+              "classe": "2",
+              "DHM": "20260101000000",
+              "periodeTarif": null,
+              "typeTarif": null,
+              "montant": null,
+              "observation": null,
+              "pointeurHistorique": null
+            },
+            "paymentMeans": {
+              "PAN": "EMPTY"
+            },
+            "receiptData": []
+          },
+          {
+            "idEvenement": "DSRC.lecture.CIP",
+            "D_VET": {
+              "typePassage": "d",
+              "gare": "g",
+              "numeroEquipement": "8",
+              "sens": "0",
+              "classe": "2",
+              "DHM": "20260101000000",
+              "periodeTarif": null,
+              "typeTarif": null,
+              "montant": null,
+              "observation": null,
+              "pointeurHistorique": null
+            },
+            "F_IDU": "EMPTY",
+            "D_HIS": []
+          }
+        ]
+      },
+      "expected": [
+        {
+          "DHM": "parent",
+          "sens": "S",
+          "localisation": {
+            "gare": "25005198",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          },
+          "PAN": "EMPTY",
+          "histo": [],
+          "D_VET": {
+            "typePassage": "d",
+            "gare": "g",
+            "numeroEquipement": "8",
+            "sens": "0",
+            "classe": "2",
+            "DHM": "20260101000000",
+            "periodeTarif": null,
+            "typeTarif": null,
+            "montant": null,
+            "observation": null,
+            "pointeurHistorique": null
+          },
+          "classe": "2",
+          "tarif": 7.5
+        },
+        {
+          "DHM": "parent",
+          "sens": "S",
+          "localisation": {
+            "gare": "25005198",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          },
+          "PAN": "EMPTY",
+          "histo": [],
+          "D_VET": {
+            "typePassage": "d",
+            "gare": "g",
+            "numeroEquipement": "8",
+            "sens": "0",
+            "classe": "2",
+            "DHM": "20260101000000",
+            "periodeTarif": null,
+            "typeTarif": null,
+            "montant": null,
+            "observation": null,
+            "pointeurHistorique": null
+          },
+          "classe": "2",
+          "tarif": 7.5
+        }
+      ]
+    },
+    {
+      "name": "null-history",
+      "value": {
+        "passageSortie": {
+          "DHM": "parent",
+          "localisation": {
+            "gare": "25005198",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          },
+          "tarification": {
+            "classeTarifaire": {
+              "classe": "2"
+            },
+            "prix": {
+              "montantTTC": 7.5
+            },
+            "trajet": {
+              "entree": {
+                "gare": "outside"
+              }
+            }
+          }
+        },
+        "evenements": [
+          {
+            "idEvenement": "DSRC.lecture.CARDME",
+            "D_VET": {
+              "typePassage": "d",
+              "gare": "g",
+              "numeroEquipement": "8",
+              "sens": "0",
+              "classe": "2",
+              "DHM": "20260101000000",
+              "periodeTarif": null,
+              "typeTarif": null,
+              "montant": null,
+              "observation": null,
+              "pointeurHistorique": null
+            },
+            "paymentMeans": {
+              "PAN": "NULL"
+            },
+            "receiptData": null
+          },
+          {
+            "idEvenement": "DSRC.lecture.CIP",
+            "D_VET": {
+              "typePassage": "d",
+              "gare": "g",
+              "numeroEquipement": "8",
+              "sens": "0",
+              "classe": "2",
+              "DHM": "20260101000000",
+              "periodeTarif": null,
+              "typeTarif": null,
+              "montant": null,
+              "observation": null,
+              "pointeurHistorique": null
+            },
+            "F_IDU": "NULL",
+            "D_HIS": null
+          }
+        ]
+      },
+      "expected": [
+        {
+          "DHM": "parent",
+          "sens": "S",
+          "localisation": {
+            "gare": "25005198",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          },
+          "PAN": "NULL",
+          "histo": null,
+          "D_VET": {
+            "typePassage": "d",
+            "gare": "g",
+            "numeroEquipement": "8",
+            "sens": "0",
+            "classe": "2",
+            "DHM": "20260101000000",
+            "periodeTarif": null,
+            "typeTarif": null,
+            "montant": null,
+            "observation": null,
+            "pointeurHistorique": null
+          },
+          "classe": "2",
+          "tarif": 7.5
+        },
+        {
+          "DHM": "parent",
+          "sens": "S",
+          "localisation": {
+            "gare": "25005198",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          },
+          "PAN": "NULL",
+          "histo": null,
+          "D_VET": {
+            "typePassage": "d",
+            "gare": "g",
+            "numeroEquipement": "8",
+            "sens": "0",
+            "classe": "2",
+            "DHM": "20260101000000",
+            "periodeTarif": null,
+            "typeTarif": null,
+            "montant": null,
+            "observation": null,
+            "pointeurHistorique": null
+          },
+          "classe": "2",
+          "tarif": 7.5
+        }
+      ]
+    },
+    {
+      "name": "null-members",
+      "value": {
+        "passageSortie": {
+          "DHM": "parent",
+          "localisation": {
+            "gare": "25005198",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          },
+          "tarification": {
+            "classeTarifaire": {
+              "classe": "2"
+            },
+            "prix": {
+              "montantTTC": 7.5
+            },
+            "trajet": {
+              "entree": {
+                "gare": "outside"
+              }
+            }
+          }
+        },
+        "evenements": [
+          null,
+          {
+            "idEvenement": "DSRC.lecture.CARDME",
+            "D_VET": {
+              "typePassage": "d",
+              "gare": "g",
+              "numeroEquipement": "8",
+              "sens": "0",
+              "classe": "2",
+              "DHM": "20260101000000",
+              "periodeTarif": null,
+              "typeTarif": null,
+              "montant": null,
+              "observation": null,
+              "pointeurHistorique": null
+            },
+            "paymentMeans": {
+              "PAN": "VALID"
+            },
+            "receiptData": [
+              {
+                "time": "20260102030405",
+                "serviceProvider": {
+                  "pays": "250",
+                  "identifiant": "abc04"
+                },
+                "locationOfStation": "xx123",
+                "location": {
+                  "sens": "0",
+                  "numeroVoie": "001"
+                },
+                "type": "1",
+                "fee": {
+                  "montant": 1234
+                },
+                "tariffClass": "2"
+              },
+              {
+                "time": "20260203040506",
+                "serviceProvider": {
+                  "pays": "250",
+                  "identifiant": "abc06"
+                },
+                "locationOfStation": "xx456",
+                "location": {
+                  "sens": "1",
+                  "numeroVoie": "099"
+                },
+                "type": "123",
+                "fee": {
+                  "montant": -250
+                },
+                "tariffClass": "03"
+              }
+            ]
+          },
+          null
+        ]
+      },
+      "expected": [
+        {
+          "DHM": "parent",
+          "sens": "S",
+          "localisation": {
+            "gare": "25005198",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          },
+          "PAN": "VALID",
+          "histo": [
+            {
+              "localisation": {
+                "gare": "25004123",
+                "equipement": {
+                  "numero": "001",
+                  "type": ""
+                }
+              },
+              "DHM": "2026-01-02T03:04:05",
+              "sens": "E",
+              "typePassage": "01",
+              "tarif": 12.34,
+              "classe": "2"
+            },
+            {
+              "localisation": {
+                "gare": "25006456",
+                "equipement": {
+                  "numero": "099",
+                  "type": ""
+                }
+              },
+              "DHM": "2026-02-03T04:05:06",
+              "sens": "S",
+              "typePassage": "12",
+              "tarif": -2.5,
+              "classe": "03"
+            }
+          ],
+          "D_VET": {
+            "typePassage": "d",
+            "gare": "g",
+            "numeroEquipement": "8",
+            "sens": "0",
+            "classe": "2",
+            "DHM": "20260101000000",
+            "periodeTarif": null,
+            "typeTarif": null,
+            "montant": null,
+            "observation": null,
+            "pointeurHistorique": null
+          },
+          "classe": "2",
+          "tarif": 7.5
+        }
+      ]
+    },
+    {
+      "name": "event-case-sensitive",
+      "value": {
+        "passageSortie": {
+          "DHM": "parent",
+          "localisation": {
+            "gare": "25005198",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          },
+          "tarification": {
+            "classeTarifaire": {
+              "classe": "2"
+            },
+            "prix": {
+              "montantTTC": 7.5
+            },
+            "trajet": {
+              "entree": {
+                "gare": "outside"
+              }
+            }
+          }
+        },
+        "evenements": [
+          {
+            "idEvenement": "dsrc.lecture.CARDME",
+            "D_VET": {
+              "typePassage": "d",
+              "gare": "g",
+              "numeroEquipement": "8",
+              "sens": "0",
+              "classe": "2",
+              "DHM": "20260101000000",
+              "periodeTarif": null,
+              "typeTarif": null,
+              "montant": null,
+              "observation": null,
+              "pointeurHistorique": null
+            },
+            "paymentMeans": {
+              "PAN": "LOWER"
+            },
+            "receiptData": [
+              {
+                "time": "20260102030405",
+                "serviceProvider": {
+                  "pays": "250",
+                  "identifiant": "abc04"
+                },
+                "locationOfStation": "xx123",
+                "location": {
+                  "sens": "0",
+                  "numeroVoie": "001"
+                },
+                "type": "1",
+                "fee": {
+                  "montant": 1234
+                },
+                "tariffClass": "2"
+              },
+              {
+                "time": "20260203040506",
+                "serviceProvider": {
+                  "pays": "250",
+                  "identifiant": "abc06"
+                },
+                "locationOfStation": "xx456",
+                "location": {
+                  "sens": "1",
+                  "numeroVoie": "099"
+                },
+                "type": "123",
+                "fee": {
+                  "montant": -250
+                },
+                "tariffClass": "03"
+              }
+            ]
+          }
+        ]
+      },
+      "expected": []
+    },
+    {
+      "name": "empty-events",
+      "value": {
+        "passageSortie": {
+          "DHM": "parent",
+          "localisation": {
+            "gare": "25005198",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          },
+          "tarification": {
+            "classeTarifaire": {
+              "classe": "2"
+            },
+            "prix": {
+              "montantTTC": 7.5
+            },
+            "trajet": {
+              "entree": {
+                "gare": "outside"
+              }
+            }
+          }
+        },
+        "evenements": []
+      },
+      "expected": []
+    },
+    {
+      "name": "null-events",
+      "value": {
+        "passageSortie": {
+          "DHM": "parent",
+          "localisation": {
+            "gare": "25005198",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          },
+          "tarification": {
+            "classeTarifaire": {
+              "classe": "2"
+            },
+            "prix": {
+              "montantTTC": 7.5
+            },
+            "trajet": {
+              "entree": {
+                "gare": "outside"
+              }
+            }
+          }
+        },
+        "evenements": null
+      },
+      "expected": []
+    },
+    {
+      "name": "outside-station",
+      "value": {
+        "passageSortie": {
+          "DHM": "parent",
+          "localisation": {
+            "gare": "99999",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          },
+          "tarification": {
+            "classeTarifaire": {
+              "classe": "2"
+            },
+            "prix": {
+              "montantTTC": 7.5
+            },
+            "trajet": {
+              "entree": {
+                "gare": "outside"
+              }
+            }
+          }
+        },
+        "evenements": [
+          {
+            "idEvenement": "DSRC.lecture.CIP",
+            "D_VET": {
+              "typePassage": "d",
+              "gare": "g",
+              "numeroEquipement": "8",
+              "sens": "0",
+              "classe": "2",
+              "DHM": "20260101000000",
+              "periodeTarif": null,
+              "typeTarif": null,
+              "montant": null,
+              "observation": null,
+              "pointeurHistorique": null
+            },
+            "F_IDU": "OUT",
+            "D_HIS": [
+              {
+                "typePassage": "a",
+                "gare": "entry",
+                "numeroEquipement": "7",
+                "sens": "0",
+                "classe": "2",
+                "DHM": "20250102030405",
+                "montant": 501
+              },
+              {
+                "typePassage": "b",
+                "gare": "exit",
+                "numeroEquipement": "1234",
+                "sens": "1",
+                "classe": "1234",
+                "DHM": "20250203040506",
+                "montant": 0
+              }
+            ]
+          }
+        ]
+      },
+      "expected": []
+    },
+    {
+      "name": "station-prefix-insufficient",
+      "value": {
+        "passageSortie": {
+          "DHM": "parent",
+          "localisation": {
+            "gare": "2500519",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          },
+          "tarification": {
+            "classeTarifaire": {
+              "classe": "2"
+            },
+            "prix": {
+              "montantTTC": 7.5
+            },
+            "trajet": {
+              "entree": {
+                "gare": "outside"
+              }
+            }
+          }
+        },
+        "evenements": [
+          {
+            "idEvenement": "DSRC.lecture.CIP",
+            "D_VET": {
+              "typePassage": "d",
+              "gare": "g",
+              "numeroEquipement": "8",
+              "sens": "0",
+              "classe": "2",
+              "DHM": "20260101000000",
+              "periodeTarif": null,
+              "typeTarif": null,
+              "montant": null,
+              "observation": null,
+              "pointeurHistorique": null
+            },
+            "F_IDU": "OUT",
+            "D_HIS": [
+              {
+                "typePassage": "a",
+                "gare": "entry",
+                "numeroEquipement": "7",
+                "sens": "0",
+                "classe": "2",
+                "DHM": "20250102030405",
+                "montant": 501
+              },
+              {
+                "typePassage": "b",
+                "gare": "exit",
+                "numeroEquipement": "1234",
+                "sens": "1",
+                "classe": "1234",
+                "DHM": "20250203040506",
+                "montant": 0
+              }
+            ]
+          }
+        ]
+      },
+      "expected": []
+    },
+    {
+      "name": "tombstone",
+      "value": null,
+      "expected": []
+    },
+    {
+      "name": "via-entry-station",
+      "value": {
+        "passageSortie": {
+          "DHM": "parent",
+          "localisation": {
+            "gare": "outside",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          },
+          "tarification": {
+            "classeTarifaire": {
+              "classe": "2"
+            },
+            "prix": {
+              "montantTTC": 7.5
+            },
+            "trajet": {
+              "entree": {
+                "gare": "25022001"
+              }
+            }
+          }
+        },
+        "evenements": [
+          {
+            "idEvenement": "DSRC.lecture.CIP",
+            "D_VET": {
+              "typePassage": "d",
+              "gare": "g",
+              "numeroEquipement": "8",
+              "sens": "0",
+              "classe": "2",
+              "DHM": "20260101000000",
+              "periodeTarif": null,
+              "typeTarif": null,
+              "montant": null,
+              "observation": null,
+              "pointeurHistorique": null
+            },
+            "F_IDU": "VIA-ENTRY",
+            "D_HIS": [
+              {
+                "typePassage": "a",
+                "gare": "entry",
+                "numeroEquipement": "7",
+                "sens": "0",
+                "classe": "2",
+                "DHM": "20250102030405",
+                "montant": 501
+              },
+              {
+                "typePassage": "b",
+                "gare": "exit",
+                "numeroEquipement": "1234",
+                "sens": "1",
+                "classe": "1234",
+                "DHM": "20250203040506",
+                "montant": 0
+              }
+            ]
+          }
+        ]
+      },
+      "expected": [
+        {
+          "DHM": "parent",
+          "sens": "S",
+          "localisation": {
+            "gare": "outside",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          },
+          "PAN": "VIA-ENTRY",
+          "histo": [
+            {
+              "localisation": {
+                "gare": "entry",
+                "equipement": {
+                  "numero": "007",
+                  "type": ""
+                }
+              },
+              "DHM": "2025-01-02T03:04:05",
+              "sens": "E",
+              "typePassage": "a",
+              "tarif": 5.01,
+              "classe": "002"
+            },
+            {
+              "localisation": {
+                "gare": "exit",
+                "equipement": {
+                  "numero": "123",
+                  "type": ""
+                }
+              },
+              "DHM": "2025-02-03T04:05:06",
+              "sens": "S",
+              "typePassage": "b",
+              "tarif": 0.0,
+              "classe": "123"
+            }
+          ],
+          "D_VET": {
+            "typePassage": "d",
+            "gare": "g",
+            "numeroEquipement": "8",
+            "sens": "0",
+            "classe": "2",
+            "DHM": "20260101000000",
+            "periodeTarif": null,
+            "typeTarif": null,
+            "montant": null,
+            "observation": null,
+            "pointeurHistorique": null
+          },
+          "classe": "2",
+          "tarif": 7.5
+        }
+      ]
+    },
+    {
+      "name": "single-zero-valid",
+      "value": {
+        "passageSortie": {
+          "DHM": "parent",
+          "localisation": {
+            "gare": "25005198",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          },
+          "tarification": {
+            "classeTarifaire": {
+              "classe": "2"
+            },
+            "prix": {
+              "montantTTC": 7.5
+            },
+            "trajet": {
+              "entree": {
+                "gare": "outside"
+              }
+            }
+          }
+        },
+        "evenements": [
+          {
+            "idEvenement": "DSRC.lecture.CARDME",
+            "D_VET": {
+              "typePassage": "d",
+              "gare": "g",
+              "numeroEquipement": "8",
+              "sens": "0",
+              "classe": "2",
+              "DHM": "20260101000000",
+              "periodeTarif": null,
+              "typeTarif": null,
+              "montant": null,
+              "observation": null,
+              "pointeurHistorique": null
+            },
+            "paymentMeans": {
+              "PAN": "0"
+            },
+            "receiptData": [
+              {
+                "time": "20260102030405",
+                "serviceProvider": {
+                  "pays": "250",
+                  "identifiant": "abc04"
+                },
+                "locationOfStation": "xx123",
+                "location": {
+                  "sens": "0",
+                  "numeroVoie": "001"
+                },
+                "type": "1",
+                "fee": {
+                  "montant": 1234
+                },
+                "tariffClass": "2"
+              },
+              {
+                "time": "20260203040506",
+                "serviceProvider": {
+                  "pays": "250",
+                  "identifiant": "abc06"
+                },
+                "locationOfStation": "xx456",
+                "location": {
+                  "sens": "1",
+                  "numeroVoie": "099"
+                },
+                "type": "123",
+                "fee": {
+                  "montant": -250
+                },
+                "tariffClass": "03"
+              }
+            ]
+          },
+          {
+            "idEvenement": "DSRC.lecture.CIP",
+            "D_VET": {
+              "typePassage": "d",
+              "gare": "g",
+              "numeroEquipement": "8",
+              "sens": "0",
+              "classe": "2",
+              "DHM": "20260101000000",
+              "periodeTarif": null,
+              "typeTarif": null,
+              "montant": null,
+              "observation": null,
+              "pointeurHistorique": null
+            },
+            "F_IDU": "0",
+            "D_HIS": [
+              {
+                "typePassage": "a",
+                "gare": "entry",
+                "numeroEquipement": "7",
+                "sens": "0",
+                "classe": "2",
+                "DHM": "20250102030405",
+                "montant": 501
+              },
+              {
+                "typePassage": "b",
+                "gare": "exit",
+                "numeroEquipement": "1234",
+                "sens": "1",
+                "classe": "1234",
+                "DHM": "20250203040506",
+                "montant": 0
+              }
+            ]
+          }
+        ]
+      },
+      "expected": [
+        {
+          "DHM": "parent",
+          "sens": "S",
+          "localisation": {
+            "gare": "25005198",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          },
+          "PAN": "0",
+          "histo": [
+            {
+              "localisation": {
+                "gare": "25004123",
+                "equipement": {
+                  "numero": "001",
+                  "type": ""
+                }
+              },
+              "DHM": "2026-01-02T03:04:05",
+              "sens": "E",
+              "typePassage": "01",
+              "tarif": 12.34,
+              "classe": "2"
+            },
+            {
+              "localisation": {
+                "gare": "25006456",
+                "equipement": {
+                  "numero": "099",
+                  "type": ""
+                }
+              },
+              "DHM": "2026-02-03T04:05:06",
+              "sens": "S",
+              "typePassage": "12",
+              "tarif": -2.5,
+              "classe": "03"
+            }
+          ],
+          "D_VET": {
+            "typePassage": "d",
+            "gare": "g",
+            "numeroEquipement": "8",
+            "sens": "0",
+            "classe": "2",
+            "DHM": "20260101000000",
+            "periodeTarif": null,
+            "typeTarif": null,
+            "montant": null,
+            "observation": null,
+            "pointeurHistorique": null
+          },
+          "classe": "2",
+          "tarif": 7.5
+        },
+        {
+          "DHM": "parent",
+          "sens": "S",
+          "localisation": {
+            "gare": "25005198",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          },
+          "PAN": "0",
+          "histo": [
+            {
+              "localisation": {
+                "gare": "entry",
+                "equipement": {
+                  "numero": "007",
+                  "type": ""
+                }
+              },
+              "DHM": "2025-01-02T03:04:05",
+              "sens": "E",
+              "typePassage": "a",
+              "tarif": 5.01,
+              "classe": "002"
+            },
+            {
+              "localisation": {
+                "gare": "exit",
+                "equipement": {
+                  "numero": "123",
+                  "type": ""
+                }
+              },
+              "DHM": "2025-02-03T04:05:06",
+              "sens": "S",
+              "typePassage": "b",
+              "tarif": 0.0,
+              "classe": "123"
+            }
+          ],
+          "D_VET": {
+            "typePassage": "d",
+            "gare": "g",
+            "numeroEquipement": "8",
+            "sens": "0",
+            "classe": "2",
+            "DHM": "20260101000000",
+            "periodeTarif": null,
+            "typeTarif": null,
+            "montant": null,
+            "observation": null,
+            "pointeurHistorique": null
+          },
+          "classe": "2",
+          "tarif": 7.5
+        }
+      ]
+    },
+    {
+      "name": "null-history-member",
+      "value": {
+        "passageSortie": {
+          "DHM": "parent",
+          "localisation": {
+            "gare": "25005198",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          },
+          "tarification": {
+            "classeTarifaire": {
+              "classe": "2"
+            },
+            "prix": {
+              "montantTTC": 7.5
+            },
+            "trajet": {
+              "entree": {
+                "gare": "outside"
+              }
+            }
+          }
+        },
+        "evenements": [
+          {
+            "idEvenement": "DSRC.lecture.CARDME",
+            "D_VET": null,
+            "paymentMeans": {
+              "PAN": "NULL-CARD"
+            },
+            "receiptData": [
+              null
+            ]
+          },
+          {
+            "idEvenement": "DSRC.lecture.CIP",
+            "D_VET": null,
+            "F_IDU": "NULL-CIP",
+            "D_HIS": [
+              null
+            ]
+          }
+        ]
+      },
+      "expected": [
+        {
+          "DHM": "parent",
+          "sens": "S",
+          "localisation": {
+            "gare": "25005198",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          },
+          "PAN": "NULL-CARD",
+          "histo": [
+            {
+              "localisation": {
+                "gare": "",
+                "equipement": {
+                  "numero": null,
+                  "type": ""
+                }
+              },
+              "DHM": "--T::",
+              "sens": "S",
+              "typePassage": null,
+              "tarif": null,
+              "classe": null
+            }
+          ],
+          "D_VET": null,
+          "classe": "2",
+          "tarif": 7.5
+        },
+        {
+          "DHM": "parent",
+          "sens": "S",
+          "localisation": {
+            "gare": "25005198",
+            "equipement": {
+              "numero": "007",
+              "type": "VS"
+            }
+          },
+          "PAN": "NULL-CIP",
+          "histo": [
+            {
+              "localisation": {
+                "gare": null,
+                "equipement": {
+                  "numero": null,
+                  "type": ""
+                }
+              },
+              "DHM": "--T::",
+              "sens": "S",
+              "typePassage": null,
+              "tarif": null,
+              "classe": null
+            }
+          ],
+          "D_VET": null,
+          "classe": "2",
+          "tarif": 7.5
+        }
+      ]
+    }
+  ]
+}

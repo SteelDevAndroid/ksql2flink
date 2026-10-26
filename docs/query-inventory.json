@@ -197,7 +197,7 @@
     "difficulty": "Elevee",
     "reason": "EXPLODE correles, FILTER/TRANSFORM et historiques imbriques",
     "line": 1508,
-    "status": "a migrer"
+    "status": "migre"
   },
   {
     "name": "IQ_HISTOBADGEVA_BE_CIP",
@@ -205,7 +205,7 @@
     "difficulty": "Elevee",
     "reason": "EXPLODE correles, FILTER/TRANSFORM et historiques imbriques",
     "line": 1509,
-    "status": "a migrer"
+    "status": "migre"
   },
   {
     "name": "IQ_HISTOBADGEVA_VS_CARDME",
@@ -213,7 +213,7 @@
     "difficulty": "Elevee",
     "reason": "EXPLODE correles, FILTER/TRANSFORM et historiques imbriques",
     "line": 576,
-    "status": "a migrer"
+    "status": "migre"
   },
   {
     "name": "IQ_HISTOBADGEVA_VS_CIP",
@@ -221,7 +221,7 @@
     "difficulty": "Elevee",
     "reason": "EXPLODE correles, FILTER/TRANSFORM et historiques imbriques",
     "line": 577,
-    "status": "a migrer"
+    "status": "migre"
   },
   {
     "name": "TABLE_VA_PEAGE_BACKOFFICE_SOCLEET_REF_COMPTEURS",
@@ -229,7 +229,7 @@
     "difficulty": "Elevee",
     "reason": "LATEST_BY_OFFSET et jointures stream-table sensibles a l ordre",
     "line": 2811,
-    "status": "a migrer"
+    "status": "migre"
   },
   {
     "name": "TABLE_VA_PEAGE_BACKOFFICE_SOCLEET_REF_INDICATEURS",
@@ -237,7 +237,7 @@
     "difficulty": "Elevee",
     "reason": "LATEST_BY_OFFSET et jointures stream-table sensibles a l ordre",
     "line": 2521,
-    "status": "a migrer"
+    "status": "migre"
   },
   {
     "name": "VA_PEAGE_BACKOFFICE_SOCLEET_FILTER_REF_COMPTEUR",
@@ -245,7 +245,7 @@
     "difficulty": "Elevee",
     "reason": "LATEST_BY_OFFSET et jointures stream-table sensibles a l ordre",
     "line": 752,
-    "status": "a migrer"
+    "status": "migre"
   },
   {
     "name": "VA_PEAGE_BACKOFFICE_SOCLEET_FILTER_REF_INDICATEUR",
@@ -253,7 +253,7 @@
     "difficulty": "Elevee",
     "reason": "LATEST_BY_OFFSET et jointures stream-table sensibles a l ordre",
     "line": 1405,
-    "status": "a migrer"
+    "status": "migre"
   },
   {
     "name": "TABLE_VA_PEAGE_BACKOFFICE_SOCLEET_INDICATEUR",

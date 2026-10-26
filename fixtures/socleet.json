@@ -1,0 +1,743 @@
+{
+  "initial": {
+    "compteur_input": [
+      {
+        "value": {
+          "ID": 1,
+          "R_COMPTEUR_TYPEID": 1,
+          "R_FREQUENCEID": 10,
+          "R_OPERATIONID": 100,
+          "R_MODE_REGLEMENTID": -1,
+          "R_TRANSACTION_ETATID": 7
+        },
+        "time": 2
+      },
+      {
+        "value": {
+          "ID": 1,
+          "R_COMPTEUR_TYPEID": -1,
+          "R_FREQUENCEID": 11,
+          "R_OPERATIONID": 100,
+          "R_MODE_REGLEMENTID": -1,
+          "R_TRANSACTION_ETATID": 7
+        },
+        "time": 1
+      },
+      {
+        "value": {
+          "ID": 2,
+          "R_COMPTEUR_TYPEID": 2,
+          "R_FREQUENCEID": 20,
+          "R_OPERATIONID": 200,
+          "R_MODE_REGLEMENTID": 5,
+          "R_TRANSACTION_ETATID": 8
+        },
+        "time": 3
+      },
+      {
+        "value": {
+          "ID": 2,
+          "R_COMPTEUR_TYPEID": 2,
+          "R_FREQUENCEID": 20,
+          "R_OPERATIONID": 200,
+          "R_MODE_REGLEMENTID": 5,
+          "R_TRANSACTION_ETATID": 8
+        },
+        "time": 4
+      },
+      {
+        "value": {
+          "ID": 3,
+          "R_COMPTEUR_TYPEID": 2,
+          "R_FREQUENCEID": null,
+          "R_OPERATIONID": 200,
+          "R_MODE_REGLEMENTID": 5,
+          "R_TRANSACTION_ETATID": 8
+        },
+        "time": 4
+      },
+      {
+        "value": {
+          "ID": null,
+          "R_COMPTEUR_TYPEID": 2,
+          "R_FREQUENCEID": 20,
+          "R_OPERATIONID": 200,
+          "R_MODE_REGLEMENTID": 5,
+          "R_TRANSACTION_ETATID": 8
+        },
+        "time": 5
+      },
+      {
+        "value": null,
+        "time": 6
+      }
+    ],
+    "indicateur_input": [
+      {
+        "value": {
+          "ID": 1,
+          "R_INDICATEUR_TYPEID": -1,
+          "R_FREQUENCEID": 30
+        },
+        "time": 2
+      },
+      {
+        "value": {
+          "ID": 2,
+          "R_INDICATEUR_TYPEID": 2,
+          "R_FREQUENCEID": 40
+        },
+        "time": 3
+      },
+      {
+        "value": {
+          "ID": 3,
+          "R_INDICATEUR_TYPEID": null,
+          "R_FREQUENCEID": 30
+        },
+        "time": 4
+      }
+    ]
+  },
+  "update": {
+    "compteur_input": [
+      {
+        "value": {
+          "ID": 1,
+          "R_COMPTEUR_TYPEID": 2,
+          "R_FREQUENCEID": 99,
+          "R_OPERATIONID": 101,
+          "R_MODE_REGLEMENTID": 6,
+          "R_TRANSACTION_ETATID": 9
+        },
+        "time": 0
+      },
+      {
+        "value": {
+          "ID": 2,
+          "R_COMPTEUR_TYPEID": 2,
+          "R_FREQUENCEID": 20,
+          "R_OPERATIONID": 200,
+          "R_MODE_REGLEMENTID": null,
+          "R_TRANSACTION_ETATID": 8
+        },
+        "time": 7
+      }
+    ],
+    "indicateur_input": [
+      {
+        "value": {
+          "ID": 1,
+          "R_INDICATEUR_TYPEID": 2,
+          "R_FREQUENCEID": 77
+        },
+        "time": 0
+      }
+    ]
+  },
+  "before": [
+    {
+      "name": "before-loaded",
+      "value": {
+        "R_COMPTEURID": 1,
+        "R_MODE_REGLEMENTID": 77,
+        "R_OPERATIONID": 100,
+        "R_VOIEID": 1,
+        "R_GAREID": 2,
+        "R_SOCIETEID": 3,
+        "R_PARTENAIREID": 4,
+        "R_TRANSACTION_ETATID": 7,
+        "R_TRANSACTION_MODIFICATION_TYPEID": 0,
+        "IDT_TRAN_PEA": "txn-before-loaded",
+        "MONTANT_TRANSACTION": 25.5,
+        "DATE_OPERATION": 1.25,
+        "DATE_COMPTABLE": 2.5
+      },
+      "expected": {}
+    },
+    {
+      "name": "before-second",
+      "value": {
+        "R_COMPTEURID": 2,
+        "R_MODE_REGLEMENTID": 5,
+        "R_OPERATIONID": 200,
+        "R_VOIEID": 1,
+        "R_GAREID": 2,
+        "R_SOCIETEID": 3,
+        "R_PARTENAIREID": 4,
+        "R_TRANSACTION_ETATID": 8,
+        "R_TRANSACTION_MODIFICATION_TYPEID": 0,
+        "IDT_TRAN_PEA": "txn-before-second",
+        "MONTANT_TRANSACTION": 25.5,
+        "DATE_OPERATION": 1.25,
+        "DATE_COMPTABLE": 2.5
+      },
+      "expected": {}
+    }
+  ],
+  "loaded": [
+    {
+      "name": "wildcard",
+      "value": {
+        "R_COMPTEURID": 1,
+        "R_MODE_REGLEMENTID": 77,
+        "R_OPERATIONID": 100,
+        "R_VOIEID": 1,
+        "R_GAREID": 2,
+        "R_SOCIETEID": 3,
+        "R_PARTENAIREID": 4,
+        "R_TRANSACTION_ETATID": 7,
+        "R_TRANSACTION_MODIFICATION_TYPEID": 0,
+        "IDT_TRAN_PEA": "txn-wildcard",
+        "MONTANT_TRANSACTION": 25.5,
+        "DATE_OPERATION": 1.25,
+        "DATE_COMPTABLE": 2.5
+      },
+      "expected": {
+        "compteur_output": {
+          "R_VOIEID": 1,
+          "R_GAREID": 2,
+          "R_SOCIETEID": 3,
+          "R_PARTENAIREID": 4,
+          "IDT_TRAN_PEA": "txn-wildcard",
+          "VALEUR": 1.0,
+          "DATE_OPERATION": 1.25,
+          "DATE_COMPTABLE": 2.5,
+          "R_FREQUENCEID": 11,
+          "MONTANT_TRANSACTION": 25.5,
+          "C_R_MODE_REGLEMENTID": -1,
+          "R_COMPTEUR_TYPEID": -1
+        },
+        "indicateur_output": {
+          "R_VOIEID": 1,
+          "R_GAREID": 2,
+          "R_SOCIETEID": 3,
+          "R_PARTENAIREID": 4,
+          "IDT_TRAN_PEA": "txn-wildcard",
+          "VALEUR": 1.0,
+          "DATE_OPERATION": 1.25,
+          "DATE_COMPTABLE": 2.5,
+          "R_FREQUENCEID": 30,
+          "R_INDICATEUR_TYPEID": -1
+        }
+      }
+    },
+    {
+      "name": "exact",
+      "value": {
+        "R_COMPTEURID": 2,
+        "R_MODE_REGLEMENTID": 5,
+        "R_OPERATIONID": 200,
+        "R_VOIEID": 1,
+        "R_GAREID": 2,
+        "R_SOCIETEID": 3,
+        "R_PARTENAIREID": 4,
+        "R_TRANSACTION_ETATID": 8,
+        "R_TRANSACTION_MODIFICATION_TYPEID": 0,
+        "IDT_TRAN_PEA": "txn-exact",
+        "MONTANT_TRANSACTION": 25.5,
+        "DATE_OPERATION": 1.25,
+        "DATE_COMPTABLE": 2.5
+      },
+      "expected": {
+        "compteur_output": {
+          "R_VOIEID": 1,
+          "R_GAREID": 2,
+          "R_SOCIETEID": 3,
+          "R_PARTENAIREID": 4,
+          "IDT_TRAN_PEA": "txn-exact",
+          "VALEUR": 25.5,
+          "DATE_OPERATION": 1.25,
+          "DATE_COMPTABLE": 2.5,
+          "R_FREQUENCEID": 20,
+          "MONTANT_TRANSACTION": 25.5,
+          "C_R_MODE_REGLEMENTID": 5,
+          "R_COMPTEUR_TYPEID": 2
+        },
+        "indicateur_output": {
+          "R_VOIEID": 1,
+          "R_GAREID": 2,
+          "R_SOCIETEID": 3,
+          "R_PARTENAIREID": 4,
+          "IDT_TRAN_PEA": "txn-exact",
+          "VALEUR": 25.5,
+          "DATE_OPERATION": 1.25,
+          "DATE_COMPTABLE": 2.5,
+          "R_FREQUENCEID": 40,
+          "R_INDICATEUR_TYPEID": 2
+        }
+      }
+    },
+    {
+      "name": "wrong-mode",
+      "value": {
+        "R_COMPTEURID": 2,
+        "R_MODE_REGLEMENTID": 6,
+        "R_OPERATIONID": 200,
+        "R_VOIEID": 1,
+        "R_GAREID": 2,
+        "R_SOCIETEID": 3,
+        "R_PARTENAIREID": 4,
+        "R_TRANSACTION_ETATID": 8,
+        "R_TRANSACTION_MODIFICATION_TYPEID": 0,
+        "IDT_TRAN_PEA": "txn-wrong-mode",
+        "MONTANT_TRANSACTION": 25.5,
+        "DATE_OPERATION": 1.25,
+        "DATE_COMPTABLE": 2.5
+      },
+      "expected": {
+        "indicateur_output": {
+          "R_VOIEID": 1,
+          "R_GAREID": 2,
+          "R_SOCIETEID": 3,
+          "R_PARTENAIREID": 4,
+          "IDT_TRAN_PEA": "txn-wrong-mode",
+          "VALEUR": 25.5,
+          "DATE_OPERATION": 1.25,
+          "DATE_COMPTABLE": 2.5,
+          "R_FREQUENCEID": 40,
+          "R_INDICATEUR_TYPEID": 2
+        }
+      }
+    },
+    {
+      "name": "wrong-op",
+      "value": {
+        "R_COMPTEURID": 1,
+        "R_MODE_REGLEMENTID": 77,
+        "R_OPERATIONID": 999,
+        "R_VOIEID": 1,
+        "R_GAREID": 2,
+        "R_SOCIETEID": 3,
+        "R_PARTENAIREID": 4,
+        "R_TRANSACTION_ETATID": 7,
+        "R_TRANSACTION_MODIFICATION_TYPEID": 0,
+        "IDT_TRAN_PEA": "txn-wrong-op",
+        "MONTANT_TRANSACTION": 25.5,
+        "DATE_OPERATION": 1.25,
+        "DATE_COMPTABLE": 2.5
+      },
+      "expected": {
+        "indicateur_output": {
+          "R_VOIEID": 1,
+          "R_GAREID": 2,
+          "R_SOCIETEID": 3,
+          "R_PARTENAIREID": 4,
+          "IDT_TRAN_PEA": "txn-wrong-op",
+          "VALEUR": 1.0,
+          "DATE_OPERATION": 1.25,
+          "DATE_COMPTABLE": 2.5,
+          "R_FREQUENCEID": 30,
+          "R_INDICATEUR_TYPEID": -1
+        }
+      }
+    },
+    {
+      "name": "wrong-state",
+      "value": {
+        "R_COMPTEURID": 1,
+        "R_MODE_REGLEMENTID": 77,
+        "R_OPERATIONID": 100,
+        "R_VOIEID": 1,
+        "R_GAREID": 2,
+        "R_SOCIETEID": 3,
+        "R_PARTENAIREID": 4,
+        "R_TRANSACTION_ETATID": 999,
+        "R_TRANSACTION_MODIFICATION_TYPEID": 0,
+        "IDT_TRAN_PEA": "txn-wrong-state",
+        "MONTANT_TRANSACTION": 25.5,
+        "DATE_OPERATION": 1.25,
+        "DATE_COMPTABLE": 2.5
+      },
+      "expected": {
+        "indicateur_output": {
+          "R_VOIEID": 1,
+          "R_GAREID": 2,
+          "R_SOCIETEID": 3,
+          "R_PARTENAIREID": 4,
+          "IDT_TRAN_PEA": "txn-wrong-state",
+          "VALEUR": 1.0,
+          "DATE_OPERATION": 1.25,
+          "DATE_COMPTABLE": 2.5,
+          "R_FREQUENCEID": 30,
+          "R_INDICATEUR_TYPEID": -1
+        }
+      }
+    },
+    {
+      "name": "null-mode-wildcard",
+      "value": {
+        "R_COMPTEURID": 1,
+        "R_MODE_REGLEMENTID": null,
+        "R_OPERATIONID": 100,
+        "R_VOIEID": 1,
+        "R_GAREID": 2,
+        "R_SOCIETEID": 3,
+        "R_PARTENAIREID": 4,
+        "R_TRANSACTION_ETATID": 7,
+        "R_TRANSACTION_MODIFICATION_TYPEID": 0,
+        "IDT_TRAN_PEA": "txn-null-mode-wildcard",
+        "MONTANT_TRANSACTION": 25.5,
+        "DATE_OPERATION": 1.25,
+        "DATE_COMPTABLE": 2.5
+      },
+      "expected": {
+        "compteur_output": {
+          "R_VOIEID": 1,
+          "R_GAREID": 2,
+          "R_SOCIETEID": 3,
+          "R_PARTENAIREID": 4,
+          "IDT_TRAN_PEA": "txn-null-mode-wildcard",
+          "VALEUR": 1.0,
+          "DATE_OPERATION": 1.25,
+          "DATE_COMPTABLE": 2.5,
+          "R_FREQUENCEID": 11,
+          "MONTANT_TRANSACTION": 25.5,
+          "C_R_MODE_REGLEMENTID": -1,
+          "R_COMPTEUR_TYPEID": -1
+        },
+        "indicateur_output": {
+          "R_VOIEID": 1,
+          "R_GAREID": 2,
+          "R_SOCIETEID": 3,
+          "R_PARTENAIREID": 4,
+          "IDT_TRAN_PEA": "txn-null-mode-wildcard",
+          "VALEUR": 1.0,
+          "DATE_OPERATION": 1.25,
+          "DATE_COMPTABLE": 2.5,
+          "R_FREQUENCEID": 30,
+          "R_INDICATEUR_TYPEID": -1
+        }
+      }
+    },
+    {
+      "name": "unknown-reference",
+      "value": {
+        "R_COMPTEURID": 77,
+        "R_MODE_REGLEMENTID": 77,
+        "R_OPERATIONID": 100,
+        "R_VOIEID": 1,
+        "R_GAREID": 2,
+        "R_SOCIETEID": 3,
+        "R_PARTENAIREID": 4,
+        "R_TRANSACTION_ETATID": 7,
+        "R_TRANSACTION_MODIFICATION_TYPEID": 0,
+        "IDT_TRAN_PEA": "txn-unknown-reference",
+        "MONTANT_TRANSACTION": 25.5,
+        "DATE_OPERATION": 1.25,
+        "DATE_COMPTABLE": 2.5
+      },
+      "expected": {}
+    },
+    {
+      "name": "null-id",
+      "value": {
+        "R_COMPTEURID": null,
+        "R_MODE_REGLEMENTID": 77,
+        "R_OPERATIONID": 100,
+        "R_VOIEID": 1,
+        "R_GAREID": 2,
+        "R_SOCIETEID": 3,
+        "R_PARTENAIREID": 4,
+        "R_TRANSACTION_ETATID": 7,
+        "R_TRANSACTION_MODIFICATION_TYPEID": 0,
+        "IDT_TRAN_PEA": "txn-null-id",
+        "MONTANT_TRANSACTION": 25.5,
+        "DATE_OPERATION": 1.25,
+        "DATE_COMPTABLE": 2.5
+      },
+      "expected": {}
+    },
+    {
+      "name": "null-amount",
+      "value": {
+        "R_COMPTEURID": 2,
+        "R_MODE_REGLEMENTID": 5,
+        "R_OPERATIONID": 200,
+        "R_VOIEID": 1,
+        "R_GAREID": 2,
+        "R_SOCIETEID": 3,
+        "R_PARTENAIREID": 4,
+        "R_TRANSACTION_ETATID": 8,
+        "R_TRANSACTION_MODIFICATION_TYPEID": 0,
+        "IDT_TRAN_PEA": "txn-null-amount",
+        "MONTANT_TRANSACTION": null,
+        "DATE_OPERATION": 1.25,
+        "DATE_COMPTABLE": 2.5
+      },
+      "expected": {
+        "compteur_output": {
+          "R_VOIEID": 1,
+          "R_GAREID": 2,
+          "R_SOCIETEID": 3,
+          "R_PARTENAIREID": 4,
+          "IDT_TRAN_PEA": "txn-null-amount",
+          "VALEUR": null,
+          "DATE_OPERATION": 1.25,
+          "DATE_COMPTABLE": 2.5,
+          "R_FREQUENCEID": 20,
+          "MONTANT_TRANSACTION": null,
+          "C_R_MODE_REGLEMENTID": 5,
+          "R_COMPTEUR_TYPEID": 2
+        },
+        "indicateur_output": {
+          "R_VOIEID": 1,
+          "R_GAREID": 2,
+          "R_SOCIETEID": 3,
+          "R_PARTENAIREID": 4,
+          "IDT_TRAN_PEA": "txn-null-amount",
+          "VALEUR": null,
+          "DATE_OPERATION": 1.25,
+          "DATE_COMPTABLE": 2.5,
+          "R_FREQUENCEID": 40,
+          "R_INDICATEUR_TYPEID": 2
+        }
+      }
+    },
+    {
+      "name": "fact-tombstone",
+      "value": null,
+      "expected": {}
+    }
+  ],
+  "changed": [
+    {
+      "name": "old-rule-after-update",
+      "value": {
+        "R_COMPTEURID": 1,
+        "R_MODE_REGLEMENTID": 77,
+        "R_OPERATIONID": 100,
+        "R_VOIEID": 1,
+        "R_GAREID": 2,
+        "R_SOCIETEID": 3,
+        "R_PARTENAIREID": 4,
+        "R_TRANSACTION_ETATID": 7,
+        "R_TRANSACTION_MODIFICATION_TYPEID": 0,
+        "IDT_TRAN_PEA": "txn-old-rule-after-update",
+        "MONTANT_TRANSACTION": 25.5,
+        "DATE_OPERATION": 1.25,
+        "DATE_COMPTABLE": 2.5
+      },
+      "expected": {
+        "indicateur_output": {
+          "R_VOIEID": 1,
+          "R_GAREID": 2,
+          "R_SOCIETEID": 3,
+          "R_PARTENAIREID": 4,
+          "IDT_TRAN_PEA": "txn-old-rule-after-update",
+          "VALEUR": 25.5,
+          "DATE_OPERATION": 1.25,
+          "DATE_COMPTABLE": 2.5,
+          "R_FREQUENCEID": 77,
+          "R_INDICATEUR_TYPEID": 2
+        }
+      }
+    },
+    {
+      "name": "new-rule-after-update",
+      "value": {
+        "R_COMPTEURID": 1,
+        "R_MODE_REGLEMENTID": 6,
+        "R_OPERATIONID": 101,
+        "R_VOIEID": 1,
+        "R_GAREID": 2,
+        "R_SOCIETEID": 3,
+        "R_PARTENAIREID": 4,
+        "R_TRANSACTION_ETATID": 9,
+        "R_TRANSACTION_MODIFICATION_TYPEID": 0,
+        "IDT_TRAN_PEA": "txn-new-rule-after-update",
+        "MONTANT_TRANSACTION": 25.5,
+        "DATE_OPERATION": 1.25,
+        "DATE_COMPTABLE": 2.5
+      },
+      "expected": {
+        "compteur_output": {
+          "R_VOIEID": 1,
+          "R_GAREID": 2,
+          "R_SOCIETEID": 3,
+          "R_PARTENAIREID": 4,
+          "IDT_TRAN_PEA": "txn-new-rule-after-update",
+          "VALEUR": 25.5,
+          "DATE_OPERATION": 1.25,
+          "DATE_COMPTABLE": 2.5,
+          "R_FREQUENCEID": 99,
+          "MONTANT_TRANSACTION": 25.5,
+          "C_R_MODE_REGLEMENTID": 6,
+          "R_COMPTEUR_TYPEID": 2
+        },
+        "indicateur_output": {
+          "R_VOIEID": 1,
+          "R_GAREID": 2,
+          "R_SOCIETEID": 3,
+          "R_PARTENAIREID": 4,
+          "IDT_TRAN_PEA": "txn-new-rule-after-update",
+          "VALEUR": 25.5,
+          "DATE_OPERATION": 1.25,
+          "DATE_COMPTABLE": 2.5,
+          "R_FREQUENCEID": 77,
+          "R_INDICATEUR_TYPEID": 2
+        }
+      }
+    }
+  ],
+  "deleted": [
+    {
+      "name": "deleted-reference",
+      "value": {
+        "R_COMPTEURID": 1,
+        "R_MODE_REGLEMENTID": 6,
+        "R_OPERATIONID": 101,
+        "R_VOIEID": 1,
+        "R_GAREID": 2,
+        "R_SOCIETEID": 3,
+        "R_PARTENAIREID": 4,
+        "R_TRANSACTION_ETATID": 9,
+        "R_TRANSACTION_MODIFICATION_TYPEID": 0,
+        "IDT_TRAN_PEA": "txn-deleted-reference",
+        "MONTANT_TRANSACTION": 25.5,
+        "DATE_OPERATION": 1.25,
+        "DATE_COMPTABLE": 2.5
+      },
+      "expected": {}
+    },
+    {
+      "name": "other-reference-survives",
+      "value": {
+        "R_COMPTEURID": 2,
+        "R_MODE_REGLEMENTID": 5,
+        "R_OPERATIONID": 200,
+        "R_VOIEID": 1,
+        "R_GAREID": 2,
+        "R_SOCIETEID": 3,
+        "R_PARTENAIREID": 4,
+        "R_TRANSACTION_ETATID": 8,
+        "R_TRANSACTION_MODIFICATION_TYPEID": 0,
+        "IDT_TRAN_PEA": "txn-other-reference-survives",
+        "MONTANT_TRANSACTION": 25.5,
+        "DATE_OPERATION": 1.25,
+        "DATE_COMPTABLE": 2.5
+      },
+      "expected": {
+        "compteur_output": {
+          "R_VOIEID": 1,
+          "R_GAREID": 2,
+          "R_SOCIETEID": 3,
+          "R_PARTENAIREID": 4,
+          "IDT_TRAN_PEA": "txn-other-reference-survives",
+          "VALEUR": 25.5,
+          "DATE_OPERATION": 1.25,
+          "DATE_COMPTABLE": 2.5,
+          "R_FREQUENCEID": 20,
+          "MONTANT_TRANSACTION": 25.5,
+          "C_R_MODE_REGLEMENTID": 5,
+          "R_COMPTEUR_TYPEID": 2
+        },
+        "indicateur_output": {
+          "R_VOIEID": 1,
+          "R_GAREID": 2,
+          "R_SOCIETEID": 3,
+          "R_PARTENAIREID": 4,
+          "IDT_TRAN_PEA": "txn-other-reference-survives",
+          "VALEUR": 25.5,
+          "DATE_OPERATION": 1.25,
+          "DATE_COMPTABLE": 2.5,
+          "R_FREQUENCEID": 40,
+          "R_INDICATEUR_TYPEID": 2
+        }
+      }
+    }
+  ],
+  "table_expected": {
+    "compteur_table": [
+      {
+        "id": 1,
+        "time": 2,
+        "value": {
+          "R_COMPTEUR_TYPEID": 1,
+          "R_FREQUENCEID": 10,
+          "R_OPERATIONID": 100,
+          "R_MODE_REGLEMENTID": -1,
+          "R_TRANSACTION_ETATID": 7,
+          "COUNT": 1
+        }
+      },
+      {
+        "id": 1,
+        "time": 2,
+        "value": {
+          "R_COMPTEUR_TYPEID": -1,
+          "R_FREQUENCEID": 11,
+          "R_OPERATIONID": 100,
+          "R_MODE_REGLEMENTID": -1,
+          "R_TRANSACTION_ETATID": 7,
+          "COUNT": 2
+        }
+      },
+      {
+        "id": 2,
+        "time": 3,
+        "value": {
+          "R_COMPTEUR_TYPEID": 2,
+          "R_FREQUENCEID": 20,
+          "R_OPERATIONID": 200,
+          "R_MODE_REGLEMENTID": 5,
+          "R_TRANSACTION_ETATID": 8,
+          "COUNT": 1
+        }
+      },
+      {
+        "id": 2,
+        "time": 4,
+        "value": {
+          "R_COMPTEUR_TYPEID": 2,
+          "R_FREQUENCEID": 20,
+          "R_OPERATIONID": 200,
+          "R_MODE_REGLEMENTID": 5,
+          "R_TRANSACTION_ETATID": 8,
+          "COUNT": 2
+        }
+      },
+      {
+        "id": 1,
+        "time": 2,
+        "value": {
+          "R_COMPTEUR_TYPEID": 2,
+          "R_FREQUENCEID": 99,
+          "R_OPERATIONID": 101,
+          "R_MODE_REGLEMENTID": 6,
+          "R_TRANSACTION_ETATID": 9,
+          "COUNT": 3
+        }
+      }
+    ],
+    "indicateur_table": [
+      {
+        "id": 1,
+        "time": 2,
+        "value": {
+          "R_INDICATEUR_TYPEID": -1,
+          "R_FREQUENCEID": 30,
+          "COUNT": 1
+        }
+      },
+      {
+        "id": 2,
+        "time": 3,
+        "value": {
+          "R_INDICATEUR_TYPEID": 2,
+          "R_FREQUENCEID": 40,
+          "COUNT": 1
+        }
+      },
+      {
+        "id": 1,
+        "time": 2,
+        "value": {
+          "R_INDICATEUR_TYPEID": 2,
+          "R_FREQUENCEID": 77,
+          "COUNT": 2
+        }
+      }
+    ]
+  }
+}

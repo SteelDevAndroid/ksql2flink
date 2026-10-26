@@ -15,8 +15,8 @@ Le lot 1 est choisi parce qu'il est autonome, repetitif et sans etat, contrairem
 | 2 | Faible | 9 | Consolidation entrees/sorties conformes | SQL migre ; test differentiel fourni |
 | 3 | Faible | 2 | Extension classification et projection compteur | Migre ; contrat amont lot 6 conserve |
 | 4 | Moyenne | 8 | Bols/coffres (6), synoptiques FAV (2) | Migre ; test differentiel fourni |
-| 5 | Elevee | 4 | Histobadge entree/sortie CARDME/CIP | A migrer |
-| 6 | Elevee | 4 | Deux referentiels et deux jointures Socle ET | A migrer |
+| 5 | Elevee | 4 | Histobadge entree/sortie CARDME/CIP | Migre ; correlation et historiques testes |
+| 6 | Elevee | 4 | Deux referentiels et deux jointures Socle ET | Migre en DataStream ; scenarios ordonnes testes |
 | 7 | Elevee | 1 | Indicateurs horaires | A migrer ; depend du lot 6 |
 | 8 | Tres elevee | 4 | Deux sessions classification et deux alarmes | A migrer ; depend du lot 3 |
 
@@ -155,3 +155,7 @@ Les neuf branches de consolidation sont migrees. Voir [le contrat du lot 2](lot-
 ## Lots 3 et 4
 
 Dix traitements supplementaires migres, soit 24 sur 37. Voir [le contrat des lots 3/4](lots-3-4.md). La jointure amont du compteur reste a migrer au lot 6.
+
+## Lots 5 et 6
+
+Huit traitements supplementaires migres, soit 32 sur 37. Voir [le contrat des lots 5/6](lots-5-6.md), notamment les limites d'equivalence en presence de mises a jour concurrentes des referentiels.

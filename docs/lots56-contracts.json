@@ -1,0 +1,66 @@
+{
+  "badge_sources": {
+    "entree": {
+      "name": "VA_PEAGE_VOIE_PASSAGEENTREE_CONFORME_VA",
+      "topic": "va.peage.backoffice.conformite.entree.conforme"
+    },
+    "sortie": {
+      "name": "VA_PEAGE_VOIE_PASSAGESORTIE_CONFORME_VA",
+      "topic": "va.peage.backoffice.conformite.sortie.conforme"
+    }
+  },
+  "badge_outputs": {
+    "entree": {
+      "name": "VA_PEAGE_VOIE_HISTOBADGEVA_BE",
+      "topic": "va.peage.histobadgeva.be.all"
+    },
+    "sortie": {
+      "name": "VA_PEAGE_VOIE_HISTOBADGEVA_VS",
+      "topic": "va.peage.histobadgeva.vs.all"
+    }
+  },
+  "socleet": {
+    "compteur_input": {
+      "name": "STREAM_VA_PEAGE_BACKOFFICE_SOCLEET_REFCOMPTEUR",
+      "topic": "va.peage.backoffice.socleET.ref_compteur",
+      "source": true,
+      "cleanup": "delete"
+    },
+    "indicateur_input": {
+      "name": "STREAM_VA_PEAGE_BACKOFFICE_SOCLEET_REFINDICATEUR",
+      "topic": "va.peage.backoffice.socleET.ref_indicateur",
+      "source": true,
+      "cleanup": "delete"
+    },
+    "facts": {
+      "name": "VA_PEAGE_BACKOFFICE_SOCLEET_ETANCHEITE",
+      "topic": "va.peage.backoffice.socleET.etancheite",
+      "source": true,
+      "cleanup": "delete"
+    },
+    "compteur_table": {
+      "name": "TABLE_VA_PEAGE_BACKOFFICE_SOCLEET_REF_COMPTEURS",
+      "topic": "TABLE_VA_PEAGE_BACKOFFICE_SOCLEET_REF_COMPTEURS",
+      "source": false,
+      "cleanup": "compact"
+    },
+    "indicateur_table": {
+      "name": "TABLE_VA_PEAGE_BACKOFFICE_SOCLEET_REF_INDICATEURS",
+      "topic": "TABLE_VA_PEAGE_BACKOFFICE_SOCLEET_REF_INDICATEURS",
+      "source": false,
+      "cleanup": "compact"
+    },
+    "compteur_output": {
+      "name": "VA_PEAGE_BACKOFFICE_SOCLEET_FILTER_REF_COMPTEUR",
+      "topic": "VA_PEAGE_BACKOFFICE_SOCLEET_FILTER_REF_COMPTEUR",
+      "source": false,
+      "cleanup": "delete"
+    },
+    "indicateur_output": {
+      "name": "VA_PEAGE_BACKOFFICE_SOCLEET_FILTER_REF_INDICATEUR",
+      "topic": "VA_PEAGE_BACKOFFICE_SOCLEET_FILTER_REF_INDICATEUR",
+      "source": false,
+      "cleanup": "delete"
+    }
+  }
+}
