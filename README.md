@@ -98,6 +98,10 @@ laboratoire sont explicites et ne reproduisent pas necessairement la production.
 
 ## Arret et diagnostic
 
+Le workflow GitHub Actions `Migration comparisons` execute les deux tests sur les pull requests,
+sur `main` et sur la branche de migration. Les rapports et logs Docker sont conserves sept jours.
+Les PR provenant d'un fork peuvent necessiter l'approbation d'un mainteneur pour lancer le workflow.
+
 ```powershell
 docker compose logs --tail 100 kafka ksqldb jobmanager taskmanager
 docker compose down
