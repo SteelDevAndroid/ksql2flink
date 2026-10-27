@@ -76,7 +76,7 @@ Les contrats Kafka (topics, clés, valeurs JSON, timestamps) restent inchangés 
 | Écart de comportement non couvert par les jeux de test | Exécution en parallèle en préproduction sur des topics `.flink`, avec comparaison continue avant chaque bascule |
 | Reprise d'état des lots 6 à 8 (référentiels, fenêtres ouvertes) | Procédure de reconstruction décrite dans le guide ; bascule à une frontière temporelle maîtrisée |
 | Doublons à la bascule | Démarrage sur des offsets alignés (`group-offsets`/`timestamp`), jamais un replay depuis le début vers un topic de production |
-| Points de robustesse relevés dans les jobs DataStream (partitions codées en dur, état non purgé) | Corrections planifiées avant la préproduction ([audit, section 4](audit-requetes-flink.md#4-jobs-datastream-lots-6-à-8--risques-avant-production)) |
+| Points de robustesse relevés dans les jobs DataStream (partitions codées en dur, état non purgé) | Corrigés et couverts par des tests à 3 et 6 partitions ([audit, section 4](audit-requetes-flink.md#4-jobs-datastream-lots-6-à-8--risques-corrigés)) |
 | Complexité d'exploitation d'un cluster Flink | Opérateur Kubernetes ou offre managée ; runbooks fondés sur les checkpoints et savepoints |
 | Fonctions de compatibilité JSON (casse) propres à ksqlDB | Limitées en nombre et testées ; supprimables une fois les producteurs normalisés |
 
@@ -95,7 +95,7 @@ Ces coûts sont inférieurs au risque d'un moteur hors support standard en févr
 
 ## 7. Plan de passage recommandé
 
-1. Corriger les points de robustesse DataStream (audit, section 4) et figer les plans SQL (`COMPILE PLAN`).
+1. Figer les plans SQL (`COMPILE PLAN`) et mener un test de charge des lots 7/8.
 2. Préproduction : exécution en parallèle sur des topics `.flink` pendant au moins un cycle métier complet (jours ouvrés, week-end, changements d'heure si les fenêtres horaires sont concernées).
 3. Bascule par lots, des plus simples aux plus riches en état : 1 → 2 → 3/4 → 5 → 6 → 7/8.
 4. Arrêt des requêtes ksqlDB d'un lot après validation des consommateurs ; décommissionnement de ksqlDB avant février 2027.

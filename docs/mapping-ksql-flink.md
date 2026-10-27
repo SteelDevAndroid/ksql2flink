@@ -84,16 +84,16 @@ sont pas comptés comme des traitements à convertir.
 
 | Requête ksqlDB de référence | Équivalent Flink livré | Transformation conservée | Topic de sortie Flink |
 | --- | --- | --- | --- |
-| [TABLE_VA_PEAGE_BACKOFFICE_SOCLEET_INDICATEUR](../sql/ksqldb/07-08-windows.sql#L5) | [Hourly](../docker/flink/src/lab/WindowJob.java#L88) ; UID `hourly-aggregate` | SUM incrémental, fenêtre horaire UTC, grâce historique et clé binaire de fenêtre. | `va.peage.backoffice.socleET.indicateur.flink` |
+| [TABLE_VA_PEAGE_BACKOFFICE_SOCLEET_INDICATEUR](../sql/ksqldb/07-08-windows.sql#L5) | [Hourly](../docker/flink/src/lab/WindowJob.java#L99) ; UID `hourly-aggregate` | SUM incrémental, fenêtre horaire UTC, grâce historique et clé binaire de fenêtre. | `va.peage.backoffice.socleET.indicateur.flink` |
 
 ## Lot 8 : Sessions et alarmes — 4 requêtes
 
 | Requête ksqlDB de référence | Équivalent Flink livré | Transformation conservée | Topic de sortie Flink |
 | --- | --- | --- | --- |
-| [VA_PEAGE_CLASSIFICATIONINFOQUALITE](../sql/ksqldb/07-08-windows.sql#L24) | [Sessions(true)](../docker/flink/src/lab/WindowJob.java#L138) ; UID `quality-sessions` | Sessions 60 min ; ratio > 0,3 et NBPASSAGE >= 20 ; fusions et tombstones. | `va.peage.classificationInfoQualite.flink` |
-| [VA_PEAGE_CLASSIFICATIONINFOQUALITECOUNT](../sql/ksqldb/07-08-windows.sql#L47) | [Sessions(false)](../docker/flink/src/lab/WindowJob.java#L138) ; UID `count-sessions` | Sessions 60 min ; COUNT_DISTINCT par HyperLogLog(14), bornes et tombstones. | `va.peage.classificationInfoQualite.Count.flink` |
-| [VA_PEAGE_CLASSIFICATION_ALARMEGLOBALE](../sql/ksqldb/07-08-windows.sql#L90) | [AlarmJoin](../docker/flink/src/lab/WindowJob.java#L202) → [AlarmAggregate(true)](../docker/flink/src/lab/WindowJob.java#L244) ; UID `global_alarm-aggregate` | AlarmJoin ±60 s ; LATEST_BY_OFFSET ; seuil >= 30 ; regroupement société. | `va.peage.classificationAlarme.flink` |
-| [VA_PEAGE_CLASSIFICATION_ALARMEUNITAIRE](../sql/ksqldb/07-08-windows.sql#L60) | [AlarmJoin](../docker/flink/src/lab/WindowJob.java#L202) → [AlarmAggregate(false)](../docker/flink/src/lab/WindowJob.java#L244) ; UID `unit_alarm-aggregate` | AlarmJoin ±60 s ; LATEST_BY_OFFSET ; seuil < 30 ; regroupement gare/voie. | `va.peage.classificationAlarme.flink` |
+| [VA_PEAGE_CLASSIFICATIONINFOQUALITE](../sql/ksqldb/07-08-windows.sql#L24) | [Sessions(true)](../docker/flink/src/lab/WindowJob.java#L160) ; UID `quality-sessions` | Sessions 60 min ; ratio > 0,3 et NBPASSAGE >= 20 ; fusions et tombstones. | `va.peage.classificationInfoQualite.flink` |
+| [VA_PEAGE_CLASSIFICATIONINFOQUALITECOUNT](../sql/ksqldb/07-08-windows.sql#L47) | [Sessions(false)](../docker/flink/src/lab/WindowJob.java#L160) ; UID `count-sessions` | Sessions 60 min ; COUNT_DISTINCT par HyperLogLog(14), bornes et tombstones. | `va.peage.classificationInfoQualite.Count.flink` |
+| [VA_PEAGE_CLASSIFICATION_ALARMEGLOBALE](../sql/ksqldb/07-08-windows.sql#L90) | [AlarmJoin](../docker/flink/src/lab/WindowJob.java#L242) → [AlarmAggregate(true)](../docker/flink/src/lab/WindowJob.java#L299) ; UID `global_alarm-aggregate` | AlarmJoin ±60 s ; LATEST_BY_OFFSET ; seuil >= 30 ; regroupement société. | `va.peage.classificationAlarme.flink` |
+| [VA_PEAGE_CLASSIFICATION_ALARMEUNITAIRE](../sql/ksqldb/07-08-windows.sql#L60) | [AlarmJoin](../docker/flink/src/lab/WindowJob.java#L242) → [AlarmAggregate(false)](../docker/flink/src/lab/WindowJob.java#L299) ; UID `unit_alarm-aggregate` | AlarmJoin ±60 s ; LATEST_BY_OFFSET ; seuil < 30 ; regroupement gare/voie. | `va.peage.classificationAlarme.flink` |
 
 ## Regroupements et dépendances à conserver
 

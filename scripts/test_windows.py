@@ -85,25 +85,25 @@ def scenarios(stage):
             [('quality',record(None,180002)),('count',record(None,180002))]]
 
 
-def run(stage):
+def run(stage, partitions=6):
     lab = Pipeline('win' + stage)
     manifest = json.loads((ROOT / 'docs/lots78-contracts.json').read_text())
     needed = {'hourly': ['indicator_input','hourly'], 'quality':['flows','quality'],
               'count':['quality','count'], 'alarms':['quality','count','unit_alarm','global_alarm']}[stage]
     input_names = needed[:1] if stage != 'alarms' else needed[:2]
     output_names = needed[1:] if stage != 'alarms' else needed[2:]
-    inputs = {k:lab.topic(k) for k in input_names}
+    inputs = {k:lab.topic(k, partitions=partitions) for k in input_names}
     outputs = {}
     for k in output_names:
         # Both alarm queries intentionally write to the same physical topic.
         if k == 'global_alarm': outputs[k] = outputs['unit_alarm']
-        else: outputs[k] = {e:lab.topic(k+'.'+e) for e in ('ksql','flink')}
+        else: outputs[k] = {e:lab.topic(k+'.'+e, partitions=partitions) for e in ('ksql','flink')}
     topics = {manifest[k]['topic']:topic for k,topic in inputs.items()}
     topics.update({manifest[k]['topic']:ts['ksql'] for k,ts in outputs.items()})
     config = dict(inputs,group_prefix=lab.run_id,stages=[stage])
     config.update({k:ts['flink'] for k,ts in outputs.items()})
     try:
-        lab.reference(f'sql/ksqldb/07-08-{stage}.sql',topics,2 if stage=='alarms' else 1)
+        lab.reference(f'sql/ksqldb/07-08-{stage}.sql',topics,2 if stage=='alarms' else 1,partitions)
         lab.launch(None,config=config,main_class='lab.WindowJob')
         specs={}
         for k,topic in inputs.items():
@@ -142,7 +142,7 @@ def run(stage):
             assert any(v['LIBELLEENSEMBLEEQUIPEMENT']=='Société' for v in values)
             assert any(v['LIBELLEENSEMBLEEQUIPEMENT']=='Voie' for v in values)
             assert any(v['HORODATEALARME']=='2026-10-25T02:30:00Z' for v in values)
-        print(f'PASS {stage}: {len(rows["ksql"])} outputs/engine, raw keys, timestamps, multiplicity and tombstones. {lab.artifact}',flush=True)
+        print(f'PASS {stage} ({partitions} partitions): {len(rows["ksql"])} outputs/engine, raw keys, timestamps, multiplicity and tombstones. {lab.artifact}',flush=True)
     finally:
         lab.close()
 
@@ -191,5 +191,7 @@ def pipeline():
 
 
 if __name__=='__main__':
-    for stage in sys.argv[1:] or ['hourly','quality','count','alarms','pipeline']:
-        pipeline() if stage=='pipeline' else run(stage)
+    # stage@N runs a stage on N-partition topics: partition counts are read from Kafka, not assumed.
+    for stage in sys.argv[1:] or ['hourly','quality','count','alarms','pipeline','hourly@3','count@3']:
+        name,_,partitions=stage.partition('@')
+        pipeline() if name=='pipeline' else run(name,int(partitions or 6))

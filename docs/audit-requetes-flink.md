@@ -15,7 +15,7 @@ différentiels du laboratoire (Kafka / ksqlDB 7.9.2 / Flink 1.20.3) après chaqu
 | Lisibilité SQL (lots 1 à 4) | Sources, vues et branches `UNION ALL` dupliquées par réseau | **Corrigé** (section 2) |
 | Topologie lots 3/4 | Le job relisait dans Kafka son propre topic intermédiaire `exploded` | **Corrigé** (section 2) |
 | Coût CPU JSON | Données en `STRING` brut, plusieurs analyses JSON par champ et par ligne | Acceptable, à mesurer en charge (section 3) |
-| Jobs DataStream (lots 6 à 8) | Scans d'état O(n) par événement, nombre de partitions codé en dur, état non purgé sur clé inactive | À traiter avant la production (section 4) |
+| Jobs DataStream (lots 6 à 8) | Scans d'état O(n) par événement, nombre de partitions codé en dur, état non purgé sur clé inactive | **Corrigé** (section 4) |
 
 ## 2. Simplifications appliquées
 
@@ -89,26 +89,36 @@ Les générateurs restent la source de vérité : la CI vérifie que `sql/` est 
 > déployées **avant** la première mise en production : un savepoint pris sur l'ancienne
 > topologie ne restaurerait pas les offsets.
 
-## 4. Jobs DataStream (lots 6 à 8) : risques avant production
+## 4. Jobs DataStream (lots 6 à 8) : risques corrigés
 
 Le choix de DataStream est justifié : Flink SQL ne reproduit ni l'émission par événement
 (`EMIT CHANGES`) des fenêtres ksqlDB, ni les tombstones de fusion de sessions, ni une jointure
-stream-table sans recalcul rétroactif en temps de traitement. Les points suivants sont
-signalés par un commentaire dans `WindowJob.java` :
+stream-table sans recalcul rétroactif en temps de traitement.
 
-| Risque | Emplacement | Impact | Correction proposée |
-| --- | --- | --- | --- |
-| Nombre de partitions codé en dur (`% 6`) | `WindowJob.partition` | Le temps de flux par partition (sémantique ksqlDB) devient faux si les topics de production n'ont pas 6 partitions | Lire le nombre de partitions depuis la configuration, ou depuis l'admin Kafka au démarrage |
-| Scan complet de l'état + analyse JSON à chaque événement | `Hourly`, `Sessions` | Coût O(fenêtres ouvertes de la partition) par message ; parallélisme plafonné au nombre de partitions | Indexer l'état par clé métier, purger par timers event-time, état typé (POJO) au lieu de JSON `String` |
-| État non purgé pour une clé inactive | `AlarmJoin` | Croissance non bornée de l'état (fuite) avec la cardinalité gare/voie | Timer de nettoyage à `timestamp + GRACE`, ou `StateTtlConfig` |
-| Réécriture complète de `ListState` à chaque événement | `AlarmJoin` | Coût O(n) en RocksDB | `MapState` indexé par timestamp |
+| Risque | Emplacement | Correction appliquée |
+| --- | --- | --- |
+| Nombre de partitions codé en dur (`% 6`) : avec un topic d'une autre taille, le job **échouait** (envoi vers une partition inexistante) | `WindowJob.partition`, `WindowRecord` | Le nombre de partitions est lu au démarrage via l'API d'administration Kafka (source de chaque étape, soit celui du topic de repartition ksqlDB) ; le sink utilise les partitions réelles du topic de sortie (`KafkaSinkContext`) |
+| Scan complet de l'état + analyse JSON à chaque événement | `Hourly` | Index `fin de fenêtre → identifiants` ; purge une fois par heure de temps de flux, sans parser les fenêtres |
+| Idem, avec toutes les sessions de toutes les clés de la partition | `Sessions` | État indexé par clé métier (seules les sessions de la clé sont lues) ; purge par bucket horaire de fin de session |
+| Réécriture complète de `ListState` à chaque événement, tri de tout l'historique | `AlarmJoin` | `MapState` par minute : un événement ne lit que les 3 buckets de la fenêtre de jointure ±60 s ; purge une fois par minute de temps de flux |
+| État jamais purgé pour une clé inactive (horloges par clé) | `AlarmJoin` | `StateTtlConfig` de 48 h (2 × grâce) en temps de traitement : un match purgé aurait été hors délai de grâce, donc ignoré par ksqlDB |
 
-Ces corrections modifient la sémantique d'état. Elles doivent être faites avec les tests
-`test_windows.py` / `test_socleet.py` et un test de charge, et ne sont donc pas incluses dans cette passe.
+**Pourquoi la sémantique est inchangée.** Une fenêtre ou une session expirée n'est plus jamais
+lue : les événements tardifs sont rejetés *avant* toute lecture de l'état, et les lectures filtrent
+les éléments expirés. Retarder la purge à la frontière horaire (ou minute) ne change donc que la
+taille de l'état, jamais les sorties. Les seuils (`GRACE`, fenêtres horaires) sont alignés sur l'heure, ce qui rend la purge exacte.
+Le tri stable conserve l'ordre d'arrivée des lignes de même timestamp dans la jointure.
+
+**Preuves.** L'ancien code, testé sur des topics de 3 partitions (`test_windows.py hourly@3`),
+fait échouer le job Flink. Le nouveau code passe les 5 scénarios historiques (6 partitions) et les
+variantes `hourly@3` et `count@3`, désormais incluses par défaut dans `test_windows.py`.
+
+Lot 6 (`SocleEtJob`) : état borné par la cardinalité des référentiels, sans dépendance au nombre de partitions ; aucune correction nécessaire.
+
+Reste à faire : état typé (POJO) au lieu de JSON `String` et test de charge, à mener avec les volumes de production.
 
 ## 5. Priorités
 
-1. **Avant la préproduction** : rendre le nombre de partitions paramétrable, purger l'état d'`AlarmJoin`.
-2. **Avant la production** : `COMPILE PLAN` pour les jobs SQL, offsets de démarrage alignés sur ksqlDB, test de charge des lots 7/8.
-3. **Après la stabilisation** : normaliser la casse côté producteurs, puis passer en schémas typés
+1. **Avant la production** : `COMPILE PLAN` pour les jobs SQL, offsets de démarrage alignés sur ksqlDB, test de charge des lots 7/8.
+2. **Après la stabilisation** : normaliser la casse côté producteurs, puis passer en schémas typés
    (fin des UDF de compatibilité JSON) ; envisager `exactly-once`.

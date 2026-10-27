@@ -4,6 +4,7 @@ import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.Duration;
 import java.time.OffsetDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -17,6 +18,7 @@ import org.apache.flink.connector.kafka.source.KafkaSource;
 import org.apache.flink.connector.kafka.source.enumerator.initializer.OffsetsInitializer;
 import org.apache.flink.connector.kafka.sink.KafkaSink;
 import org.apache.flink.connector.kafka.sink.KafkaRecordSerializationSchema;
+import org.apache.flink.kafka.shaded.org.apache.kafka.clients.admin.Admin;
 import org.apache.flink.kafka.shaded.org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
@@ -32,7 +34,8 @@ import lab.SocleEtJob.Event;
 /** Kafka-compatible updating windows. No watermark-induced final-only emission. */
 public class WindowJob {
     private static final ObjectMapper JSON = new ObjectMapper();
-    static final long HOUR = 3600000L, GRACE = 86400000L;
+    static final long HOUR = 3600000L, GRACE = 86400000L, JOIN_WINDOW = 60000L;
+    static final String BOOTSTRAP = "kafka:9092";
     static final String[] GROUP = {"INDICATEURID", "VOIEID", "GAREID", "DATE_OPERATION", "R_FREQUENCEID", "DATECOMPTABLE"};
     static final String[] FROM = {"R_COMPTEURID", "R_VOIEID", "R_GAREID", "DATE_OPERATION", "R_FREQUENCEID", "DATE_COMPTABLE"};
     static final String[] ABS = {"R_INDICATEURID", "R_VOIEID", "R_GAREID", "DATE_DEBUT", "DATE_FIN", "DATE_COMPTABLE"};
@@ -45,8 +48,16 @@ public class WindowJob {
         if (session) b.putLong(end);
         return b.putLong(start).array();
     }
-    // RISK: hard-coded partition count; must equal the production topic partition count.
-    static int partition(Event e) { return Utils.toPositive(Utils.murmur2(e.key)) % 6; }
+    /** ksqlDB stream time is per repartition-topic partition, which has the source topic's partition count. */
+    static int partition(Event e, int partitions) { return Utils.toPositive(Utils.murmur2(e.key)) % partitions; }
+    static int partitions(String topic) throws Exception {
+        Properties p = new Properties(); p.put("bootstrap.servers", BOOTSTRAP);
+        try (Admin admin = Admin.create(p)) {
+            return admin.describeTopics(List.of(topic)).allTopicNames().get().get(topic).partitions().size();
+        }
+    }
+    /** Newline-separated append: index buckets are only split, never parsed as JSON. */
+    static String appendLine(String lines, String item) { return lines == null ? item : lines + "\n" + item; }
     static Event prepare(Event e, boolean hourly) throws Exception {
         if (e.value == null) return e;
         JsonNode v = read(e);
@@ -64,13 +75,13 @@ public class WindowJob {
         return new Event(bytes(k.toString()), e.value, e.timestamp);
     }
     static DataStream<Event> source(StreamExecutionEnvironment env, String topic, String group) {
-        return env.fromSource(KafkaSource.<Event>builder().setBootstrapServers("kafka:9092")
+        return env.fromSource(KafkaSource.<Event>builder().setBootstrapServers(BOOTSTRAP)
             .setTopics(topic).setGroupId(group).setStartingOffsets(OffsetsInitializer.earliest())
             .setDeserializer(new SocleEtJob.ReadRecord()).build(), WatermarkStrategy.noWatermarks(), group).uid(group);
     }
     static void sink(DataStream<Event> stream, String topic, String uid) {
         int suffix=uid.equals("hourly-sink")?8:uid.equals("quality-sink")||uid.equals("count-sink")?16:0;
-        stream.sinkTo(KafkaSink.<Event>builder().setBootstrapServers("kafka:9092")
+        stream.sinkTo(KafkaSink.<Event>builder().setBootstrapServers(BOOTSTRAP)
             .setRecordSerializer(new WindowRecord(topic,suffix)).setDeliveryGuarantee(DeliveryGuarantee.AT_LEAST_ONCE)
             .build()).uid(uid).name(uid);
     }
@@ -80,28 +91,31 @@ public class WindowJob {
         @Override public ProducerRecord<byte[],byte[]> serialize(Event e,KafkaSinkContext context,Long timestamp){
             // Kafka's WindowedStreamPartitioner hashes the business key, without window bytes.
             byte[] base=Arrays.copyOf(e.key,e.key.length-suffix);
-            int p=Utils.toPositive(Utils.murmur2(base))%6;
+            int p=Utils.toPositive(Utils.murmur2(base))%context.getPartitionsForTopic(topic).length;
             return new ProducerRecord<>(topic,p,e.timestamp,e.key,e.value==null?null:bytes(e.value));
         }
     }
 
     public static class Hourly extends KeyedProcessFunction<Integer, Event, Event> {
         transient MapState<String,String> aggregates;
+        transient MapState<Long,String> windowsByEnd;
         transient ValueState<Long> time;
         @Override public void open(OpenContext c) {
             aggregates=getRuntimeContext().getMapState(new MapStateDescriptor<>("hourly-windows",String.class,String.class));
+            windowsByEnd=getRuntimeContext().getMapState(new MapStateDescriptor<>("hourly-windows-by-end",Long.class,String.class));
             time=getRuntimeContext().getState(new ValueStateDescriptor<>("partition-stream-time",Long.class));
         }
         @Override public void processElement(Event e, Context c, Collector<Event> out) throws Exception {
-            long clock=Math.max(time.value()==null ? -1 : time.value(),e.timestamp); time.update(clock);
+            Long previous=time.value();
+            long clock=Math.max(previous==null ? -1 : previous,e.timestamp); time.update(clock);
+            long horizon=clock-(GRACE-HOUR);
+            // Window ends are hour-aligned, so the expired set only changes when stream time crosses an hour.
+            if(previous==null || clock/HOUR!=previous/HOUR) expire(horizon);
             long start=e.timestamp/HOUR*HOUR, end=start+HOUR;
-            if(end<=clock-(GRACE-HOUR)) return;
-            List<String> expired=new ArrayList<>();
-            // PERF: full scan + JSON parse of every open window of the partition per event; prefer event-time timers.
-            for(Map.Entry<String,String> a:aggregates.entries()) if(JSON.readTree(a.getValue()).path("end").asLong()<=clock-(GRACE-HOUR)) expired.add(a.getKey());
-            for(String k:expired) aggregates.remove(k);
+            if(end<=horizon) return;
             String id=Base64.getEncoder().encodeToString(windowKey(e.key,start,end,false));
             JsonNode old=aggregates.contains(id)?JSON.readTree(aggregates.get(id)):null;
+            if(old==null) windowsByEnd.put(end,appendLine(windowsByEnd.get(end),id));
             JsonNode v=read(e), key=JSON.readTree(e.key);
             double sum=old==null?0:old.path("sum").asDouble();
             if(v.hasNonNull("VALEUR")) sum+=v.get("VALEUR").doubleValue();
@@ -117,6 +131,14 @@ public class WindowJob {
             }
             result.put("VALEUR",sum);
             out.collect(new Event(Base64.getDecoder().decode(id),result.toString(),ts));
+        }
+        void expire(long horizon) throws Exception {
+            List<Long> ends=new ArrayList<>();
+            for(Long end:windowsByEnd.keys()) if(end<=horizon) ends.add(end);
+            for(Long end:ends) {
+                for(String id:windowsByEnd.get(end).split("\n")) aggregates.remove(id);
+                windowsByEnd.remove(end);
+            }
         }
     }
 
@@ -138,54 +160,60 @@ public class WindowJob {
     public static class Sessions extends KeyedProcessFunction<Integer, Event, Event> {
         final boolean quality;
         transient MapState<String,String> sessions;
+        transient MapState<Long,String> keysByHour;
         transient ValueState<Long> time;
         transient ValueState<Long> sequence;
         public Sessions(boolean quality) {this.quality=quality;}
         @Override public void open(OpenContext c) {
-            sessions=getRuntimeContext().getMapState(new MapStateDescriptor<>("sessions",String.class,String.class));
+            sessions=getRuntimeContext().getMapState(new MapStateDescriptor<>("sessions-by-key",String.class,String.class));
+            keysByHour=getRuntimeContext().getMapState(new MapStateDescriptor<>("session-keys-by-end-hour",Long.class,String.class));
             time=getRuntimeContext().getState(new ValueStateDescriptor<>("partition-stream-time",Long.class));
             sequence=getRuntimeContext().getState(new ValueStateDescriptor<>("latest-arrival-sequence",Long.class));
         }
         boolean visible(JsonNode s) {return !quality || (s.path("n").asLong()>=20 && s.path("wrong").asDouble()/s.path("n").asDouble()>0.3);}
         @Override public void processElement(Event e, Context c, Collector<Event> out) throws Exception {
-            long clock=Math.max(time.value()==null?-1:time.value(),e.timestamp); time.update(clock);
+            Long previous=time.value();
+            long clock=Math.max(previous==null?-1:previous,e.timestamp); time.update(clock);
+            // GRACE is hour-aligned: fully expired end-hour buckets only change when stream time crosses an hour.
+            if(previous==null || clock/HOUR!=previous/HOUR) expire(clock-GRACE);
             long seq=sequence.value()==null?0:sequence.value()+1; sequence.update(seq);
             JsonNode v=read(e);
             String key=Base64.getEncoder().encodeToString(e.key);
-            // State indexed by serialized business key and interval, retained until gap+grace expires.
-            // PERF: keyed by Kafka partition, so each event scans and parses all sessions of all business keys.
-            List<Map.Entry<String,JsonNode>> matches=new ArrayList<>(); List<String> expired=new ArrayList<>();
-            for(Map.Entry<String,String> en:sessions.entries()) {
-                JsonNode s=JSON.readTree(en.getValue());
-                if(s.path("end").asLong()<clock-GRACE) {expired.add(en.getKey());continue;}
-                if(s.path("key").asText().equals(key) && s.path("start").asLong()<=e.timestamp+HOUR && s.path("end").asLong()>=e.timestamp-HOUR)
-                    matches.add(new AbstractMap.SimpleEntry<>(en.getKey(),s));
+            // State indexed by business key; expired sessions are skipped on read and purged by end-hour bucket.
+            JsonNode stored=sessions.contains(key)?JSON.readTree(sessions.get(key)):null;
+            List<JsonNode> matches=new ArrayList<>(); ArrayNode kept=JSON.createArrayNode();
+            if(stored!=null) for(JsonNode s:stored.path("sessions")) {
+                if(s.path("end").asLong()<clock-GRACE) continue;
+                if(s.path("start").asLong()<=e.timestamp+HOUR && s.path("end").asLong()>=e.timestamp-HOUR) matches.add(s);
+                else kept.add(s);
             }
-            for(String k:expired) sessions.remove(k);
-            matches.sort(Comparator.comparingLong(a->a.getValue().path("start").asLong()));
+            matches.sort(Comparator.comparingLong(s->s.path("start").asLong()));
             long start=e.timestamp,end=e.timestamp,n=1,bad=quality&&wrong(v)?1:0;
             String latest=quality?text(v.path("FLOW"),"CREATIONDATE"):null;
             long latestSeq=latest==null?-1:seq;
             HyperLogLog hll=new HyperLogLog(14);
             if(!quality && text(v,"STATIONLANE")!=null) hll.offer(text(v,"STATIONLANE"));
-            for(Map.Entry<String,JsonNode> en:matches) {
-                JsonNode s=en.getValue(); start=Math.min(start,s.path("start").asLong());end=Math.max(end,s.path("end").asLong());
+            for(JsonNode s:matches) {
+                start=Math.min(start,s.path("start").asLong());end=Math.max(end,s.path("end").asLong());
                 n+=s.path("n").asLong();bad+=s.path("wrong").asLong();
                 if(quality && s.path("latestSeq").asLong(-1)>latestSeq) {latest=text(s,"latest");latestSeq=s.path("latestSeq").asLong();}
                 if(!quality) hll.addAll(HyperLogLog.Builder.build(Base64.getDecoder().decode(s.path("hll").asText())));
             }
             if(end<clock-GRACE) return;
-            for(Map.Entry<String,JsonNode> en:matches) {
-                JsonNode s=en.getValue();
+            for(JsonNode s:matches) {
                 // Kafka skips removal when the merged interval is still the new point window.
                 if((start!=e.timestamp || end!=e.timestamp) && visible(s))
                     out.collect(new Event(windowKey(e.key,s.path("start").asLong(),s.path("end").asLong(),true),null,s.path("end").asLong()));
-                sessions.remove(en.getKey());
             }
-            ObjectNode s=JSON.createObjectNode().put("key",key).put("start",start).put("end",end).put("n",n).put("wrong",bad);
+            ObjectNode s=JSON.createObjectNode().put("start",start).put("end",end).put("n",n).put("wrong",bad);
             s.put("latest",latest).put("latestSeq",latestSeq);
             if(!quality) s.put("hll",Base64.getEncoder().encodeToString(hll.getBytes()));
-            sessions.put(key+":"+start+":"+end,s.toString());
+            kept.add(s);
+            // A key is indexed under the hour of its latest session end: when that bucket expires, all its sessions have.
+            long indexed=stored==null?Long.MIN_VALUE:stored.path("indexed").asLong();
+            if(end/HOUR>indexed) {indexed=end/HOUR; keysByHour.put(indexed,appendLine(keysByHour.get(indexed),key));}
+            ObjectNode entry=JSON.createObjectNode().put("indexed",indexed); entry.set("sessions",kept);
+            sessions.put(key,entry.toString());
             if(!visible(s)) return;
             ObjectNode result=JSON.createObjectNode();
             if(quality) {
@@ -196,41 +224,68 @@ public class WindowJob {
             result.put("WINDOW_START",start).put("WINDOW_END",end);
             out.collect(new Event(windowKey(e.key,start,end,true),result.toString(),end));
         }
+        void expire(long horizon) throws Exception {
+            List<Long> hours=new ArrayList<>();
+            for(Long hour:keysByHour.keys()) if((hour+1)*HOUR<=horizon) hours.add(hour);
+            for(Long hour:hours) {
+                for(String key:keysByHour.get(hour).split("\n")) {
+                    String stored=sessions.get(key);
+                    // Stale entry: the key was re-indexed under a later hour.
+                    if(stored!=null && JSON.readTree(stored).path("indexed").asLong()==hour) sessions.remove(key);
+                }
+                keysByHour.remove(hour);
+            }
+        }
     }
 
     /** Two-sided temporal join: every matching update is an event, table tombstones are ignored by STREAM contracts. */
     public static class AlarmJoin extends KeyedCoProcessFunction<String,Event,Event,Event> {
-        transient ListState<String> left,right; transient ValueState<Long> leftTime,rightTime;
+        // Rows bucketed by minute: a match only reads the buckets within the join window.
+        transient MapState<Long,String> left,right; transient ValueState<Long> leftTime,rightTime;
         @Override public void open(OpenContext c) {
-            left=getRuntimeContext().getListState(new ListStateDescriptor<>("left-events",String.class));
-            right=getRuntimeContext().getListState(new ListStateDescriptor<>("right-events",String.class));
-            leftTime=getRuntimeContext().getState(new ValueStateDescriptor<>("left-store-time",Long.class));
-            rightTime=getRuntimeContext().getState(new ValueStateDescriptor<>("right-store-time",Long.class));
+            // Clocks are per join key: idle keys never expire by stream time, so TTL bounds their state.
+            // 2x GRACE of processing time is conservative: any later match would be beyond the grace period.
+            StateTtlConfig ttl=StateTtlConfig.newBuilder(Duration.ofMillis(2*GRACE)).build();
+            MapStateDescriptor<Long,String> l=new MapStateDescriptor<>("left-events-by-minute",Long.class,String.class),
+                r=new MapStateDescriptor<>("right-events-by-minute",Long.class,String.class);
+            ValueStateDescriptor<Long> lt=new ValueStateDescriptor<>("left-store-time",Long.class),
+                rt=new ValueStateDescriptor<>("right-store-time",Long.class);
+            l.enableTimeToLive(ttl);r.enableTimeToLive(ttl);lt.enableTimeToLive(ttl);rt.enableTimeToLive(ttl);
+            left=getRuntimeContext().getMapState(l);right=getRuntimeContext().getMapState(r);
+            leftTime=getRuntimeContext().getState(lt);rightTime=getRuntimeContext().getState(rt);
         }
-        // STATE: buffers are only purged when the same key receives a new event; idle keys leak without a timer or TTL.
+        static long bucket(long timestamp){return Math.floorDiv(timestamp,JOIN_WINDOW);}
         void process(Event e,boolean isLeft,Collector<Event> out) throws Exception {
             ValueState<Long> ownTime=isLeft?leftTime:rightTime,otherTime=isLeft?rightTime:leftTime;
-            long clock=Math.max(ownTime.value()==null?-1:ownTime.value(),e.timestamp);ownTime.update(clock);
+            Long previous=ownTime.value();
+            long clock=Math.max(previous==null?-1:previous,e.timestamp);ownTime.update(clock);
             long otherClock=otherTime.value()==null?-1:otherTime.value();
-            ListState<String> own=isLeft?left:right,other=isLeft?right:left;
-            List<String> retained=new ArrayList<>();
-            for(String raw:own.get()) if(JSON.readTree(raw).path("timestamp").asLong()>clock-GRACE) retained.add(raw);
-            if(e.timestamp>clock-GRACE) retained.add(JSON.createObjectNode().put("timestamp",e.timestamp).put("value",e.value).toString());own.update(retained);
+            MapState<Long,String> own=isLeft?left:right,other=isLeft?right:left;
+            if(previous==null || bucket(clock)!=bucket(previous)) expire(own,clock-GRACE);
+            if(e.timestamp>clock-GRACE) {
+                ArrayNode rows=own.contains(bucket(e.timestamp))?(ArrayNode)JSON.readTree(own.get(bucket(e.timestamp))):JSON.createArrayNode();
+                rows.add(JSON.createObjectNode().put("timestamp",e.timestamp).put("value",e.value));
+                own.put(bucket(e.timestamp),rows.toString());
+            }
             List<JsonNode> ordered=new ArrayList<>();
-            for(String raw:other.get()) ordered.add(JSON.readTree(raw));
+            for(long b=bucket(e.timestamp-JOIN_WINDOW);b<=bucket(e.timestamp+JOIN_WINDOW);b++)
+                if(other.contains(b)) for(JsonNode row:JSON.readTree(other.get(b))) ordered.add(row);
+            // Stable sort: equal timestamps keep arrival order.
             ordered.sort(Comparator.comparingLong(a->a.path("timestamp").asLong()));
-            retained=new ArrayList<>();
             for(JsonNode row:ordered) {
                 long ts=row.path("timestamp").asLong();
-                if(ts<=otherClock-GRACE) continue;
-                retained.add(row.toString());
-                if(Math.abs(ts-e.timestamp)>60000) continue;
+                if(ts<=otherClock-GRACE || Math.abs(ts-e.timestamp)>JOIN_WINDOW) continue;
                 JsonNode l=isLeft?read(e):JSON.readTree(row.path("value").asText());
                 JsonNode r=isLeft?JSON.readTree(row.path("value").asText()):read(e);
                 ObjectNode joined=JSON.createObjectNode();joined.set("left",l);joined.set("right",r);
                 out.collect(new Event(null,joined.toString(),Math.max(ts,e.timestamp)));
             }
-            other.update(retained);
+        }
+        /** Drops minute buckets whose rows are all at or before the horizon; boundary rows are skipped on read. */
+        static void expire(MapState<Long,String> rows,long horizon) throws Exception {
+            List<Long> buckets=new ArrayList<>();
+            for(Long b:rows.keys()) if((b+1)*JOIN_WINDOW-1<=horizon) buckets.add(b);
+            for(Long b:buckets) rows.remove(b);
         }
         @Override public void processElement1(Event e,Context c,Collector<Event> out)throws Exception{process(e,true,out);}
         @Override public void processElement2(Event e,Context c,Collector<Event> out)throws Exception{process(e,false,out);}
@@ -290,13 +345,15 @@ public class WindowJob {
             DataStream<Event> input=source(env,config.get("indicator_input").asText(),prefix+"-indicator-input")
                 .map(e->new Event(e.key,project.eval(e.value,"lot78-indicator-input"),e.timestamp)).returns(Event.class)
                 .filter(e->e.value!=null).map(e->prepare(e,true)).returns(Event.class).filter(e->e.value!=null);
-            sink(input.keyBy(WindowJob::partition).process(new Hourly()).uid("hourly-aggregate"),config.get("hourly").asText(),"hourly-sink");
+            int n=partitions(config.get("indicator_input").asText());
+            sink(input.keyBy(e->partition(e,n)).process(new Hourly()).uid("hourly-aggregate"),config.get("hourly").asText(),"hourly-sink");
         }
         if(stages.contains("quality")) {
             DataStream<Event> input=source(env,config.get("flows").asText(),prefix+"-flows")
                 .map(e->new Event(e.key,project.eval(e.value,"lot78-flows"),e.timestamp)).returns(Event.class)
                 .filter(e->e.value!=null&&accepts(read(e))).map(e->prepare(e,false)).returns(Event.class).filter(e->e.value!=null);
-            sink(input.keyBy(WindowJob::partition).process(new Sessions(true)).uid("quality-sessions"),config.get("quality").asText(),"quality-sink");
+            int n=partitions(config.get("flows").asText());
+            sink(input.keyBy(e->partition(e,n)).process(new Sessions(true)).uid("quality-sessions"),config.get("quality").asText(),"quality-sink");
         }
         DataStream<Event> quality=null,count=null;
         if(stages.contains("count")||stages.contains("alarms")) quality=source(env,config.get("quality").asText(),prefix+"-quality")
@@ -304,7 +361,8 @@ public class WindowJob {
             .filter(e->e.value!=null&&read(e).hasNonNull("COUNTKEY"));
         if(stages.contains("count")) {
             DataStream<Event> rekeyed=quality.map(e->new Event(bytes(read(e).get("COUNTKEY").asText()),e.value,e.timestamp)).returns(Event.class);
-            sink(rekeyed.keyBy(WindowJob::partition).process(new Sessions(false)).uid("count-sessions"),config.get("count").asText(),"count-sink");
+            int n=partitions(config.get("quality").asText());
+            sink(rekeyed.keyBy(e->partition(e,n)).process(new Sessions(false)).uid("count-sessions"),config.get("count").asText(),"count-sink");
         }
         if(stages.contains("alarms")) {
             count=source(env,config.get("count").asText(),prefix+"-count")
