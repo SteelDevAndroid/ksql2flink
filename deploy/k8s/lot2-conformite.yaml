@@ -11,7 +11,17 @@ spec:
   image: registry.local/ksql2flink/flink:1.20.3-r1
   flinkVersion: v1_20
   serviceAccount: flink
+  ingress:
+    template: "flink.local/{{namespace}}/{{name}}(/|$)(.*)"
+    className: nginx
+    annotations:
+      nginx.ingress.kubernetes.io/rewrite-target: "/$2"
+      # The Flink Web UI has no authentication: keep it behind SSO.
+      nginx.ingress.kubernetes.io/auth-url: "https://oauth2.local/oauth2/auth"
+      nginx.ingress.kubernetes.io/auth-signin: "https://oauth2.local/oauth2/start?rd=$escaped_request_uri"
   flinkConfiguration:
+    web.submit.enable: "false"
+    web.cancel.enable: "false"
     state.backend.type: rocksdb
     state.backend.incremental: "true"
     state.backend.rocksdb.localdir: /rocksdb
