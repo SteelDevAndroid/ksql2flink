@@ -141,6 +141,19 @@ aux requetes originales, par frontiere puis sur un scenario de chaine complete.
 Voir [les contrats des lots 7/8](docs/lots-7-8.md) pour la grace historique effective,
 les seuils, la procedure de bascule et les limites liees a l'ordre des flux concurrents.
 
+## Exemples pour Kafka Explorer
+
+[Les requetes du laboratoire dans Kafka Explorer](docs/kafka-explorer.md) : six traitements
+(lots 1, 6, 7 et 8) reecrits pour son moteur Flink embarque, sans UDF ni `INSERT`, avec les
+donnees a injecter et les resultats attendus. Les topics se seedent sur le laboratoire demarre :
+
+```powershell
+docker compose cp scripts/seed_kafka_explorer.sh kafka:/tmp/seed_kafka_explorer.sh
+docker compose exec kafka bash /tmp/seed_kafka_explorer.sh kafka:9092
+```
+
+Kafka Explorer se connecte ensuite a `localhost:29092`.
+
 ## Consoles SQL
 
 ```powershell
@@ -182,7 +195,7 @@ laboratoire sont explicites et ne reproduisent pas necessairement la production.
 
 ## Arret et diagnostic
 
-Le workflow GitHub Actions `Migration comparisons` execute les sept scripts de test sur les pull requests,
+Le workflow GitHub Actions `Migration comparisons` execute les sept scripts de test et le seed Kafka Explorer sur les pull requests,
 sur `main` et sur les branches `feat/**`. Les rapports et logs Docker sont conserves sept jours.
 Les PR provenant d'un fork peuvent necessiter l'approbation d'un mainteneur pour lancer le workflow.
 
