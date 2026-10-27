@@ -4,6 +4,26 @@ import re
 from generate_conformite_sql import ROOT, SchemaParser
 
 
+def station_filter(expression):
+    """Group a pure OR of string equalities into IN lists, preserving SQL nulls.
+
+    This deliberately rejects other predicates instead of guessing how a future
+    journal query combines AND, functions or comparisons.
+    """
+    equality = re.compile(r"(?P<path>`\w+`(?:->`\w+`)+)\s*=\s*(?P<value>'(?:''|[^'])*')")
+    groups = {}
+    for match in equality.finditer(expression):
+        groups.setdefault(match['path'], []).append(match['value'])
+    remainder = equality.sub('', expression)
+    if not groups or re.sub(r'\bOR\b|[()\s]', '', remainder, flags=re.I):
+        raise ValueError('Expected a station filter containing only OR-connected string equalities')
+    predicates = []
+    for path, values in groups.items():
+        json_path = path.replace('`', '').replace('->', '.')
+        predicates.append(f"JSON_VALUE(j, '$.{json_path}') IN (" + ','.join(values) + ')')
+    return ' OR '.join(predicates)
+
+
 def main():
     log = (ROOT / 'kafka_streams_recovery.log').read_text()
     ddl = {}
@@ -53,9 +73,8 @@ CREATE TABLE badge_{direction}_output (
         for flavor in ('CARDME', 'CIP'):
             query = badge_queries[f'IQ_HISTOBADGEVA_{short}_{flavor}']
             gate = query.split(' WHERE ', 1)[1].rsplit(' EMIT CHANGES', 1)[0]
-            # Preserve every station literal and both station paths in the original WHERE.
-            gate = re.sub(r'(`\w+`(?:->`\w+`)+)',
-                          lambda m: "JSON_VALUE(j, '$." + m[0].replace('`', '').replace('->', '.') + "')", gate)
+            # IN is the same three-valued OR of equalities; both sortie paths remain distinct.
+            gate = station_filter(gate)
             pan_path = 'paymentMeans.PAN' if flavor == 'CARDME' else 'F_IDU'
             pan = f"JSON_VALUE(event_json, '$.{pan_path}')"
             # Exclude PAN sentinels only; the lambdas also contain the padding literal '0'.
