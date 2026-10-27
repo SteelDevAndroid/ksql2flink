@@ -261,7 +261,7 @@
     "difficulty": "Elevee",
     "reason": "Sommes horaires, grace, mises a jour et cles fenetrees",
     "line": 2899,
-    "status": "a migrer"
+    "status": "migre"
   },
   {
     "name": "VA_PEAGE_CLASSIFICATIONINFOQUALITE",
@@ -269,7 +269,7 @@
     "difficulty": "Tres elevee",
     "reason": "Sessions, HLL, mises a jour intermediaires et jointures temporelles",
     "line": 2572,
-    "status": "a migrer"
+    "status": "migre"
   },
   {
     "name": "VA_PEAGE_CLASSIFICATIONINFOQUALITECOUNT",
@@ -277,7 +277,7 @@
     "difficulty": "Tres elevee",
     "reason": "Sessions, HLL, mises a jour intermediaires et jointures temporelles",
     "line": 2958,
-    "status": "a migrer"
+    "status": "migre"
   },
   {
     "name": "VA_PEAGE_CLASSIFICATION_ALARMEGLOBALE",
@@ -285,7 +285,7 @@
     "difficulty": "Tres elevee",
     "reason": "Sessions, HLL, mises a jour intermediaires et jointures temporelles",
     "line": 2378,
-    "status": "a migrer"
+    "status": "migre"
   },
   {
     "name": "VA_PEAGE_CLASSIFICATION_ALARMEUNITAIRE",
@@ -293,6 +293,6 @@
     "difficulty": "Tres elevee",
     "reason": "Sessions, HLL, mises a jour intermediaires et jointures temporelles",
     "line": 2664,
-    "status": "a migrer"
+    "status": "migre"
   }
 ]

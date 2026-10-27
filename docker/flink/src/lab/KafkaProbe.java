@@ -79,7 +79,7 @@ public class KafkaProbe {
                         row.get("timestamp").asLong(), key, value)).get();
                 }
             }
-        } else if (args[0].equals("consume") || args[0].equals("consume-many")) {
+        } else if (args[0].equals("consume") || args[0].equals("consume-many") || args[0].equals("consume-partitioned")) {
             config.put("key.deserializer", "org.apache.flink.kafka.shaded.org.apache.kafka.common.serialization.ByteArrayDeserializer");
             config.put("value.deserializer", "org.apache.flink.kafka.shaded.org.apache.kafka.common.serialization.ByteArrayDeserializer");
             config.put("group.id", "probe-" + java.util.UUID.randomUUID());
@@ -93,6 +93,7 @@ public class KafkaProbe {
                     for (ConsumerRecord<byte[], byte[]> record : consumer.poll(Duration.ofMillis(500))) {
                         ObjectNode row = mapper.createObjectNode();
                         if (args[0].equals("consume-many")) row.put("topic", record.topic());
+                        if (args[0].equals("consume-partitioned")) row.put("partition", record.partition());
                         if (record.key() == null) row.putNull("key");
                         else row.put("key", Base64.getEncoder().encodeToString(record.key()));
                         row.put("timestamp", record.timestamp());

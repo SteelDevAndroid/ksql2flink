@@ -3,6 +3,13 @@
 Laboratoire local Kafka / ksqlDB / Flink SQL pour tester les migrations.
 Les requetes historiques du `.log` ne sont pas chargees automatiquement.
 
+## Rapport et conseils de migration
+
+- [Rapport detaille](docs/rapport-migration-detaille.md) : couverture des 37 traitements,
+  preuves de comparaison, limites d'equivalence, risques et criteres de passage en production.
+- [Conseils et guide operationnel](docs/conseils-migration.md) : reconstruction des etats,
+  execution parallele, bascule des consommateurs et retour arriere.
+
 ## Demarrage
 
 Prerequis : Docker Desktop (conteneurs Linux), Compose v2, environ 8 Go de RAM disponibles
@@ -113,6 +120,25 @@ Le test du lot 6 pilote les phases via les offsets Kafka committes, avec rapport
 pour verifier les mises a jour, les suppressions et l'absence de recalcul retroactif.
 Voir [les contrats et limites des lots 5/6](docs/lots-5-6.md).
 
+## Lots 7 et 8 : indicateurs horaires, sessions et alarmes
+
+Les cinq derniers traitements utilisent le job DataStream `lab.WindowJob`, configure
+par `sql/flink/07-08-windows.json`. Il produit les mises a jour pendant les fenetres,
+les tombstones des sessions et les deux alarmes dans leur topic commun. Les topics
+intermediaires qualite et comptage sont conserves. Le comptage distinct reprend
+la bibliotheque HyperLogLog de ksqlDB 7.9.2.
+
+```powershell
+python scripts/generate_lots78.py
+docker compose up -d --build --wait
+python scripts/test_windows.py
+```
+
+Les tests comparent les valeurs, cles binaires, timestamps, partitions et multiplicites
+aux requetes originales, par frontiere puis sur un scenario de chaine complete.
+Voir [les contrats des lots 7/8](docs/lots-7-8.md) pour la grace historique effective,
+les seuils, la procedure de bascule et les limites liees a l'ordre des flux concurrents.
+
 ## Consoles SQL
 
 ```powershell
@@ -154,7 +180,7 @@ laboratoire sont explicites et ne reproduisent pas necessairement la production.
 
 ## Arret et diagnostic
 
-Le workflow GitHub Actions `Migration comparisons` execute les six tests sur les pull requests,
+Le workflow GitHub Actions `Migration comparisons` execute les sept scripts de test sur les pull requests,
 sur `main` et sur les branches `feat/**`. Les rapports et logs Docker sont conserves sept jours.
 Les PR provenant d'un fork peuvent necessiter l'approbation d'un mainteneur pour lancer le workflow.
 

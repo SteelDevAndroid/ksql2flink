@@ -17,8 +17,8 @@ Le lot 1 est choisi parce qu'il est autonome, repetitif et sans etat, contrairem
 | 4 | Moyenne | 8 | Bols/coffres (6), synoptiques FAV (2) | Migre ; test differentiel fourni |
 | 5 | Elevee | 4 | Histobadge entree/sortie CARDME/CIP | Migre ; correlation et historiques testes |
 | 6 | Elevee | 4 | Deux referentiels et deux jointures Socle ET | Migre en DataStream ; scenarios ordonnes testes |
-| 7 | Elevee | 1 | Indicateurs horaires | A migrer ; depend du lot 6 |
-| 8 | Tres elevee | 4 | Deux sessions classification et deux alarmes | A migrer ; depend du lot 3 |
+| 7 | Elevee | 1 | Indicateurs horaires | Migre en DataStream ; grace et cles fenetrees testees |
+| 8 | Tres elevee | 4 | Deux sessions classification et deux alarmes | Migre en DataStream ; sessions et alarmes testees par frontiere |
 
 ## Inventaire exhaustif
 
@@ -159,3 +159,15 @@ Dix traitements supplementaires migres, soit 24 sur 37. Voir [le contrat des lot
 ## Lots 5 et 6
 
 Huit traitements supplementaires migres, soit 32 sur 37. Voir [le contrat des lots 5/6](lots-5-6.md), notamment les limites d'equivalence en presence de mises a jour concurrentes des referentiels.
+
+## Lots 7 et 8
+
+Les cinq derniers traitements disposent d'une implementation Flink, soit **37 sur 37**.
+Les comparaisons couvrent les mises a jour horaires, les sessions et leurs tombstones,
+le comptage HyperLogLog, les jointures temporelles et les deux seuils d'alarme.
+Les cinq scenarios comparent 91 sorties par moteur, avec cles, valeurs, timestamps,
+partitions, multiplicites et ordre des changements par cle.
+Voir [les contrats et preuves des lots 7/8](lots-7-8.md).
+Ce statut signifie implementation et validation sur les scenarios decrits ; la
+certification de l'iso en production reste conditionnee a l'ordre des flux concurrents,
+aux tests de reprise et a la qualification du trafic reel.

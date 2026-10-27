@@ -1,0 +1,37 @@
+{
+  "indicator_input": {
+    "name": "VA_PEAGE_BACKOFFICE_SOCLEET_FILTER_REF_INDICATEUR",
+    "topic": "VA_PEAGE_BACKOFFICE_SOCLEET_FILTER_REF_INDICATEUR",
+    "source": true
+  },
+  "flows": {
+    "name": "VA_PEAGE_CLASSIFICATION_FLOWS_EXTEND",
+    "topic": "VA_PEAGE_CLASSIFICATION_FLOWS_EXTEND",
+    "source": true
+  },
+  "hourly": {
+    "name": "TABLE_VA_PEAGE_BACKOFFICE_SOCLEET_INDICATEUR",
+    "topic": "va.peage.backoffice.socleET.indicateur",
+    "source": false
+  },
+  "quality": {
+    "name": "VA_PEAGE_CLASSIFICATIONINFOQUALITE",
+    "topic": "va.peage.classificationInfoQualite",
+    "source": false
+  },
+  "count": {
+    "name": "VA_PEAGE_CLASSIFICATIONINFOQUALITECOUNT",
+    "topic": "va.peage.classificationInfoQualite.Count",
+    "source": false
+  },
+  "unit_alarm": {
+    "name": "VA_PEAGE_CLASSIFICATION_ALARMEUNITAIRE",
+    "topic": "va.peage.classificationAlarme",
+    "source": false
+  },
+  "global_alarm": {
+    "name": "VA_PEAGE_CLASSIFICATION_ALARMEGLOBALE",
+    "topic": "va.peage.classificationAlarme",
+    "source": false
+  }
+}
