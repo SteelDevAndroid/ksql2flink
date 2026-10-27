@@ -11,6 +11,8 @@ Les requetes historiques du `.log` ne sont pas chargees automatiquement.
   preuves de comparaison, limites d'equivalence, risques et criteres de passage en production.
 - [Conseils et guide operationnel](docs/conseils-migration.md) : reconstruction des etats,
   execution parallele, bascule des consommateurs et retour arriere.
+- [Architecture de production](docs/architecture-production.md) : Flink Kubernetes Operator,
+  un job par chaine, `lab.SqlRunner`, etat, livraison et evolution des requetes.
 
 ## Demarrage
 
