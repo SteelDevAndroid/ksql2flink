@@ -1,0 +1,10 @@
+{
+  "group_prefix": "socleet-flink",
+  "compteur_input": "va.peage.backoffice.socleET.ref_compteur",
+  "indicateur_input": "va.peage.backoffice.socleET.ref_indicateur",
+  "facts": "va.peage.backoffice.socleET.etancheite",
+  "compteur_table": "TABLE_VA_PEAGE_BACKOFFICE_SOCLEET_REF_COMPTEURS.flink",
+  "indicateur_table": "TABLE_VA_PEAGE_BACKOFFICE_SOCLEET_REF_INDICATEURS.flink",
+  "compteur_output": "VA_PEAGE_BACKOFFICE_SOCLEET_FILTER_REF_COMPTEUR.flink",
+  "indicateur_output": "VA_PEAGE_BACKOFFICE_SOCLEET_FILTER_REF_INDICATEUR.flink"
+}

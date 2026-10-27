@@ -13,7 +13,7 @@ jobs:
   compare:
     name: Kafka / ksqlDB / Flink comparison
     runs-on: ubuntu-24.04
-    timeout-minutes: 20
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -25,7 +25,8 @@ jobs:
           python -m py_compile scripts/*.py
           python scripts/generate_conformite_sql.py
           python scripts/generate_lots34_sql.py
-          git diff --exit-code -- sql docker/flink/resources/schemas docs/lots34-contracts.json
+          python scripts/generate_lots56.py
+          git diff --exit-code -- sql docker/flink/resources/schemas docs/lots34-contracts.json docs/lots56-contracts.json
       - name: Start migration lab
         run: docker compose up -d --build --wait --wait-timeout 240
       - name: Run smoke comparison
@@ -36,6 +37,10 @@ jobs:
         run: python scripts/test_conformite.py
       - name: Compare lot 3 and lot 4 queries
         run: python scripts/test_lots34.py
+      - name: Compare correlated badge histories
+        run: python scripts/test_badges.py
+      - name: Compare stateful reference enrichment
+        run: python scripts/test_socleet.py
       - name: Capture service logs
         if: always()
         run: |

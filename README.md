@@ -92,6 +92,27 @@ python scripts/test_lots34.py
 Le test compare les dix sorties (intermediaires comprises), leurs valeurs, cles et timestamps.
 Voir [le contrat des lots 3/4](docs/lots-3-4.md) pour les variantes reseau et les limites.
 
+## Lots 5 et 6 : historiques badges et referentiels
+
+Le lot 5 est traduit dans `sql/flink/05-badges.sql` : une seule explosion par evenement filtre
+conserve l'association PAN / historique / D_VET. Les deux transformations d'historique sont des fonctions Java
+car Flink 1.20 ne fournit pas directement les lambdas ksqlDB utilisees par le journal.
+
+Le lot 6 utilise le job DataStream `lab.SocleEtJob`, configure par `sql/flink/06-socleet.json`.
+Il conserve les deux topics de referentiel materialises et declenche les jointures uniquement sur les transactions.
+Une jointure SQL dynamique ordinaire pourrait recalculer les transactions passees lors d'une mise a jour du referentiel.
+
+```powershell
+python scripts/generate_lots56.py
+docker compose up -d --build --wait
+python scripts/test_badges.py
+python scripts/test_socleet.py
+```
+
+Le test du lot 6 pilote les phases via les offsets Kafka committes, avec rapports de progression,
+pour verifier les mises a jour, les suppressions et l'absence de recalcul retroactif.
+Voir [les contrats et limites des lots 5/6](docs/lots-5-6.md).
+
 ## Consoles SQL
 
 ```powershell
@@ -133,7 +154,7 @@ laboratoire sont explicites et ne reproduisent pas necessairement la production.
 
 ## Arret et diagnostic
 
-Le workflow GitHub Actions `Migration comparisons` execute les quatre tests sur les pull requests,
+Le workflow GitHub Actions `Migration comparisons` execute les six tests sur les pull requests,
 sur `main` et sur les branches `feat/**`. Les rapports et logs Docker sont conserves sept jours.
 Les PR provenant d'un fork peuvent necessiter l'approbation d'un mainteneur pour lancer le workflow.
 

@@ -20,7 +20,51 @@ public class KafkaProbe {
         ObjectMapper mapper = new ObjectMapper();
         Properties config = new Properties();
         config.put("bootstrap.servers", "kafka:9092");
-        if (args[0].equals("produce")) {
+        if (args[0].equals("barriers")) {
+            JsonNode specs = mapper.readTree(Files.readString(Path.of(args[1])));
+            try (org.apache.flink.kafka.shaded.org.apache.kafka.clients.admin.AdminClient admin =
+                    org.apache.flink.kafka.shaded.org.apache.kafka.clients.admin.AdminClient.create(config)) {
+                java.util.List<String> groups = new java.util.ArrayList<>();
+                admin.listConsumerGroups().all().get(10, java.util.concurrent.TimeUnit.SECONDS)
+                    .forEach(g -> groups.add(g.groupId()));
+                ObjectNode result = mapper.createObjectNode();
+                java.util.Iterator<java.util.Map.Entry<String, JsonNode>> entries = specs.fields();
+                while (entries.hasNext()) {
+                    java.util.Map.Entry<String, JsonNode> entry = entries.next();
+                    JsonNode spec = entry.getValue();
+                    String group = spec.has("group") ? spec.get("group").asText() :
+                        groups.stream().filter(g -> g.contains(spec.get("contains").asText())).findFirst().orElse(null);
+                    ObjectNode status = mapper.createObjectNode();
+                    status.put("ready", false);
+                    if (group != null && groups.contains(group)) {
+                        String topic = spec.get("topic").asText();
+                        java.util.Map<org.apache.flink.kafka.shaded.org.apache.kafka.common.TopicPartition,
+                            org.apache.flink.kafka.shaded.org.apache.kafka.clients.consumer.OffsetAndMetadata> committed =
+                            admin.listConsumerGroupOffsets(group).partitionsToOffsetAndMetadata().get(10, java.util.concurrent.TimeUnit.SECONDS);
+                        java.util.Map<org.apache.flink.kafka.shaded.org.apache.kafka.common.TopicPartition,
+                            org.apache.flink.kafka.shaded.org.apache.kafka.clients.admin.OffsetSpec> latest = new java.util.HashMap<>();
+                        committed.keySet().forEach(p -> latest.put(p,
+                            org.apache.flink.kafka.shaded.org.apache.kafka.clients.admin.OffsetSpec.latest()));
+                        admin.describeTopics(Collections.singleton(topic)).allTopicNames().get(10, java.util.concurrent.TimeUnit.SECONDS)
+                            .get(topic).partitions().forEach(p -> latest.put(
+                                new org.apache.flink.kafka.shaded.org.apache.kafka.common.TopicPartition(topic, p.partition()),
+                                org.apache.flink.kafka.shaded.org.apache.kafka.clients.admin.OffsetSpec.latest()));
+                        java.util.Map<org.apache.flink.kafka.shaded.org.apache.kafka.common.TopicPartition,
+                            org.apache.flink.kafka.shaded.org.apache.kafka.clients.admin.ListOffsetsResult.ListOffsetsResultInfo> ends =
+                            admin.listOffsets(latest).all().get(10, java.util.concurrent.TimeUnit.SECONDS);
+                        long lag = 0;
+                        for (var end : ends.entrySet()) {
+                            var offset = committed.get(end.getKey());
+                            // An empty partition needs no committed offset: no record is pending.
+                            lag += offset == null ? end.getValue().offset() : Math.max(0, end.getValue().offset() - offset.offset());
+                        }
+                        status.put("group", group); status.put("lag", lag); status.put("ready", lag == 0);
+                    }
+                    result.set(entry.getKey(), status);
+                }
+                System.out.println(mapper.writeValueAsString(result));
+            }
+        } else if (args[0].equals("produce") || args[0].equals("produce-many")) {
             config.put("key.serializer", "org.apache.flink.kafka.shaded.org.apache.kafka.common.serialization.ByteArraySerializer");
             config.put("value.serializer", "org.apache.flink.kafka.shaded.org.apache.kafka.common.serialization.ByteArraySerializer");
             config.put("acks", "all");
@@ -29,7 +73,9 @@ public class KafkaProbe {
                     JsonNode row = mapper.readTree(line);
                     byte[] key = row.get("key").isNull() ? null : Base64.getDecoder().decode(row.get("key").asText());
                     byte[] value = row.get("value").isNull() ? null : mapper.writeValueAsBytes(row.get("value"));
-                    producer.send(new ProducerRecord<>(args[1], row.get("partition").asInt(),
+                    String topic = args[0].equals("produce-many") ? row.get("topic").asText() : args[1];
+                    Integer partition = row.get("partition").isNull() ? null : row.get("partition").asInt();
+                    producer.send(new ProducerRecord<>(topic, partition,
                         row.get("timestamp").asLong(), key, value)).get();
                 }
             }
