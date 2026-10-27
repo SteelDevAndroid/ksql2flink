@@ -23,6 +23,7 @@ jobs:
         run: |
           docker compose config --quiet
           python -m py_compile scripts/*.py
+          bash -n scripts/seed_kafka_explorer.sh
           python scripts/generate_conformite_sql.py
           python scripts/generate_lots34_sql.py
           python scripts/generate_lots56.py
@@ -44,6 +45,19 @@ jobs:
         run: python scripts/test_socleet.py
       - name: Compare updating windows and classification alarms
         run: python scripts/test_windows.py
+      - name: Seed the Kafka Explorer example topics
+        run: |
+          docker compose cp scripts/seed_kafka_explorer.sh kafka:/tmp/seed_kafka_explorer.sh
+          docker compose exec -T kafka bash /tmp/seed_kafka_explorer.sh kafka:9092
+          for spec in asf.peage.voie.passagesortieva:16 esc.peage.voie.passagesortieva:8 \
+                      va.peage.backoffice.socleET.ref_compteur:6 va.peage.backoffice.socleET.etancheite:48 \
+                      VA_PEAGE_CLASSIFICATION_FLOWS_EXTEND:70; do
+            topic=${spec%:*}; expected=${spec##*:}
+            count=$(docker compose exec -T kafka kafka-get-offsets --bootstrap-server kafka:9092 --topic "$topic" \
+              | awk -F: '{ total += $3 } END { print total + 0 }')
+            echo "$topic: $count message(s), $expected attendu(s)"
+            [ "$count" -eq "$expected" ]
+          done
       - name: Capture service logs
         if: always()
         run: |
