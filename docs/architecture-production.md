@@ -59,6 +59,49 @@ des consommateurs.
 Alertes minimales : lag consommateur (`pendingRecords`), durée et échecs de checkpoint,
 `backPressuredTimeMsPerSecond`, `numRestarts`, taille d'état.
 
+## Visualisation des jobs
+
+AKHQ et Kafka UI intègrent ksqlDB mais pas Flink. Les fonctions sont réparties ainsi :
+
+| Besoin (AKHQ / Kafka UI aujourd'hui) | Équivalent Flink |
+| --- | --- |
+| Liste des requêtes et état | `kubectl get flinkdeployments`, Argo CD (version, état, savepoints) |
+| Détail d'une requête (plan, débit, erreurs) | Flink Web UI de chaque job, exposée par l'opérateur |
+| Lag des consommateurs | AKHQ / Kafka UI, inchangés |
+| Métriques et alertes | Prometheus + Grafana |
+| Requêtes interactives | SQL Gateway ou `sql-client`, en développement uniquement |
+
+L'opérateur crée un Ingress par déploiement ; chaque job est accessible sous
+`https://flink.local/<namespace>/<job>/`. La Web UI n'a pas d'authentification :
+elle est placée derrière le SSO, et les actions sont désactivées pour conserver
+Git comme seule source de déploiement.
+
+```yaml
+spec:
+  ingress:
+    template: "flink.local/{{namespace}}/{{name}}(/|$)(.*)"
+    className: nginx
+    annotations:
+      nginx.ingress.kubernetes.io/rewrite-target: "/$2"
+      nginx.ingress.kubernetes.io/auth-url: "https://oauth2.local/oauth2/auth"
+      nginx.ingress.kubernetes.io/auth-signin: "https://oauth2.local/oauth2/start?rd=$escaped_request_uri"
+  flinkConfiguration:
+    web.submit.enable: "false"
+    web.cancel.enable: "false"
+```
+
+Lag : avec un `group.id`, Flink committe ses offsets à chaque checkpoint. Les groupes
+apparaissent dans AKHQ / Kafka UI sans membre actif (Flink assigne les partitions sans
+rejoindre le groupe) et le lag affiché peut retarder d'un intervalle de checkpoint.
+Les alertes de lag s'appuient sur la métrique Flink `pendingRecords`.
+
+Consoles centralisées :
+
+- Confluent Manager for Apache Flink : on-prem, commercial, intégré à Control Center ;
+  option naturelle avec une souscription Confluent.
+- Apache StreamPark, Dinky : open source, IDE SQL et soumission de jobs. Déconseillés
+  en production : ils contournent la chaîne Git → Argo CD → opérateur et la revue des requêtes.
+
 ## Écart avec une politique « Flink SQL uniquement »
 
 Les lots 6 à 8 sont des jobs DataStream (`lab.SocleEtJob`, `lab.WindowJob`) et les lots SQL
