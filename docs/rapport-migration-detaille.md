@@ -39,7 +39,7 @@ traitements supplémentaires à migrer.
 | Lot | Nombre | Difficulté | Famille | Implémentation principale |
 | --- | ---: | --- | --- | --- |
 | 1 | 5 | Faible | Lexhistoric ASF, ESC, ARS, ACR, COF | SQL et fonction de compatibilité JSON |
-| 2 | 9 | Faible | Consolidation passages conformes | SQL, UNION ALL et projection selon les schémas |
+| 2 | 9 | Faible | Consolidation passages conformes | SQL, source multi-topics et projection selon les schémas |
 | 3 | 2 | Faible | Extension classification, projection compteur | SQL et décodage de clé INTEGER |
 | 4 | 8 | Moyenne | Coffres, bols et synoptiques FAV | SQL, UNNEST et fonctions JSON |
 | 5 | 4 | Élevée | Historiques badges CARDME/CIP | SQL et transformation Java des historiques |
@@ -134,7 +134,7 @@ correspondances historiques des modes de règlement. La position `[1]` ksqlDB
 correspond au premier élément, donc à l’index JSON `[0]`. Les clés de sortie restent
 nulles lorsque les sources ne déclarent aucune colonne KEY.
 
-La consolidation utilise UNION ALL, sans déduplication. La projection JSON retire
+La consolidation lit les topics réseau dans une source multi-topics, sans déduplication. La projection JSON retire
 les champs inconnus et matérialise les champs déclarés absents à null. Les noms
 quotés respectent leur casse ; les identifiants non quotés suivent le comportement
 observé sans tenir compte de la casse. Un tableau nul reste distinct d’un tableau vide.

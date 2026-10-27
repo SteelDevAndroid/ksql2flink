@@ -45,6 +45,7 @@ public class WindowJob {
         if (session) b.putLong(end);
         return b.putLong(start).array();
     }
+    // RISK: hard-coded partition count; must equal the production topic partition count.
     static int partition(Event e) { return Utils.toPositive(Utils.murmur2(e.key)) % 6; }
     static Event prepare(Event e, boolean hourly) throws Exception {
         if (e.value == null) return e;
@@ -96,6 +97,7 @@ public class WindowJob {
             long start=e.timestamp/HOUR*HOUR, end=start+HOUR;
             if(end<=clock-(GRACE-HOUR)) return;
             List<String> expired=new ArrayList<>();
+            // PERF: full scan + JSON parse of every open window of the partition per event; prefer event-time timers.
             for(Map.Entry<String,String> a:aggregates.entries()) if(JSON.readTree(a.getValue()).path("end").asLong()<=clock-(GRACE-HOUR)) expired.add(a.getKey());
             for(String k:expired) aggregates.remove(k);
             String id=Base64.getEncoder().encodeToString(windowKey(e.key,start,end,false));
@@ -151,6 +153,7 @@ public class WindowJob {
             JsonNode v=read(e);
             String key=Base64.getEncoder().encodeToString(e.key);
             // State indexed by serialized business key and interval, retained until gap+grace expires.
+            // PERF: keyed by Kafka partition, so each event scans and parses all sessions of all business keys.
             List<Map.Entry<String,JsonNode>> matches=new ArrayList<>(); List<String> expired=new ArrayList<>();
             for(Map.Entry<String,String> en:sessions.entries()) {
                 JsonNode s=JSON.readTree(en.getValue());
@@ -204,6 +207,7 @@ public class WindowJob {
             leftTime=getRuntimeContext().getState(new ValueStateDescriptor<>("left-store-time",Long.class));
             rightTime=getRuntimeContext().getState(new ValueStateDescriptor<>("right-store-time",Long.class));
         }
+        // STATE: buffers are only purged when the same key receives a new event; idle keys leak without a timer or TTL.
         void process(Event e,boolean isLeft,Collector<Event> out) throws Exception {
             ValueState<Long> ownTime=isLeft?leftTime:rightTime,otherTime=isLeft?rightTime:leftTime;
             long clock=Math.max(ownTime.value()==null?-1:ownTime.value(),e.timestamp);ownTime.update(clock);

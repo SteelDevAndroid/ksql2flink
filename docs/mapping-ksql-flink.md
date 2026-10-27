@@ -13,7 +13,7 @@ sont pas comptés comme des traitements à convertir.
 - **Lots 1 à 5 : SQL Flink**, avec les fonctions Java de compatibilité utilisées dans les fichiers SQL.
 - **Lots 6 à 8 : DataStream Flink**. Leur équivalent est un opérateur Java configuré par JSON ;
   aucun SQL Flink fictif n’est présenté comme implémentation de ces traitements.
-- Plusieurs requêtes ksqlDB peuvent alimenter le même INSERT Flink avec UNION ALL.
+- Plusieurs requêtes ksqlDB peuvent alimenter le même INSERT Flink via une source multi-topics.
   Une ligne par requête est conservée afin de rendre la couverture vérifiable.
 - Les sorties indiquées sont les **topics isolés de comparaison**, suffixés `.flink`.
   Elles ne constituent pas un changement des topics de production.
@@ -22,45 +22,45 @@ sont pas comptés comme des traitements à convertir.
 
 | Requête ksqlDB de référence | Équivalent Flink livré | Transformation conservée | Topic de sortie Flink |
 | --- | --- | --- | --- |
-| [ACR_PEAGE_LEXVA_PASSAGESORTIEVA_LEXHISTORIC_STREAM](../sql/ksqldb/02-lexhistoric.sql#L41) | [acr_lexhistoric](../sql/flink/02-lexhistoric.sql#L81) → [lexhistoric_output](../sql/flink/02-lexhistoric.sql#L108) | Premier paiement/PAN, filtre des modes et CASE 256/512/1024/2048. | `va.peage.voie.passagesortieva.lexhistoric.flink` |
-| [ARS_PEAGE_LEXVA_PASSAGESORTIEVA_LEXHISTORIC_STREAM](../sql/ksqldb/02-lexhistoric.sql#L29) | [ars_lexhistoric](../sql/flink/02-lexhistoric.sql#L63) → [lexhistoric_output](../sql/flink/02-lexhistoric.sql#L108) | Premier paiement/PAN, filtre des modes et CASE 256/512/1024/2048. | `va.peage.voie.passagesortieva.lexhistoric.flink` |
-| [ASF_PEAGE_LEXVA_PASSAGESORTIEVA_LEXHISTORIC_STREAM](../sql/ksqldb/02-lexhistoric.sql#L5) | [asf_lexhistoric](../sql/flink/02-lexhistoric.sql#L27) → [lexhistoric_output](../sql/flink/02-lexhistoric.sql#L108) | Premier paiement/PAN, filtre des modes et CASE 256/512/1024/2048. | `va.peage.voie.passagesortieva.lexhistoric.flink` |
-| [COF_PEAGE_LEXVA_PASSAGESORTIEVA_LEXHISTORIC_STREAM](../sql/ksqldb/02-lexhistoric.sql#L53) | [cof_lexhistoric](../sql/flink/02-lexhistoric.sql#L99) → [lexhistoric_output](../sql/flink/02-lexhistoric.sql#L108) | Premier paiement/PAN, filtre des modes et CASE 256/512/1024/2048. | `va.peage.voie.passagesortieva.lexhistoric.flink` |
-| [ESC_PEAGE_LEXVA_PASSAGESORTIEVA_LEXHISTORIC_STREAM](../sql/ksqldb/02-lexhistoric.sql#L17) | [esc_lexhistoric](../sql/flink/02-lexhistoric.sql#L45) → [lexhistoric_output](../sql/flink/02-lexhistoric.sql#L108) | Premier paiement/PAN, filtre des modes et CASE 256/512/1024/2048. | `va.peage.voie.passagesortieva.lexhistoric.flink` |
+| [ACR_PEAGE_LEXVA_PASSAGESORTIEVA_LEXHISTORIC_STREAM](../sql/ksqldb/02-lexhistoric.sql#L41) | [passagesortieva_input](../sql/flink/02-lexhistoric.sql#L9) → [lexhistoric](../sql/flink/02-lexhistoric.sql#L31) → [lexhistoric_output](../sql/flink/02-lexhistoric.sql#L40) | Premier paiement/PAN, filtre des modes et CASE 256/512/1024/2048. | `va.peage.voie.passagesortieva.lexhistoric.flink` |
+| [ARS_PEAGE_LEXVA_PASSAGESORTIEVA_LEXHISTORIC_STREAM](../sql/ksqldb/02-lexhistoric.sql#L29) | [passagesortieva_input](../sql/flink/02-lexhistoric.sql#L9) → [lexhistoric](../sql/flink/02-lexhistoric.sql#L31) → [lexhistoric_output](../sql/flink/02-lexhistoric.sql#L40) | Premier paiement/PAN, filtre des modes et CASE 256/512/1024/2048. | `va.peage.voie.passagesortieva.lexhistoric.flink` |
+| [ASF_PEAGE_LEXVA_PASSAGESORTIEVA_LEXHISTORIC_STREAM](../sql/ksqldb/02-lexhistoric.sql#L5) | [passagesortieva_input](../sql/flink/02-lexhistoric.sql#L9) → [lexhistoric](../sql/flink/02-lexhistoric.sql#L31) → [lexhistoric_output](../sql/flink/02-lexhistoric.sql#L40) | Premier paiement/PAN, filtre des modes et CASE 256/512/1024/2048. | `va.peage.voie.passagesortieva.lexhistoric.flink` |
+| [COF_PEAGE_LEXVA_PASSAGESORTIEVA_LEXHISTORIC_STREAM](../sql/ksqldb/02-lexhistoric.sql#L53) | [passagesortieva_input](../sql/flink/02-lexhistoric.sql#L9) → [lexhistoric](../sql/flink/02-lexhistoric.sql#L31) → [lexhistoric_output](../sql/flink/02-lexhistoric.sql#L40) | Premier paiement/PAN, filtre des modes et CASE 256/512/1024/2048. | `va.peage.voie.passagesortieva.lexhistoric.flink` |
+| [ESC_PEAGE_LEXVA_PASSAGESORTIEVA_LEXHISTORIC_STREAM](../sql/ksqldb/02-lexhistoric.sql#L17) | [passagesortieva_input](../sql/flink/02-lexhistoric.sql#L9) → [lexhistoric](../sql/flink/02-lexhistoric.sql#L31) → [lexhistoric_output](../sql/flink/02-lexhistoric.sql#L40) | Premier paiement/PAN, filtre des modes et CASE 256/512/1024/2048. | `va.peage.voie.passagesortieva.lexhistoric.flink` |
 
 ## Lot 2 : Passages conformes — 9 requêtes
 
 | Requête ksqlDB de référence | Équivalent Flink livré | Transformation conservée | Topic de sortie Flink |
 | --- | --- | --- | --- |
-| [IQ_PASSAGEENTREE_CONFORME_VA_FROM_ACR](../sql/ksqldb/03-conformite.sql#L36) | [entree_acr](../sql/flink/03-conformite.sql#L123) → [entree_output](../sql/flink/03-conformite.sql#L115) | Branche UNION ALL ; KSQL_PROJECT(payload, 'entree') ; sans déduplication. | `va.peage.backoffice.conformite.entree.conforme.flink` |
-| [IQ_PASSAGEENTREE_CONFORME_VA_FROM_COF](../sql/ksqldb/03-conformite.sql#L38) | [entree_cof](../sql/flink/03-conformite.sql#L126) → [entree_output](../sql/flink/03-conformite.sql#L115) | Branche UNION ALL ; KSQL_PROJECT(payload, 'entree') ; sans déduplication. | `va.peage.backoffice.conformite.entree.conforme.flink` |
-| [IQ_PASSAGEENTREE_CONFORME_VA_FROM_ESC](../sql/ksqldb/03-conformite.sql#L40) | [entree_esc](../sql/flink/03-conformite.sql#L120) → [entree_output](../sql/flink/03-conformite.sql#L115) | Branche UNION ALL ; KSQL_PROJECT(payload, 'entree') ; sans déduplication. | `va.peage.backoffice.conformite.entree.conforme.flink` |
-| [IQ_PASSAGESORTIE_CONFORME_VA_FROM_ACR](../sql/ksqldb/03-conformite.sql#L32) | [sortie_acr](../sql/flink/03-conformite.sql#L138) → [sortie_output](../sql/flink/03-conformite.sql#L127) | Branche UNION ALL ; KSQL_PROJECT(payload, 'sortie') ; sans déduplication. | `va.peage.backoffice.conformite.sortie.conforme.flink` |
-| [IQ_PASSAGESORTIE_CONFORME_VA_FROM_ARS](../sql/ksqldb/03-conformite.sql#L30) | [sortie_ars](../sql/flink/03-conformite.sql#L135) → [sortie_output](../sql/flink/03-conformite.sql#L127) | Branche UNION ALL ; KSQL_PROJECT(payload, 'sortie') ; sans déduplication. | `va.peage.backoffice.conformite.sortie.conforme.flink` |
-| [IQ_PASSAGESORTIE_CONFORME_VA_FROM_COF](../sql/ksqldb/03-conformite.sql#L34) | [sortie_cof](../sql/flink/03-conformite.sql#L141) → [sortie_output](../sql/flink/03-conformite.sql#L127) | Branche UNION ALL ; KSQL_PROJECT(payload, 'sortie') ; sans déduplication. | `va.peage.backoffice.conformite.sortie.conforme.flink` |
-| [IQ_PASSAGESORTIE_CONFORME_VA_FROM_ESC](../sql/ksqldb/03-conformite.sql#L28) | [sortie_esc](../sql/flink/03-conformite.sql#L132) → [sortie_output](../sql/flink/03-conformite.sql#L127) | Branche UNION ALL ; KSQL_PROJECT(payload, 'sortie') ; sans déduplication. | `va.peage.backoffice.conformite.sortie.conforme.flink` |
-| [VA_PEAGE_VOIE_PASSAGEENTREE_CONFORME_VA](../sql/ksqldb/03-conformite.sql#L10) | [entree_asf](../sql/flink/03-conformite.sql#L117) → [entree_output](../sql/flink/03-conformite.sql#L115) | Branche UNION ALL ; KSQL_PROJECT(payload, 'entree') ; sans déduplication. | `va.peage.backoffice.conformite.entree.conforme.flink` |
-| [VA_PEAGE_VOIE_PASSAGESORTIE_CONFORME_VA](../sql/ksqldb/03-conformite.sql#L24) | [sortie_asf](../sql/flink/03-conformite.sql#L129) → [sortie_output](../sql/flink/03-conformite.sql#L127) | Branche UNION ALL ; KSQL_PROJECT(payload, 'sortie') ; sans déduplication. | `va.peage.backoffice.conformite.sortie.conforme.flink` |
+| [IQ_PASSAGEENTREE_CONFORME_VA_FROM_ACR](../sql/ksqldb/03-conformite.sql#L36) | [entree_input](../sql/flink/03-conformite.sql#L7) → [entree_output](../sql/flink/03-conformite.sql#L47) | Topic de la source multi-topics ; KSQL_PROJECT(payload, 'entree') ; sans déduplication. | `va.peage.backoffice.conformite.entree.conforme.flink` |
+| [IQ_PASSAGEENTREE_CONFORME_VA_FROM_COF](../sql/ksqldb/03-conformite.sql#L38) | [entree_input](../sql/flink/03-conformite.sql#L7) → [entree_output](../sql/flink/03-conformite.sql#L47) | Topic de la source multi-topics ; KSQL_PROJECT(payload, 'entree') ; sans déduplication. | `va.peage.backoffice.conformite.entree.conforme.flink` |
+| [IQ_PASSAGEENTREE_CONFORME_VA_FROM_ESC](../sql/ksqldb/03-conformite.sql#L40) | [entree_input](../sql/flink/03-conformite.sql#L7) → [entree_output](../sql/flink/03-conformite.sql#L47) | Topic de la source multi-topics ; KSQL_PROJECT(payload, 'entree') ; sans déduplication. | `va.peage.backoffice.conformite.entree.conforme.flink` |
+| [IQ_PASSAGESORTIE_CONFORME_VA_FROM_ACR](../sql/ksqldb/03-conformite.sql#L32) | [sortie_input](../sql/flink/03-conformite.sql#L26) → [sortie_output](../sql/flink/03-conformite.sql#L49) | Topic de la source multi-topics ; KSQL_PROJECT(payload, 'sortie') ; sans déduplication. | `va.peage.backoffice.conformite.sortie.conforme.flink` |
+| [IQ_PASSAGESORTIE_CONFORME_VA_FROM_ARS](../sql/ksqldb/03-conformite.sql#L30) | [sortie_input](../sql/flink/03-conformite.sql#L26) → [sortie_output](../sql/flink/03-conformite.sql#L49) | Topic de la source multi-topics ; KSQL_PROJECT(payload, 'sortie') ; sans déduplication. | `va.peage.backoffice.conformite.sortie.conforme.flink` |
+| [IQ_PASSAGESORTIE_CONFORME_VA_FROM_COF](../sql/ksqldb/03-conformite.sql#L34) | [sortie_input](../sql/flink/03-conformite.sql#L26) → [sortie_output](../sql/flink/03-conformite.sql#L49) | Topic de la source multi-topics ; KSQL_PROJECT(payload, 'sortie') ; sans déduplication. | `va.peage.backoffice.conformite.sortie.conforme.flink` |
+| [IQ_PASSAGESORTIE_CONFORME_VA_FROM_ESC](../sql/ksqldb/03-conformite.sql#L28) | [sortie_input](../sql/flink/03-conformite.sql#L26) → [sortie_output](../sql/flink/03-conformite.sql#L49) | Topic de la source multi-topics ; KSQL_PROJECT(payload, 'sortie') ; sans déduplication. | `va.peage.backoffice.conformite.sortie.conforme.flink` |
+| [VA_PEAGE_VOIE_PASSAGEENTREE_CONFORME_VA](../sql/ksqldb/03-conformite.sql#L10) | [entree_input](../sql/flink/03-conformite.sql#L7) → [entree_output](../sql/flink/03-conformite.sql#L47) | Topic de la source multi-topics ; KSQL_PROJECT(payload, 'entree') ; sans déduplication. | `va.peage.backoffice.conformite.entree.conforme.flink` |
+| [VA_PEAGE_VOIE_PASSAGESORTIE_CONFORME_VA](../sql/ksqldb/03-conformite.sql#L24) | [sortie_input](../sql/flink/03-conformite.sql#L26) → [sortie_output](../sql/flink/03-conformite.sql#L49) | Topic de la source multi-topics ; KSQL_PROJECT(payload, 'sortie') ; sans déduplication. | `va.peage.backoffice.conformite.sortie.conforme.flink` |
 
 ## Lot 3 : Projections — 2 requêtes
 
 | Requête ksqlDB de référence | Équivalent Flink livré | Transformation conservée | Topic de sortie Flink |
 | --- | --- | --- | --- |
-| [VA_PEAGE_BACKOFFICE_SOCLEET_COMPTEUR](../sql/ksqldb/04-lots34.sql#L24) | [compteur_output](../sql/flink/04-lots34.sql#L192) | Projection avec INTEGER_KEY(kafka_key) et copie de la clé dans R_COMPTEURID. | `va.peage.backoffice.socleET.compteur.flink` |
-| [VA_PEAGE_CLASSIFICATION_FLOWS_EXTEND](../sql/ksqldb/04-lots34.sql#L18) | [flows_extend_output](../sql/flink/04-lots34.sql#L190) | Projection du schéma et CONCAT station/voie ; null traité comme chaîne vide. | `VA_PEAGE_CLASSIFICATION_FLOWS_EXTEND.flink` |
+| [VA_PEAGE_BACKOFFICE_SOCLEET_COMPTEUR](../sql/ksqldb/04-lots34.sql#L24) | [compteur_output](../sql/flink/04-lots34.sql#L176) | Projection avec INTEGER_KEY(kafka_key) et copie de la clé dans R_COMPTEURID. | `va.peage.backoffice.socleET.compteur.flink` |
+| [VA_PEAGE_CLASSIFICATION_FLOWS_EXTEND](../sql/ksqldb/04-lots34.sql#L18) | [flows_extend_output](../sql/flink/04-lots34.sql#L174) | Projection du schéma et CONCAT station/voie ; null traité comme chaîne vide. | `VA_PEAGE_CLASSIFICATION_FLOWS_EXTEND.flink` |
 
 ## Lot 4 : Comptages et FAV — 8 requêtes
 
 | Requête ksqlDB de référence | Équivalent Flink livré | Transformation conservée | Topic de sortie Flink |
 | --- | --- | --- | --- |
-| [ASF_PEAGE_SUIVICONSO_COMPTAGE_BOL](../sql/ksqldb/04-lots34.sql#L84) | [asf_bol_output](../sql/flink/04-lots34.sql#L216) | Lecture du topic exploded, CASE des positions et second segment du sujet. | `asf.peage.suiviconso.comptage.bol.flink` |
-| [ASF_PEAGE_SUIVICONSO_COMPTAGE_BOL_EXPLODED](../sql/ksqldb/04-lots34.sql#L70) | [asf_exploded_output](../sql/flink/04-lots34.sql#L214) | CROSS JOIN UNNEST des états ; conservation du topic intermédiaire. | `asf.peage.suiviconso.comptage.bol.exploded.flink` |
-| [ASF_PEAGE_SUIVICONSO_COMPTAGE_COFFRE](../sql/ksqldb/04-lots34.sql#L38) | [asf_coffre_output](../sql/flink/04-lots34.sql#L202) | Filtre sac/coffre, gare réseau et CASE sur les positions. | `asf.peage.suiviconso.comptage.coffre.flink` |
-| [ASF_PEAGE_TELEOP_SYNOPTIQUE_FAV_STREAM](../sql/ksqldb/04-lots34.sql#L114) | [asf_fav_output](../sql/flink/04-lots34.sql#L227) | JSON_CONTAINS_STRUCT et CASE ordonnés ; règles propres au réseau. | `asf.peage.teleop.synoptique.fav.flink` |
-| [ESC_PEAGE_SUIVICONSO_COMPTAGE_BOL](../sql/ksqldb/04-lots34.sql#L99) | [esc_bol_output](../sql/flink/04-lots34.sql#L253) | Lecture du topic exploded, CASE des positions et second segment du sujet. | `esc.peage.suiviconso.comptage.bol.flink` |
-| [ESC_PEAGE_SUIVICONSO_COMPTAGE_BOL_EXPLODED](../sql/ksqldb/04-lots34.sql#L77) | [esc_exploded_output](../sql/flink/04-lots34.sql#L251) | CROSS JOIN UNNEST des états ; conservation du topic intermédiaire. | `esc.peage.suiviconso.comptage.bol.exploded.flink` |
-| [ESC_PEAGE_SUIVICONSO_COMPTAGE_COFFRE](../sql/ksqldb/04-lots34.sql#L54) | [esc_coffre_output](../sql/flink/04-lots34.sql#L239) | Filtre sac/coffre, gare réseau et CASE sur les positions. | `esc.peage.suiviconso.comptage.coffre.flink` |
-| [ESC_PEAGE_TELEOP_SYNOPTIQUE_FAV_STREAM](../sql/ksqldb/04-lots34.sql#L132) | [esc_fav_output](../sql/flink/04-lots34.sql#L264) | JSON_CONTAINS_STRUCT et CASE ordonnés ; règles propres au réseau. | `esc.peage.teleop.synoptique.fav.flink` |
+| [ASF_PEAGE_SUIVICONSO_COMPTAGE_BOL](../sql/ksqldb/04-lots34.sql#L84) | [asf_bol_output](../sql/flink/04-lots34.sql#L200) | Vue exploded partagée dans le job (topic toujours publié), CASE des positions et second segment du sujet. | `asf.peage.suiviconso.comptage.bol.flink` |
+| [ASF_PEAGE_SUIVICONSO_COMPTAGE_BOL_EXPLODED](../sql/ksqldb/04-lots34.sql#L70) | [asf_exploded_output](../sql/flink/04-lots34.sql#L198) | CROSS JOIN UNNEST des états ; conservation du topic intermédiaire. | `asf.peage.suiviconso.comptage.bol.exploded.flink` |
+| [ASF_PEAGE_SUIVICONSO_COMPTAGE_COFFRE](../sql/ksqldb/04-lots34.sql#L38) | [asf_coffre_output](../sql/flink/04-lots34.sql#L186) | Filtre sac/coffre, gare réseau et CASE sur les positions. | `asf.peage.suiviconso.comptage.coffre.flink` |
+| [ASF_PEAGE_TELEOP_SYNOPTIQUE_FAV_STREAM](../sql/ksqldb/04-lots34.sql#L114) | [asf_fav_output](../sql/flink/04-lots34.sql#L211) | JSON_CONTAINS_STRUCT et CASE ordonnés ; règles propres au réseau. | `asf.peage.teleop.synoptique.fav.flink` |
+| [ESC_PEAGE_SUIVICONSO_COMPTAGE_BOL](../sql/ksqldb/04-lots34.sql#L99) | [esc_bol_output](../sql/flink/04-lots34.sql#L237) | Vue exploded partagée dans le job (topic toujours publié), CASE des positions et second segment du sujet. | `esc.peage.suiviconso.comptage.bol.flink` |
+| [ESC_PEAGE_SUIVICONSO_COMPTAGE_BOL_EXPLODED](../sql/ksqldb/04-lots34.sql#L77) | [esc_exploded_output](../sql/flink/04-lots34.sql#L235) | CROSS JOIN UNNEST des états ; conservation du topic intermédiaire. | `esc.peage.suiviconso.comptage.bol.exploded.flink` |
+| [ESC_PEAGE_SUIVICONSO_COMPTAGE_COFFRE](../sql/ksqldb/04-lots34.sql#L54) | [esc_coffre_output](../sql/flink/04-lots34.sql#L223) | Filtre sac/coffre, gare réseau et CASE sur les positions. | `esc.peage.suiviconso.comptage.coffre.flink` |
+| [ESC_PEAGE_TELEOP_SYNOPTIQUE_FAV_STREAM](../sql/ksqldb/04-lots34.sql#L132) | [esc_fav_output](../sql/flink/04-lots34.sql#L248) | JSON_CONTAINS_STRUCT et CASE ordonnés ; règles propres au réseau. | `esc.peage.teleop.synoptique.fav.flink` |
 
 ## Lot 5 : Historiques badges — 4 requêtes
 
@@ -84,23 +84,23 @@ sont pas comptés comme des traitements à convertir.
 
 | Requête ksqlDB de référence | Équivalent Flink livré | Transformation conservée | Topic de sortie Flink |
 | --- | --- | --- | --- |
-| [TABLE_VA_PEAGE_BACKOFFICE_SOCLEET_INDICATEUR](../sql/ksqldb/07-08-windows.sql#L5) | [Hourly](../docker/flink/src/lab/WindowJob.java#L87) ; UID `hourly-aggregate` | SUM incrémental, fenêtre horaire UTC, grâce historique et clé binaire de fenêtre. | `va.peage.backoffice.socleET.indicateur.flink` |
+| [TABLE_VA_PEAGE_BACKOFFICE_SOCLEET_INDICATEUR](../sql/ksqldb/07-08-windows.sql#L5) | [Hourly](../docker/flink/src/lab/WindowJob.java#L88) ; UID `hourly-aggregate` | SUM incrémental, fenêtre horaire UTC, grâce historique et clé binaire de fenêtre. | `va.peage.backoffice.socleET.indicateur.flink` |
 
 ## Lot 8 : Sessions et alarmes — 4 requêtes
 
 | Requête ksqlDB de référence | Équivalent Flink livré | Transformation conservée | Topic de sortie Flink |
 | --- | --- | --- | --- |
-| [VA_PEAGE_CLASSIFICATIONINFOQUALITE](../sql/ksqldb/07-08-windows.sql#L24) | [Sessions(true)](../docker/flink/src/lab/WindowJob.java#L136) ; UID `quality-sessions` | Sessions 60 min ; ratio > 0,3 et NBPASSAGE >= 20 ; fusions et tombstones. | `va.peage.classificationInfoQualite.flink` |
-| [VA_PEAGE_CLASSIFICATIONINFOQUALITECOUNT](../sql/ksqldb/07-08-windows.sql#L47) | [Sessions(false)](../docker/flink/src/lab/WindowJob.java#L136) ; UID `count-sessions` | Sessions 60 min ; COUNT_DISTINCT par HyperLogLog(14), bornes et tombstones. | `va.peage.classificationInfoQualite.Count.flink` |
-| [VA_PEAGE_CLASSIFICATION_ALARMEGLOBALE](../sql/ksqldb/07-08-windows.sql#L90) | [AlarmJoin](../docker/flink/src/lab/WindowJob.java#L199) → [AlarmAggregate(true)](../docker/flink/src/lab/WindowJob.java#L240) ; UID `global_alarm-aggregate` | AlarmJoin ±60 s ; LATEST_BY_OFFSET ; seuil >= 30 ; regroupement société. | `va.peage.classificationAlarme.flink` |
-| [VA_PEAGE_CLASSIFICATION_ALARMEUNITAIRE](../sql/ksqldb/07-08-windows.sql#L60) | [AlarmJoin](../docker/flink/src/lab/WindowJob.java#L199) → [AlarmAggregate(false)](../docker/flink/src/lab/WindowJob.java#L240) ; UID `unit_alarm-aggregate` | AlarmJoin ±60 s ; LATEST_BY_OFFSET ; seuil < 30 ; regroupement gare/voie. | `va.peage.classificationAlarme.flink` |
+| [VA_PEAGE_CLASSIFICATIONINFOQUALITE](../sql/ksqldb/07-08-windows.sql#L24) | [Sessions(true)](../docker/flink/src/lab/WindowJob.java#L138) ; UID `quality-sessions` | Sessions 60 min ; ratio > 0,3 et NBPASSAGE >= 20 ; fusions et tombstones. | `va.peage.classificationInfoQualite.flink` |
+| [VA_PEAGE_CLASSIFICATIONINFOQUALITECOUNT](../sql/ksqldb/07-08-windows.sql#L47) | [Sessions(false)](../docker/flink/src/lab/WindowJob.java#L138) ; UID `count-sessions` | Sessions 60 min ; COUNT_DISTINCT par HyperLogLog(14), bornes et tombstones. | `va.peage.classificationInfoQualite.Count.flink` |
+| [VA_PEAGE_CLASSIFICATION_ALARMEGLOBALE](../sql/ksqldb/07-08-windows.sql#L90) | [AlarmJoin](../docker/flink/src/lab/WindowJob.java#L202) → [AlarmAggregate(true)](../docker/flink/src/lab/WindowJob.java#L244) ; UID `global_alarm-aggregate` | AlarmJoin ±60 s ; LATEST_BY_OFFSET ; seuil >= 30 ; regroupement société. | `va.peage.classificationAlarme.flink` |
+| [VA_PEAGE_CLASSIFICATION_ALARMEUNITAIRE](../sql/ksqldb/07-08-windows.sql#L60) | [AlarmJoin](../docker/flink/src/lab/WindowJob.java#L202) → [AlarmAggregate(false)](../docker/flink/src/lab/WindowJob.java#L244) ; UID `unit_alarm-aggregate` | AlarmJoin ±60 s ; LATEST_BY_OFFSET ; seuil < 30 ; regroupement gare/voie. | `va.peage.classificationAlarme.flink` |
 
 ## Regroupements et dépendances à conserver
 
 | Correspondance | Conséquence pour l’utilisation |
 | --- | --- |
-| Les cinq requêtes Lexhistoric → un INSERT vers lexhistoric_output | Les cinq vues réseau alimentent UNION ALL ; aucune déduplication n’est ajoutée. |
-| Les neuf requêtes de consolidation → deux INSERT entrée/sortie | Les CSAS ASF et les INSERT des autres réseaux deviennent des branches du même UNION ALL. ARS entrée reste exclu car absent des INSERT du journal. |
+| Les cinq requêtes Lexhistoric → un INSERT vers lexhistoric_output | Une source multi-topics lit les cinq réseaux ; aucune déduplication n’est ajoutée. |
+| Les neuf requêtes de consolidation → deux INSERT entrée/sortie | Les CSAS ASF et les INSERT des autres réseaux deviennent les topics d’une même source multi-topics. ARS entrée reste exclu car absent des INSERT du journal. |
 | Les quatre requêtes badges → deux sorties partagées | Les INSERT CARDME et CIP restent distincts, avec une sortie commune par sens. L’explosion conserve la corrélation PAN/historique/D_VET. |
 | Les référentiels du lot 6 → les deux jointures d’enrichissement | Les topics de tables matérialisées sont conservés ; une mise à jour de référence ne réémet pas les transactions passées. |
 | L’enrichissement compteur du lot 6 → la projection compteur du lot 3 | La projection ne remplace pas la jointure amont. |

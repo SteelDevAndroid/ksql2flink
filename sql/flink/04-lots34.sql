@@ -167,24 +167,8 @@ WITH ('connector'='kafka',
   'value.fields-include'='EXCEPT_KEY',
   'sink.delivery-guarantee'='at-least-once');
 
-CREATE TABLE asf_exploded_input (payload STRING, kafka_timestamp TIMESTAMP_LTZ(3) METADATA FROM 'timestamp')
-WITH ('connector'='kafka',
-  'topic'='asf.peage.suiviconso.comptage.bol.exploded.flink',
-  'properties.bootstrap.servers'='kafka:9092',
-  'value.format'='raw',
-  'scan.startup.mode'='earliest-offset',
-  'properties.group.id'='lot34-asf_exploded_input');
-
-CREATE VIEW asf_exploded AS SELECT payload AS j, kafka_timestamp FROM asf_exploded_input;
-CREATE TABLE esc_exploded_input (payload STRING, kafka_timestamp TIMESTAMP_LTZ(3) METADATA FROM 'timestamp')
-WITH ('connector'='kafka',
-  'topic'='esc.peage.suiviconso.comptage.bol.exploded.flink',
-  'properties.bootstrap.servers'='kafka:9092',
-  'value.format'='raw',
-  'scan.startup.mode'='earliest-offset',
-  'properties.group.id'='lot34-esc_exploded_input');
-
-CREATE VIEW esc_exploded AS SELECT payload AS j, kafka_timestamp FROM esc_exploded_input;
+CREATE VIEW asf_exploded AS SELECT JSON_PARTS(ARRAY['message','comptageBols','Etat'], ARRAY[JSON_QUERY(j,'$.message'),JSON_QUERY(j,'$.comptageBols'),item]) AS j, kafka_timestamp FROM asf_bol CROSS JOIN UNNEST(JSON_ITEMS(JSON_QUERY(j,'$.etats'))) AS e(item);
+CREATE VIEW esc_exploded AS SELECT JSON_PARTS(ARRAY['message','comptageBols','Etat'], ARRAY[JSON_QUERY(j,'$.message'),JSON_QUERY(j,'$.comptageBols'),item]) AS j, kafka_timestamp FROM esc_bol CROSS JOIN UNNEST(JSON_ITEMS(JSON_QUERY(j,'$.etats'))) AS e(item);
 EXECUTE STATEMENT SET
 BEGIN
 INSERT INTO flows_extend_output SELECT CASE WHEN j IS NULL THEN CAST(NULL AS STRING) ELSE JSON_PARTS(ARRAY['FLOW','BUSINESSFILTER','BUSINESSRULE','BUSINESSCYCLOPE','RESPONSE','TECHNICALFILTER','STATIONLANE'], ARRAY[JSON_QUERY(j, '$.FLOW'),JSON_QUERY(j, '$.BUSINESSFILTER'),JSON_QUERY(j, '$.BUSINESSRULE'),JSON_QUERY(j, '$.BUSINESSCYCLOPE'),JSON_QUERY(j, '$.RESPONSE'),JSON_QUERY(j, '$.TECHNICALFILTER'),JSON_STRING(CONCAT(COALESCE(JSON_VALUE(j, '$.FLOW.STATION'),''),COALESCE(JSON_VALUE(j, '$.FLOW.LANE'),'')))]) END, kafka_timestamp FROM flows;
@@ -211,7 +195,7 @@ INSERT INTO asf_coffre_output SELECT JSON_OBJECT('DateMessage' VALUE JSON_VALUE(
   'ValeurCourant' VALUE JSON_VALUE(j, '$.comptageCoffre.contenu.courant.valeur' RETURNING INTEGER),
   'UniteCourant' VALUE JSON_VALUE(j, '$.comptageCoffre.contenu.courant.unite')), kafka_timestamp FROM asf_coffre WHERE JSON_VALUE(j, '$.comptageCoffre.type') IN ('sac','coffre') AND JSON_VALUE(j, '$.comptageCoffre.localisation.gare') LIKE '25004%';
 
-INSERT INTO asf_exploded_output SELECT JSON_PARTS(ARRAY['message','comptageBols','Etat'], ARRAY[JSON_QUERY(j,'$.message'),JSON_QUERY(j,'$.comptageBols'),item]), kafka_timestamp FROM asf_bol CROSS JOIN UNNEST(JSON_ITEMS(JSON_QUERY(j,'$.etats'))) AS e(item);
+INSERT INTO asf_exploded_output SELECT j, kafka_timestamp FROM asf_exploded;
 
 INSERT INTO asf_bol_output SELECT JSON_OBJECT('DateMessage' VALUE JSON_VALUE(j, '$.message.DHM'),
   'IdGare' VALUE JSON_VALUE(j, '$.comptageBols.localisation.gare'),
@@ -248,7 +232,7 @@ INSERT INTO esc_coffre_output SELECT JSON_OBJECT('DateMessage' VALUE JSON_VALUE(
   'ValeurCourant' VALUE JSON_VALUE(j, '$.comptageCoffre.contenu.courant.valeur' RETURNING INTEGER),
   'UniteCourant' VALUE JSON_VALUE(j, '$.comptageCoffre.contenu.courant.unite')), kafka_timestamp FROM esc_coffre WHERE JSON_VALUE(j, '$.comptageCoffre.type') IN ('sac','coffre') AND JSON_VALUE(j, '$.comptageCoffre.localisation.gare') LIKE '25006%';
 
-INSERT INTO esc_exploded_output SELECT JSON_PARTS(ARRAY['message','comptageBols','Etat'], ARRAY[JSON_QUERY(j,'$.message'),JSON_QUERY(j,'$.comptageBols'),item]), kafka_timestamp FROM esc_bol CROSS JOIN UNNEST(JSON_ITEMS(JSON_QUERY(j,'$.etats'))) AS e(item);
+INSERT INTO esc_exploded_output SELECT j, kafka_timestamp FROM esc_exploded;
 
 INSERT INTO esc_bol_output SELECT JSON_OBJECT('DateMessage' VALUE JSON_VALUE(j, '$.message.DHM'),
   'IdGare' VALUE JSON_VALUE(j, '$.comptageBols.localisation.gare'),

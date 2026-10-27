@@ -9,6 +9,10 @@ Les requetes historiques du `.log` ne sont pas chargees automatiquement.
   avec liens vers les requetes originales, les equivalents SQL ou DataStream et les topics de sortie.
 - [Rapport detaille](docs/rapport-migration-detaille.md) : couverture des 37 traitements,
   preuves de comparaison, limites d'equivalence, risques et criteres de passage en production.
+- [Argumentaire de migration](docs/argumentaire-migration.md) : justification de la migration,
+  benefices, risques et plan de passage.
+- [Audit des requetes Flink](docs/audit-requetes-flink.md) : simplifications appliquees,
+  bonnes pratiques et risques restants avant la production.
 - [Conseils et guide operationnel](docs/conseils-migration.md) : reconstruction des etats,
   execution parallele, bascule des consommateurs et retour arriere.
 
@@ -90,7 +94,7 @@ Le [contrat du lot 2](docs/lot-2-conformite.md) precise les limites et la proced
 
 Les dix traitements sont dans `sql/flink/04-lots34.sql`, avec la reference du journal dans
 `sql/ksqldb/04-lots34.sql`. Le contrat d'entree compteur provient de la sortie existante du lot 6 :
-la jointure amont n'est pas remplacee. Les bols gardent leur topic intermediaire exploded.
+la jointure amont n'est pas remplacee. Les bols publient toujours leur topic intermediaire exploded, sans le relire.
 
 ```powershell
 python scripts/generate_lots34_sql.py
