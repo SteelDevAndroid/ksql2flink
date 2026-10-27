@@ -8,24 +8,40 @@ CREATE TEMPORARY SYSTEM FUNCTION BADGE_HISTORY AS 'lab.BadgeHistory';
 CREATE TABLE badge_entree_input (
   payload STRING, kafka_timestamp TIMESTAMP_LTZ(3) METADATA FROM 'timestamp'
 ) WITH ('connector'='kafka', 'topic'='va.peage.backoffice.conformite.entree.conforme',
-  'properties.bootstrap.servers'='kafka:9092', 'properties.group.id'='badge-entree',
+  'properties.bootstrap.servers'='${KAFKA_BOOTSTRAP}',
+  'properties.security.protocol'='${KAFKA_SECURITY_PROTOCOL}',
+  'properties.sasl.mechanism'='${KAFKA_SASL_MECHANISM}',
+  'properties.sasl.jaas.config'='${KAFKA_JAAS}',
+  'properties.group.id'='badge-entree',
   'scan.startup.mode'='earliest-offset', 'format'='raw');
 CREATE VIEW badge_entree AS SELECT KSQL_PROJECT(payload, 'entree') AS j, kafka_timestamp FROM badge_entree_input;
 CREATE TABLE badge_entree_output (
   payload STRING, kafka_timestamp TIMESTAMP_LTZ(3) METADATA FROM 'timestamp'
 ) WITH ('connector'='kafka', 'topic'='va.peage.histobadgeva.be.all.flink',
-  'properties.bootstrap.servers'='kafka:9092', 'format'='raw', 'sink.delivery-guarantee'='at-least-once');
+  'properties.bootstrap.servers'='${KAFKA_BOOTSTRAP}',
+  'properties.security.protocol'='${KAFKA_SECURITY_PROTOCOL}',
+  'properties.sasl.mechanism'='${KAFKA_SASL_MECHANISM}',
+  'properties.sasl.jaas.config'='${KAFKA_JAAS}',
+  'format'='raw', 'sink.delivery-guarantee'='at-least-once');
 
 CREATE TABLE badge_sortie_input (
   payload STRING, kafka_timestamp TIMESTAMP_LTZ(3) METADATA FROM 'timestamp'
 ) WITH ('connector'='kafka', 'topic'='va.peage.backoffice.conformite.sortie.conforme',
-  'properties.bootstrap.servers'='kafka:9092', 'properties.group.id'='badge-sortie',
+  'properties.bootstrap.servers'='${KAFKA_BOOTSTRAP}',
+  'properties.security.protocol'='${KAFKA_SECURITY_PROTOCOL}',
+  'properties.sasl.mechanism'='${KAFKA_SASL_MECHANISM}',
+  'properties.sasl.jaas.config'='${KAFKA_JAAS}',
+  'properties.group.id'='badge-sortie',
   'scan.startup.mode'='earliest-offset', 'format'='raw');
 CREATE VIEW badge_sortie AS SELECT KSQL_PROJECT(payload, 'sortie') AS j, kafka_timestamp FROM badge_sortie_input;
 CREATE TABLE badge_sortie_output (
   payload STRING, kafka_timestamp TIMESTAMP_LTZ(3) METADATA FROM 'timestamp'
 ) WITH ('connector'='kafka', 'topic'='va.peage.histobadgeva.vs.all.flink',
-  'properties.bootstrap.servers'='kafka:9092', 'format'='raw', 'sink.delivery-guarantee'='at-least-once');
+  'properties.bootstrap.servers'='${KAFKA_BOOTSTRAP}',
+  'properties.security.protocol'='${KAFKA_SECURITY_PROTOCOL}',
+  'properties.sasl.mechanism'='${KAFKA_SASL_MECHANISM}',
+  'properties.sasl.jaas.config'='${KAFKA_JAAS}',
+  'format'='raw', 'sink.delivery-guarantee'='at-least-once');
 
 EXECUTE STATEMENT SET
 BEGIN

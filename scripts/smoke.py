@@ -9,6 +9,8 @@ import urllib.request
 import urllib.error
 import uuid
 
+from flink_kafka import resolve
+
 ROOT = Path(__file__).resolve().parents[1]
 
 
@@ -62,7 +64,8 @@ def main():
         if engine == 'ksqldb':
             content = content.replace('LAB_INPUT', 'LAB_INPUT_' + run_id.upper())
             content = content.replace('LAB_KSQL', 'LAB_KSQL_' + run_id.upper())
-        return content
+            return content
+        return resolve(content)
 
     query_ids = []
     job_id = None

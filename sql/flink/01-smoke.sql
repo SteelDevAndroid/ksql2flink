@@ -3,7 +3,10 @@ CREATE TABLE lab_input (
   `ID` STRING, `PAYMENT_TYPE` STRING, `AMOUNT` DOUBLE
 ) WITH (
   'connector' = 'kafka', 'topic' = 'lab.input',
-  'properties.bootstrap.servers' = 'kafka:9092',
+  'properties.bootstrap.servers' = '${KAFKA_BOOTSTRAP}',
+  'properties.security.protocol' = '${KAFKA_SECURITY_PROTOCOL}',
+  'properties.sasl.mechanism' = '${KAFKA_SASL_MECHANISM}',
+  'properties.sasl.jaas.config' = '${KAFKA_JAAS}',
   'properties.group.id' = 'lab-flink-smoke',
   'scan.startup.mode' = 'earliest-offset', 'format' = 'json'
 );
@@ -11,7 +14,10 @@ CREATE TABLE lab_output (
   `ID` STRING, `AMOUNT` DOUBLE, `MODEREGLEMENT` INT
 ) WITH (
   'connector' = 'kafka', 'topic' = 'lab.output.flink',
-  'properties.bootstrap.servers' = 'kafka:9092', 'format' = 'json',
+  'properties.bootstrap.servers' = '${KAFKA_BOOTSTRAP}',
+  'properties.security.protocol' = '${KAFKA_SECURITY_PROTOCOL}',
+  'properties.sasl.mechanism' = '${KAFKA_SASL_MECHANISM}',
+  'properties.sasl.jaas.config' = '${KAFKA_JAAS}', 'format' = 'json',
   'sink.delivery-guarantee' = 'at-least-once'
 );
 INSERT INTO lab_output

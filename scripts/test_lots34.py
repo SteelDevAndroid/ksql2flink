@@ -3,6 +3,7 @@ import json
 import re
 import time
 import uuid
+from flink_kafka import resolve
 from smoke import ROOT, docker, request, canonical
 from test_lexhistoric import probe
 
@@ -14,7 +15,7 @@ def main():
     artifact = ROOT / 'artifacts' / run_id
     artifact.mkdir(parents=True)
     ksql = (ROOT / 'sql/ksqldb/04-lots34.sql').read_text()
-    flink = (ROOT / 'sql/flink/04-lots34.sql').read_text()
+    flink = resolve((ROOT / 'sql/flink/04-lots34.sql').read_text())
     inputs, outputs = {}, {}
     for key, info in manifest['sources'].items():
         inputs[key] = f'{run_id}.input.{key}'

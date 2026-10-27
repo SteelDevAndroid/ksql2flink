@@ -3,6 +3,7 @@ import json
 import re
 import time
 import uuid
+from flink_kafka import resolve
 from smoke import ROOT, docker, request, canonical
 from test_lexhistoric import probe
 
@@ -46,7 +47,7 @@ class Pipeline:
 
     def launch(self, path, config=None, topics=None, main_class='lab.SocleEtJob'):
         if config is None:
-            sql = (ROOT / path).read_text()
+            sql = resolve((ROOT / path).read_text())
             for old, new in (topics or {}).items():
                 sql = sql.replace("'" + old + "'", "'" + new + "'")
             file = self.artifact / 'flink.sql'

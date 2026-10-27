@@ -5,6 +5,7 @@ import json
 import re
 import time
 import uuid
+from flink_kafka import resolve
 from smoke import ROOT, docker, request, canonical
 from test_lexhistoric import probe
 
@@ -53,7 +54,7 @@ def main():
     artifact.mkdir(parents=True)
     fixtures = load_fixtures()
     ksql = (ROOT / 'sql/ksqldb/03-conformite.sql').read_text()
-    flink = (ROOT / 'sql/flink/03-conformite.sql').read_text()
+    flink = resolve((ROOT / 'sql/flink/03-conformite.sql').read_text())
     outputs, inputs = {}, {}
     for direction in ('entree', 'sortie'):
         outputs[direction] = {engine: f'{run_id}.{direction}.{engine}' for engine in ('ksql', 'flink')}
