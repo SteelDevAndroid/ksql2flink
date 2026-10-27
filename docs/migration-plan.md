@@ -2,6 +2,7 @@
 
 Source : `kafka_streams_recovery.log`, commit de reference `3e36d34bee855ea944dbfb665c5beb56f38c7a92`.
 Inventaire : **37 traitements persistants** (26 CSAS/CTAS + 11 INSERT distincts), 57 declarations (50 streams, 7 tables).
+Correspondances avec le code livre : [tableau de mapping ksqlDB vers Flink](mapping-ksql-flink.md).
 Les declarations de sources ne sont pas comptees comme traitements. Les repetitions du journal ne creent pas de travail supplementaire.
 Les 31 declarations sans AS SELECT restent des contrats de source a reprendre avec les lots consommateurs.
 

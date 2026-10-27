@@ -5,6 +5,8 @@ Les requetes historiques du `.log` ne sont pas chargees automatiquement.
 
 ## Rapport et conseils de migration
 
+- [Mapping requetes ksqlDB / Flink](docs/mapping-ksql-flink.md) : les 37 correspondances,
+  avec liens vers les requetes originales, les equivalents SQL ou DataStream et les topics de sortie.
 - [Rapport detaille](docs/rapport-migration-detaille.md) : couverture des 37 traitements,
   preuves de comparaison, limites d'equivalence, risques et criteres de passage en production.
 - [Conseils et guide operationnel](docs/conseils-migration.md) : reconstruction des etats,
