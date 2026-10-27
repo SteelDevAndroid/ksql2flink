@@ -17,6 +17,20 @@ montants divises par 100, conservation de l'ordre et des repetitions. Aucune con
 Les tableaux historiques nulls et vides restent distincts. Les sorties entree/sortie partagent les deux topics
 historiques comme dans ksqlDB, avec suffixe `.flink` pour la comparaison. Les cles restent nulles.
 
+### Simplification des filtres du lot 5
+
+Les disjonctions d'egalites sur une meme gare sont regroupees en listes IN. Les quatre
+requetes contiennent ainsi six listes IN au lieu de 142 egalites. Les deux chemins de
+gare utilises en sortie restent relies par OR ; chaque litteral du journal est conserve.
+Le generateur refuse les filtres contenant d'autres operations, telles que AND ou une
+comparaison differente, afin de ne pas simplifier silencieusement une future regle.
+
+Le SQL badges passe de 16 493 a 7 114 caracteres et de 166 a 30 occurrences textuelles
+de JSON_VALUE. Ce gain concerne la lisibilite et les repetitions du code ; aucun gain
+de debit ou de latence n'est revendique sans mesure du plan et de l'execution.
+Les quatre INSERT, les explosions correlees, les filtres PAN et les sorties restent
+distincts comme auparavant. Les ancres de lignes SQL du mapping sont conservees.
+
 ## Lot 6 : choix du traitement a etat
 
 Une jointure SQL Flink sur tables dynamiques ne conserve pas automatiquement le contrat stream-table ksqlDB :
@@ -88,3 +102,8 @@ La reprise d'un etat historique non reconstructible n'est pas automatisee. Aucun
 
 Les rapports JSON et SQL effectifs restent sous `artifacts/<execution>/` et sont publies par la CI comme artefacts.
 Ces preuves couvrent les scenarios decrits, pas tous les entrelacements concurrents possibles.
+
+Apres simplification des filtres du lot 5, execution `badge9583cd53` : 31 entrees,
+35 sorties identiques par moteur, cles, timestamps, valeurs et multiplicites compris.
+Rapport : `artifacts/badge9583cd53/comparison.json`. Les chemins et litteraux des gares
+ont aussi ete compares a ceux du journal pour les quatre requetes.

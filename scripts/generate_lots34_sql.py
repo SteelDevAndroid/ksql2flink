@@ -116,7 +116,7 @@ CREATE TEMPORARY SYSTEM FUNCTION JSON_CONTAINS_STRUCT AS 'lab.JsonContains';
     for net, gare in [('asf', '25004'), ('esc', '25006')]:
         root = 'comptageCoffre'
         pos, kind = v(root + '.position', 'INTEGER'), v(root + '.contenu.type')
-        position = f"CASE WHEN {pos}=0 THEN 15 WHEN {pos}=1 AND {kind}='piece' THEN 7 WHEN {pos}=1 AND {kind}='billet' THEN 16 WHEN {pos}=2 THEN 8 WHEN {pos}=5 THEN 14 ELSE {pos} END"
+        position = f"CASE {pos} WHEN 0 THEN 15 WHEN 1 THEN CASE {kind} WHEN 'piece' THEN 7 WHEN 'billet' THEN 16 ELSE 1 END WHEN 2 THEN 8 WHEN 5 THEN 14 ELSE {pos} END"
         pairs = [('DateMessage', v('message.DHM')), ('IdGare', v(root + '.localisation.gare')),
                  ('Voie', v(root + '.localisation.equipement.numero')), ('DateComptage', v(root + '.dhm')),
                  ('Position', position), ('Type', v(root + '.type')), ('TypeEspece', kind)]
@@ -128,7 +128,7 @@ CREATE TEMPORARY SYSTEM FUNCTION JSON_CONTAINS_STRUCT AS 'lab.JsonContains';
         insert(net + '-exploded', "JSON_PARTS(ARRAY['message','comptageBols','Etat'], ARRAY[JSON_QUERY(j,'$.message'),JSON_QUERY(j,'$.comptageBols'),item])",
                net + '_bol', extra=" CROSS JOIN UNNEST(JSON_ITEMS(JSON_QUERY(j,'$.etats'))) AS e(item)")
         amount = v('Etat.contenu.valeur', 'DOUBLE')
-        position = 'CASE ' + ' '.join(f'WHEN {amount}={a} THEN {n}' for a, n in [(0.1,9),(0.2,10),(0.5,11),(1,12),(2,13)]) + f' ELSE TRUNCATE_INTEGER({amount}) END'
+        position = f'CASE {amount} ' + ' '.join(f'WHEN {a} THEN {n}' for a, n in [(0.1,9),(0.2,10),(0.5,11),(1,12),(2,13)]) + f' ELSE TRUNCATE_INTEGER({amount}) END'
         pairs = [('DateMessage', v('message.DHM')), ('IdGare', v('comptageBols.localisation.gare')),
                  ('Voie', v('comptageBols.localisation.equipement.numero')), ('DateComptage', v('comptageBols.dhm')),
                  ('Position', position), ('Numero', f"SPLIT_INDEX({v('Etat.sujet')}, '.', 1)"),

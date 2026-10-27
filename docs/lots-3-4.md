@@ -33,6 +33,19 @@ Les sources sans colonne KEY n'exportent pas de cle. Les timestamps Kafka sont r
 Les tombstones sont propages par les projections du lot 3, mais elimines par EXPLODE et les filtres du lot 4.
 Les topics ont six partitions ; retention de sept jours sauf FAV ESC (864000000 ms, dix jours).
 
+## Simplification du SQL genere
+
+Les positions des coffres et bols utilisent desormais la forme simple `CASE valeur WHEN ...`.
+Pour les coffres, la position 1 conserve un CASE imbrique sur le type d'espece : piece -> 7,
+billet -> 16, sinon 1. Les autres positions, valeurs nulles et le repli TRUNCATE_INTEGER des
+bols restent inchanges. Les generateurs restent la source des fichiers SQL ; les references
+ksqlDB ne sont pas reecrites.
+
+Le fichier SQL contient ainsi 78 occurrences textuelles de JSON_VALUE au lieu de 96.
+Ce chiffre decrit la reduction des repetitions dans le code, pas un gain CPU mesure :
+le planificateur peut reecrire les expressions. Les topics et le nombre de lignes SQL
+restent inchanges, ce qui conserve les ancres du tableau de mapping.
+
 ## Test reproductible
 
 ```powershell
@@ -64,3 +77,7 @@ arreter les producteurs historiques a une frontiere documentee et eviter deux pr
 ## Validation locale
 
 Execution `lot347d451791` : 104 messages injectes, 124 sorties attendues par moteur dans dix topics. Les valeurs, cles, timestamps et multiplicites correspondent aux fixtures sur chacun des dix traitements. Le rapport reste dans `artifacts/lot347d451791/comparison.json`.
+
+Apres simplification des CASE, execution `lot3494f9d096` : les 104 entrees et les
+124 sorties par moteur passent de nouveau, y compris positions nulles et inconnues,
+fractions, doublons et differences ASF/ESC. Rapport : `artifacts/lot3494f9d096/comparison.json`.
