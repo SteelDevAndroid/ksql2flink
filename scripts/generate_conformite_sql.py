@@ -2,6 +2,7 @@
 import json
 import re
 from pathlib import Path
+from flink_kafka import KAFKA
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -94,7 +95,8 @@ CREATE TEMPORARY SYSTEM FUNCTION KSQL_PROJECT AS 'lab.ProjectKsqlJson';
   kafka_timestamp TIMESTAMP_LTZ(3) METADATA FROM 'timestamp'
 ) WITH (
   'connector'='kafka', 'topic'='va.peage.backoffice.conformite.{direction}.conforme.flink',
-  'properties.bootstrap.servers'='kafka:9092', 'format'='raw',
+  {KAFKA},
+  'format'='raw',
   'sink.delivery-guarantee'='at-least-once'
 );
 """)
@@ -104,7 +106,7 @@ CREATE TEMPORARY SYSTEM FUNCTION KSQL_PROJECT AS 'lab.ProjectKsqlJson';
   kafka_timestamp TIMESTAMP_LTZ(3) METADATA FROM 'timestamp'
 ) WITH (
   'connector'='kafka', 'topic'='{topic}',
-  'properties.bootstrap.servers'='kafka:9092',
+  {KAFKA},
   'properties.group.id'='conformite-flink-{direction}-{network.lower()}',
   'scan.startup.mode'='earliest-offset', 'format'='raw'
 );

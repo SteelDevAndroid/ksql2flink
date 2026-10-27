@@ -57,13 +57,13 @@ public class SocleEtJob {
     }
 
     private static DataStream<Event> source(StreamExecutionEnvironment env, String topic, String group) {
-        return env.fromSource(KafkaSource.<Event>builder().setBootstrapServers("kafka:9092")
+        return env.fromSource(KafkaSource.<Event>builder().setProperties(KafkaConnection.properties())
             .setTopics(topic).setGroupId(group).setStartingOffsets(OffsetsInitializer.earliest())
             .setDeserializer(new ReadRecord()).build(), WatermarkStrategy.noWatermarks(), group).uid(group);
     }
 
     private static void sink(DataStream<Event> stream, String topic, String name) {
-        stream.sinkTo(KafkaSink.<Event>builder().setBootstrapServers("kafka:9092")
+        stream.sinkTo(KafkaSink.<Event>builder().setKafkaProducerConfig(KafkaConnection.properties())
             .setRecordSerializer(new WriteRecord(topic)).setDeliveryGuarantee(DeliveryGuarantee.AT_LEAST_ONCE)
             .build()).name(name).uid(name);
     }

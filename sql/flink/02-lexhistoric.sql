@@ -10,7 +10,10 @@ CREATE TABLE lexhistoric_output (
   kafka_timestamp TIMESTAMP_LTZ(3) METADATA FROM 'timestamp'
 ) WITH (
   'connector'='kafka', 'topic'='va.peage.voie.passagesortieva.lexhistoric.flink',
-  'properties.bootstrap.servers'='kafka:9092',
+  'properties.bootstrap.servers'='${KAFKA_BOOTSTRAP}',
+  'properties.security.protocol'='${KAFKA_SECURITY_PROTOCOL}',
+  'properties.sasl.mechanism'='${KAFKA_SASL_MECHANISM}',
+  'properties.sasl.jaas.config'='${KAFKA_JAAS}',
   'value.format'='json',
   'sink.delivery-guarantee'='at-least-once'
 );
@@ -20,7 +23,10 @@ CREATE TABLE asf_input (
   kafka_timestamp TIMESTAMP_LTZ(3) METADATA FROM 'timestamp'
 ) WITH (
   'connector'='kafka', 'topic'='asf.peage.voie.passagesortieva',
-  'properties.bootstrap.servers'='kafka:9092',
+  'properties.bootstrap.servers'='${KAFKA_BOOTSTRAP}',
+  'properties.security.protocol'='${KAFKA_SECURITY_PROTOCOL}',
+  'properties.sasl.mechanism'='${KAFKA_SASL_MECHANISM}',
+  'properties.sasl.jaas.config'='${KAFKA_JAAS}',
   'properties.group.id'='lexhistoric-flink-asf', 'scan.startup.mode'='earliest-offset',
   'value.format'='raw'
 );
@@ -38,7 +44,10 @@ CREATE TABLE esc_input (
   kafka_timestamp TIMESTAMP_LTZ(3) METADATA FROM 'timestamp'
 ) WITH (
   'connector'='kafka', 'topic'='esc.peage.voie.passagesortieva',
-  'properties.bootstrap.servers'='kafka:9092',
+  'properties.bootstrap.servers'='${KAFKA_BOOTSTRAP}',
+  'properties.security.protocol'='${KAFKA_SECURITY_PROTOCOL}',
+  'properties.sasl.mechanism'='${KAFKA_SASL_MECHANISM}',
+  'properties.sasl.jaas.config'='${KAFKA_JAAS}',
   'properties.group.id'='lexhistoric-flink-esc', 'scan.startup.mode'='earliest-offset',
   'value.format'='raw'
 );
@@ -56,7 +65,10 @@ CREATE TABLE ars_input (
   kafka_timestamp TIMESTAMP_LTZ(3) METADATA FROM 'timestamp'
 ) WITH (
   'connector'='kafka', 'topic'='ars.peage.voie.passagesortieva',
-  'properties.bootstrap.servers'='kafka:9092',
+  'properties.bootstrap.servers'='${KAFKA_BOOTSTRAP}',
+  'properties.security.protocol'='${KAFKA_SECURITY_PROTOCOL}',
+  'properties.sasl.mechanism'='${KAFKA_SASL_MECHANISM}',
+  'properties.sasl.jaas.config'='${KAFKA_JAAS}',
   'properties.group.id'='lexhistoric-flink-ars', 'scan.startup.mode'='earliest-offset',
   'value.format'='raw'
 );
@@ -74,7 +86,10 @@ CREATE TABLE acr_input (
   kafka_timestamp TIMESTAMP_LTZ(3) METADATA FROM 'timestamp'
 ) WITH (
   'connector'='kafka', 'topic'='acr.peage.voie.passagesortieva',
-  'properties.bootstrap.servers'='kafka:9092',
+  'properties.bootstrap.servers'='${KAFKA_BOOTSTRAP}',
+  'properties.security.protocol'='${KAFKA_SECURITY_PROTOCOL}',
+  'properties.sasl.mechanism'='${KAFKA_SASL_MECHANISM}',
+  'properties.sasl.jaas.config'='${KAFKA_JAAS}',
   'properties.group.id'='lexhistoric-flink-acr', 'scan.startup.mode'='earliest-offset',
   'value.format'='raw'
 );
@@ -92,7 +107,10 @@ CREATE TABLE cof_input (
   kafka_timestamp TIMESTAMP_LTZ(3) METADATA FROM 'timestamp'
 ) WITH (
   'connector'='kafka', 'topic'='cof.peage.voie.passagesortieva',
-  'properties.bootstrap.servers'='kafka:9092',
+  'properties.bootstrap.servers'='${KAFKA_BOOTSTRAP}',
+  'properties.security.protocol'='${KAFKA_SECURITY_PROTOCOL}',
+  'properties.sasl.mechanism'='${KAFKA_SASL_MECHANISM}',
+  'properties.sasl.jaas.config'='${KAFKA_JAAS}',
   'properties.group.id'='lexhistoric-flink-cof', 'scan.startup.mode'='earliest-offset',
   'value.format'='raw'
 );

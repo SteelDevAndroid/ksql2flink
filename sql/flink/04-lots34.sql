@@ -10,7 +10,10 @@ CREATE TEMPORARY SYSTEM FUNCTION JSON_STRING AS 'lab.JsonString';
 CREATE TABLE flows_input (payload STRING, kafka_timestamp TIMESTAMP_LTZ(3) METADATA FROM 'timestamp')
 WITH ('connector'='kafka',
   'topic'='va.peage.classification.flows',
-  'properties.bootstrap.servers'='kafka:9092',
+  'properties.bootstrap.servers'='${KAFKA_BOOTSTRAP}',
+  'properties.security.protocol'='${KAFKA_SECURITY_PROTOCOL}',
+  'properties.sasl.mechanism'='${KAFKA_SASL_MECHANISM}',
+  'properties.sasl.jaas.config'='${KAFKA_JAAS}',
   'value.format'='raw',
   'scan.startup.mode'='earliest-offset',
   'properties.group.id'='lot34-flows_input');
@@ -19,7 +22,10 @@ CREATE VIEW flows AS SELECT kafka_timestamp, KSQL_PROJECT(payload, 'lot34-flows'
 CREATE TABLE asf_coffre_input (payload STRING, kafka_timestamp TIMESTAMP_LTZ(3) METADATA FROM 'timestamp')
 WITH ('connector'='kafka',
   'topic'='asf.peage.voie.comptage.coffre',
-  'properties.bootstrap.servers'='kafka:9092',
+  'properties.bootstrap.servers'='${KAFKA_BOOTSTRAP}',
+  'properties.security.protocol'='${KAFKA_SECURITY_PROTOCOL}',
+  'properties.sasl.mechanism'='${KAFKA_SASL_MECHANISM}',
+  'properties.sasl.jaas.config'='${KAFKA_JAAS}',
   'value.format'='raw',
   'scan.startup.mode'='earliest-offset',
   'properties.group.id'='lot34-asf_coffre_input');
@@ -28,7 +34,10 @@ CREATE VIEW asf_coffre AS SELECT kafka_timestamp, KSQL_PROJECT(payload, 'lot34-a
 CREATE TABLE asf_bol_input (payload STRING, kafka_timestamp TIMESTAMP_LTZ(3) METADATA FROM 'timestamp')
 WITH ('connector'='kafka',
   'topic'='asf.peage.voie.comptage.bol',
-  'properties.bootstrap.servers'='kafka:9092',
+  'properties.bootstrap.servers'='${KAFKA_BOOTSTRAP}',
+  'properties.security.protocol'='${KAFKA_SECURITY_PROTOCOL}',
+  'properties.sasl.mechanism'='${KAFKA_SASL_MECHANISM}',
+  'properties.sasl.jaas.config'='${KAFKA_JAAS}',
   'value.format'='raw',
   'scan.startup.mode'='earliest-offset',
   'properties.group.id'='lot34-asf_bol_input');
@@ -37,7 +46,10 @@ CREATE VIEW asf_bol AS SELECT kafka_timestamp, KSQL_PROJECT(payload, 'lot34-asf-
 CREATE TABLE asf_synoptique_input (kafka_key BYTES, payload STRING, kafka_timestamp TIMESTAMP_LTZ(3) METADATA FROM 'timestamp')
 WITH ('connector'='kafka',
   'topic'='asf.peage.voie.synoptique',
-  'properties.bootstrap.servers'='kafka:9092',
+  'properties.bootstrap.servers'='${KAFKA_BOOTSTRAP}',
+  'properties.security.protocol'='${KAFKA_SECURITY_PROTOCOL}',
+  'properties.sasl.mechanism'='${KAFKA_SASL_MECHANISM}',
+  'properties.sasl.jaas.config'='${KAFKA_JAAS}',
   'value.format'='raw',
   'key.format'='raw',
   'key.fields'='kafka_key',
@@ -49,7 +61,10 @@ CREATE VIEW asf_synoptique AS SELECT kafka_key, kafka_timestamp, KSQL_PROJECT(pa
 CREATE TABLE esc_coffre_input (payload STRING, kafka_timestamp TIMESTAMP_LTZ(3) METADATA FROM 'timestamp')
 WITH ('connector'='kafka',
   'topic'='esc.peage.voie.comptage.coffre',
-  'properties.bootstrap.servers'='kafka:9092',
+  'properties.bootstrap.servers'='${KAFKA_BOOTSTRAP}',
+  'properties.security.protocol'='${KAFKA_SECURITY_PROTOCOL}',
+  'properties.sasl.mechanism'='${KAFKA_SASL_MECHANISM}',
+  'properties.sasl.jaas.config'='${KAFKA_JAAS}',
   'value.format'='raw',
   'scan.startup.mode'='earliest-offset',
   'properties.group.id'='lot34-esc_coffre_input');
@@ -58,7 +73,10 @@ CREATE VIEW esc_coffre AS SELECT kafka_timestamp, KSQL_PROJECT(payload, 'lot34-e
 CREATE TABLE esc_bol_input (payload STRING, kafka_timestamp TIMESTAMP_LTZ(3) METADATA FROM 'timestamp')
 WITH ('connector'='kafka',
   'topic'='esc.peage.voie.comptage.bol',
-  'properties.bootstrap.servers'='kafka:9092',
+  'properties.bootstrap.servers'='${KAFKA_BOOTSTRAP}',
+  'properties.security.protocol'='${KAFKA_SECURITY_PROTOCOL}',
+  'properties.sasl.mechanism'='${KAFKA_SASL_MECHANISM}',
+  'properties.sasl.jaas.config'='${KAFKA_JAAS}',
   'value.format'='raw',
   'scan.startup.mode'='earliest-offset',
   'properties.group.id'='lot34-esc_bol_input');
@@ -67,7 +85,10 @@ CREATE VIEW esc_bol AS SELECT kafka_timestamp, KSQL_PROJECT(payload, 'lot34-esc-
 CREATE TABLE esc_synoptique_input (kafka_key BYTES, payload STRING, kafka_timestamp TIMESTAMP_LTZ(3) METADATA FROM 'timestamp')
 WITH ('connector'='kafka',
   'topic'='esc.peage.voie.synoptique',
-  'properties.bootstrap.servers'='kafka:9092',
+  'properties.bootstrap.servers'='${KAFKA_BOOTSTRAP}',
+  'properties.security.protocol'='${KAFKA_SECURITY_PROTOCOL}',
+  'properties.sasl.mechanism'='${KAFKA_SASL_MECHANISM}',
+  'properties.sasl.jaas.config'='${KAFKA_JAAS}',
   'value.format'='raw',
   'key.format'='raw',
   'key.fields'='kafka_key',
@@ -79,7 +100,10 @@ CREATE VIEW esc_synoptique AS SELECT kafka_key, kafka_timestamp, KSQL_PROJECT(pa
 CREATE TABLE compteur_input_input (kafka_key BYTES, payload STRING, kafka_timestamp TIMESTAMP_LTZ(3) METADATA FROM 'timestamp')
 WITH ('connector'='kafka',
   'topic'='VA_PEAGE_BACKOFFICE_SOCLEET_FILTER_REF_COMPTEUR',
-  'properties.bootstrap.servers'='kafka:9092',
+  'properties.bootstrap.servers'='${KAFKA_BOOTSTRAP}',
+  'properties.security.protocol'='${KAFKA_SECURITY_PROTOCOL}',
+  'properties.sasl.mechanism'='${KAFKA_SASL_MECHANISM}',
+  'properties.sasl.jaas.config'='${KAFKA_JAAS}',
   'value.format'='raw',
   'key.format'='raw',
   'key.fields'='kafka_key',
@@ -91,14 +115,20 @@ CREATE VIEW compteur_input AS SELECT kafka_key, kafka_timestamp, KSQL_PROJECT(pa
 CREATE TABLE flows_extend_output (payload STRING, kafka_timestamp TIMESTAMP_LTZ(3) METADATA FROM 'timestamp')
 WITH ('connector'='kafka',
   'topic'='VA_PEAGE_CLASSIFICATION_FLOWS_EXTEND.flink',
-  'properties.bootstrap.servers'='kafka:9092',
+  'properties.bootstrap.servers'='${KAFKA_BOOTSTRAP}',
+  'properties.security.protocol'='${KAFKA_SECURITY_PROTOCOL}',
+  'properties.sasl.mechanism'='${KAFKA_SASL_MECHANISM}',
+  'properties.sasl.jaas.config'='${KAFKA_JAAS}',
   'value.format'='raw',
   'sink.delivery-guarantee'='at-least-once');
 
 CREATE TABLE compteur_output (kafka_key BYTES, payload STRING, kafka_timestamp TIMESTAMP_LTZ(3) METADATA FROM 'timestamp')
 WITH ('connector'='kafka',
   'topic'='va.peage.backoffice.socleET.compteur.flink',
-  'properties.bootstrap.servers'='kafka:9092',
+  'properties.bootstrap.servers'='${KAFKA_BOOTSTRAP}',
+  'properties.security.protocol'='${KAFKA_SECURITY_PROTOCOL}',
+  'properties.sasl.mechanism'='${KAFKA_SASL_MECHANISM}',
+  'properties.sasl.jaas.config'='${KAFKA_JAAS}',
   'value.format'='raw',
   'key.format'='raw',
   'key.fields'='kafka_key',
@@ -108,49 +138,70 @@ WITH ('connector'='kafka',
 CREATE TABLE asf_coffre_output (payload STRING, kafka_timestamp TIMESTAMP_LTZ(3) METADATA FROM 'timestamp')
 WITH ('connector'='kafka',
   'topic'='asf.peage.suiviconso.comptage.coffre.flink',
-  'properties.bootstrap.servers'='kafka:9092',
+  'properties.bootstrap.servers'='${KAFKA_BOOTSTRAP}',
+  'properties.security.protocol'='${KAFKA_SECURITY_PROTOCOL}',
+  'properties.sasl.mechanism'='${KAFKA_SASL_MECHANISM}',
+  'properties.sasl.jaas.config'='${KAFKA_JAAS}',
   'value.format'='raw',
   'sink.delivery-guarantee'='at-least-once');
 
 CREATE TABLE esc_coffre_output (payload STRING, kafka_timestamp TIMESTAMP_LTZ(3) METADATA FROM 'timestamp')
 WITH ('connector'='kafka',
   'topic'='esc.peage.suiviconso.comptage.coffre.flink',
-  'properties.bootstrap.servers'='kafka:9092',
+  'properties.bootstrap.servers'='${KAFKA_BOOTSTRAP}',
+  'properties.security.protocol'='${KAFKA_SECURITY_PROTOCOL}',
+  'properties.sasl.mechanism'='${KAFKA_SASL_MECHANISM}',
+  'properties.sasl.jaas.config'='${KAFKA_JAAS}',
   'value.format'='raw',
   'sink.delivery-guarantee'='at-least-once');
 
 CREATE TABLE asf_exploded_output (payload STRING, kafka_timestamp TIMESTAMP_LTZ(3) METADATA FROM 'timestamp')
 WITH ('connector'='kafka',
   'topic'='asf.peage.suiviconso.comptage.bol.exploded.flink',
-  'properties.bootstrap.servers'='kafka:9092',
+  'properties.bootstrap.servers'='${KAFKA_BOOTSTRAP}',
+  'properties.security.protocol'='${KAFKA_SECURITY_PROTOCOL}',
+  'properties.sasl.mechanism'='${KAFKA_SASL_MECHANISM}',
+  'properties.sasl.jaas.config'='${KAFKA_JAAS}',
   'value.format'='raw',
   'sink.delivery-guarantee'='at-least-once');
 
 CREATE TABLE esc_exploded_output (payload STRING, kafka_timestamp TIMESTAMP_LTZ(3) METADATA FROM 'timestamp')
 WITH ('connector'='kafka',
   'topic'='esc.peage.suiviconso.comptage.bol.exploded.flink',
-  'properties.bootstrap.servers'='kafka:9092',
+  'properties.bootstrap.servers'='${KAFKA_BOOTSTRAP}',
+  'properties.security.protocol'='${KAFKA_SECURITY_PROTOCOL}',
+  'properties.sasl.mechanism'='${KAFKA_SASL_MECHANISM}',
+  'properties.sasl.jaas.config'='${KAFKA_JAAS}',
   'value.format'='raw',
   'sink.delivery-guarantee'='at-least-once');
 
 CREATE TABLE asf_bol_output (payload STRING, kafka_timestamp TIMESTAMP_LTZ(3) METADATA FROM 'timestamp')
 WITH ('connector'='kafka',
   'topic'='asf.peage.suiviconso.comptage.bol.flink',
-  'properties.bootstrap.servers'='kafka:9092',
+  'properties.bootstrap.servers'='${KAFKA_BOOTSTRAP}',
+  'properties.security.protocol'='${KAFKA_SECURITY_PROTOCOL}',
+  'properties.sasl.mechanism'='${KAFKA_SASL_MECHANISM}',
+  'properties.sasl.jaas.config'='${KAFKA_JAAS}',
   'value.format'='raw',
   'sink.delivery-guarantee'='at-least-once');
 
 CREATE TABLE esc_bol_output (payload STRING, kafka_timestamp TIMESTAMP_LTZ(3) METADATA FROM 'timestamp')
 WITH ('connector'='kafka',
   'topic'='esc.peage.suiviconso.comptage.bol.flink',
-  'properties.bootstrap.servers'='kafka:9092',
+  'properties.bootstrap.servers'='${KAFKA_BOOTSTRAP}',
+  'properties.security.protocol'='${KAFKA_SECURITY_PROTOCOL}',
+  'properties.sasl.mechanism'='${KAFKA_SASL_MECHANISM}',
+  'properties.sasl.jaas.config'='${KAFKA_JAAS}',
   'value.format'='raw',
   'sink.delivery-guarantee'='at-least-once');
 
 CREATE TABLE asf_fav_output (kafka_key BYTES, payload STRING, kafka_timestamp TIMESTAMP_LTZ(3) METADATA FROM 'timestamp')
 WITH ('connector'='kafka',
   'topic'='asf.peage.teleop.synoptique.fav.flink',
-  'properties.bootstrap.servers'='kafka:9092',
+  'properties.bootstrap.servers'='${KAFKA_BOOTSTRAP}',
+  'properties.security.protocol'='${KAFKA_SECURITY_PROTOCOL}',
+  'properties.sasl.mechanism'='${KAFKA_SASL_MECHANISM}',
+  'properties.sasl.jaas.config'='${KAFKA_JAAS}',
   'value.format'='raw',
   'key.format'='raw',
   'key.fields'='kafka_key',
@@ -160,7 +211,10 @@ WITH ('connector'='kafka',
 CREATE TABLE esc_fav_output (kafka_key BYTES, payload STRING, kafka_timestamp TIMESTAMP_LTZ(3) METADATA FROM 'timestamp')
 WITH ('connector'='kafka',
   'topic'='esc.peage.teleop.synoptique.fav.flink',
-  'properties.bootstrap.servers'='kafka:9092',
+  'properties.bootstrap.servers'='${KAFKA_BOOTSTRAP}',
+  'properties.security.protocol'='${KAFKA_SECURITY_PROTOCOL}',
+  'properties.sasl.mechanism'='${KAFKA_SASL_MECHANISM}',
+  'properties.sasl.jaas.config'='${KAFKA_JAAS}',
   'value.format'='raw',
   'key.format'='raw',
   'key.fields'='kafka_key',
@@ -170,7 +224,10 @@ WITH ('connector'='kafka',
 CREATE TABLE asf_exploded_input (payload STRING, kafka_timestamp TIMESTAMP_LTZ(3) METADATA FROM 'timestamp')
 WITH ('connector'='kafka',
   'topic'='asf.peage.suiviconso.comptage.bol.exploded.flink',
-  'properties.bootstrap.servers'='kafka:9092',
+  'properties.bootstrap.servers'='${KAFKA_BOOTSTRAP}',
+  'properties.security.protocol'='${KAFKA_SECURITY_PROTOCOL}',
+  'properties.sasl.mechanism'='${KAFKA_SASL_MECHANISM}',
+  'properties.sasl.jaas.config'='${KAFKA_JAAS}',
   'value.format'='raw',
   'scan.startup.mode'='earliest-offset',
   'properties.group.id'='lot34-asf_exploded_input');
@@ -179,7 +236,10 @@ CREATE VIEW asf_exploded AS SELECT payload AS j, kafka_timestamp FROM asf_explod
 CREATE TABLE esc_exploded_input (payload STRING, kafka_timestamp TIMESTAMP_LTZ(3) METADATA FROM 'timestamp')
 WITH ('connector'='kafka',
   'topic'='esc.peage.suiviconso.comptage.bol.exploded.flink',
-  'properties.bootstrap.servers'='kafka:9092',
+  'properties.bootstrap.servers'='${KAFKA_BOOTSTRAP}',
+  'properties.security.protocol'='${KAFKA_SECURITY_PROTOCOL}',
+  'properties.sasl.mechanism'='${KAFKA_SASL_MECHANISM}',
+  'properties.sasl.jaas.config'='${KAFKA_JAAS}',
   'value.format'='raw',
   'scan.startup.mode'='earliest-offset',
   'properties.group.id'='lot34-esc_exploded_input');

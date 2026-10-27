@@ -4,6 +4,7 @@ import json
 import re
 import time
 import uuid
+from flink_kafka import resolve
 from smoke import ROOT, docker, request, canonical
 
 NETWORKS = ('ASF', 'ESC', 'ARS', 'ACR', 'COF')
@@ -30,7 +31,7 @@ def main():
                '--config', 'cleanup.policy=delete', '--config', 'retention.ms=86400000')
 
     ksql = (ROOT / 'sql/ksqldb/02-lexhistoric.sql').read_text()
-    flink = (ROOT / 'sql/flink/02-lexhistoric.sql').read_text()
+    flink = resolve((ROOT / 'sql/flink/02-lexhistoric.sql').read_text())
     ksql = ksql.replace(original_output, output_ksql)
     flink = flink.replace(original_output + '.flink', output_flink)
     for net, topic in inputs.items():

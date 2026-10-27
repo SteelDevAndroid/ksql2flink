@@ -11,6 +11,8 @@ Les requetes historiques du `.log` ne sont pas chargees automatiquement.
   preuves de comparaison, limites d'equivalence, risques et criteres de passage en production.
 - [Conseils et guide operationnel](docs/conseils-migration.md) : reconstruction des etats,
   execution parallele, bascule des consommateurs et retour arriere.
+- [Architecture de production](docs/architecture-production.md) : Flink Kubernetes Operator,
+  un job par chaine, `lab.SqlRunner`, etat, livraison, evolution des requetes et visualisation des jobs.
 
 ## Demarrage
 
@@ -149,7 +151,9 @@ docker compose run --rm sql-client
 ```
 
 Les fichiers `sql/ksqldb` sont montes dans `/sql` du CLI ; les fichiers `sql/flink`
-dans `/opt/flink/sql`. Exemples d'execution manuelle (creer les topics avant) :
+dans `/opt/flink/sql`. Les scripts Flink contiennent des variables Kafka (`${KAFKA_BOOTSTRAP}`...)
+que `sql-client` ne resout pas : les soumettre avec `lab.SqlRunner`, qui lit les valeurs du
+laboratoire definies dans `compose.yaml`. Exemples d'execution manuelle (creer les topics avant) :
 
 ```sql
 -- Console ksqlDB
@@ -157,7 +161,7 @@ RUN SCRIPT '/sql/01-smoke.sql';
 ```
 
 ```powershell
-docker compose run --rm -T sql-client embedded -f /opt/flink/sql/01-smoke.sql
+docker compose exec -T jobmanager /opt/flink/bin/flink run -d -c lab.SqlRunner /opt/flink/lib/migration-lab.jar /opt/flink/sql/01-smoke.sql
 ```
 
 Pour les exemples fixes, creer les topics avant de soumettre les deux scripts :

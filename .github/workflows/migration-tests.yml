@@ -28,6 +28,8 @@ jobs:
           python scripts/generate_lots56.py
           python scripts/generate_lots78.py
           git diff --exit-code -- sql docker/flink/resources/schemas docs/lots34-contracts.json docs/lots56-contracts.json docs/lots78-contracts.json
+      - name: Run Flink image unit tests
+        run: docker build --build-context sql=sql --target test docker/flink
       - name: Start migration lab
         run: docker compose up -d --build --wait --wait-timeout 240
       - name: Run smoke comparison

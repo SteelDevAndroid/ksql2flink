@@ -1,6 +1,7 @@
 """Generate lots 3/4 SQL and source contracts from the immutable recovery journal."""
 import json
 import re
+from flink_kafka import KAFKA_OPTIONS
 from generate_conformite_sql import ROOT, SchemaParser
 
 
@@ -69,8 +70,7 @@ CREATE TEMPORARY SYSTEM FUNCTION JSON_CONTAINS_STRUCT AS 'lab.JsonContains';
 """]
     def table(name, topic, keyed=False, source=False):
         key_column = 'kafka_key BYTES, ' if keyed else ''
-        opts = ["'connector'='kafka'", f"'topic'='{topic}'", "'properties.bootstrap.servers'='kafka:9092'",
-                "'value.format'='raw'"]
+        opts = ["'connector'='kafka'", f"'topic'='{topic}'", *KAFKA_OPTIONS, "'value.format'='raw'"]
         if keyed:
             opts += ["'key.format'='raw'", "'key.fields'='kafka_key'", "'value.fields-include'='EXCEPT_KEY'"]
         if source:

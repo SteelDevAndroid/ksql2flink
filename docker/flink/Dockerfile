@@ -18,5 +18,14 @@ COPY resources /resources
 RUN mkdir /classes && javac -cp '/deps/*' -d /classes /src/lab/*.java \
     && jar --create --file /migration-lab.jar -C /classes . -C /resources .
 
+# Unit tests: docker build --build-context sql=sql --target test docker/flink
+FROM compiler AS test
+ADD https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-console-standalone/1.11.4/junit-platform-console-standalone-1.11.4.jar /junit.jar
+COPY test /test
+COPY --from=sql flink /sql
+RUN mkdir /test-classes && javac -cp '/classes:/deps/*:/junit.jar' -d /test-classes /test/lab/*.java \
+    && java -cp '/test-classes:/classes:/deps/*:/junit.jar' org.junit.platform.console.ConsoleLauncher \
+      execute --scan-class-path /test-classes --fail-if-no-tests
+
 FROM runtime
 COPY --from=compiler /migration-lab.jar /opt/flink/lib/migration-lab.jar

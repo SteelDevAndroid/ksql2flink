@@ -1,6 +1,7 @@
 """Extract the eight lot-5/6 queries and generate their deployment contracts."""
 import json
 import re
+from flink_kafka import KAFKA
 from generate_conformite_sql import ROOT, SchemaParser
 
 
@@ -59,13 +60,15 @@ CREATE TEMPORARY SYSTEM FUNCTION BADGE_HISTORY AS 'lab.BadgeHistory';
         sql.append(f"""CREATE TABLE badge_{direction}_input (
   payload STRING, kafka_timestamp TIMESTAMP_LTZ(3) METADATA FROM 'timestamp'
 ) WITH ('connector'='kafka', 'topic'='{badge_sources[direction]['topic']}',
-  'properties.bootstrap.servers'='kafka:9092', 'properties.group.id'='badge-{direction}',
+  {KAFKA},
+  'properties.group.id'='badge-{direction}',
   'scan.startup.mode'='earliest-offset', 'format'='raw');
 CREATE VIEW badge_{direction} AS SELECT KSQL_PROJECT(payload, '{direction}') AS j, kafka_timestamp FROM badge_{direction}_input;
 CREATE TABLE badge_{direction}_output (
   payload STRING, kafka_timestamp TIMESTAMP_LTZ(3) METADATA FROM 'timestamp'
 ) WITH ('connector'='kafka', 'topic'='{badge_outputs[direction]['topic']}.flink',
-  'properties.bootstrap.servers'='kafka:9092', 'format'='raw', 'sink.delivery-guarantee'='at-least-once');
+  {KAFKA},
+  'format'='raw', 'sink.delivery-guarantee'='at-least-once');
 """)
     sql.append('EXECUTE STATEMENT SET\nBEGIN')
     for direction, short in [('entree', 'BE'), ('sortie', 'VS')]:

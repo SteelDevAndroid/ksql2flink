@@ -64,7 +64,7 @@ Creer prealablement les neuf entrees et deux sorties du SQL avec six partitions 
 cleanup.policy=delete, replication adaptee a l'environnement. Soumettre ensuite :
 
 ```powershell
-docker compose run --rm -T sql-client embedded -f /opt/flink/sql/03-conformite.sql
+docker compose exec -T jobmanager /opt/flink/bin/flink run -d -c lab.SqlRunner /opt/flink/lib/migration-lab.jar /opt/flink/sql/03-conformite.sql
 ```
 
 Le SQL utilise earliest-offset pour le replay local. Une bascule de production doit fixer les offsets par partition,
