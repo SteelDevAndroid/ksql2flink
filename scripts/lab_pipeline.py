@@ -15,14 +15,14 @@ class Pipeline:
         self.queries = []
         self.job = None
 
-    def topic(self, name, compact=False):
+    def topic(self, name, compact=False, partitions=6):
         topic = self.run_id + '.' + name
         docker('exec', '-T', 'kafka', 'kafka-topics', '--bootstrap-server', 'kafka:9092',
-               '--create', '--topic', topic, '--partitions', '6', '--replication-factor', '1',
+               '--create', '--topic', topic, '--partitions', str(partitions), '--replication-factor', '1',
                '--config', 'cleanup.policy=' + ('compact' if compact else 'delete'))
         return topic
 
-    def reference(self, path, topics, count):
+    def reference(self, path, topics, count, partitions=None):
         sql = (ROOT / path).read_text(encoding='utf-8')
         for old, new in topics.items():
             sql = sql.replace("'" + old + "'", "'" + new + "'")
@@ -31,6 +31,8 @@ class Pipeline:
         for name in sorted(set(names), key=len, reverse=True):
             sql = re.sub(r'\b' + name + r'\b', self.run_id.upper() + '_' + name, sql)
         sql = re.sub(r'REPLICAS=\d+', 'REPLICAS=1', sql)
+        if partitions:
+            sql = re.sub(r'PARTITIONS=\d+', f'PARTITIONS={partitions}', sql)
         sql = re.sub(r"CLEANUP_POLICY='[^']*',\s*", '', sql)
         # DESCRIBE also prints retention for non-windowed tables, which the submit API rejects.
         sql = re.sub(r'CREATE (?:OR REPLACE )?TABLE .*?;',

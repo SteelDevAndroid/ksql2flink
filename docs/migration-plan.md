@@ -70,7 +70,7 @@ Les numeros renvoient aux lignes du journal original. Le fichier JSON voisin per
 Entrees : `{asf,esc,ars,acr,cof}.peage.voie.passagesortieva` (six partitions dans le laboratoire).
 Sortie ksqlDB : `va.peage.voie.passagesortieva.lexhistoric` (deux partitions, retention 24 h).
 Sortie Flink de comparaison : meme nom avec suffixe `.flink` ; ne pas activer les deux producteurs sur le topic historique.
-Les cinq branches sont reunies avec UNION ALL : aucun DISTINCT, aucune deduplication.
+Les cinq topics sont lus par une seule source multi-topics : aucun DISTINCT, aucune deduplication.
 
 | Regle | Traduction |
 | --- | --- |

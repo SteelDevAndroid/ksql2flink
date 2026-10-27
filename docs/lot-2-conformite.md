@@ -7,7 +7,7 @@ actuel, bien qu'une declaration de source existe dans le journal. Ajouter cette 
 ## Architecture et contrat
 
 Les cinq sources sortie et quatre sources entree sont des topics de six partitions.
-Deux INSERT Flink dans un meme STATEMENT SET consolident ces sources avec UNION ALL, sans deduplication.
+Deux INSERT Flink dans un meme STATEMENT SET consolident ces sources, lues par une source multi-topics par sens, sans deduplication.
 Les deux sorties de comparaison portent le suffixe `.flink` :
 
 - `va.peage.backoffice.conformite.entree.conforme.flink`

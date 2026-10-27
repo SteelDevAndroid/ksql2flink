@@ -86,20 +86,21 @@ CREATE TEMPORARY SYSTEM FUNCTION JSON_CONTAINS_STRUCT AS 'lab.JsonContains';
     for key, info in output_info.items():
         table(key.replace('-', '_') + '_output', info['topic'] + '.flink', info['keyed'])
     for net in ('asf', 'esc'):
-        # Downstream bol query reads the materialized exploded topic, as in ksqlDB.
-        topic = output_info[net + '-exploded']['topic'] + '.flink'
-        table(net + '_exploded_input', topic, source=True)
-        sql.append(f'CREATE VIEW {net}_exploded AS SELECT payload AS j, kafka_timestamp FROM {net}_exploded_input;')
+        # The exploded topic is still published, but the bol query reuses the same view in-job
+        # instead of reading it back from Kafka: same rows and timestamps, no extra hop.
+        sql.append(f"CREATE VIEW {net}_exploded AS SELECT JSON_PARTS(ARRAY['message','comptageBols','Etat'], "
+                   f"ARRAY[JSON_QUERY(j,'$.message'),JSON_QUERY(j,'$.comptageBols'),item]) AS j, kafka_timestamp "
+                   f"FROM {net}_bol CROSS JOIN UNNEST(JSON_ITEMS(JSON_QUERY(j,'$.etats'))) AS e(item);")
     def v(path, typ=None, doc='j'):
         suffix = f' RETURNING {typ}' if typ else ''
         return f"JSON_VALUE({doc}, '$.{path}'{suffix})"
     def obj(pairs):
         return 'JSON_OBJECT(' + ',\n  '.join(f"'{name}' VALUE {expr}" for name, expr in pairs) + ')'
     jobs = []
-    def insert(key, expr, view, where=None, extra=''):
+    def insert(key, expr, view, where=None):
         info = output_info[key]
         prefix = 'kafka_key, ' if info['keyed'] else ''
-        jobs.append(f"INSERT INTO {key.replace('-', '_')}_output SELECT {prefix}{expr}, kafka_timestamp FROM {view}{extra}" +
+        jobs.append(f"INSERT INTO {key.replace('-', '_')}_output SELECT {prefix}{expr}, kafka_timestamp FROM {view}" +
                     (f' WHERE {where}' if where else '') + ';')
     # JSON_PARTS embeds the declared source structures instead of escaping them as strings.
     flow_fields = list(source_info['flows']['schema'])
@@ -125,8 +126,7 @@ CREATE TEMPORARY SYSTEM FUNCTION JSON_CONTAINS_STRUCT AS 'lab.JsonContains';
             pairs.append((alias, v(root + '.contenu.' + path, typ)))
         insert(net + '-coffre', obj(pairs), net + '_coffre',
                f"{v(root+'.type')} IN ('sac','coffre') AND {v(root+'.localisation.gare')} LIKE '{gare}%'")
-        insert(net + '-exploded', "JSON_PARTS(ARRAY['message','comptageBols','Etat'], ARRAY[JSON_QUERY(j,'$.message'),JSON_QUERY(j,'$.comptageBols'),item])",
-               net + '_bol', extra=" CROSS JOIN UNNEST(JSON_ITEMS(JSON_QUERY(j,'$.etats'))) AS e(item)")
+        insert(net + '-exploded', 'j', net + '_exploded')
         amount = v('Etat.contenu.valeur', 'DOUBLE')
         position = f'CASE {amount} ' + ' '.join(f'WHEN {a} THEN {n}' for a, n in [(0.1,9),(0.2,10),(0.5,11),(1,12),(2,13)]) + f' ELSE TRUNCATE_INTEGER({amount}) END'
         pairs = [('DateMessage', v('message.DHM')), ('IdGare', v('comptageBols.localisation.gare')),

@@ -37,11 +37,12 @@ topics ksqlDB pendant la comparaison. Les sources du job sont lues depuis le deb
   cles avec des tombstones et emettent le nouvel agregat. Les resultats ne sont pas
   attendus jusqu'a la cloture. Le HAVING qualite conserve strictement ratio > 0.3 et
   nombre >= 20 ; les doublons comptent et les evenements TD/PostDTO sont filtres.
-* Le temps est avance par partition de regroupement, avec six partitions et le
-  hachage Kafka Murmur2. Les anciennes API utilisees par ksqlDB 7.9.2 fixent la grace
+* Le temps est avance par partition de regroupement, avec le hachage Kafka Murmur2 et
+  le nombre de partitions lu dans Kafka au demarrage (source de l'etape). Les anciennes API utilisees par ksqlDB 7.9.2 fixent la grace
   horaire et session a 24 heures moins la taille/le gap, soit 23 heures ici. Le
   nettoyage des sessions tient aussi compte du gap (24 heures au total). Les etats de
-  fenetre expires sont nettoyes lors des arrivees suivantes de la partition.
+  fenetre expires sont purges par index, au passage de chaque heure de temps de flux ;
+  la jointure des alarmes purge par minute et borne l'etat des cles inactives par un TTL de 48 h.
 * Le comptage utilise `HyperLogLog(14)` de `ksqldb-stream-lib-7.9.2.jar`, extrait de
   l'image du moteur de reference. Le remplacer par un ensemble exact pourrait
   modifier le seuil des alarmes. Les conditions de distribution de cette dependance

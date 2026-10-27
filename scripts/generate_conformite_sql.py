@@ -85,11 +85,24 @@ def main():
         '-- Journal reference, unchanged except deployment adaptation by the test runner.\n' +
         '\n\n'.join(reference) + '\n', encoding='utf-8')
     sql = ["""-- Lot 2: nine append-only consolidation branches; no ARS entree branch in the journal.
+-- Branches of one direction share schema and sink: one multi-topic source per direction
+-- replaces the per-network sources and UNION ALL. Per-partition order is unchanged.
 -- ProjectKsqlJson reproduces SELECT * schema serialization, not a raw JSON passthrough.
 CREATE TEMPORARY SYSTEM FUNCTION KSQL_PROJECT AS 'lab.ProjectKsqlJson';
 """]
     for direction in ('entree', 'sortie'):
-        sql.append(f"""CREATE TABLE {direction}_output (
+        topics = ';'.join(t for (d, _), t in inputs.items() if d == direction)
+        sql.append(f"""CREATE TABLE {direction}_input (
+  payload STRING,
+  kafka_timestamp TIMESTAMP_LTZ(3) METADATA FROM 'timestamp'
+) WITH (
+  'connector'='kafka', 'topic'='{topics}',
+  'properties.bootstrap.servers'='kafka:9092',
+  'properties.group.id'='conformite-flink-{direction}',
+  'scan.startup.mode'='earliest-offset', 'format'='raw'
+);
+
+CREATE TABLE {direction}_output (
   payload STRING,
   kafka_timestamp TIMESTAMP_LTZ(3) METADATA FROM 'timestamp'
 ) WITH (
@@ -98,23 +111,10 @@ CREATE TEMPORARY SYSTEM FUNCTION KSQL_PROJECT AS 'lab.ProjectKsqlJson';
   'sink.delivery-guarantee'='at-least-once'
 );
 """)
-    for (direction, network), topic in inputs.items():
-        sql.append(f"""CREATE TABLE {direction}_{network.lower()} (
-  payload STRING,
-  kafka_timestamp TIMESTAMP_LTZ(3) METADATA FROM 'timestamp'
-) WITH (
-  'connector'='kafka', 'topic'='{topic}',
-  'properties.bootstrap.servers'='kafka:9092',
-  'properties.group.id'='conformite-flink-{direction}-{network.lower()}',
-  'scan.startup.mode'='earliest-offset', 'format'='raw'
-);
-""")
     sql.append('EXECUTE STATEMENT SET\nBEGIN')
     for direction in ('entree', 'sortie'):
-        selects = [f"SELECT KSQL_PROJECT(payload, '{direction}'), kafka_timestamp\n"
-                   f"FROM {direction}_{network.lower()}"
-                   for d, network in inputs if d == direction]
-        sql.append(f'INSERT INTO {direction}_output\n' + '\nUNION ALL\n'.join(selects) + ';')
+        sql.append(f"INSERT INTO {direction}_output\n"
+                   f"SELECT KSQL_PROJECT(payload, '{direction}'), kafka_timestamp FROM {direction}_input;")
     sql.append('END;\n')
     (ROOT / 'sql/flink/03-conformite.sql').write_text('\n'.join(sql), encoding='utf-8')
 

@@ -26,8 +26,8 @@ Les noms quotes et non quotes suivent le comportement valide dans le lot 2.
 | FAV | Comparaison des structures SUJET/ETAT, priorite des premiers WHEN, null quand un etat est absent |
 | Variantes FAV | ASF exclut BECM/VSP mais conserve les types absents ; ESC accepte BE ESCOTA en entree et calcule GAREGROUP sur sa liste de gares |
 
-Toutes les sorties de comparaison sont suffixees `.flink`. Les deux topics exploded sont conserves physiquement
-et relus par les projections bol ; aucune fusion de cette frontiere n'est introduite.
+Toutes les sorties de comparaison sont suffixees `.flink`. Les deux topics exploded sont toujours publies
+pour leurs consommateurs ; les projections bol reutilisent la meme vue dans le job au lieu de relire Kafka.
 Les cles FAV sont des chaines Kafka et restent dans la cle, sans ajout dans la valeur JSON.
 Les sources sans colonne KEY n'exportent pas de cle. Les timestamps Kafka sont recopies.
 Les tombstones sont propages par les projections du lot 3, mais elimines par EXPLODE et les filtres du lot 4.
