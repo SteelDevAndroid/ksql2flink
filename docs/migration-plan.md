@@ -140,7 +140,7 @@ foreach ($net in @('asf', 'esc', 'ars', 'acr', 'cof')) {
   docker compose exec -T kafka kafka-topics --bootstrap-server kafka:9092 --create --if-not-exists --topic "$net.peage.voie.passagesortieva" --partitions 6 --replication-factor 1
 }
 docker compose exec -T kafka kafka-topics --bootstrap-server kafka:9092 --create --if-not-exists --topic va.peage.voie.passagesortieva.lexhistoric.flink --partitions 2 --replication-factor 1 --config retention.ms=86400000 --config cleanup.policy=delete
-docker compose run --rm -T sql-client embedded -f /opt/flink/sql/02-lexhistoric.sql
+docker compose exec -T jobmanager /opt/flink/bin/flink run -d -c lab.SqlRunner /opt/flink/lib/migration-lab.jar /opt/flink/sql/02-lexhistoric.sql
 ```
 
 Avant une bascule de production : relever les offsets par partition, valider les proprietes effectives des topics,

@@ -63,13 +63,13 @@ public class WindowJob {
         return new Event(bytes(k.toString()), e.value, e.timestamp);
     }
     static DataStream<Event> source(StreamExecutionEnvironment env, String topic, String group) {
-        return env.fromSource(KafkaSource.<Event>builder().setBootstrapServers("kafka:9092")
+        return env.fromSource(KafkaSource.<Event>builder().setProperties(KafkaConnection.properties())
             .setTopics(topic).setGroupId(group).setStartingOffsets(OffsetsInitializer.earliest())
             .setDeserializer(new SocleEtJob.ReadRecord()).build(), WatermarkStrategy.noWatermarks(), group).uid(group);
     }
     static void sink(DataStream<Event> stream, String topic, String uid) {
         int suffix=uid.equals("hourly-sink")?8:uid.equals("quality-sink")||uid.equals("count-sink")?16:0;
-        stream.sinkTo(KafkaSink.<Event>builder().setBootstrapServers("kafka:9092")
+        stream.sinkTo(KafkaSink.<Event>builder().setKafkaProducerConfig(KafkaConnection.properties())
             .setRecordSerializer(new WindowRecord(topic,suffix)).setDeliveryGuarantee(DeliveryGuarantee.AT_LEAST_ONCE)
             .build()).uid(uid).name(uid);
     }

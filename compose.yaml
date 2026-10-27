@@ -4,6 +4,11 @@ x-flink: &flink
   image: ksql2flink-flink:1.20.3
   build: ./docker/flink
   environment:
+    # Lab broker for the DataStream jobs and KafkaProbe (lab.KafkaConnection).
+    KAFKA_BOOTSTRAP: kafka:9092
+    KAFKA_SECURITY_PROTOCOL: PLAINTEXT
+    KAFKA_SASL_MECHANISM: PLAIN
+    KAFKA_JAAS: ''
     FLINK_PROPERTIES: |
       jobmanager.rpc.address: jobmanager
       rest.address: jobmanager

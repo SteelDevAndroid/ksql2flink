@@ -50,7 +50,10 @@ des consommateurs.
 ## Kafka
 
 Les scripts `sql/flink` déclarent la connexion par variables, résolues par `lab.SqlRunner`
-en production et par `scripts/flink_kafka.py` dans le laboratoire (PLAINTEXT, `kafka:9092`) :
+en production et par `scripts/flink_kafka.py` dans le laboratoire (PLAINTEXT, `kafka:9092`).
+Les jobs DataStream et `KafkaProbe` lisent les mêmes variables d'environnement via
+`lab.KafkaConnection` ; `compose.yaml` les fixe pour le laboratoire. Une variable absente
+fait échouer le démarrage :
 
 | Variable | Option Kafka | Exemple production |
 | --- | --- | --- |
@@ -126,6 +129,5 @@ le HyperLogLog et l'ordre des entrelacements.
 ## Restant à faire avant production
 
 - Passer les sinks en `exactly-once` et les consommateurs en `read_committed`.
-- Paramétrer les jobs DataStream (`SocleEtJob`, `WindowJob`), qui gardent `kafka:9092` en dur.
 - Valider la reprise sur panne et les doublons avec les sinks transactionnels.
 - Dimensionner les ressources sur les débits réels.

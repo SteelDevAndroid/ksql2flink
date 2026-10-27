@@ -18,8 +18,7 @@ import org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.node.Obje
 public class KafkaProbe {
     public static void main(String[] args) throws Exception {
         ObjectMapper mapper = new ObjectMapper();
-        Properties config = new Properties();
-        config.put("bootstrap.servers", "kafka:9092");
+        Properties config = KafkaConnection.properties();
         if (args[0].equals("barriers")) {
             JsonNode specs = mapper.readTree(Files.readString(Path.of(args[1])));
             try (org.apache.flink.kafka.shaded.org.apache.kafka.clients.admin.AdminClient admin =

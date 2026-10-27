@@ -74,7 +74,7 @@ de referentiel, delete pour les autres topics. Les proprietes effectives de rete
 relevees en production ; le laboratoire utilise un broker et des topics isoles.
 
 ```powershell
-docker compose run --rm -T sql-client embedded -f /opt/flink/sql/05-badges.sql
+docker compose exec -T jobmanager /opt/flink/bin/flink run -d -c lab.SqlRunner /opt/flink/lib/migration-lab.jar /opt/flink/sql/05-badges.sql
 docker compose exec -T jobmanager /opt/flink/bin/flink run -d -c lab.SocleEtJob /opt/flink/lib/migration-lab.jar --config /opt/flink/sql/06-socleet.json
 ```
 
