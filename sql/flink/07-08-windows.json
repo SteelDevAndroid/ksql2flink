@@ -1,0 +1,10 @@
+{
+  "group_prefix": "windows-flink",
+  "indicator_input": "VA_PEAGE_BACKOFFICE_SOCLEET_FILTER_REF_INDICATEUR",
+  "flows": "VA_PEAGE_CLASSIFICATION_FLOWS_EXTEND",
+  "hourly": "va.peage.backoffice.socleET.indicateur.flink",
+  "quality": "va.peage.classificationInfoQualite.flink",
+  "count": "va.peage.classificationInfoQualite.Count.flink",
+  "unit_alarm": "va.peage.classificationAlarme.flink",
+  "global_alarm": "va.peage.classificationAlarme.flink"
+}

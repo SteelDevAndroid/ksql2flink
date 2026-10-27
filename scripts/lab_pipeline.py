@@ -1,4 +1,4 @@
-"""Shared isolation/transport for the ordered lot-5/6 differential scenarios."""
+"""Shared isolation and transport for ordered differential migration scenarios."""
 import json
 import re
 import time
@@ -23,18 +23,20 @@ class Pipeline:
         return topic
 
     def reference(self, path, topics, count):
-        sql = (ROOT / path).read_text()
+        sql = (ROOT / path).read_text(encoding='utf-8')
         for old, new in topics.items():
             sql = sql.replace("'" + old + "'", "'" + new + "'")
         names = re.findall(r'CREATE (?:OR REPLACE )?(?:STREAM|TABLE) (\w+)', sql)
         names += re.findall(r"QUERY_ID\s*=\s*'(\w+)'", sql)
         for name in sorted(set(names), key=len, reverse=True):
             sql = re.sub(r'\b' + name + r'\b', self.run_id.upper() + '_' + name, sql)
-        sql = re.sub(r'REPLICAS=\d+', 'REPLICAS=1', sql).replace("CLEANUP_POLICY='delete', ", '').replace("CLEANUP_POLICY='compact', ", '')
+        sql = re.sub(r'REPLICAS=\d+', 'REPLICAS=1', sql)
+        sql = re.sub(r"CLEANUP_POLICY='[^']*',\s*", '', sql)
         # DESCRIBE also prints retention for non-windowed tables, which the submit API rejects.
-        sql = re.sub(r'CREATE TABLE .*?;',
-                     lambda m: re.sub(r'(?:RETENTION_MS=\d+,\s*|,\s*RETENTION_MS=\d+)', '', m[0]), sql, flags=re.S)
-        (self.artifact / 'ksql.sql').write_text(sql)
+        sql = re.sub(r'CREATE (?:OR REPLACE )?TABLE .*?;',
+                     lambda m: m[0] if 'WINDOW ' in m[0] else re.sub(
+                         r'(?:RETENTION_MS=\d+,\s*|,\s*RETENTION_MS=\d+)', '', m[0]), sql, flags=re.S)
+        (self.artifact / 'ksql.sql').write_text(sql, encoding='utf-8')
         request('http://localhost:8088/ksql', {'ksql': sql, 'streamsProperties': {'auto.offset.reset': 'earliest'}})
         result = request('http://localhost:8088/ksql', {'ksql': 'SHOW QUERIES;', 'streamsProperties': {}})
         self.queries = [q for item in result for q in item.get('queries', [])
@@ -42,7 +44,7 @@ class Pipeline:
         if len(self.queries) != count:
             raise AssertionError(f'Expected {count} reference queries, found {len(self.queries)}')
 
-    def launch(self, path, config=None, topics=None):
+    def launch(self, path, config=None, topics=None, main_class='lab.SocleEtJob'):
         if config is None:
             sql = (ROOT / path).read_text()
             for old, new in (topics or {}).items():
@@ -55,7 +57,7 @@ class Pipeline:
             file = self.artifact / 'flink-config.json'
             file.write_text(json.dumps(config, indent=2))
             docker('cp', str(file), 'jobmanager:/tmp/pipeline-config.json')
-            output = docker('exec', '-T', 'jobmanager', '/opt/flink/bin/flink', 'run', '-d', '-c', 'lab.SocleEtJob',
+            output = docker('exec', '-T', 'jobmanager', '/opt/flink/bin/flink', 'run', '-d', '-c', main_class,
                             '/opt/flink/lib/migration-lab.jar', '--config', '/tmp/pipeline-config.json')
         (self.artifact / 'flink-submit.log').write_text(output, encoding='utf-8')
         match = re.search(r'(?:Job ID:|JobID)\s*([0-9a-f]{32})', output)

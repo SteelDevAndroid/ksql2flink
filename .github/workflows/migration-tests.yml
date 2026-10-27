@@ -26,7 +26,8 @@ jobs:
           python scripts/generate_conformite_sql.py
           python scripts/generate_lots34_sql.py
           python scripts/generate_lots56.py
-          git diff --exit-code -- sql docker/flink/resources/schemas docs/lots34-contracts.json docs/lots56-contracts.json
+          python scripts/generate_lots78.py
+          git diff --exit-code -- sql docker/flink/resources/schemas docs/lots34-contracts.json docs/lots56-contracts.json docs/lots78-contracts.json
       - name: Start migration lab
         run: docker compose up -d --build --wait --wait-timeout 240
       - name: Run smoke comparison
@@ -41,6 +42,8 @@ jobs:
         run: python scripts/test_badges.py
       - name: Compare stateful reference enrichment
         run: python scripts/test_socleet.py
+      - name: Compare updating windows and classification alarms
+        run: python scripts/test_windows.py
       - name: Capture service logs
         if: always()
         run: |
