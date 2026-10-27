@@ -54,6 +54,10 @@ L’ajouter modifierait le périmètre métier.
 
 L’inventaire nominatif et les lignes du journal sont dans
 [query-inventory.json](query-inventory.json) et [migration-plan.md](migration-plan.md).
+Le [tableau de mapping ksqlDB → Flink](mapping-ksql-flink.md) donne, pour chacun des
+37 traitements, un lien vers la requête ksqlDB, son implémentation SQL ou DataStream
+Flink, la transformation conservée et le topic de sortie. Il explicite les
+regroupements de plusieurs requêtes dans un même INSERT Flink.
 
 ## 3. Architecture livrée
 
@@ -309,6 +313,7 @@ doivent être fixés par le projet ; aucune valeur arbitraire n’est assimilée
 
 ## 11. Documents et code de référence
 
+* [Tableau de mapping des 37 requêtes ksqlDB vers Flink](mapping-ksql-flink.md).
 * [Guide opérationnel et conseils](conseils-migration.md).
 * [Plan et inventaire détaillé](migration-plan.md).
 * [Contrat lot 2](lot-2-conformite.md), [lots 3/4](lots-3-4.md),
